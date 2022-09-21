@@ -6,6 +6,7 @@ const WannaGoSchema = new Schema({
   where: { type: String, required: true },
   when: { type: String, required: true },
   owner: {type: String, required: true},
+  category: String,
   // ppl_going: Array,
   // suggested_changes: Array,
 });
