@@ -6,8 +6,8 @@ const {
 
 const router = new KoaRouter();
 
-router.get('/wannaGos', getWannaGos)
-router.post('/wannaGo', postAwannaGo)
+router.get('/wannagos', getWannaGos)
+router.post('/wannago', postAwannaGo)
 
 module.exports = router;
 
