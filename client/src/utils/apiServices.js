@@ -1,5 +1,5 @@
 const URL = 'http://localhost:';
-const PORT = 5001;
+const PORT = 4000;
 
 export const getWannaGos = async () => {
   try {
@@ -7,6 +7,15 @@ export const getWannaGos = async () => {
     return wannaGos.json();
   } catch (e) {
     console.log(`Error in getWannaGos function in apiService. Error: ${e}`);
+  }
+};
+
+export const getAwannaGo = async ({when}) => {
+  try {
+    const wannaGo = await fetch(`${URL}${PORT}/wannago/:${when}`);
+    return wannaGo.json();
+  } catch (e) {
+    console.log(`Error in getAWannaGo function in apiService. Error: ${e}`);
   }
 };
 
@@ -21,4 +30,6 @@ export const postAwannaGo = async (wannaGo) => {
     console.log(`Error in postAwannaGo function in apiService. Error: ${e}`);
   }
 };
+
+
 

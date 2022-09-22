@@ -1,10 +1,12 @@
 import { What, When, Where, Owner } from './FieldsWannaGo';
 import { getWannaGos, postAwannaGo } from '../utils/apiServices';
+import VerticalStepper from './VerticalStepper';
 
 const WannaGoForm = () => {
   const handleSubmit = (e) => {
     console.log(`I am entering here`);
     e.preventDefault();
+    console.log('THis is e', e);
 
     const newWannaGo = {
       what: e.target.what.value,
@@ -22,18 +24,12 @@ const WannaGoForm = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <What></What>
-      <br />
-      <Where></Where>
-      <br />
-      <When></When>
-      <br />
-      <Owner></Owner>
-      <br />
+      {/* <VerticalStepper></VerticalStepper> */}
       <button type='submit'></button>
     </form>
   );
 };
 
 export default WannaGoForm;
+
 

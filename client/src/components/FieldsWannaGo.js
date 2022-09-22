@@ -1,7 +1,6 @@
 export const What = () => {
   return (
     <>
-      <label>What?</label>
       <input
         type='text'
         name='what'
@@ -13,7 +12,6 @@ export const What = () => {
 export const Where = () => {
   return (
     <>
-      <label>Where?</label>
       <input
         type='text'
         name='where'
@@ -25,7 +23,6 @@ export const Where = () => {
 export const When = () => {
   return (
     <>
-      <label>When?</label>
       <input
         type='datetime-local'
         name='when'
@@ -37,7 +34,6 @@ export const When = () => {
 export const Owner = () => {
   return (
     <>
-      <label>Owner</label>
       <input
         type='text'
         name='owner'
