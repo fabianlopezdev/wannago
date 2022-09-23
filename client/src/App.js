@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import { getWannaGos, postAwannaGo } from './utils/apiServices';
+import { useState} from 'react';
 import logo from './logo.jpg';
-import initialWannaGo from './data';
-import WannaGoCard from './components/WannaGoCard';
+import PlanCreated from './components/PlanCreated';
+import GuestsLinks from './components/GuestsLinks';
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import VerticalStepper from './components/VerticalStepper';
 
+import { initialWannaGo } from './data';
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [showCard, setShowCard] = useState(false);
-  const [newWannaGo, setNewWannaGo] = useState(initialWannaGo);
+  const [wannaGo, setwannaGo] = useState(initialWannaGo);
   const handleClick = () => {
     setShowForm(!showForm);
   };
@@ -35,8 +35,8 @@ function App() {
             <div className='stepper'>
               {showForm ? (
                 <VerticalStepper
-                  newWannaGo={newWannaGo}
-                  setNewWannaGo={setNewWannaGo}
+                  wannaGo={wannaGo}
+                  setwannaGo={setwannaGo}
                   showCard={showCard}
                   setShowCard={setShowCard}
                 ></VerticalStepper>
@@ -45,10 +45,21 @@ function App() {
           </div>
         }
       ></Route>
-      <Route exact path='/card/:id' element={<WannaGoCard newWannaGo={newWannaGo}></WannaGoCard>}></Route>
+      <Route
+        exact
+        path='/card/:id'
+        element={<PlanCreated></PlanCreated>}
+      ></Route>
+      <Route
+        exact
+        path='/wannaGo/:id'
+        element={<GuestsLinks></GuestsLinks>}
+      ></Route>
     </Routes>
   );
 }
 
 export default App;
+
+
 

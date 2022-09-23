@@ -4,52 +4,16 @@ import { Step, Stepper, StepLabel, StepContent } from '@mui/material';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { getWannaGoByParams, postAwannaGo, getWannaGos } from '../utils/apiServices';
-import {useNavigate} from 'react-router-dom'
+import {
+  getWannaGoByParams,
+  postAwannaGo,
+} from '../utils/apiServices';
+import { useNavigate } from 'react-router-dom';
 
-const steps = [
-  {
-    label: 'What?',
-    description: 'Add a title to your plan',
-    formField: (
-      <input
-        text='Hooo'
-        type='text'
-        name='what'
-        autoFocus
-        required
-      ></input>
-    ),
-  },
-  {
-    label: 'Where?',
-    description: 'Add an address',
-    formField: (
-      <input
-        type='text'
-        name='where'
-        autoFocus
-        required
-      ></input>
-    ),
-  },
-  {
-    label: 'When',
-    description: `When is it?`,
-    formField: (
-      <input
-        type='datetime-local'
-        name='when'
-        autoFocus
-        required
-      ></input>
-    ),
-  },
-];
-
+import {steps} from '../data'
 export default function VerticalStepper({
-  newWannaGo,
-  setNewWannaGo,
+  wannaGo,
+  setwannaGo,
   showCard,
   setShowCard,
 }) {
@@ -61,7 +25,7 @@ export default function VerticalStepper({
 
     const field = e.target[0].name;
     const inputValue = e.target[0].value;
-    newWannaGo[field] = inputValue;
+    wannaGo[field] = inputValue;
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -71,12 +35,12 @@ export default function VerticalStepper({
   };
 
   const saveWannaGo = async () => {
-    await postAwannaGo(newWannaGo);
-    const postedWannaGo = await getWannaGoByParams(newWannaGo.what, newWannaGo.when)
-    setNewWannaGo(postedWannaGo);
+    await postAwannaGo(wannaGo);
+    const postedWannaGo = await getWannaGoByParams(wannaGo.what, wannaGo.when);
+    setwannaGo(postedWannaGo);
     const { _id } = postedWannaGo;
-    setShowCard(!showCard)
-    navigate(`/card/id=${_id}`)
+    setShowCard(!showCard);
+    navigate(`/card/id=${_id}`);
     // setActiveStep(0);
   };
 
