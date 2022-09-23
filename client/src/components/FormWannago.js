@@ -1,5 +1,5 @@
 import { What, When, Where, Owner } from './FieldsWannaGo';
-import { getWannaGos, postAwannaGo } from '../utils/apiServices';
+import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
 import VerticalStepper from './VerticalStepper';
 
 const WannaGoForm = () => {

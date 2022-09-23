@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../css/WannaGoCard.css';
-import { getWannaGoById } from '../utils/apiServices';
+import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import WannaGoCard from './WannaGoCard';
 
 const PlanCreated = () => {

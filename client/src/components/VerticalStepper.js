@@ -4,17 +4,12 @@ import { Step, Stepper, StepLabel, StepContent } from '@mui/material';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import {
-  getWannaGoByParams,
-  postAwannaGo,
-} from '../utils/apiServices';
+import { getWannaGoByParams } from '../utils/apis/wannagoApiServices/getWannaGos';
+import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
 import { useNavigate } from 'react-router-dom';
 
-import {steps} from '../data'
-export default function VerticalStepper({
-  wannaGo,
-  setwannaGo,
-}) {
+import { steps } from '../data';
+export default function VerticalStepper({ wannaGo, setwannaGo }) {
   const [activeStep, setActiveStep] = useState(0);
 
   let navigate = useNavigate();
@@ -98,4 +93,5 @@ export default function VerticalStepper({
     </Box>
   );
 }
+
 

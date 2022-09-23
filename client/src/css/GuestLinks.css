@@ -1,0 +1,26 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1;
+}
+
+.buttons button {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.button.important {
+  background-color: rgb(241,138,203);
+  box-shadow: 2px 2px rgb(242,205,211);
+}
+.form {
+  display: flex;
+  justify-content:center;
+  gap: 10px;
+}
+
+.btn {
+  display: flex;
+  align-items: flex-start;
+}

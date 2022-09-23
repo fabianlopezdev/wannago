@@ -8,11 +8,9 @@ const WannaGoSchema = new Schema({
   // owner: {type: String, required: true},
   owner: String,
   category: String,
-  // ppl_going: Array,
+  ppl_going: { type: Map, of: String },
   // suggested_changes: Array,
 });
 
 module.exports = mongoose.model('wannagos', WannaGoSchema);
-
-
 

@@ -28,20 +28,5 @@ export const getWannaGoById = async (id) => {
   } catch (e) {
     console.log(`Error in getWannaGoById function in apiService. Error: ${e}`);
   }
+
 };
-
-export const postAwannaGo = async (wannaGo) => {
-  try {
-    return fetch(`${URL}${PORT}/wannago`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify(wannaGo),
-    });
-  } catch (e) {
-    console.log(`Error in postAwannaGo function in apiService. Error: ${e}`);
-  }
-};
-
-
-
-
