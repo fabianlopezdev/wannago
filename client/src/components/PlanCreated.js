@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import '../css/WannaGoCard.css';
 import { getWannaGoById } from '../utils/apiServices';
-const { dateFormatter } = require('../utils/helperFunctions');
+import WannaGoCard from './WannaGoCard';
 
-const WannaGoCard = () => {
+const PlanCreated = () => {
   const params = new URLSearchParams(window.location.pathname);
   const id = params.get('/card/id');
 
@@ -14,25 +14,10 @@ const WannaGoCard = () => {
     setwannaGo(queriedWannaGo);
   }, []);
 
-  const dateTime = dateFormatter(wannaGo.when);
-
   return (
     <>
       <h1 className='see'>What a Plan!</h1>
-      <div className='everything'>
-        <div>
-          <h1>{wannaGo.what}</h1>
-        </div>
-        <div>
-          <h1>At {wannaGo.where}</h1>
-        </div>
-        <div>
-          <h1>
-            On {dateTime.month} {dateTime.day}, {dateTime.year}
-          </h1>
-          <h1>At {dateTime.time}</h1>
-        </div>
-      </div>
+      <WannaGoCard wannaGo={wannaGo}></WannaGoCard>
       <h1 className='see'>Ask if they wannaGo!</h1>
       <h3 className='see'>
         Share this link:
@@ -44,7 +29,7 @@ const WannaGoCard = () => {
   );
 };
 
-export default WannaGoCard;
+export default PlanCreated;
 
 
 
