@@ -10,12 +10,23 @@ export const getWannaGos = async () => {
   }
 };
 
-export const getAwannaGo = async ({when}) => {
+export const getWannaGoByParams = async (what, when) => {
   try {
-    const wannaGo = await fetch(`${URL}${PORT}/wannago/:${when}`);
+    const wannaGo = await fetch(`${URL}${PORT}/wannago/${what}/${when}`);
     return wannaGo.json();
   } catch (e) {
-    console.log(`Error in getAWannaGo function in apiService. Error: ${e}`);
+    console.log(
+      `Error in getWannaGoByParams function in apiService. Error: ${e}`
+    );
+  }
+};
+
+export const getWannaGoById = async (id) => {
+  try {
+    const wannaGo = await fetch(`${URL}${PORT}/wannago/${id}`);
+    return wannaGo.json();
+  } catch (e) {
+    console.log(`Error in getWannaGoById function in apiService. Error: ${e}`);
   }
 };
 
@@ -30,6 +41,7 @@ export const postAwannaGo = async (wannaGo) => {
     console.log(`Error in postAwannaGo function in apiService. Error: ${e}`);
   }
 };
+
 
 
 

@@ -45,7 +45,7 @@ function App() {
           </div>
         }
       ></Route>
-      <Route path='/card' element={<WannaGoCard newWannaGo={newWannaGo}></WannaGoCard>}></Route>
+      <Route exact path='/card/:id' element={<WannaGoCard newWannaGo={newWannaGo}></WannaGoCard>}></Route>
     </Routes>
   );
 }

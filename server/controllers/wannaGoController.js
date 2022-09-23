@@ -11,18 +11,33 @@ const getWannaGos = async (ctx) => {
   }
 };
 
-const getAwannaGo = async (ctx) => {
+const getWannaGoByParams = async (ctx) => {
   try {
-    console.log(ctx.params)
-    const wannaGo = await WannaGo.findOne({when: ctx.params});
     ctx.status = 201;
-    ctx.body = wannaGos;
+    const plan = await WannaGo.findOne({
+      what: `${ctx.params.what}`,
+      when: `${ctx.params.when}`,
+    });
+    console.log(`this is the plan`, plan);
+    ctx.body = plan;
   } catch (e) {
     ctx.status = 500;
-    console.log(`Error in getWannaGos function from controllers: ${e}`);
+    console.log(`Error in getawannaGo function from controllers: ${e}`);
   }
 };
 
+const getWannaGoById = async (ctx) => {
+  try {
+    ctx.status = 201;
+    console.log(ctx.params.id);
+    const plan = await WannaGo.findById(ctx.params.id);
+    console.log(`this is the plan`, plan);
+    ctx.body = plan;
+  } catch (e) {
+    ctx.status = 500;
+    console.log(`Error in getawannaGo function from controllers: ${e}`);
+  }
+};
 
 const postAwannaGo = async (ctx) => {
   try {
@@ -36,7 +51,6 @@ const postAwannaGo = async (ctx) => {
     });
     ctx.status = 201;
     ctx.body = storedWannaGo;
-    console.log(`WannaGo stored in db: ${storedWannaGo}`);
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
@@ -47,7 +61,7 @@ const postAwannaGo = async (ctx) => {
 module.exports = {
   getWannaGos,
   postAwannaGo,
-  getAwannaGo
+  getWannaGoByParams,
+  getWannaGoById,
 };
-
 

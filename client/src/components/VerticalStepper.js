@@ -4,7 +4,7 @@ import { Step, Stepper, StepLabel, StepContent } from '@mui/material';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { postAwannaGo } from '../utils/apiServices';
+import { getWannaGoByParams, postAwannaGo, getWannaGos } from '../utils/apiServices';
 import {useNavigate} from 'react-router-dom'
 
 const steps = [
@@ -71,12 +71,12 @@ export default function VerticalStepper({
   };
 
   const saveWannaGo = async () => {
-    postAwannaGo(newWannaGo);
-    console.log(newWannaGo);
-    setNewWannaGo(newWannaGo);
+    await postAwannaGo(newWannaGo);
+    const postedWannaGo = await getWannaGoByParams(newWannaGo.what, newWannaGo.when)
+    setNewWannaGo(postedWannaGo);
+    const { _id } = postedWannaGo;
     setShowCard(!showCard)
-    navigate('/card')
-
+    navigate(`/card/id=${_id}`)
     // setActiveStep(0);
   };
 
