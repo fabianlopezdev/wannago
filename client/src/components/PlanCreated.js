@@ -9,11 +9,14 @@ const PlanCreated = () => {
 
   const [wannaGo, setwannaGo] = useState({});
 
-  useEffect(async () => {
-    const queriedWannaGo = await getWannaGoById(id);
-    setwannaGo(queriedWannaGo);
+  useEffect(() => {
+    promiseHandler();
   }, []);
 
+  const promiseHandler = async () => {
+    const queriedWannaGo = await getWannaGoById(id);
+    setwannaGo(queriedWannaGo);
+  };
   return (
     <>
       <h1 className='see'>What a Plan!</h1>
@@ -21,7 +24,10 @@ const PlanCreated = () => {
       <h1 className='see'>Ask if they wannaGo!</h1>
       <h3 className='see'>
         Share this link:
-        <a target='blank' href={`http://localhost:3000/wannaGo/id=${id}`}>
+        <a
+          target='blank'
+          href={`http://localhost:3000/wannaGo/id=${id}`}
+        >
           &nbsp;http://localhost:3000/wannaGo/id={id}
         </a>
       </h3>
@@ -30,8 +36,4 @@ const PlanCreated = () => {
 };
 
 export default PlanCreated;
-
-
-
-
 

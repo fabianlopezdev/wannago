@@ -33,13 +33,11 @@ export default function VerticalStepper({ wannaGo, setwannaGo }) {
     setwannaGo(postedWannaGo);
     const { _id } = postedWannaGo;
     navigate(`/card/id=${_id}`);
-    // setActiveStep(0);
   };
 
   return (
     <Box sx={{ maxWidth: 700 }}>
       <Stepper
-        // className={c.root}
         activeStep={activeStep}
         orientation='vertical'
       >

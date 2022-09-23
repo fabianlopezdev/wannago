@@ -1,4 +1,4 @@
-import { postPplGoing } from '../utils/apis/wannagoApiServices/postWannaGos';
+import { postPplGoing } from '../../utils/apis/wannagoApiServices/postWannaGos';
 import { useState } from 'react';
 const YesOption = ({ id }) => {
   const [submitClicked, setsubmitClicked] = useState(false);

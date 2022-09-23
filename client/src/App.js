@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PlanCreated from './components/PlanCreated';
-import GuestsLinks from './components/GuestsLinks';
+import GuestsLinks from './components/linkForGuests/GuestsLinks';
 import { Routes, Route } from 'react-router-dom';
 import MainPage from './components/MainPage';
 import './App.css';

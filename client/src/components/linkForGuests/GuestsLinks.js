@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import '../css/GuestLinks.css';
-import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
-import WannaGoCard from './WannaGoCard';
+import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
+import WannaGoCard from '../WannaGoCard';
 import YesOption from './YesOption';
 import NoOption from './NoOption';
 import MaybeOption from './MaybeOption';
 import { YesButton, NoButton, MaybeButton } from './OptionButtons';
+
+import '../../css/GuestLinks.css';
 
 const GuestLink = () => {
   const params = new URLSearchParams(window.location.pathname);
@@ -50,7 +51,4 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
-
-
-
 

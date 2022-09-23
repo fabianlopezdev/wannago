@@ -1,6 +1,7 @@
-import '../css/MaybeOption.css';
 import { useState } from 'react';
-import { postSuggestionMsg } from '../utils/apis/wannagoApiServices/postWannaGos';
+import { postSuggestionMsg } from '../../utils/apis/wannagoApiServices/postWannaGos';
+
+import '../../css/MaybeOption.css';
 
 const MaybeOption = ({ id }) => {
   const [msgSent, setMsgSent] = useState(false);
