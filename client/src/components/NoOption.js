@@ -1,5 +1,7 @@
+import { useState } from 'react';
+
 const NoOption = () => {
-  return <h1>Ohhhhhh!!!</h1>;
+  return <h1>Ohhhhhh!!! Fabi will miss you!</h1>;
 };
 
 export default NoOption;

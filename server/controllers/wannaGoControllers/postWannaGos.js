@@ -10,6 +10,7 @@ const postAwannaGo = async (ctx) => {
       owner: wannaGo.owner,
       category: wannaGo.category,
     });
+    console.log(`This wannaGo was posted: ${storedWannaGo}`);
     ctx.status = 201;
     ctx.body = storedWannaGo;
   } catch (e) {
@@ -27,14 +28,33 @@ const postPplGoing = async (ctx) => {
         [`ppl_going.${name}`]: `${email}`,
       },
     });
+    console.log(
+      `This name: ${name} and email ${email} was posted in the wannaGo: ${pplGoing}`
+    );
     ctx.status = 201;
     ctx.body = pplGoing;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in postAwannaGo function from controllers: ${e}`);
+    console.log(`Error in postPplGoing function from controllers: ${e}`);
   }
 };
 
-module.exports = { postAwannaGo, postPplGoing };
+const postSuggestionMsg = async (ctx) => {
+  try {
+    const { msg, id } = ctx.request.body;
+    const postedMsg = await WannaGo.findByIdAndUpdate(id, {
+      $push: { suggestion_box: msg },
+    });
+    console.log(`This message: ${msg} was posted in the wannaGo: ${postedMsg}`);
+    ctx.status = 201;
+    ctx.body = postedMsg;
+  } catch (e) {
+    ctx.status = 500;
+    ctx.body = e;
+    console.log(`Error in postSuggestionMsg function from controllers: ${e}`);
+  }
+};
+
+module.exports = { postAwannaGo, postPplGoing, postSuggestionMsg };
 
