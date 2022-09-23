@@ -1,4 +1,5 @@
 const dayjs = require('dayjs');
+
 export const dateFormatter = (date) => {
   const toFormat = dayjs(date);
   const dateTime = {
@@ -9,3 +10,4 @@ export const dateFormatter = (date) => {
   };
   return dateTime;
 };
+

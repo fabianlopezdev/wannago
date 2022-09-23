@@ -14,8 +14,6 @@ import {steps} from '../data'
 export default function VerticalStepper({
   wannaGo,
   setwannaGo,
-  showCard,
-  setShowCard,
 }) {
   const [activeStep, setActiveStep] = useState(0);
 
@@ -39,7 +37,6 @@ export default function VerticalStepper({
     const postedWannaGo = await getWannaGoByParams(wannaGo.what, wannaGo.when);
     setwannaGo(postedWannaGo);
     const { _id } = postedWannaGo;
-    setShowCard(!showCard);
     navigate(`/card/id=${_id}`);
     // setActiveStep(0);
   };
