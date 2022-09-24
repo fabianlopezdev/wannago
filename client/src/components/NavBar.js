@@ -1,11 +1,13 @@
-import '../css/NavBar.css';
+import React from 'react';
+import AuthNav from './AuthNav';
 
 const NavBar = () => {
   return (
-    <div className='NavBar'>
-      <h3>Sign in</h3>
-      <h3>Sign Up</h3>
-    </div>
+      <nav className=''>
+        <div>
+          <AuthNav />
+        </div>
+      </nav>
   );
 };
 
