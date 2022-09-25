@@ -12,7 +12,8 @@ export default function UpdateProfile() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  
+  console.log(currentUser)
   const handleSubmit = async (e) => {
     e.preventDefault();
 

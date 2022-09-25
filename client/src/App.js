@@ -9,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import UpdateProfile from './components/UpdateProfile';
 import { Routes, Route } from 'react-router-dom';
 import MainPage from './components/MainPage';
+import NavBar from './components/NavBar';
 import './App.css';
 
 import Loading from './components/Loading';
@@ -20,89 +21,89 @@ function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
 
   return (
-    <AuthProvider>
-      <Routes>
-        <Route
-          exact
-          path='/'
-          element={
-            <MainPage
-              wannaGo={wannaGo}
-              setwannaGo={setwannaGo}
-            ></MainPage>
-          }
-        ></Route>
-        <Route
-          exact
-          path='/card/:id'
-          element={<PlanCreated></PlanCreated>}
-        ></Route>
-        <Route
-          exact
-          path='/wannaGo/:id'
-          element={<GuestsLinks></GuestsLinks>}
-        ></Route>
-        <Route
-          exact
-          path='/signUp'
-          element={
-            <>
-              <Container className='signup-container'>
-                <div className='signup-div'>
-                  <SignUp />
-                </div>
-              </Container>
-            </>
-          }
-        ></Route>
-        <Route
-          exact
-          path='/login'
-          element={
-            <>
-              <Container className='signup-container'>
-                <div className='signup-div'>
-                  <Login />
-                </div>
-              </Container>
-            </>
-          }
-        ></Route>
-        <Route
-          exact
-          path='/forgot-password'
-          element={
-            <>
-              <Container className='signup-container'>
-                <div className='signup-div'>
-                  <ForgotPassword />
-                </div>
-              </Container>
-            </>
-          }
-        ></Route>
-        <Route element={<PrivateRoute />}>
+    <>
+      <AuthProvider>
+      <NavBar></NavBar>
+        <Routes>
           <Route
             exact
-            path='/dashboard'
-            element={<Dashboard></Dashboard>}
+            path='/'
+            element={
+              <MainPage
+                wannaGo={wannaGo}
+                setwannaGo={setwannaGo}
+              ></MainPage>
+            }
           ></Route>
-        </Route>
-        <Route element={<PrivateRoute />}>
           <Route
             exact
-            path='/update-profile'
-            element={<UpdateProfile></UpdateProfile>}
+            path='/card/:id'
+            element={<PlanCreated></PlanCreated>}
           ></Route>
-        </Route>
-      </Routes>
-    </AuthProvider>
+          <Route
+            exact
+            path='/wannaGo/:id'
+            element={<GuestsLinks></GuestsLinks>}
+          ></Route>
+          <Route
+            exact
+            path='/signUp'
+            element={
+              <>
+                <Container className='signup-container'>
+                  <div className='signup-div'>
+                    <SignUp />
+                  </div>
+                </Container>
+              </>
+            }
+          ></Route>
+          <Route
+            exact
+            path='/login'
+            element={
+              <>
+                <Container className='signup-container'>
+                  <div className='signup-div'>
+                    <Login />
+                  </div>
+                </Container>
+              </>
+            }
+          ></Route>
+          <Route
+            exact
+            path='/forgot-password'
+            element={
+              <>
+                <Container className='signup-container'>
+                  <div className='signup-div'>
+                    <ForgotPassword />
+                  </div>
+                </Container>
+              </>
+            }
+          ></Route>
+          <Route element={<PrivateRoute />}>
+            <Route
+              exact
+              path='/dashboard'
+              element={<Dashboard></Dashboard>}
+            ></Route>
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route
+              exact
+              path='/update-profile'
+              element={<UpdateProfile></UpdateProfile>}
+            ></Route>
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </>
   );
 }
 
 export default App;
-
-
-
 
 

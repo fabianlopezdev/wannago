@@ -13,6 +13,9 @@ const Dashboard = () => {
     await logOut();
     navigate('/');
     try {
+      setError('');
+      await logOut();
+      navigate('/');
     } catch (e) {
       setError('Failed to log out');
     }
@@ -46,4 +49,5 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
 

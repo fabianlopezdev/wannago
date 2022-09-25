@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import VerticalStepper from './VerticalStepper';
-import NavBar from './NavBar';
+
 import logo from '../logo.jpg';
 
 const MainPage = ({wannaGo, setwannaGo}) => {
@@ -12,7 +12,6 @@ const MainPage = ({wannaGo, setwannaGo}) => {
 
   return (
     <div>
-      <NavBar></NavBar>
       <div className='main'>
         <img src={logo}></img>
         <h1 className='title'>Create a plan. Share it!</h1>

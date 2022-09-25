@@ -2,15 +2,36 @@ import logoutSoft from '../icons/logout-soft.png';
 import signUpSoft from '../icons/sign-up-soft.png';
 import loginSoft from '../icons/login-soft.png';
 import homeSoft from '../icons/home-icon-soft.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-export const LogoutButton = () => {
+export const DashBoardButton = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/dashboard');
+  };
   return (
-    <i
+    <img
+      className='icons'
+      src={homeSoft}
+      onClick={handleClick}
+      alt='dashboard icon'
+    ></img>
+  );
+};
+
+export const LogoutButton = ({logOut}) => {
+  const navigate = useNavigate()
+  const handleClick = async () => {
+    await logOut()
+    navigate('/');
+  }
+  return (
+    <img
       className='icons'
       src={logoutSoft}
-      onClick=''
-    ></i>
+      onClick={handleClick}
+      alt='logout icon'
+    ></img>
   );
 };
 
@@ -46,3 +67,5 @@ export const HomeButton = () => {
     ></img>
   );
 };
+
+
