@@ -1,8 +1,13 @@
 .nav-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
+.nav-btns-container {
+  display: flex;
+  gap: 200px;
+}
 .icons {
   margin-top: 10px;
   width: 50px;
@@ -10,4 +15,8 @@
 }
 .icons:hover {
   cursor: pointer;
+}
+
+.icons.logo {
+  width: 75px;
 }
