@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  const signUp = (email, password) => {
+  const signUp = async (email, password) => {
     return auth.createUserWithEmailAndPassword(email, password);
   };
 
@@ -33,6 +33,14 @@ export const AuthProvider = ({ children }) => {
     return currentUser.updatePassword(password);
   };
 
+  const updateName = (name) => {
+    return currentUser.updateProfile({ displayName: name });
+  };
+
+  const deleteUser = () => {
+    return currentUser.delete();
+  };
+
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -49,6 +57,8 @@ export const AuthProvider = ({ children }) => {
     resetPassword,
     updateEmail,
     updatePassword,
+    updateName,
+    deleteUser,
   };
   return (
     <AuthContext.Provider value={value}>

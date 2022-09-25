@@ -9,9 +9,6 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    setError('');
-    await logOut();
-    navigate('/');
     try {
       setError('');
       await logOut();
@@ -27,6 +24,7 @@ const Dashboard = () => {
         <Card.Body>
           <h2 className='card-body-h2rd'>Profile</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
+          <strong>Name:</strong> {currentUser.displayName} <br/>
           <strong>Email:</strong> {currentUser.email}
           <Link
             to='/update-profile'
@@ -49,5 +47,6 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
 
 

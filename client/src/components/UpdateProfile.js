@@ -3,21 +3,26 @@ import { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import '../css/Authentication.css';
+import DeleteUser from './DeleteUser';
 
 export default function UpdateProfile() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { updateEmail, updatePassword, currentUser } = useAuth();
+  const nameRef = useRef();
+  const { updateEmail, updatePassword, updateName, currentUser } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  
-  console.log(currentUser)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const promises = [];
+
+    if (nameRef.current.value !== currentUser.email) {
+      promises.push(updateName(nameRef.current.value));
+    }
 
     if (emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value));
@@ -39,6 +44,9 @@ export default function UpdateProfile() {
     }
   };
 
+  const handleDeleteLink = () => {
+
+  }
   return (
     <>
       <Card>
@@ -46,6 +54,15 @@ export default function UpdateProfile() {
           <h2 className='card-body-h2'>Update Profile</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            <Form.Group id='name'>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type='text'
+                ref={nameRef}
+                defaultValue={currentUser.displayName}
+                required
+              />
+            </Form.Group>
             <Form.Group id='email'>
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -82,7 +99,8 @@ export default function UpdateProfile() {
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        <Link to='/dashboard'>Cancel</Link>
+        <Link to='/dashboard'>Cancel</Link> &nbsp;
+        <Link to='/delete-user'>Delete Account</Link>
       </div>
     </>
   );

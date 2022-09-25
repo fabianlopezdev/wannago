@@ -36,14 +36,17 @@ export const LogoutButton = ({logOut}) => {
 };
 
 export const SignUpButton = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/signup');
+  };
   return (
-    <i
+    <img
       className='icons'
       src={signUpSoft}
-      onClick=''
-    >
-      Sign Up
-    </i>
+      onClick={handleClick}
+      alt='sign up icon'
+    />
   );
 };
 
@@ -67,5 +70,7 @@ export const HomeButton = () => {
     ></img>
   );
 };
+
+
 
 

@@ -2,16 +2,17 @@ import {
   LogInButton,
   SignUpButton,
   LogoutButton,
-  HomeButton,
   DashBoardButton,
 } from './NavBarButtons';
 import { useAuth } from '../contexts/AuthContext';
+
+import '../css/NavBar.css';
 
 const NavBar = () => {
   const { currentUser, logOut } = useAuth();
 
   return (
-    <nav className=''>
+    <nav className='nav-container'>
       <div>
         {currentUser ? (
           <>
@@ -19,7 +20,10 @@ const NavBar = () => {
             <DashBoardButton />
           </>
         ) : (
-          <LogInButton />
+          <>
+            <LogInButton />
+            <SignUpButton />
+          </>
         )}
       </div>
     </nav>
@@ -27,4 +31,5 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
 

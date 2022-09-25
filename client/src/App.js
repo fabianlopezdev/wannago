@@ -4,6 +4,7 @@ import GuestsLinks from './components/linkForGuests/GuestsLinks';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import DeleteUser from './components/DeleteUser';
 import ForgotPassword from './components/ForgotPassword';
 import PrivateRoute from './components/PrivateRoute';
 import UpdateProfile from './components/UpdateProfile';
@@ -23,7 +24,7 @@ function App() {
   return (
     <>
       <AuthProvider>
-      <NavBar></NavBar>
+        <NavBar></NavBar>
         <Routes>
           <Route
             exact
@@ -47,7 +48,7 @@ function App() {
           ></Route>
           <Route
             exact
-            path='/signUp'
+            path='/signup'
             element={
               <>
                 <Container className='signup-container'>
@@ -98,6 +99,11 @@ function App() {
               element={<UpdateProfile></UpdateProfile>}
             ></Route>
           </Route>
+          <Route
+            exact
+            path='/delete-user'
+            element={<DeleteUser/>}
+          ></Route>
         </Routes>
       </AuthProvider>
     </>
@@ -105,5 +111,7 @@ function App() {
 }
 
 export default App;
+
+
 
 

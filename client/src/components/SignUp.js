@@ -8,10 +8,11 @@ export default function SignUp() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
-  const { signUp, currentUser } = useAuth();
+  const nameRef = useRef();
+  const { signUp, currentUser,updateName } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,12 +21,18 @@ export default function SignUp() {
       setError('Passwords do not match');
       return;
     }
+    const promises = [
+      signUp(emailRef.current.value, passwordRef.current.value),
+      updateName(nameRef.current.value),
+    ];
 
     try {
       setError('');
       setLoading(true);
-      await signUp(emailRef.current.value, passwordRef.current.value);
-      navigate('/dashboard')
+      console.log(nameRef.current.value);
+      await Promise.all(promises);
+      console.log(currentUser.displayName);
+      navigate('/dashboard');
     } catch {
       setError('Failed to create an account');
     }
@@ -39,6 +46,14 @@ export default function SignUp() {
           <h2 className='card-body-h2'>Sign Up</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+            <Form.Group id='name'>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type='text'
+                ref={nameRef}
+                required
+              />
+            </Form.Group>
             <Form.Group id='email'>
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -79,7 +94,4 @@ export default function SignUp() {
     </>
   );
 }
-
-
-
 

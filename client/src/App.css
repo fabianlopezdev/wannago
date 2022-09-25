@@ -8,7 +8,7 @@
   padding-bottom:0;
 }
 img {
-  display: block;
+  /* display: block; */
   margin-left: auto;
   margin-right: auto;
   width: 50%;
@@ -57,14 +57,6 @@ img {
   src: url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 }
 
-.icons {
-  margin-top: 10px;
-  width: 50px;
-  height: 70%;
-}
-.icons:hover {
-  cursor: pointer;
-}
 
 .spinner {
   position: absolute;
