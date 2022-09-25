@@ -1,0 +1,85 @@
+import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { useRef, useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
+import '../css/Authentication.css';
+
+export default function SignUp() {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
+  const { signUp, currentUser } = useAuth();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    try {
+      setError('');
+      setLoading(true);
+      await signUp(emailRef.current.value, passwordRef.current.value);
+      navigate('/dashboard')
+    } catch {
+      setError('Failed to create an account');
+    }
+    setLoading(false);
+  };
+
+  return (
+    <>
+      <Card>
+        <Card.Body>
+          <h2 className='card-body-h2'>Sign Up</h2>
+          {error && <Alert variant='danger'>{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group id='email'>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type='email'
+                ref={emailRef}
+                required
+              />
+            </Form.Group>
+            <Form.Group id='password'>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type='password'
+                ref={passwordRef}
+                required
+              />
+            </Form.Group>
+            <Form.Group id='password-confirm'>
+              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Control
+                type='password'
+                ref={passwordConfirmRef}
+                required
+              />
+            </Form.Group>
+            <Button
+              type='submit'
+              className='signup-button'
+              disabled={loading}
+            >
+              Sign Up
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+      <div className='line-after-auth-card'>
+        Already have an account? <Link to='/login'>Log In</Link>
+      </div>
+    </>
+  );
+}
+
+
+
+

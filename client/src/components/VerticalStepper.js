@@ -92,4 +92,3 @@ export default function VerticalStepper({ wannaGo, setwannaGo }) {
   );
 }
 
-
