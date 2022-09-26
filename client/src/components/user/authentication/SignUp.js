@@ -2,6 +2,7 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { postUser } from '../../../utils/apis/userApiServices/userApi';
 
 //Internal dependencies
 import { useAuth } from '../../../contexts/AuthContext';
@@ -14,31 +15,30 @@ export default function SignUp() {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const nameRef = useRef();
-  const { signUp, currentUser, updateName } = useAuth();
+  const { signUp } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       setError('Passwords do not match');
       return;
     }
 
-    const promises = [
-      signUp(emailRef.current.value, passwordRef.current.value),
-      updateName(nameRef.current.value),
-    ];
-
     try {
       setError('');
       setLoading(true);
-      console.log(nameRef.current.value);
-      await Promise.all(promises);
-      console.log(currentUser.displayName);
-      navigate('/dashboard');
+      const newUser = await signUp(emailRef.current.value, passwordRef.current.value);
+      const user = {
+        name: nameRef.current.value,
+        email: newUser.user.email,
+        _id: newUser.user.uid,
+      };
+      console.log('this is user', user)
+      await postUser(user);
+      navigate('/user/dashboard');
     } catch {
       setError('Failed to create an account');
     }
@@ -95,7 +95,7 @@ export default function SignUp() {
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        Already have an account? <Link to='/login'>Log In</Link>
+        Already have an account? <Link to='/user/login'>Log In</Link>
       </div>
     </>
   );

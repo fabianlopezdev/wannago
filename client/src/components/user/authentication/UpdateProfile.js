@@ -43,7 +43,7 @@ export default function UpdateProfile() {
 
     try {
       await Promise.all(promises);
-      navigate('/dashboard');
+      navigate('/user/dashboard');
       setLoading(false);
     } catch (e) {
       setError('Failed to update acount');
@@ -103,11 +103,10 @@ export default function UpdateProfile() {
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        <Link to='/dashboard'>Cancel</Link> &nbsp;
-        <Link to='/delete-user'>Delete Account</Link>
+        <Link to='/user/dashboard'>Cancel</Link> &nbsp;
+        <Link to='/user/delete'>Delete Account</Link>
       </div>
     </>
   );
 }
-
 

@@ -36,7 +36,7 @@ export const LogoutButton = ({ logOut }) => {
 
 export const SignUpButton = () => {
   return (
-    <Link to={'/signup'}>
+    <Link to={'/user/signup'}>
       <img
         className='icons'
         src={signUpSoft}
@@ -48,7 +48,7 @@ export const SignUpButton = () => {
 
 export const LogInButton = () => {
   return (
-    <Link to={'/login'}>
+    <Link to={'/user/login'}>
       <img
         className='icons'
         src={loginSoft}

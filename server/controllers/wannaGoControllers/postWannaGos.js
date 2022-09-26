@@ -3,6 +3,7 @@ const WannaGo = require('../../models/wannaGoModel');
 
 const postAwannaGo = async (ctx) => {
   try {
+    console.log('I am hereee')
     const wannaGo = ctx.request.body;
     const storedWannaGo = await WannaGo.create({
       what: wannaGo.what,
@@ -23,5 +24,10 @@ const postAwannaGo = async (ctx) => {
 
 
 
-module.exports = { postAwannaGo };
+
+
+
+module.exports = {postAwannaGo};
+
+
 

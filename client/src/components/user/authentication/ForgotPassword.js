@@ -54,12 +54,12 @@ export default function ForgotPassword() {
             </Button>
           </Form>
           <div className='line-after-auth-card forgot'>
-            <Link to='/login'>Log in</Link>
+            <Link to='/user/login'>Log in</Link>
           </div>
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        Need an account? <Link to='/signup'>Sign Up</Link>
+        Need an account? <Link to='/user/signup'>Sign Up</Link>
       </div>
     </>
   );

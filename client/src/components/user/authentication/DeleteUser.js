@@ -26,7 +26,7 @@ const DeleteUser = () => {
         <h2 className='card-body-h2'>Delete Account</h2>
         {error && <Alert variant='danger'>{error}</Alert>}
         <p className='card-body-h2'>You are about to delete your account.</p>
-        <div className='btns-delete-container'>
+        <div className='btns-container'>
           <button
             className='button'
             onClick={handleDelete}
@@ -35,7 +35,7 @@ const DeleteUser = () => {
           </button>
           <button
             className='button cancel'
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/user/dashboard')}
           >
             Cancel
           </button>

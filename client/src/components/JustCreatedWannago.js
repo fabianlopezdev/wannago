@@ -1,5 +1,7 @@
 //External dependencies
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 //Internal dependencies
 import WannaGoCard from './WannaGoCard';
@@ -9,8 +11,9 @@ import '../css/WannaGoCard.css';
 
 const PlanCreated = () => {
   const params = new URLSearchParams(window.location.pathname);
-  const id = params.get('/card/id');
-
+  const id = params.get('/wannago/id');
+  const currentUser = useAuth();
+  const navigate = useNavigate();
   const [wannaGo, setwannaGo] = useState({});
 
   useEffect(() => {
@@ -26,19 +29,39 @@ const PlanCreated = () => {
     <>
       <h1 className='see'>What a Plan!</h1>
       <WannaGoCard wannaGo={wannaGo}></WannaGoCard>
-      <h1 className='see'>Ask if they wannaGo!</h1>
-      <h3 className='see'>
-        Share this link:
+      <div className='see'>
+        <h2>Ask if they wannaGo!</h2>
+        <h4>Share this link:</h4>
         <a
           target='blank'
           href={`http://localhost:3000/wannaGo/id=${id}`}
         >
           &nbsp;http://localhost:3000/wannaGo/id={id}
         </a>
-      </h3>
+        <h6>To save the plan and keep track of who is going, log in please.</h6>
+
+        {!currentUser ? (
+          <div className='btns-container'>
+            <button
+              className='button cancel'
+              onClick={() => navigate('/signup')}
+            >
+              Log In
+            </button>
+            <button
+              className='button cancel'
+              onClick={() => navigate('/login')}
+            >
+              Sign Up
+            </button>
+          </div>
+        ) : null}
+      </div>
     </>
   );
 };
 
 export default PlanCreated;
+
+
 

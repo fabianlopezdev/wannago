@@ -6,7 +6,7 @@ import { Card, Button, Alert } from 'react-bootstrap';
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 
-const Dashboard = () => {
+const UserProfile = () => {
   //Hooks
   const [error, setError] = useState('');
   const { currentUser, logOut } = useAuth();
@@ -50,5 +50,5 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default UserProfile;
 

@@ -13,10 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  const signUp = async (email, password) => {
-    return auth.createUserWithEmailAndPassword(email, password);
-  };
-
+ 
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -24,6 +21,11 @@ export const AuthProvider = ({ children }) => {
     });
     return unsuscribe;
   }, []);
+
+ const signUp = async (email, password) => {
+   return auth.createUserWithEmailAndPassword(email, password);
+ };
+
 
   const logIn = (email, password) => {
     return auth.signInWithEmailAndPassword(email, password);
@@ -45,10 +47,6 @@ export const AuthProvider = ({ children }) => {
     return currentUser.updatePassword(password);
   };
 
-  const updateName = (name) => {
-    return currentUser.updateProfile({ displayName: name });
-  };
-
   const deleteUser = () => {
     return currentUser.delete();
   };
@@ -61,7 +59,6 @@ export const AuthProvider = ({ children }) => {
     resetPassword,
     updateEmail,
     updatePassword,
-    updateName,
     deleteUser,
   };
 
@@ -71,4 +68,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+
 

@@ -1,4 +1,4 @@
-//For routes that non-users cannot access
+//For routes that users cannot access
 
 //External dependencies
 import { Outlet, Navigate } from 'react-router-dom';
@@ -6,10 +6,10 @@ import { Outlet, Navigate } from 'react-router-dom';
 //Internal dependencies
 import { useAuth } from '../../../contexts/AuthContext';
 
-const PrivateRoute = () => {
+const UserPrivateRoute = () => {
   const { currentUser } = useAuth();
-  return currentUser ? <Outlet /> : <Navigate to='/' />;
+  return !currentUser ? <Outlet /> : <Navigate to='/user/dashboard' />;
 };
 
-export default PrivateRoute;
+export default UserPrivateRoute;
 

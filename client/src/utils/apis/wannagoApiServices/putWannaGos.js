@@ -1,5 +1,5 @@
 //Internal dependencies
-import { URL, PORT } from './config';
+import { URL, PORT } from '../../config';
 
 export const putPplGoing = async (name, email, id) => {
   try {

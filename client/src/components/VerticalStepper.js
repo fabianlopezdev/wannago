@@ -40,13 +40,15 @@ export default function VerticalStepper({ wannaGo, setwannaGo }) {
   const saveWannaGo = async () => {
     try {
       await postAwannaGo(wannaGo);
+      console.log('here')
       const postedWannaGo = await getWannaGoByParams(
         wannaGo.what,
         wannaGo.when
-      );
-      setwannaGo(postedWannaGo);
+        );
+      console.log(postedWannaGo)
+        setwannaGo(postedWannaGo);
       const { _id } = postedWannaGo;
-      navigate(`/card/id=${_id}`);
+      navigate(`/wannago/id=${_id}`);
     } catch (e) {
       console.log(
         `Error communicating with backend to postAWannago or to retrieve the just posted wannaGo. Error: ${e}`
@@ -109,4 +111,6 @@ export default function VerticalStepper({ wannaGo, setwannaGo }) {
     </Box>
   );
 }
+
+
 

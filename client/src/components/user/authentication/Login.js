@@ -23,7 +23,7 @@ export default function Login() {
       setError('');
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
-      navigate('/dashboard');
+      navigate('/user/dashboard');
     } catch {
       setError('Failed to sign in');
     }
@@ -67,7 +67,7 @@ export default function Login() {
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        Need an account? <Link to='/signup'>Sign Up</Link>
+        Need an account? <Link to='/user/signup'>Sign Up</Link>
       </div>
     </>
   );
