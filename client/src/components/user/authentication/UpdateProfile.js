@@ -104,7 +104,7 @@ export default function UpdateProfile() {
       </Card>
       <div className='line-after-auth-card'>
         <Link to='/user/dashboard'>Cancel</Link> &nbsp;
-        <Link to='/user/delete'>Delete Account</Link>
+        <Link to='/user/delete-account'>Delete Account</Link>
       </div>
     </>
   );

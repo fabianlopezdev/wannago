@@ -3,6 +3,7 @@ const {
   getWannaGos,
   getWannaGoById,
   getWannaGoByParams,
+  getAllWannaGosOfUser,
 } = require('./controllers/wannaGoControllers/getWannaGos');
 
 const {
@@ -17,7 +18,8 @@ const { getUserById } = require('./controllers/wannaGoControllers/getUser');
 
 const {
   putPplGoing,
-  putSuggestionMsg
+  putSuggestionMsg,
+  putOwnerToWannaGo,
 } = require('./controllers/wannaGoControllers/putWannaGos');
 
 const router = new KoaRouter();
@@ -25,6 +27,7 @@ const router = new KoaRouter();
 //GETS
 router.get('/wannagos', getWannaGos);
 router.get('/wannago/:id', getWannaGoById);
+router.get('/wannagos/owner/:owner', getAllWannaGosOfUser);
 router.get('/wannago/:what/:when', getWannaGoByParams);
 router.get('/user/:id', getUserById);
 
@@ -35,8 +38,13 @@ router.post('/user', postAuser);
 //PUT
 router.put('/wannago/ppl_going', putPplGoing);
 router.put('/wannago/suggestionMsg', putSuggestionMsg);
+router.put('/wannago/owner', putOwnerToWannaGo);
 
 module.exports = router;
+
+
+
+
 
 
 

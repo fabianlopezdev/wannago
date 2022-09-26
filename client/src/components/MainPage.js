@@ -6,7 +6,7 @@ import VerticalStepper from './VerticalStepper';
 
 import logo from '../logo.jpg';
 
-const MainPage = ({ wannaGo, setwannaGo }) => {
+const MainPage = ({ wannaGo, setwannaGo, justCreatedWG, setJustCreatedWG }) => {
   const [showForm, setShowForm] = useState(false);
 
   const handleClick = () => {
@@ -33,7 +33,9 @@ const MainPage = ({ wannaGo, setwannaGo }) => {
           <VerticalStepper
             wannaGo={wannaGo}
             setwannaGo={setwannaGo}
-          ></VerticalStepper>
+            justCreatedWG={justCreatedWG}
+            setJustCreatedWG={setJustCreatedWG}
+          />
         ) : null}
       </div>
     </div>
@@ -41,4 +43,5 @@ const MainPage = ({ wannaGo, setwannaGo }) => {
 };
 
 export default MainPage;
+
 

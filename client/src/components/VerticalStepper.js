@@ -18,7 +18,7 @@ import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
 
 import { steps } from '../data';
 
-export default function VerticalStepper({ wannaGo, setwannaGo }) {
+export default function VerticalStepper({ wannaGo, setwannaGo, justCreatedWG, setJustCreatedWG }) {
   //Hooks
   const [activeStep, setActiveStep] = useState(0);
   let navigate = useNavigate();
@@ -46,7 +46,8 @@ export default function VerticalStepper({ wannaGo, setwannaGo }) {
         wannaGo.when
         );
       console.log(postedWannaGo)
-        setwannaGo(postedWannaGo);
+      setwannaGo(postedWannaGo);
+      setJustCreatedWG(true)
       const { _id } = postedWannaGo;
       navigate(`/wannago/id=${_id}`);
     } catch (e) {

@@ -25,3 +25,18 @@ export const getUserById = async (id) => {
   }
 };
 
+export const putOwnerToWannaGo = async (wannaGoId, userId) => {
+  try {
+    return fetch(`${URL}${PORT}/wannago/owner`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({ wannaGoId, userId }),
+    });
+  } catch (e) {
+    console.log(
+      `Error in postSuggestionMsg function in apiService. Error: ${e}`
+    );
+  }
+};
+
+

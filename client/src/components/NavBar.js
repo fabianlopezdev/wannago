@@ -1,5 +1,5 @@
 //External dependencies
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 //Internal dependencies
 import { useAuth } from '../contexts/AuthContext';
@@ -8,6 +8,7 @@ import {
   SignUpButton,
   LogoutButton,
   LandingButton,
+  DashBoardButton,
 } from './NavBarButtons';
 
 import '../css/NavBar.css';
@@ -24,6 +25,8 @@ const NavBar = () => {
           <div className='nav-btns-container'>
             <LandingButton />
             <div>
+              <Link to={'/user/update-profile'}> Update Profile </Link>
+              <DashBoardButton/>
               <LogoutButton logOut={logOut} />
             </div>
           </div>

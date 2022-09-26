@@ -37,4 +37,23 @@ const putSuggestionMsg = async (ctx) => {
   }
 };
 
-module.exports = { putPplGoing, putSuggestionMsg };
+const putOwnerToWannaGo = async (ctx) => {
+  try {
+    const { wannaGoId, userId } = ctx.request.body;
+    const wannaGoOwned = await WannaGo.findByIdAndUpdate(wannaGoId, {
+      owner: userId,
+    });
+    console.log(
+      `The user with id: ${userId} was put in the wannaGo with id: ${wannaGoId}`
+    );
+    ctx.status = 201;
+    ctx.body = wannaGoOwned;
+  } catch (e) {
+    ctx.status = 500;
+    ctx.body = e;
+    console.log(`Error in putOwnertoWananGo function from controllers: ${e}`);
+  }
+};
+
+module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo };
+

@@ -5,7 +5,6 @@ const WannaGoSchema = new Schema({
   what: { type: String, required: true },
   where: { type: String, required: true },
   when: { type: String, required: true },
-  owner: String,//{type: String, required: true},
   owner: String,
   category: String,
   ppl_going: { type: Map, of: String },

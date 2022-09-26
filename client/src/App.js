@@ -23,6 +23,7 @@ import './App.css';
 
 function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
+  const [justCreatedWG, setJustCreatedWG] = useState(false)
   const [user, setUser] = useState({});
 
   return (
@@ -37,18 +38,20 @@ function App() {
               <MainPage
                 wannaGo={wannaGo}
                 setwannaGo={setwannaGo}
+                justCreatedWG={justCreatedWG}
+                setJustCreatedWG={setJustCreatedWG}
               ></MainPage>
             }
           ></Route>
           <Route
             exact
             path='/wannago/:id'
-            element={<JustCreatedWannago></JustCreatedWannago>}
+            element={<JustCreatedWannago/>}
           ></Route>
           <Route
             exact
-            path='/wannago/link/:id'
-            element={<GuestsLinks></GuestsLinks>}
+            path='/wannago/guest-link/:id'
+            element={<GuestsLinks/>}
           ></Route>
           <Route element={<UserPrivateRoute />}>
             <Route
@@ -99,19 +102,22 @@ function App() {
                 <UserDashboard
                   user={user}
                   setUser={setUser}
-                ></UserDashboard>
+                  wannaGo={wannaGo}
+                  justCreatedWG={justCreatedWG}
+                  setJustCreatedWG={setJustCreatedWG}
+                />
               }
             ></Route>
             {/* <Route element={<PrivateRoute />}> */}
             <Route
               exact
               path='/user/update-profile'
-              element={<UpdateProfile></UpdateProfile>}
+              element={<UpdateProfile/>}
             ></Route>
             {/* </Route> */}
             <Route
               exact
-              path='/user/delete-user'
+              path='/user/delete-account'
               element={<DeleteUser />}
             ></Route>
           </Route>
@@ -122,6 +128,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 

@@ -10,11 +10,13 @@ import logo from '../logo.jpg';
 
 export const DashBoardButton = () => {
   return (
-    <img
-      className='icons'
-      src={homeSoft}
-      alt='dashboard icon'
-    ></img>
+    <Link to={'/user/dashboard'}>
+      <img
+        className='icons'
+        src={homeSoft}
+        alt='dashboard icon'
+      ></img>
+    </Link>
   );
 };
 

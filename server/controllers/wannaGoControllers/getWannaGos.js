@@ -13,6 +13,19 @@ const getWannaGos = async (ctx) => {
   }
 };
 
+const getAllWannaGosOfUser = async (ctx) => {
+  try {
+    // console.log('params are:', ctx.params.owner)
+    const wannaGos = await WannaGo.find({ owner: ctx.params.owner});
+    ctx.status = 201;
+    ctx.body = wannaGos;
+    console.log(`The owner: ${ctx.params.owner} owns these wannaGos: ${wannaGos}`);
+  } catch (e) {
+    ctx.status = 500;
+    console.log(`Error in getWannaGos function from controllers: ${e}`);
+  }
+};
+
 const getWannaGoByParams = async (ctx) => {
   try {
     ctx.status = 201;
@@ -45,5 +58,9 @@ module.exports = {
   getWannaGos,
   getWannaGoByParams,
   getWannaGoById,
+  getAllWannaGosOfUser,
 };
+
+
+
 

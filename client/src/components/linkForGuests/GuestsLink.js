@@ -13,12 +13,14 @@ import '../../css/GuestLinks.css';
 
 const GuestLink = () => {
   const params = new URLSearchParams(window.location.pathname);
-  const id = params.get('/wannaGo/id');
+  const id = params.get('/wannago/guest-link/id');
 
   const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
 
-  useEffect(() => promiseHandler(), []);
+  useEffect(() => {
+    promiseHandler();
+  }, []);
 
   const promiseHandler = async () => {
     try {

@@ -62,7 +62,7 @@ export default function Login() {
             </Button>
           </Form>
           <div className='line-after-auth-card forgot'>
-            <Link to='/forgot-password'>Forgot Password?</Link>
+            <Link to='/user/forgot-password'>Forgot Password?</Link>
           </div>
         </Card.Body>
       </Card>
