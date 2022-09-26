@@ -1,5 +1,8 @@
+//External dependencies
 import { useState } from 'react';
-import { postSuggestionMsg } from '../../utils/apis/wannagoApiServices/postWannaGos';
+
+//Internal dependencies
+import { putSuggestionMsg } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 import '../../css/MaybeOption.css';
 
@@ -13,8 +16,14 @@ const MaybeOption = ({ id }) => {
     if (!msg.replace(/\s/g, '').length) {
       return;
     }
-    await postSuggestionMsg(msg, id);
-    setMsgSent(!msgSent);
+    try {
+      await putSuggestionMsg(msg, id);
+      setMsgSent(!msgSent);
+    } catch (e) {
+      console.log(
+        `Error in MaybeOption.js, trying to send the suggestion to backend to put in db. ${e}`
+      );
+    }
     e.target.suggestion.value = '';
   };
 

@@ -1,29 +1,30 @@
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+//External dependencies
 import { useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { useAuth } from '../../../contexts/AuthContext';
 
-import { useAuth } from '../contexts/AuthContext';
-import '../css/Authentication.css';
+import '../../../css/Authentication.css';
 
-export default function Login() {
+export default function ForgotPassword() {
+  //Hooks
   const emailRef = useRef();
-  const passwordRef = useRef();
-
-  const { logIn } = useAuth();
+  const { resetPassword } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      setMessage('');
       setError('');
       setLoading(true);
-      await logIn(emailRef.current.value, passwordRef.current.value);
-      navigate('/dashboard');
+      await resetPassword(emailRef.current.value);
+      setMessage('Check your inbox for further instructions');
     } catch {
-      setError('Failed to sign in');
+      setError('Failed to reset password');
     }
     setLoading(false);
   };
@@ -32,8 +33,9 @@ export default function Login() {
     <>
       <Card>
         <Card.Body>
-          <h2 className='card-body-h2'>Log in</h2>
+          <h2 className='card-body-h2'>Password Reset</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
+          {message && <Alert variant='success'>{message}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id='email'>
               <Form.Label>Email</Form.Label>
@@ -43,24 +45,16 @@ export default function Login() {
                 required
               />
             </Form.Group>
-            <Form.Group id='password'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type='password'
-                ref={passwordRef}
-                required
-              />
-            </Form.Group>
             <Button
               type='submit'
               className='signup-button'
               disabled={loading}
             >
-              Log In
+              Reset Password
             </Button>
           </Form>
           <div className='line-after-auth-card forgot'>
-            <Link to='/forgot-password'>Forgot Password?</Link>
+            <Link to='/login'>Log in</Link>
           </div>
         </Card.Body>
       </Card>
@@ -70,5 +64,4 @@ export default function Login() {
     </>
   );
 }
-
 

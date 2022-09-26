@@ -1,10 +1,13 @@
+//External dependencies
 import { useEffect, useState } from 'react';
-import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
+
+//Internal dependencies
 import WannaGoCard from '../WannaGoCard';
 import YesOption from './YesOption';
 import NoOption from './NoOption';
 import MaybeOption from './MaybeOption';
 import { YesButton, NoButton, MaybeButton } from './OptionButtons';
+import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
 
 import '../../css/GuestLinks.css';
 
@@ -18,8 +21,14 @@ const GuestLink = () => {
   useEffect(() => promiseHandler(), []);
 
   const promiseHandler = async () => {
-    const queriedWannaGo = await getWannaGoById(id);
-    setWannaGo(queriedWannaGo);
+    try {
+      const queriedWannaGo = await getWannaGoById(id);
+      setWannaGo(queriedWannaGo);
+    } catch (e) {
+      console.log(
+        `Error in the promiseHandler func of GuestLinks.js. Error: ${e}`
+      );
+    }
   };
 
   const handleClick = (e) => {

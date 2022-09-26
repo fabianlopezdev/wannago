@@ -1,15 +1,20 @@
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+//External dependencies
 import { useRef, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import '../css/Authentication.css';
 
-export default function SignUp() {
+//Internal dependencies
+import { useAuth } from '../../../contexts/AuthContext';
+
+import '../../../css/Authentication.css';
+
+export default function UpdateProfile() {
+  //Hooks
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const nameRef = useRef();
-  const { signUp, currentUser,updateName } = useAuth();
+  const { updateEmail, updatePassword, updateName, currentUser } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -17,33 +22,40 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const promises = [];
+
+    if (nameRef.current.value !== currentUser.email) {
+      promises.push(updateName(nameRef.current.value));
+    }
+
+    if (emailRef.current.value !== currentUser.email) {
+      promises.push(updateEmail(emailRef.current.value));
+    }
+
+    if (passwordRef.current.value) {
+      promises.push(updatePassword(passwordRef.current.value));
+    }
+
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       setError('Passwords do not match');
       return;
     }
-    const promises = [
-      signUp(emailRef.current.value, passwordRef.current.value),
-      updateName(nameRef.current.value),
-    ];
 
     try {
-      setError('');
-      setLoading(true);
-      console.log(nameRef.current.value);
       await Promise.all(promises);
-      console.log(currentUser.displayName);
       navigate('/dashboard');
-    } catch {
-      setError('Failed to create an account');
+      setLoading(false);
+    } catch (e) {
+      setError('Failed to update acount');
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
     <>
       <Card>
         <Card.Body>
-          <h2 className='card-body-h2'>Sign Up</h2>
+          <h2 className='card-body-h2'>Update Profile</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id='name'>
@@ -51,6 +63,7 @@ export default function SignUp() {
               <Form.Control
                 type='text'
                 ref={nameRef}
+                defaultValue={currentUser.displayName}
                 required
               />
             </Form.Group>
@@ -59,6 +72,7 @@ export default function SignUp() {
               <Form.Control
                 type='email'
                 ref={emailRef}
+                defaultValue={currentUser.email}
                 required
               />
             </Form.Group>
@@ -67,7 +81,7 @@ export default function SignUp() {
               <Form.Control
                 type='password'
                 ref={passwordRef}
-                required
+                placeholder='Leave blank to keep the same password'
               />
             </Form.Group>
             <Form.Group id='password-confirm'>
@@ -75,7 +89,7 @@ export default function SignUp() {
               <Form.Control
                 type='password'
                 ref={passwordConfirmRef}
-                required
+                placeholder='Leave blank to keep the same password'
               />
             </Form.Group>
             <Button
@@ -83,15 +97,17 @@ export default function SignUp() {
               className='signup-button'
               disabled={loading}
             >
-              Sign Up
+              Update
             </Button>
           </Form>
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        Already have an account? <Link to='/login'>Log In</Link>
+        <Link to='/dashboard'>Cancel</Link> &nbsp;
+        <Link to='/delete-user'>Delete Account</Link>
       </div>
     </>
   );
 }
+
 

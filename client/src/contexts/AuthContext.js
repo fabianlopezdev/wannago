@@ -1,17 +1,29 @@
+//External dependencies
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
+
 const AuthContext = React.createContext();
 
 export const useAuth = () => {
   return useContext(AuthContext);
 };
+
 export const AuthProvider = ({ children }) => {
+  //Hooks
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
   const signUp = async (email, password) => {
     return auth.createUserWithEmailAndPassword(email, password);
   };
+
+  useEffect(() => {
+    const unsuscribe = auth.onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
+    return unsuscribe;
+  }, []);
 
   const logIn = (email, password) => {
     return auth.signInWithEmailAndPassword(email, password);
@@ -41,14 +53,6 @@ export const AuthProvider = ({ children }) => {
     return currentUser.delete();
   };
 
-  useEffect(() => {
-    const unsuscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
-      setLoading(false);
-    });
-    return unsuscribe;
-  }, []);
-
   const value = {
     currentUser,
     signUp,
@@ -60,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     updateName,
     deleteUser,
   };
+
   return (
     <AuthContext.Provider value={value}>
       {!loading && children}

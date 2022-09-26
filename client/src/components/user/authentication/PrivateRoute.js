@@ -1,9 +1,11 @@
+//External dependencies
 import { Outlet, Navigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+
+//Internal dependencies
+import { useAuth } from '../../../contexts/AuthContext';
 
 const PrivateRoute = () => {
   const { currentUser } = useAuth();
-
   return currentUser ? <Outlet /> : <Navigate to='/' />;
 };
 

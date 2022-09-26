@@ -1,10 +1,15 @@
+//External dependency
+const dayjs = require('dayjs');
+
 export let initialWannaGo = {
   what: '',
   when: '',
   where: '',
   owner: '',
-  _id: ''
+  _id: '',
 };
+
+const now = dayjs(Date.now()).format('YYYY-MM-DDTHH:mm');
 
 export const steps = [
   {
@@ -38,6 +43,7 @@ export const steps = [
     formField: (
       <input
         type='datetime-local'
+        min={now}
         name='when'
         autoFocus
         required
@@ -45,6 +51,4 @@ export const steps = [
     ),
   },
 ];
-
-
 

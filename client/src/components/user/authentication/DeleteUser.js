@@ -1,7 +1,8 @@
-import { Card, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+//External dependencies
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Card, Alert } from 'react-bootstrap';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const DeleteUser = () => {
   const [error, setError] = useState('');
@@ -24,7 +25,6 @@ const DeleteUser = () => {
       <Card.Body>
         <h2 className='card-body-h2'>Delete Account</h2>
         {error && <Alert variant='danger'>{error}</Alert>}
-
         <p className='card-body-h2'>You are about to delete your account.</p>
         <div className='btns-delete-container'>
           <button

@@ -1,23 +1,25 @@
+//External dependencies
 import { useState } from 'react';
-import PlanCreated from './components/PlanCreated';
-import GuestsLinks from './components/linkForGuests/GuestsLinks';
-import Dashboard from './components/Dashboard';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import DeleteUser from './components/DeleteUser';
-import ForgotPassword from './components/ForgotPassword';
-import PrivateRoute from './components/PrivateRoute';
-import UpdateProfile from './components/UpdateProfile';
 import { Routes, Route } from 'react-router-dom';
-import MainPage from './components/MainPage';
+import { Container } from 'react-bootstrap';
+
+//Internal dependencies
+import { initialWannaGo } from './data';
 import NavBar from './components/NavBar';
+import MainPage from './components/MainPage';
+import Dashboard from './components/user/Dashboard';
+import { AuthProvider } from './contexts/AuthContext';
+import Login from './components/user/authentication/Login';
+import SignUp from './components/user/authentication/SignUp';
+import GuestsLinks from './components/linkForGuests/GuestsLink';
+import JustCreatedWannago from './components/JustCreatedWannago';
+import DeleteUser from './components/user/authentication/DeleteUser';
+import PrivateRoute from './components/user/authentication/PrivateRoute';
+import UpdateProfile from './components/user/authentication/UpdateProfile';
+import ForgotPassword from './components/user/authentication/ForgotPassword';
+
 import './App.css';
 
-import Loading from './components/Loading';
-
-import { initialWannaGo } from './data';
-import { Container } from 'react-bootstrap';
-import { AuthProvider } from './contexts/AuthContext';
 function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
 
@@ -39,7 +41,7 @@ function App() {
           <Route
             exact
             path='/card/:id'
-            element={<PlanCreated></PlanCreated>}
+            element={<JustCreatedWannago></JustCreatedWannago>}
           ></Route>
           <Route
             exact
@@ -102,7 +104,7 @@ function App() {
           <Route
             exact
             path='/delete-user'
-            element={<DeleteUser/>}
+            element={<DeleteUser />}
           ></Route>
         </Routes>
       </AuthProvider>
@@ -111,7 +113,4 @@ function App() {
 }
 
 export default App;
-
-
-
 

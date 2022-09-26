@@ -1,7 +1,11 @@
+//External dependencies
 import { useEffect, useState } from 'react';
-import '../css/WannaGoCard.css';
-import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
+
+//Internal dependencies
 import WannaGoCard from './WannaGoCard';
+import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
+
+import '../css/WannaGoCard.css';
 
 const PlanCreated = () => {
   const params = new URLSearchParams(window.location.pathname);
@@ -17,6 +21,7 @@ const PlanCreated = () => {
     const queriedWannaGo = await getWannaGoById(id);
     setwannaGo(queriedWannaGo);
   };
+
   return (
     <>
       <h1 className='see'>What a Plan!</h1>

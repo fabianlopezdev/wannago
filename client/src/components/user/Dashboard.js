@@ -1,11 +1,15 @@
-import { Card, Button, Alert } from 'react-bootstrap';
+//External dependencies
 import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import { Card, Button, Alert } from 'react-bootstrap';
+
+//Internal dependencies
+import { useAuth } from '../../contexts/AuthContext';
+
 const Dashboard = () => {
+  //Hooks
   const [error, setError] = useState('');
   const { currentUser, logOut } = useAuth();
-
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -24,7 +28,7 @@ const Dashboard = () => {
         <Card.Body>
           <h2 className='card-body-h2rd'>Profile</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
-          <strong>Name:</strong> {currentUser.displayName} <br/>
+          <strong>Name:</strong> {currentUser.displayName} <br />
           <strong>Email:</strong> {currentUser.email}
           <Link
             to='/update-profile'
@@ -47,6 +51,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-
 

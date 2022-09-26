@@ -1,3 +1,4 @@
+//Internal dependencies
 const WannaGo = require('../../models/wannaGoModel');
 
 const getWannaGos = async (ctx) => {

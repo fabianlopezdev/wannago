@@ -1,4 +1,4 @@
-export const YesButton = ({handleClick}) => {
+export const YesButton = ({ handleClick }) => {
   return (
     <button
       className='button important'
@@ -7,9 +7,9 @@ export const YesButton = ({handleClick}) => {
       I wannaGo!
     </button>
   );
-}
+};
 
-export const NoButton = ({handleClick}) => {
+export const NoButton = ({ handleClick }) => {
   return (
     <button
       className='button'
@@ -30,10 +30,4 @@ export const MaybeButton = ({ handleClick }) => {
     </button>
   );
 };
-
-
-
-
-
-
 

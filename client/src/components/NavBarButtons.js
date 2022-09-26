@@ -1,9 +1,12 @@
+//External dependencies
+import { Link, useNavigate } from 'react-router-dom';
+
+//Internal dependencies
 import logoutSoft from '../icons/logout-soft.png';
 import signUpSoft from '../icons/sign-up-soft.png';
 import loginSoft from '../icons/login-soft.png';
 import homeSoft from '../icons/home-icon-soft.png';
 import logo from '../logo.jpg';
-import { Link, useNavigate } from 'react-router-dom';
 
 export const DashBoardButton = () => {
   return (

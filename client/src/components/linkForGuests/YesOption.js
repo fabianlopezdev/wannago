@@ -1,15 +1,24 @@
-import { postPplGoing } from '../../utils/apis/wannagoApiServices/postWannaGos';
+//External dependencies
 import { useState } from 'react';
+
+//Internal dependencies
+import { putPplGoing } from '../../utils/apis/wannagoApiServices/putWannaGos';
+
 const YesOption = ({ id }) => {
-  const [submitClicked, setsubmitClicked] = useState(false);
+  const [submitClicked, setSubmitClicked] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
-
-    await postPplGoing(name, email, id);
-    setsubmitClicked(!submitClicked);
+    try {
+      await putPplGoing(name, email, id);
+      setSubmitClicked(!submitClicked);
+    } catch (e) {
+      console.log(
+        `Error in YesOption.js, sending to backend to put in db the people that said yes to the wannaGo. ${e}`
+      );
+    }
     e.target.name.value = '';
     e.target.email.value = '';
   };
@@ -31,11 +40,13 @@ const YesOption = ({ id }) => {
             <form onSubmit={handleSubmit}>
               <label>Name</label>
               <input
+                type='text'
                 name='name'
                 required
               ></input>
               <label>Email</label>
               <input
+                type='email'
                 name='email'
                 required
               ></input>

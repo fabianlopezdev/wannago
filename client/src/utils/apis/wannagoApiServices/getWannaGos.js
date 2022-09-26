@@ -1,5 +1,5 @@
-const URL = 'http://localhost:';
-const PORT = 4000;
+//Internal dependencies
+import { URL, PORT} from './config'
 
 export const getWannaGos = async () => {
   try {

@@ -1,31 +1,33 @@
+//External dependencies
+import { useLocation } from 'react-router-dom';
+
+//Internal dependencies
+import { useAuth } from '../contexts/AuthContext';
 import {
   LogInButton,
   SignUpButton,
   LogoutButton,
-  DashBoardButton,
   LandingButton,
 } from './NavBarButtons';
-import { useAuth } from '../contexts/AuthContext';
-import { useLocation } from 'react-router-dom';
+
 import '../css/NavBar.css';
 
 const NavBar = () => {
+  //Hooks
   const { currentUser, logOut } = useAuth();
-
   const location = useLocation();
+
   return (
     <nav className='nav-container'>
       <div>
-        {currentUser && (
+        {currentUser ? (
           <div className='nav-btns-container'>
             <LandingButton />
             <div>
               <LogoutButton logOut={logOut} />
-              <DashBoardButton />
             </div>
           </div>
-        )}
-        {!currentUser && location.pathname === '/' ? (
+        ) : location.pathname === '/' ? (
           <>
             <LogInButton />
             <SignUpButton />
@@ -34,8 +36,8 @@ const NavBar = () => {
           <div className='nav-btns-container'>
             <LandingButton />
             <div>
-              <LogoutButton logOut={logOut} />
-              <DashBoardButton />
+              <LogInButton logOut={logOut} />
+              <SignUpButton />
             </div>
           </div>
         )}
@@ -45,5 +47,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
 

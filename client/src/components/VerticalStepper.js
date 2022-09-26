@@ -1,18 +1,28 @@
+//External dependencies
 import { useState } from 'react';
-import Box from '@mui/material/Box';
-import { Step, Stepper, StepLabel, StepContent } from '@mui/material';
-import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
+import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  Paper,
+  Step,
+  StepLabel,
+  Stepper,
+  StepContent,
+  Typography,
+} from '@mui/material';
+
+//Internal dependencies
 import { getWannaGoByParams } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
-import { useNavigate } from 'react-router-dom';
 
 import { steps } from '../data';
-export default function VerticalStepper({ wannaGo, setwannaGo }) {
-  const [activeStep, setActiveStep] = useState(0);
 
+export default function VerticalStepper({ wannaGo, setwannaGo }) {
+  //Hooks
+  const [activeStep, setActiveStep] = useState(0);
   let navigate = useNavigate();
+
   const handleNext = (e) => {
     e.preventDefault();
 
@@ -28,11 +38,20 @@ export default function VerticalStepper({ wannaGo, setwannaGo }) {
   };
 
   const saveWannaGo = async () => {
-    await postAwannaGo(wannaGo);
-    const postedWannaGo = await getWannaGoByParams(wannaGo.what, wannaGo.when);
-    setwannaGo(postedWannaGo);
-    const { _id } = postedWannaGo;
-    navigate(`/card/id=${_id}`);
+    try {
+      await postAwannaGo(wannaGo);
+      const postedWannaGo = await getWannaGoByParams(
+        wannaGo.what,
+        wannaGo.when
+      );
+      setwannaGo(postedWannaGo);
+      const { _id } = postedWannaGo;
+      navigate(`/card/id=${_id}`);
+    } catch (e) {
+      console.log(
+        `Error communicating with backend to postAWannago or to retrieve the just posted wannaGo. Error: ${e}`
+      );
+    }
   };
 
   return (
@@ -54,7 +73,6 @@ export default function VerticalStepper({ wannaGo, setwannaGo }) {
                     variant='contained'
                     type='submit'
                     style={{ backgroundColor: 'rgb(241, 138, 203)' }}
-                    // onClick={handleNext}
                     sx={{ mt: 1, mr: 1 }}
                   >
                     {index === steps.length - 1 ? 'Finish' : 'Continue'}

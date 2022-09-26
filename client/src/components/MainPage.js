@@ -1,9 +1,12 @@
+//External dependencies
 import { useState } from 'react';
+
+//Internal dependencies
 import VerticalStepper from './VerticalStepper';
 
 import logo from '../logo.jpg';
 
-const MainPage = ({wannaGo, setwannaGo}) => {
+const MainPage = ({ wannaGo, setwannaGo }) => {
   const [showForm, setShowForm] = useState(false);
 
   const handleClick = () => {
@@ -13,7 +16,10 @@ const MainPage = ({wannaGo, setwannaGo}) => {
   return (
     <div>
       <div className='main'>
-        <img src={logo}></img>
+        <img
+          src={logo}
+          alt='logo'
+        ></img>
         <h1 className='title'>Create a plan. Share it!</h1>
         <button
           onClick={handleClick}
@@ -35,5 +41,4 @@ const MainPage = ({wannaGo, setwannaGo}) => {
 };
 
 export default MainPage;
-
 

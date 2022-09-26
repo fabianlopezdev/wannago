@@ -1,25 +1,31 @@
-import {dateFormatter} from '../utils/helperFunctions'
+//Internal dependencies
+import { dateFormatter } from '../utils/helperFunctions';
 
-const WannaGoCard = ({wannaGo}) => {
+const WannaGoCard = ({ wannaGo }) => {
   const dateTime = dateFormatter(wannaGo.when);
   return (
-  <div className='everything'>
-    <div>
-      <h1>{wannaGo.what}</h1>
+    <div className='everything'>
+      <div>
+        <h4>
+          <h3>What:</h3> <strong> {wannaGo.what}</strong>
+        </h4>
+      </div>
+      <div>
+        <h4>
+          <h3>Where:</h3> <strong> {wannaGo.where}</strong>
+        </h4>
+      </div>
+      <div>
+        <h4>
+          <h3>When:</h3>
+          <strong>
+            {dateTime.wannaGoFormat} {dateTime.time}
+          </strong>
+        </h4>
+      </div>
     </div>
-    <div>
-      <h1>At {wannaGo.where}</h1>
-    </div>
-    <div>
-      <h1>
-        On {dateTime.month} {dateTime.day}, {dateTime.year}
-      </h1>
-      <h1>At {dateTime.time}</h1>
-    </div>
-  </div>
-  )
+  );
 };
 
-
-
 export default WannaGoCard;
+
