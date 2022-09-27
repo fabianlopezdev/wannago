@@ -7,13 +7,14 @@ const WannaGoSchema = new Schema({
   when: { type: String, required: true },
   owner: String,
   ownerName: String,
-  openedTimes: { type: Number, default: 0},
-  nosNumber: Number,
-  yesNumber: Number,
+  openedTimes: { type: Number, default: 0 },
+  rejectCounter: { type: Number, default: 0 },
+  goingCounter: {type: Number, default: 0 },
+  suggestionBoxCounter: { type: Number, default: 0 },
   ppl_going: { type: Map, of: String },
   suggestion_box: Array,
-
 });
 
 module.exports = mongoose.model('wannagos', WannaGoSchema);
+
 

@@ -53,9 +53,27 @@ const GuestLink = () => {
         </div>
       ) : (
         <div className='see'>
-          {option === 'no' && <NoOption></NoOption>}
-          {option === 'yes' && <YesOption id={id}></YesOption>}
-          {option === 'maybe' && <MaybeOption id={id}></MaybeOption>}
+          {option === 'no' && (
+            <NoOption
+              id={id}
+              rejectCounter={wannaGo.rejectCounter}
+              ownerName={wannaGo.ownerName}
+            ></NoOption>
+          )}
+          {option === 'yes' && (
+            <YesOption
+              id={id}
+              goingCounter={wannaGo.goingCounter}
+              ownerName={wannaGo.ownerName}
+            ></YesOption>
+          )}
+          {option === 'maybe' && (
+            <MaybeOption
+              id={id}
+              suggestionBoxCounter={wannaGo.suggestionBoxCounter}
+              ownerName={wannaGo.ownerName}
+            ></MaybeOption>
+          )}
           {option === null && null}
         </div>
       )}
@@ -64,4 +82,7 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
+
+
+
 

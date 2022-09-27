@@ -21,6 +21,9 @@ const {
   putSuggestionMsg,
   putOwnerToWannaGo,
   putOpenedTimes,
+  putGoingCounter,
+  putRejectCounter,
+  putSuggestionBoxCounter
 } = require('./controllers/wannaGoControllers/putWannaGos');
 
 const router = new KoaRouter();
@@ -41,8 +44,14 @@ router.put('/wannago/ppl_going', putPplGoing);
 router.put('/wannago/suggestionMsg', putSuggestionMsg);
 router.put('/wannago/owner', putOwnerToWannaGo);
 router.put('/wannago/openedTimes', putOpenedTimes);
+router.put('/wannago/rejectCounter', putRejectCounter);
+router.put('/wannago/goingCounter', putGoingCounter);
+router.put('/wannago/suggestionBoxCounter', putSuggestionBoxCounter);
 
 module.exports = router;
+
+
+
 
 
 

@@ -2,11 +2,11 @@
 import { useState } from 'react';
 
 //Internal dependencies
-import { putSuggestionMsg } from '../../utils/apis/wannagoApiServices/putWannaGos';
+import { putSuggestionMsg, putSuggestionBoxCounter } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 import '../../css/MaybeOption.css';
 
-const MaybeOption = ({ id }) => {
+const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
   const [msgSent, setMsgSent] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -18,6 +18,8 @@ const MaybeOption = ({ id }) => {
     }
     try {
       await putSuggestionMsg(msg, id);
+      await putSuggestionBoxCounter(id, ++suggestionBoxCounter);
+      console.log(suggestionBoxCounter);
       setMsgSent(!msgSent);
     } catch (e) {
       console.log(
@@ -30,10 +32,10 @@ const MaybeOption = ({ id }) => {
   return (
     <>
       <h2>
-        Let Fabi know if you have any suggestion. Remember to say who you are.
+        Let {ownerName} know if you have any suggestion. Remember to say who you are.
       </h2>
       {msgSent ? (
-        <h3>We'll let Fabi know</h3>
+        <h3>We'll let {ownerName} know</h3>
       ) : (
         <form onSubmit={handleSubmit}>
           <textarea
@@ -55,4 +57,5 @@ const MaybeOption = ({ id }) => {
 };
 
 export default MaybeOption;
+
 

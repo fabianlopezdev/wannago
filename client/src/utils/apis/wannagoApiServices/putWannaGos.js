@@ -35,7 +35,43 @@ export const putOpenedTimes = async (id, openedTimes) => {
       body: JSON.stringify({id, openedTimes }),
     });
   } catch (e) {
-    console.log(`Error in postPplGoing function in apiService. Error: ${e}`);
+    console.log(`Error in putOpenedTimes function in apiService. Error: ${e}`);
+  }
+};
+
+export const putRejectCounter = async (id, rejectCounter) => {
+  try {
+    return fetch(`${URL}${PORT}/wannago/rejectCounter`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({ id, rejectCounter }),
+    });
+  } catch (e) {
+    console.log(`Error in putRejectCounter function in apiService. Error: ${e}`);
+  }
+};
+
+export const putGoingCounter = async (id, goingCounter) => {
+  try {
+    return fetch(`${URL}${PORT}/wannago/goingCounter`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({ id, goingCounter }),
+    });
+  } catch (e) {
+    console.log(`Error in putGoingCounter function in apiService. Error: ${e}`);
+  }
+};
+
+export const putSuggestionBoxCounter = async (id, suggestionBoxCounter) => {
+  try {
+    return fetch(`${URL}${PORT}/wannago/suggestionBoxCounter`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({ id, suggestionBoxCounter }),
+    });
+  } catch (e) {
+    console.log(`Error in putSuggestionBOxCounter function in apiService. Error: ${e}`);
   }
 };
 
