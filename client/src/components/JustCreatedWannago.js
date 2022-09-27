@@ -10,23 +10,30 @@ import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { CLIENT_PORT, URL } from '../utils/config';
 import '../css/WannaGoCard.css';
 
+
 const PlanCreated = () => {
   const params = new URLSearchParams(window.location.pathname);
   const id = params.get('/wannago/id');
   const currentUser = useAuth();
   const navigate = useNavigate();
   const [wannaGo, setwannaGo] = useState({});
-
+  const [copied, setCopied] = useState('Copy');
+  
   useEffect(() => {
     promiseHandler();
   }, []);
-
+  const guestLink = `${URL}${CLIENT_PORT}/wannago/guest-link/id=${id}`;
   const promiseHandler = async () => {
     const queriedWannaGo = await getWannaGoById(id);
-    await putGuestLink(id, `${URL}${CLIENT_PORT}/wannago/guest-link/id=${id}`);
+    await putGuestLink(id, guestLink);
     setwannaGo(queriedWannaGo);
   };
-
+  const handleClick = () => {
+    navigator.clipboard.writeText(
+      guestLink
+    );
+    setCopied('Copied');
+  };
   return (
     <>
       <h1 className='see'>What a Plan!</h1>
@@ -34,10 +41,13 @@ const PlanCreated = () => {
       <div className='see'>
         <h2>Ask if they wannaGo!</h2>
         <h4>Share this link:</h4>
-        <Link to={`/wannago/guest-link/id=${id}`}>
-          {URL}3001/wannago/guest-link/id={id}
-          {/*port needs to be the same as the one in the client not the backend*/}
-        </Link>
+        <div>
+          <a href={`${URL}${CLIENT_PORT}/wannago/guest-link/id=${id}`}>
+            {guestLink}
+            {/*port needs to be the same as the one in the client not the backend*/}
+          </a>
+          <button onClick={handleClick}>{copied}</button>
+        </div>
         <h6>
           To save the plan and keep track of who is going,
           <Link to='/user/login'> log in </Link> or
@@ -66,4 +76,11 @@ const PlanCreated = () => {
 };
 
 export default PlanCreated;
+
+
+
+
+
+
+
 
