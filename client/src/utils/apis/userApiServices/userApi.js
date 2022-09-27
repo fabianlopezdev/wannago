@@ -1,9 +1,9 @@
 //Internal dependencies
-import { URL, PORT } from '../../config';
+import { URL, KOA_PORT } from '../../config';
 
 export const postUser = async (user) => {
   try {
-    const userToPost = await fetch(`${URL}${PORT}/user`, {
+    const userToPost = await fetch(`${URL}${KOA_PORT}/user`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify(user),
@@ -16,7 +16,7 @@ export const postUser = async (user) => {
 
 export const getUserById = async (id) => {
   try {
-    const user = await fetch(`${URL}${PORT}/user/${id}`);
+    const user = await fetch(`${URL}${KOA_PORT}/user/${id}`);
     return user.json();
   } catch (e) {
     console.log(
@@ -27,7 +27,7 @@ export const getUserById = async (id) => {
 
 export const putOwnerToWannaGo = async (wannaGoId, userId) => {
   try {
-    return fetch(`${URL}${PORT}/wannago/owner`, {
+    return fetch(`${URL}${KOA_PORT}/wannago/owner`, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({ wannaGoId, userId }),

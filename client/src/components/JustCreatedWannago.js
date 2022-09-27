@@ -6,7 +6,8 @@ import { useAuth } from '../contexts/AuthContext';
 //Internal dependencies
 import WannaGoCard from './WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
-import { URL, PORT } from '../utils/config';
+import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
+import { CLIENT_PORT, URL } from '../utils/config';
 import '../css/WannaGoCard.css';
 
 const PlanCreated = () => {
@@ -22,13 +23,14 @@ const PlanCreated = () => {
 
   const promiseHandler = async () => {
     const queriedWannaGo = await getWannaGoById(id);
+    await putGuestLink(id, `${URL}${CLIENT_PORT}/wannago/guest-link/id=${id}`);
     setwannaGo(queriedWannaGo);
   };
 
   return (
     <>
       <h1 className='see'>What a Plan!</h1>
-      <WannaGoCard wannaGo={wannaGo}/>
+      <WannaGoCard wannaGo={wannaGo} />
       <div className='see'>
         <h2>Ask if they wannaGo!</h2>
         <h4>Share this link:</h4>
@@ -64,5 +66,4 @@ const PlanCreated = () => {
 };
 
 export default PlanCreated;
-
 

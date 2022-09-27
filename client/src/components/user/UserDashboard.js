@@ -23,7 +23,7 @@ import {
   aggregateSuggestions,
   aggregateOpenedTimes,
 } from '../../utils/helperFunctions';
-import WannaGoCard from '../WannaGoCard';
+import WannaGoCardDashboard from '../WannaGoCardDashboard';
 import '../../css/MaybeOption.css';
 
 const UserDashboard = ({
@@ -123,7 +123,7 @@ const UserDashboard = ({
         {allUserWGs &&
           allUserWGs.map((wannaGo) => {
             return (
-              <WannaGoCard
+              <WannaGoCardDashboard
                 key={wannaGo._id}
                 wannaGo={wannaGo}
               />

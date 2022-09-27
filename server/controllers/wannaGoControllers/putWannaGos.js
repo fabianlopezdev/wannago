@@ -21,6 +21,26 @@ const putPplGoing = async (ctx) => {
   }
 };
 
+const putGuestLink = async (ctx) => {
+  try {
+    const { id, link } = ctx.request.body;
+    console.log('this is id',id);
+    console.log('this is the link', link);
+    const wannaGoLinked = await WannaGo.findByIdAndUpdate(id, {
+      guestLink: link,
+    });
+    console.log(
+      `Guest link: ${link} of wannaGo: ${wannaGoLinked}`
+    );
+    ctx.status = 201;
+    ctx.body = wannaGoLinked;
+  } catch (e) {
+    ctx.status = 500;
+    ctx.body = e;
+    console.log(`Error in putGuestLink function from controllers: ${e}`);
+  }
+};
+
 const putSuggestionMsg = async (ctx) => {
   try {
     const { msg, id } = ctx.request.body;
@@ -132,7 +152,11 @@ const putOwnerToWannaGo = async (ctx) => {
   }
 };
 
-module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo, putOpenedTimes, putRejectCounter, putGoingCounter, putSuggestionBoxCounter };
+module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo, putOpenedTimes, putRejectCounter, putGoingCounter, putSuggestionBoxCounter,
+putGuestLink };
+
+
+
 
 
 

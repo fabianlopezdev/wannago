@@ -7,6 +7,7 @@ const WannaGoSchema = new Schema({
   when: { type: String, required: true },
   owner: String,
   ownerName: String,
+  guestLink: String,
   openedTimes: { type: Number, default: 0 },
   rejectCounter: { type: Number, default: 0 },
   goingCounter: {type: Number, default: 0 },
