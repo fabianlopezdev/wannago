@@ -20,6 +20,7 @@ const {
   putPplGoing,
   putSuggestionMsg,
   putOwnerToWannaGo,
+  putOpenedTimes,
 } = require('./controllers/wannaGoControllers/putWannaGos');
 
 const router = new KoaRouter();
@@ -39,8 +40,10 @@ router.post('/user', postAuser);
 router.put('/wannago/ppl_going', putPplGoing);
 router.put('/wannago/suggestionMsg', putSuggestionMsg);
 router.put('/wannago/owner', putOwnerToWannaGo);
+router.put('/wannago/openedTimes', putOpenedTimes);
 
 module.exports = router;
+
 
 
 

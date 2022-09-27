@@ -27,3 +27,15 @@ export const putSuggestionMsg = async (msg, id) => {
   }
 };
 
+export const putOpenedTimes = async (id, openedTimes) => {
+  try {
+    return fetch(`${URL}${PORT}/wannago/openedTimes`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({id, openedTimes }),
+    });
+  } catch (e) {
+    console.log(`Error in postPplGoing function in apiService. Error: ${e}`);
+  }
+};
+

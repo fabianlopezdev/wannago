@@ -10,6 +10,7 @@ import { YesButton, NoButton, MaybeButton } from './OptionButtons';
 import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
 
 import '../../css/GuestLinks.css';
+import { putOpenedTimes } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 const GuestLink = () => {
   const params = new URLSearchParams(window.location.pathname);
@@ -25,6 +26,7 @@ const GuestLink = () => {
   const promiseHandler = async () => {
     try {
       const queriedWannaGo = await getWannaGoById(id);
+      await putOpenedTimes(id, ++queriedWannaGo.openedTimes);
       setWannaGo(queriedWannaGo);
     } catch (e) {
       console.log(
@@ -41,7 +43,7 @@ const GuestLink = () => {
 
   return (
     <>
-      <h1 className='see'>Fabi wants to know if you wannaGo</h1>
+      <h1 className='see'>{wannaGo.ownerName} wants to know if you wannaGo</h1>
       <WannaGoCard wannaGo={wannaGo}></WannaGoCard>
       {!option ? (
         <div className='buttons'>

@@ -37,6 +37,23 @@ const putSuggestionMsg = async (ctx) => {
   }
 };
 
+const putOpenedTimes = async (ctx) => {
+  try {
+    const { id, openedTimes } = ctx.request.body;
+    console.log('wannaGoId', id);
+    console.log('openedTimes', openedTimes);
+    const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
+        openedTimes: openedTimes,
+      });
+    console.log(`This ${wannaGoUpdated} was opened ${wannaGoUpdated.openedTimes} times`);
+    ctx.status = 201;
+    ctx.body = wannaGoUpdated;
+  } catch (e) {
+    ctx.status = 500;
+    ctx.body = e;
+    console.log(`Error in putSuggestionMsg function from controllers: ${e}`);
+  }
+};
 const putOwnerToWannaGo = async (ctx) => {
   try {
     const { wannaGoId, userId } = ctx.request.body;
@@ -55,5 +72,8 @@ const putOwnerToWannaGo = async (ctx) => {
   }
 };
 
-module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo };
+module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo, putOpenedTimes };
+
+
+
 

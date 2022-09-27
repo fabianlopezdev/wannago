@@ -3,14 +3,12 @@ const WannaGo = require('../../models/wannaGoModel');
 
 const postAwannaGo = async (ctx) => {
   try {
-    console.log('I am hereee')
     const wannaGo = ctx.request.body;
     const storedWannaGo = await WannaGo.create({
       what: wannaGo.what,
       where: wannaGo.where,
       when: wannaGo.when,
-      owner: wannaGo.owner,
-      category: wannaGo.category,
+      ownerName: wannaGo.ownerName,
     });
     console.log(`This wannaGo was posted: ${storedWannaGo}`);
     ctx.status = 201;

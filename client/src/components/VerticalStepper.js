@@ -13,15 +13,24 @@ import {
 } from '@mui/material';
 
 //Internal dependencies
+import { useAuth } from '../contexts/AuthContext';
 import { getWannaGoByParams } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
-
 import { steps } from '../data';
 
-export default function VerticalStepper({ wannaGo, setwannaGo, justCreatedWG, setJustCreatedWG }) {
+export default function VerticalStepper({
+  wannaGo,
+  setwannaGo,
+  justCreatedWG,
+  setJustCreatedWG,
+}) {
   //Hooks
   const [activeStep, setActiveStep] = useState(0);
   let navigate = useNavigate();
+  const { currentUser } = useAuth();
+
+  //Remove the step of the name if the user is already logged In
+  if (currentUser) steps.shift();
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -40,14 +49,14 @@ export default function VerticalStepper({ wannaGo, setwannaGo, justCreatedWG, se
   const saveWannaGo = async () => {
     try {
       await postAwannaGo(wannaGo);
-      console.log('here')
+      console.log('here');
       const postedWannaGo = await getWannaGoByParams(
         wannaGo.what,
         wannaGo.when
-        );
-      console.log(postedWannaGo)
+      );
+      console.log(postedWannaGo);
       setwannaGo(postedWannaGo);
-      setJustCreatedWG(true)
+      setJustCreatedWG(true);
       const { _id } = postedWannaGo;
       navigate(`/wannago/id=${_id}`);
     } catch (e) {
@@ -112,6 +121,4 @@ export default function VerticalStepper({ wannaGo, setwannaGo, justCreatedWG, se
     </Box>
   );
 }
-
-
 

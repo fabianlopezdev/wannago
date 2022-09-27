@@ -5,13 +5,26 @@ export let initialWannaGo = {
   what: '',
   when: '',
   where: '',
-  owner: '',
+  ownerName: '',
   _id: '',
 };
 
 const now = dayjs(Date.now()).format('YYYY-MM-DDTHH:mm');
 
 export const steps = [
+  {
+    label: 'Who?',
+    description: 'Let people know who sends the plan',
+    formField: (
+      <input
+        text='Who?'
+        type='text'
+        name='ownerName'
+        autoFocus
+        required
+      ></input>
+    ),
+  },
   {
     label: 'What?',
     description: 'Add a title to your plan',
@@ -38,7 +51,7 @@ export const steps = [
     ),
   },
   {
-    label: 'When',
+    label: 'When?',
     description: `When is it?`,
     formField: (
       <input
@@ -51,4 +64,5 @@ export const steps = [
     ),
   },
 ];
+
 

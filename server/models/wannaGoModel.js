@@ -6,9 +6,13 @@ const WannaGoSchema = new Schema({
   where: { type: String, required: true },
   when: { type: String, required: true },
   owner: String,
-  category: String,
+  ownerName: String,
+  openedTimes: { type: Number, default: 0},
+  nosNumber: Number,
+  yesNumber: Number,
   ppl_going: { type: Map, of: String },
   suggestion_box: Array,
+
 });
 
 module.exports = mongoose.model('wannagos', WannaGoSchema);
