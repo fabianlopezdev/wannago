@@ -2,8 +2,10 @@
 import { useState } from 'react';
 
 //Internal dependencies
-import { putPplGoing, putGoingCounter } from '../../utils/apis/wannagoApiServices/putWannaGos';
-
+import {
+  putPplGoing,
+  putGoingCounter,
+} from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 const YesOption = ({ id, goingCounter, ownerName }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
@@ -14,8 +16,8 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
     const email = e.target.email.value;
     try {
       await putPplGoing(name, email, id);
-      await putGoingCounter(id, ++goingCounter)
-      console.log(goingCounter)
+      await putGoingCounter(id, ++goingCounter);
+      console.log(goingCounter);
       setSubmitClicked(!submitClicked);
     } catch (e) {
       console.log(
@@ -31,13 +33,14 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
       <h1>That's wonderful</h1>
       {submitClicked ? (
         <h3>
-          Amazing, we just notified {ownerName}. Now, sit and wait until the event
+          Amazing, we just notified {ownerName}. Now, sit and wait until the
+          event
         </h3>
       ) : (
         <>
           <h3>
-            Let {ownerName} know your name and email to notify you if there is any
-            change
+            Let {ownerName} know your name and email to notify you if there is
+            any change
           </h3>
           <div className='form'>
             <form onSubmit={handleSubmit}>
