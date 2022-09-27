@@ -126,7 +126,7 @@ const UserDashboard = ({
           allUserWGs.map((wannaGo) => {
             return (
               <a
-                href={`${URL}${CLIENT_PORT}/wannago/stats/id=${wannaGo._id}`}
+                href={`${URL}${CLIENT_PORT}/user/wannago/stats/id=${wannaGo._id}`}
                 style={{ color: 'inherit', textDecoration: 'inherit' }}
 
               >

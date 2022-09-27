@@ -111,9 +111,11 @@ function App() {
             ></Route>
             <Route
               exact
-              path='user/dashboard/wannaGo/stats/:id'
+              path='user/wannaGo/stats/:id'
               element={
-                <WannaGoStats/>
+                <WannaGoStats
+                  wannaGo={wannaGo}
+                />
               }
             ></Route>
             {/* <Route element={<PrivateRoute />}> */}

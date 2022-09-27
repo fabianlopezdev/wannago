@@ -1,5 +1,5 @@
 //Internal dependencies
-const User = require('../../models/wannaGoModel');
+const WannaGo = require('../../models/wannaGoModel');
 
 const deleteWannaGo = async (ctx) => {
 try {

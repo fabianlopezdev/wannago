@@ -1,15 +1,24 @@
-import { useEffect, useState } from "react";
-import WannaGoCard from "./WannaGoCardDashboard";
+import { useEffect, useState } from 'react';
+import WannaGoCard from './WannaGoCardDashboard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
-import {getEngagementOfWannaGo, getSuccessRatioOfWannaGo} from '../utils/helperFunctions'
+import {
+  getEngagementOfWannaGo,
+  getSuccessRatioOfWannaGo,
+} from '../utils/helperFunctions';
+import { deleteWannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
+import { useNavigate } from 'react-router-dom';
+
 const WannaGoStats = () => {
   const params = new URLSearchParams(window.location.pathname);
-  const id = params.get('/user/dashboard/wannago/stats/id');
+  const id = params.get('/user/wannago/stats/id');
+  console.log('this is id', id);
   const [wannaGo, setWannaGo] = useState({});
-  
+  const [copied, setCopied] = useState('Copy');
+  const navigate = useNavigate();
+
   useEffect(() => {
     promiseHandler();
-  }, [])
+  }, []);
 
   const promiseHandler = async () => {
     try {
@@ -21,9 +30,38 @@ const WannaGoStats = () => {
       );
     }
   };
+  const handleClick = () => {
+    navigator.clipboard.writeText(wannaGo.guestLink);
+    setCopied('Copied');
+  };
+
+  const handleDelete = () => {
+    console.log('id', id);
+    console.log('this wannaGo');
+    deleteWannaGo(id);
+    navigate('/user/dashboard');
+  };
+
   return (
     <>
       <WannaGoCard wannaGo={wannaGo} />
+      <div>
+        <h4>Guest Link:</h4>
+        {wannaGo.guestLink && (
+          <div>
+            <a
+              href='http://localhost:3001/wannago/guest-link/id=6332ff751b7dcf3f491aa7d5'
+              target='blank'
+            >
+              {wannaGo.guestLink}
+            </a>
+            <button onClick={handleClick}>{copied}</button>
+          </div>
+        )}
+      </div>
+      <div>
+        <button onClick={handleDelete}>Delete WannaGo</button>
+      </div>
       <div>
         <h4>Number of times the link was opened</h4>
         {wannaGo.openedTimes}
@@ -50,19 +88,6 @@ const WannaGoStats = () => {
       </div>
     </>
   );
-
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-export default WannaGoStats
+export default WannaGoStats;
