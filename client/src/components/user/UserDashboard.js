@@ -1,5 +1,6 @@
 //External dependencies
 import { useEffect, useState } from 'react';
+import {Link} from 'react-router-dom'
 
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
@@ -24,6 +25,7 @@ import {
   aggregateOpenedTimes,
 } from '../../utils/helperFunctions';
 import WannaGoCardDashboard from '../WannaGoCardDashboard';
+import { CLIENT_PORT, URL } from '../../utils/config';
 import '../../css/MaybeOption.css';
 
 const UserDashboard = ({
@@ -123,10 +125,16 @@ const UserDashboard = ({
         {allUserWGs &&
           allUserWGs.map((wannaGo) => {
             return (
-              <WannaGoCardDashboard
-                key={wannaGo._id}
-                wannaGo={wannaGo}
-              />
+              <a
+                href={`${URL}${CLIENT_PORT}/wannago/stats/id=${wannaGo._id}`}
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+
+              >
+                <WannaGoCardDashboard
+                  key={wannaGo._id}
+                  wannaGo={wannaGo}
+                />
+              </a>
             );
           })}
       </div>
@@ -135,6 +143,11 @@ const UserDashboard = ({
 };
 
 export default UserDashboard;
+
+
+
+
+
 
 
 

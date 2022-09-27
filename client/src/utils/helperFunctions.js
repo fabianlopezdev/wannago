@@ -14,14 +14,18 @@ export const dateFormatter = (date) => {
 };
 
 export const getEngagementOfWannaGo = (wannaGo) => {
-  return Math.floor(
-    (wannaGo.rejectCounter + wannaGo.ppl_going + wannaGo.suggestionBoxCounter) /
-      wannaGo.openedTimes
+  return (
+    Math.floor(
+      (wannaGo.rejectCounter +
+        wannaGo.ppl_going +
+        wannaGo.suggestionBoxCounter) /
+        wannaGo.openedTimes
+    ) || 0
   );
 };
 
 export const getSuccessRatioOfWannaGo = (wannaGo) => {
-  return Math.floor(wannaGo.ppl_going / wannaGo.openedTimes);
+  return Math.floor(wannaGo.ppl_going / wannaGo.openedTimes) || 0;
 };
 
 export const aggregateSuccessRatio = (wannaGosOfUser) => {
@@ -81,5 +85,4 @@ export const getNumOfActiveWannaGos = (wannaGosOfUser) => {
 export const getNumOfOlderWannaGos = (wannaGosOfUser) => {
   return getOlderWannaGos(wannaGosOfUser).length + 1;
 };
-
 

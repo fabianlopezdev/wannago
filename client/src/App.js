@@ -13,6 +13,7 @@ import UserDashboard from './components/user/UserDashboard';
 import SignUp from './components/user/authentication/SignUp';
 import GuestsLinks from './components/linkForGuests/GuestsLink';
 import JustCreatedWannago from './components/JustCreatedWannago';
+import WannaGoStats from './components/WannaGoStats';
 import DeleteUser from './components/user/authentication/DeleteUser';
 import PrivateRoute from './components/user/authentication/PrivateRoute';
 import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
@@ -46,12 +47,12 @@ function App() {
           <Route
             exact
             path='/wannago/:id'
-            element={<JustCreatedWannago/>}
+            element={<JustCreatedWannago />}
           ></Route>
           <Route
             exact
             path='/wannago/guest-link/:id'
-            element={<GuestsLinks/>}
+            element={<GuestsLinks />}
           ></Route>
           <Route element={<UserPrivateRoute />}>
             <Route
@@ -108,11 +109,18 @@ function App() {
                 />
               }
             ></Route>
+            <Route
+              exact
+              path='user/dashboard/wannaGo/stats/:id'
+              element={
+                <WannaGoStats/>
+              }
+            ></Route>
             {/* <Route element={<PrivateRoute />}> */}
             <Route
               exact
               path='/user/update-profile'
-              element={<UpdateProfile/>}
+              element={<UpdateProfile />}
             ></Route>
             {/* </Route> */}
             <Route
@@ -128,6 +136,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 

@@ -2,6 +2,7 @@
 import { dateFormatter } from '../utils/helperFunctions';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { deleteWannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
 
 const WannaGoCard = ({ wannaGo }) => {
   const [copied, setCopied] = useState('Copy');
@@ -9,6 +10,12 @@ const WannaGoCard = ({ wannaGo }) => {
   const handleClick = () => {
     navigator.clipboard.writeText(wannaGo.guestLink);
     setCopied('Copied')
+  }
+
+  const handleDelete = async () => {
+    console.log('I am here')
+    console.log('this wannaGo', this.props.WannaGo)
+    // await deleteWannaGo(this.wannaGo)
   }
   return (
     <div className='everything'>
@@ -30,7 +37,7 @@ const WannaGoCard = ({ wannaGo }) => {
           </strong>
         </h4>
       </div>
-      <div>
+      {/* <div>
         <h4>Guest Link:</h4>
         {wannaGo.guestLink && (<div><a
           href='http://localhost:3001/wannago/guest-link/id=6332ff751b7dcf3f491aa7d5'
@@ -40,6 +47,9 @@ const WannaGoCard = ({ wannaGo }) => {
         </a>
         <button onClick={handleClick}>{copied}</button></div>)}
       </div>
+      <div>
+        <button onClick={handleDelete}>Delete WannaGo</button>
+      </div> */}
     </div>
   );
 };
