@@ -6,13 +6,17 @@ import logoutSoft from '../icons/logout-soft.png';
 import signUpSoft from '../icons/sign-up-soft.png';
 import loginSoft from '../icons/login-soft.png';
 import homeSoft from '../icons/home-icon-soft.png';
-import logo from '../logo.jpg';
+import logo from '../finalWannaGoLogo.png';
 
 export const DashBoardButton = () => {
   return (
-    <Link to={'/user/dashboard'}>
+    <Link
+      className='iconLinks'
+      to={'/user/dashboard'}
+    >
       <img
-        className='icons'
+        title='Go to Dashboard'
+        className='icons dashboard'
         src={homeSoft}
         alt='dashboard icon'
       ></img>
@@ -28,7 +32,8 @@ export const LogoutButton = ({ logOut }) => {
   };
   return (
     <img
-      className='icons'
+      title='Log Out'
+      className='icons logout'
       src={logoutSoft}
       onClick={handleClick}
       alt='logout icon'
@@ -38,9 +43,13 @@ export const LogoutButton = ({ logOut }) => {
 
 export const SignUpButton = () => {
   return (
-    <Link to={'/user/signup'}>
+    <Link
+      className='iconLinks'
+      to={'/user/signup'}
+    >
       <img
-        className='icons'
+        title='Sign Up'
+        className='icons signup'
         src={signUpSoft}
         alt='signup icon'
       />
@@ -50,9 +59,13 @@ export const SignUpButton = () => {
 
 export const LogInButton = () => {
   return (
-    <Link to={'/user/login'}>
+    <Link
+      className='iconLinks'
+      to={'/user/login'}
+    >
       <img
-        className='icons'
+        title='Log In'
+        className='icons login'
         src={loginSoft}
         alt='login icon'
       ></img>
@@ -62,9 +75,13 @@ export const LogInButton = () => {
 
 export const LandingButton = () => {
   return (
-    <Link to={'/'}>
+    <Link
+      className='iconLinkLanding'
+      to={'/'}
+    >
       <img
-        className='icons logo'
+        title='Go to Landing Page'
+        className='iconsLogo'
         src={logo}
         alt='logo'
       ></img>

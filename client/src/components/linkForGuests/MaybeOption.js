@@ -2,7 +2,10 @@
 import { useState } from 'react';
 
 //Internal dependencies
-import { putSuggestionMsg, putSuggestionBoxCounter } from '../../utils/apis/wannagoApiServices/putWannaGos';
+import {
+  putSuggestionMsg,
+  putSuggestionBoxCounter,
+} from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 import '../../css/MaybeOption.css';
 
@@ -31,25 +34,28 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
 
   return (
     <>
-      <h2>
-        Let {ownerName} know if you have any suggestion. Remember to say who you are.
-      </h2>
+      <h3>
+        Let {ownerName} know if you have any suggestion. Remember to say who you
+        are.
+      </h3>
       {msgSent ? (
-        <h3>We'll let {ownerName} know</h3>
+        <h3 className='textGuestLink'>We'll let {ownerName} know</h3>
       ) : (
         <form onSubmit={handleSubmit}>
-          <textarea
-            name='suggestion'
-            placeholder='write your suggestion here'
-            autoFocus
-            required
-          ></textarea>
-          <button
-            className='button'
-            type='submit'
-          >
-            Send
-          </button>
+          <div className='maybeTextArea'>
+            <textarea
+              name='suggestion'
+              placeholder='write your suggestion here'
+              autoFocus
+              required
+            ></textarea>
+            <button
+              className='button maybe'
+              type='submit'
+            >
+              Send
+            </button>
+          </div>
         </form>
       )}
     </>

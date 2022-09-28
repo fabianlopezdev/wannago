@@ -19,32 +19,32 @@ const NavBar = () => {
   const location = useLocation();
 
   return (
-    <nav className='nav-container'>
-      <div>
-        {currentUser ? (
-          <div className='nav-btns-container'>
-            <LandingButton />
-            <div>
-              <Link to={'/user/update-profile'}> Update Profile </Link>
-              <DashBoardButton/>
-              <LogoutButton logOut={logOut} />
-            </div>
+    <nav className='navContainer'>
+      {currentUser ? (
+        <div className='navButtonsContainer'>
+          <LandingButton />
+          <div>
+            <Link to={'/user/update-profile'}> Update Profile </Link>
+            <DashBoardButton />
+            <LogoutButton logOut={logOut} />
           </div>
-        ) : location.pathname === '/' ? (
-          <>
+        </div>
+      ) : location.pathname === '/' ? (
+        <>
+          <div className='landingPageIcons'>
             <LogInButton />
             <SignUpButton />
-          </>
-        ) : (
-          <div className='nav-btns-container'>
-            <LandingButton />
-            <div>
-              <LogInButton logOut={logOut} />
-              <SignUpButton />
-            </div>
           </div>
-        )}
-      </div>
+        </>
+      ) : (
+        <>
+          <LandingButton />
+          <div className='landingPageIcons'>
+            <LogInButton logOut={logOut} />
+            <SignUpButton />
+          </div>
+        </>
+      )}
     </nav>
   );
 };

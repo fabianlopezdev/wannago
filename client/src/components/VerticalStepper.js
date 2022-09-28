@@ -1,5 +1,5 @@
 //External dependencies
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -29,12 +29,11 @@ export default function VerticalStepper({
   let navigate = useNavigate();
   const { currentUser } = useAuth();
 
-  //Remove the step of the name if the user is already logged In
-  if (currentUser) steps.shift();
+
+
 
   const handleNext = (e) => {
     e.preventDefault();
-
     const field = e.target[0].name;
     const inputValue = e.target[0].value;
     wannaGo[field] = inputValue;
@@ -67,58 +66,61 @@ export default function VerticalStepper({
   };
 
   return (
-    <Box sx={{ maxWidth: 700 }}>
-      <Stepper
-        activeStep={activeStep}
-        orientation='vertical'
-      >
-        {steps.map((step, index) => (
-          <Step key={step.label}>
-            <StepLabel>{step.label}</StepLabel>
-            <StepContent>
-              <Typography>{step.description}</Typography>
-              <Box sx={{ mb: 2 }}>
-                <form onSubmit={handleNext}>
-                  {step.formField}
-                  <br />
-                  <Button
-                    variant='contained'
-                    type='submit'
-                    style={{ backgroundColor: 'rgb(241, 138, 203)' }}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                  </Button>
-                  <Button
-                    disabled={index === 0}
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                    style={{ backgroundColor: 'rgb(242,205,211)' }}
-                  >
-                    Back
-                  </Button>
-                </form>
-              </Box>
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
-      {activeStep === steps.length && (
-        <Paper
-          square
-          elevation={0}
-          sx={{ p: 3 }}
+    <div className='stepper'>
+      <Box sx={{ maxWidth: 700 }}>
+        <Stepper
+          activeStep={activeStep}
+          orientation='vertical'
         >
-          <button
-            className='button'
-            onClick={saveWannaGo}
-            sx={{ mt: 1, mr: 1 }}
+          {steps.map((step, index) => (
+            <Step key={step.label}>
+              <StepLabel>{step.label}</StepLabel>
+              <StepContent>
+                <Typography>{step.description}</Typography>
+                <Box sx={{ mb: 2 }}>
+                  <form onSubmit={handleNext}>
+                    {step.formField}
+                    <br />
+                    <Button
+                      variant='contained'
+                      type='submit'
+                      style={{ backgroundColor: 'rgb(241, 138, 203)' }}
+                      sx={{ mt: 1, mr: 1 }}
+                    >
+                      {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                    </Button>
+                    <Button
+                      disabled={index === 0}
+                      onClick={handleBack}
+                      sx={{ mt: 1, mr: 1 }}
+                      style={{ backgroundColor: 'rgb(242,205,211)' }}
+                    >
+                      Back
+                    </Button>
+                  </form>
+                </Box>
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
+        {activeStep === steps.length && (
+          <Paper
+            square
+            elevation={0}
+            sx={{ p: 3 }}
           >
-            Share It!
-          </button>
-        </Paper>
-      )}
-    </Box>
+            <button
+              className='button'
+              onClick={saveWannaGo}
+              sx={{ mt: 1, mr: 1 }}
+            >
+              Share It!
+            </button>
+          </Paper>
+        )}
+      </Box>
+    </div>
   );
 }
+
 

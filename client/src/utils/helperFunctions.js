@@ -8,7 +8,7 @@ export const dateFormatter = (date) => {
     month: toFormat.format('MMMM'),
     year: toFormat.format('YYYY'),
     time: toFormat.format('hh:mmA'),
-    wannaGoFormat: toFormat.format('MMMM DD YYYY'),
+    wannaGoFormat: toFormat.format('MMMM DD, YYYY'),
   };
   return dateTime;
 };
@@ -17,7 +17,7 @@ export const getEngagementOfWannaGo = (wannaGo) => {
   return (
     Math.floor(
       (wannaGo.rejectCounter +
-        wannaGo.ppl_going +
+        wannaGo.goingCounter +
         wannaGo.suggestionBoxCounter) /
         wannaGo.openedTimes
     ) || 0
@@ -25,7 +25,7 @@ export const getEngagementOfWannaGo = (wannaGo) => {
 };
 
 export const getSuccessRatioOfWannaGo = (wannaGo) => {
-  return Math.floor(wannaGo.ppl_going / wannaGo.openedTimes) || 0;
+  return wannaGo.goingCounter / wannaGo.openedTimes * 100|| 0;
 };
 
 export const aggregateSuccessRatio = (wannaGosOfUser) => {
@@ -36,7 +36,7 @@ export const aggregateSuccessRatio = (wannaGosOfUser) => {
 
 export const aggregateEngagement = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + getEngagementOfWannaGo(wannaGo);
+    return acc + (getEngagementOfWannaGo(wannaGo) * 100);
   }, 0);
 };
 

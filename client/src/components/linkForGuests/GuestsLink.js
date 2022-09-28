@@ -43,7 +43,9 @@ const GuestLink = () => {
 
   return (
     <>
-      <h1 className='see'>{wannaGo.ownerName} wants to know if you wannaGo</h1>
+      <h2 className='justCreatedWannaGo'>
+        {wannaGo.ownerName} wants to know if you wannaGo
+      </h2>
       <WannaGoCard wannaGo={wannaGo}></WannaGoCard>
       {!option ? (
         <div className='buttons'>
@@ -52,7 +54,7 @@ const GuestLink = () => {
           <MaybeButton handleClick={handleClick}></MaybeButton>
         </div>
       ) : (
-        <div className='see'>
+        <div className='justCreatedWannaGo'>
           {option === 'no' && (
             <NoOption
               id={id}
@@ -82,6 +84,8 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
+
+
 
 
 

@@ -30,18 +30,18 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
 
   return (
     <div>
-      <h1>That's wonderful</h1>
+      <h2>That's wonderful</h2>
       {submitClicked ? (
-        <h3>
+        <h3 className='textGuestLink'>
           Amazing, we just notified {ownerName}. Now, sit and wait until the
           event
         </h3>
       ) : (
         <>
-          <h3>
+          <h4>
             Let {ownerName} know your name and email to notify you if there is
             any change
-          </h3>
+          </h4>
           <div className='form'>
             <form onSubmit={handleSubmit}>
               <label>Name</label>
@@ -58,7 +58,7 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
               ></input>
               <button
                 type='submit'
-                className='button important'
+                className='button'
               >
                 send
               </button>

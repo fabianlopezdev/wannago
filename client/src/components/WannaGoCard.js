@@ -4,22 +4,24 @@ import { dateFormatter } from '../utils/helperFunctions';
 const WannaGoCard = ({ wannaGo }) => {
   const dateTime = dateFormatter(wannaGo.when);
   return (
-    <div className='everything'>
+    <div className='wannaGoCardContainer'>
       <div>
         <h4>
-          <h3>What:</h3> <strong> {wannaGo.what}</strong>
+          <h3>What:</h3>{' '}
+          <strong className='description'> {wannaGo.what}</strong>
         </h4>
       </div>
       <div>
         <h4>
-          <h3>Where:</h3> <strong> {wannaGo.where}</strong>
+          <h3>Where:</h3>{' '}
+          <strong className='description'> {wannaGo.where}</strong>
         </h4>
       </div>
       <div>
         <h4>
           <h3>When:</h3>
-          <strong>
-            {dateTime.wannaGoFormat} {dateTime.time}
+          <strong className='description'>
+            {dateTime.wannaGoFormat}, At {dateTime.time}
           </strong>
         </h4>
       </div>
@@ -27,5 +29,9 @@ const WannaGoCard = ({ wannaGo }) => {
   );
 };
 
+
 export default WannaGoCard;
+
+
+
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import WannaGoCard from './WannaGoCardDashboard';
+import WannaGoCard from './WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import {
   getEngagementOfWannaGo,
@@ -46,48 +46,70 @@ const WannaGoStats = () => {
     <>
       <WannaGoCard wannaGo={wannaGo} />
       <div>
-        <h4>Guest Link:</h4>
+        <h4 className='justCreatedWannaGoSedondPart'>Guest Link:</h4>
         {wannaGo.guestLink && (
-          <div>
+          <div className='justCreatedWannaGo'>
             <a
               href='http://localhost:3001/wannago/guest-link/id=6332ff751b7dcf3f491aa7d5'
               target='blank'
             >
               {wannaGo.guestLink}
             </a>
-            <button onClick={handleClick}>{copied}</button>
+            <button
+              className='buttonCopy'
+              onClick={handleClick}
+            >
+              {copied}
+            </button>
+            <div clasaName='buttonDelete'>
+              <button
+                className='button'
+                onClick={handleDelete}
+              >
+                Delete It!
+              </button>
+              <br />
+            </div>
           </div>
         )}
       </div>
-      <div>
-        <button onClick={handleDelete}>Delete WannaGo</button>
-      </div>
-      <div>
-        <h4>Number of times the link was opened</h4>
-        {wannaGo.openedTimes}
-      </div>
-      <div>
-        <h4>People Going</h4>
-        {wannaGo.goingCounter}
-      </div>
-      <div>
-        <h4>People that can't go</h4>
-        {wannaGo.goingCounter}
-      </div>
-      <div>
-        <h4>Number of suggestions made</h4>
-        {wannaGo.suggestionBoxCounter}
-      </div>
-      <div>
-        <h4>Engagement</h4>
-        {getEngagementOfWannaGo(wannaGo)}
-      </div>
-      <div>
-        <h4>Success Ratio</h4>
-        {getSuccessRatioOfWannaGo(wannaGo)}
+      <br />
+      <h4 className='justCreatedWannaGo'>See how well the WannaGo is doing</h4>
+      <br />
+      <div className='testingGrid'>
+        <div className='insideGrid'>
+          <h4>Number of times the link was opened</h4>
+          {wannaGo.openedTimes}
+        </div>
+        <div className='insideGrid'>
+          <h4>People Going</h4>
+          {wannaGo.goingCounter}
+        </div>
+        <div className='insideGrid'>
+          <h4>People that can't go</h4>
+          {wannaGo.rejectCounter}
+        </div>
+        <div className='insideGrid'>
+          <h4>Number of suggestions made</h4>
+          {wannaGo.suggestionBoxCounter}
+        </div>
+        <div className='insideGrid'>
+          <h4>Engagement</h4>
+          {getEngagementOfWannaGo(wannaGo)}%
+        </div>
+        <div className='insideGrid'>
+          <h4>Success Ratio</h4>
+          {Math.floor(getSuccessRatioOfWannaGo(wannaGo))}%
+        </div>
       </div>
     </>
   );
 };
 
 export default WannaGoStats;
+
+
+
+
+
+

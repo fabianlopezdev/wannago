@@ -21,6 +21,7 @@ import UpdateProfile from './components/user/authentication/UpdateProfile';
 import ForgotPassword from './components/user/authentication/ForgotPassword';
 
 import './App.css';
+import VerticalStepper from './components/VerticalStepper';
 
 function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
@@ -42,6 +43,18 @@ function App() {
                 justCreatedWG={justCreatedWG}
                 setJustCreatedWG={setJustCreatedWG}
               ></MainPage>
+            }
+          ></Route>
+          <Route
+            exact
+            path='/wannaGo/VerticalStepper'
+            element={
+              <VerticalStepper
+                wannaGo={wannaGo}
+                setwannaGo={setwannaGo}
+                justCreatedWG={justCreatedWG}
+                setJustCreatedWG={setJustCreatedWG}
+              ></VerticalStepper>
             }
           ></Route>
           <Route
@@ -112,11 +125,7 @@ function App() {
             <Route
               exact
               path='user/wannaGo/stats/:id'
-              element={
-                <WannaGoStats
-                  wannaGo={wannaGo}
-                />
-              }
+              element={<WannaGoStats wannaGo={wannaGo} />}
             ></Route>
             {/* <Route element={<PrivateRoute />}> */}
             <Route
@@ -138,6 +147,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

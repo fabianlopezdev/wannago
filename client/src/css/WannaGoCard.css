@@ -1,17 +1,23 @@
-.everything {
+.wannaGoCardContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 2px dashed rgb(241,138,203);
+  border: 1.5px solid rgb(241,138,203);
   border-radius: 5px;
   margin-left: 33%;
   margin-right: 33%;
+  padding: 0.5%;
+  /* box-shadow: 2px 2; */
+  transition-duration: 0.2s;
+  /* width: fit-content; */
 }
 
-.see {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+.wannaGoCardContainer:hover {
+   transform: scale(1.03);
+  transition:0.2s;
+  box-shadow: 1px 1px 5px 0px #424141;
 }
+
+.description {
+  margin-left: 20px;
+}
+
