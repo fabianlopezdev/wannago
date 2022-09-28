@@ -59,6 +59,7 @@
   src: url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 }
 
+<<<<<<< HEAD
 .signup-container {
   display: flex;
   align-items: center;
@@ -164,4 +165,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+=======
+.icons {
+  margin-top: 10px;
+  width: 50px;
+  height: 70%;
+}
+.icons:hover {
+  cursor: pointer;
+}
+
+.spinner {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+>>>>>>> 6c320e6a98a121077b67ca48a15926ed192bab65
 }

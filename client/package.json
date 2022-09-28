@@ -13,7 +13,10 @@
     "@testing-library/user-event": "^13.5.0",
     "dayjs": "^1.11.5",
     "dotenv": "^16.0.2",
+<<<<<<< HEAD
     "firebase": "^9.10.0",
+=======
+>>>>>>> 6c320e6a98a121077b67ca48a15926ed192bab65
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
