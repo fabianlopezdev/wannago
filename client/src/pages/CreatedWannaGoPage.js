@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 //Internal dependencies
-import WannaGoCard from './WannaGoCard';
+import WannaGoCard from '../components/WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { CLIENT_PORT, URL } from '../utils/config';
@@ -23,12 +23,14 @@ const PlanCreated = () => {
     promiseHandler();
   }, []);
 
-  const guestLink = `${URL}${CLIENT_PORT}/wannago/guest-link/id=${id}`;
+  const guestLink = `${URL}${3001}/wannago/guest-link/id=${id}`;
 
   const promiseHandler = async () => {
     const queriedWannaGo = await getWannaGoById(id);
     await putGuestLink(id, guestLink);
-    if (currentUser) putOwnerToWannaGo(queriedWannaGo._id, currentUser);
+    console.log('currentUser', currentUser);
+    if (currentUser.uid)
+      putOwnerToWannaGo(queriedWannaGo._id, currentUser.uid);
     setwannaGo(queriedWannaGo);
   };
   const handleClick = () => {

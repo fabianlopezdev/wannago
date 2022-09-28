@@ -4,9 +4,9 @@ import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 //Internal dependencies
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
-import '../../../css/Authentication.css';
+import '../../css/Authentication.css';
 
 export default function UpdateProfile() {
   //Hooks

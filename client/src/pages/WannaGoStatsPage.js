@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import WannaGoCard from './WannaGoCard';
+import WannaGoCard from '../components/WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import {
   getEngagementOfWannaGo,
   getSuccessRatioOfWannaGo,
 } from '../utils/helperFunctions';
-import { deleteWannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
+import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useNavigate } from 'react-router-dom';
 
 const WannaGoStats = () => {

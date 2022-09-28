@@ -1,30 +1,31 @@
 //External dependencies
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
-import '../../../css/Authentication.css';
+import '../../css/Authentication.css';
 
-export default function ForgotPassword() {
+export default function Login() {
   //Hooks
   const emailRef = useRef();
-  const { resetPassword } = useAuth();
+  const passwordRef = useRef();
+  const { logIn } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      setMessage('');
       setError('');
       setLoading(true);
-      await resetPassword(emailRef.current.value);
-      setMessage('Check your inbox for further instructions');
+      await logIn(emailRef.current.value, passwordRef.current.value);
+      navigate('/user/dashboard');
     } catch {
-      setError('Failed to reset password');
+      setError('Failed to sign in');
     }
     setLoading(false);
   };
@@ -33,9 +34,8 @@ export default function ForgotPassword() {
     <>
       <Card>
         <Card.Body>
-          <h2 className='card-body-h2'>Password Reset</h2>
+          <h2 className='card-body-h2'>Log in</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
-          {message && <Alert variant='success'>{message}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group id='email'>
               <Form.Label>Email</Form.Label>
@@ -45,16 +45,25 @@ export default function ForgotPassword() {
                 required
               />
             </Form.Group>
+            <Form.Group id='password'>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type='password'
+                ref={passwordRef}
+                required
+              />
+            </Form.Group>
             <Button
               type='submit'
+              class=''
               className='signup-button'
               disabled={loading}
             >
-              Reset Password
+              Log In
             </Button>
           </Form>
           <div className='line-after-auth-card forgot'>
-            <Link to='/user/login'>Log in</Link>
+            <Link to='/user/forgot-password'>Forgot Password?</Link>
           </div>
         </Card.Body>
       </Card>

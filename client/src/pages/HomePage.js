@@ -1,18 +1,16 @@
 //External dependencies
-import { useState } from 'react';
 
 //Internal dependencies
-import VerticalStepper from './VerticalStepper';
 import {useNavigate} from 'react-router-dom'
 
 import logo from '../finalWannaGoLogo.png';
 
 
-const MainPage = ({ wannaGo, setwannaGo, justCreatedWG, setJustCreatedWG }) => {
+const MainPage = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/wannaGo/VerticalStepper')
+    navigate('/wannaGo/VerticalStepperPage')
   };
 
   return (

@@ -1,6 +1,5 @@
 //External dependencies
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
@@ -10,13 +9,8 @@ import {
 } from '../../utils/apis/userApiServices/userApi';
 import { getAllWannaGosOfUser } from '../../utils/apis/wannagoApiServices/getWannaGos';
 import {
-  getTotalWannaGosCreated,
-  getActiveWannaGos,
-  getOlderWannaGos,
   getNumOfActiveWannaGos,
   getNumOfOlderWannaGos,
-  getEngagementOfWannaGo,
-  getSuccessRatioOfWannaGo,
   aggregateSuccessRatio,
   aggregateEngagement,
   aggregatePplGoing,
@@ -24,8 +18,10 @@ import {
   aggregateSuggestions,
   aggregateOpenedTimes,
 } from '../../utils/helperFunctions';
-import WannaGoCard from '../WannaGoCard';
 import { CLIENT_PORT, URL } from '../../utils/config';
+
+import WannaGoCard from '../../components/WannaGoCard';
+
 import '../../css/MaybeOption.css';
 
 const UserDashboard = ({
@@ -39,14 +35,16 @@ const UserDashboard = ({
   const [totalRejections, setTotalRejections] = useState(0);
   const [totalSuggestions, setTotalSuggestions] = useState(0);
   const [totalWannaGos, setTotalWannaGos] = useState();
-  const [activeWannaGos, setActiveWannaGos] = useState();
-  const [olderWannaGos, setOlderWannaGos] = useState();
   const [numOfActiveWannaGos, setNumOfActiveWannaGos] = useState();
   const [numOfOlderWannaGos, setNumOfOlderWannaGos] = useState();
   const [numOfTimesLinksOpened, setNumOfTimesLinksOpened] = useState();
   const [totalEngagement, setTotalEngagement] = useState();
   const [totalSuccessRatio, setTotalSuccessRatio] = useState();
   const [allUserWGs, setAllUserWGs] = useState();
+  //The next two states are to render active and expired wannaGos
+  // const [activeWannaGos, setActiveWannaGos] = useState();
+  // const [olderWannaGos, setOlderWannaGos] = useState();
+  
   const { currentUser } = useAuth();
   useEffect(() => {
     handlePromise();
@@ -146,5 +144,6 @@ const UserDashboard = ({
 };
 
 export default UserDashboard;
+
 
 

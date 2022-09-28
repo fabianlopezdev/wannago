@@ -1,52 +1,35 @@
 //External dependencies
 import { useState } from 'react';
-<<<<<<< HEAD
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-=======
-import PlanCreated from './components/PlanCreated';
-import GuestsLinks from './components/linkForGuests/GuestsLinks';
-import Profile from './components/Profile';
-import { Routes, Route } from 'react-router-dom';
-import MainPage from './components/MainPage';
-import './App.css';
-import { useAuth0 } from '@auth0/auth0-react';
-import Loading from './components/Loading';
->>>>>>> 6c320e6a98a121077b67ca48a15926ed192bab65
 
 //Internal dependencies
 import { initialWannaGo } from './data';
 import NavBar from './components/NavBar';
-import MainPage from './components/MainPage';
+import HomePage from './pages/HomePage';
+import WannaGoStats from './pages/WannaGoStatsPage';
 import { AuthProvider } from './contexts/AuthContext';
-import Login from './components/user/authentication/Login';
-import UserDashboard from './components/user/UserDashboard';
-import SignUp from './components/user/authentication/SignUp';
-import GuestsLinks from './components/linkForGuests/GuestsLink';
-import JustCreatedWannago from './components/JustCreatedWannago';
-import WannaGoStats from './components/WannaGoStats';
-import DeleteUser from './components/user/authentication/DeleteUser';
+import Login from './pages/userPages/LoginPage';
+import UserDashboardPage from './pages/userPages/UserDashboardPage';
+import SignUp from './pages/userPages/SignUpPage';
+import GuestsLinkPage from './pages/GuestsLinkPage';
+import CreatedWannaGoPage from './pages/CreatedWannaGoPage';
+import DeleteUser from './pages/userPages/DeleteUserPage';
 import PrivateRoute from './components/user/authentication/PrivateRoute';
 import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
-import UpdateProfile from './components/user/authentication/UpdateProfile';
-import ForgotPassword from './components/user/authentication/ForgotPassword';
+import UpdateProfile from './pages/userPages/UpdateProfilePage';
+import ForgotPassword from './pages/userPages/ForgotPasswordPage';
 
 import './App.css';
-import VerticalStepper from './components/VerticalStepper';
+import VerticalStepperPage from './pages/VerticalStepperPage';
 
 function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
   const [justCreatedWG, setJustCreatedWG] = useState(false)
   const [user, setUser] = useState({});
 
-  const { isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <Loading />;
-  }
 
   return (
-<<<<<<< HEAD
     <>
       <AuthProvider>
         <NavBar></NavBar>
@@ -55,35 +38,30 @@ function App() {
             exact
             path='/'
             element={
-              <MainPage
-                wannaGo={wannaGo}
-                setwannaGo={setwannaGo}
-                justCreatedWG={justCreatedWG}
-                setJustCreatedWG={setJustCreatedWG}
-              ></MainPage>
+              <HomePage/>
             }
           ></Route>
           <Route
             exact
-            path='/wannaGo/VerticalStepper'
+            path='/wannaGo/VerticalStepperPage'
             element={
-              <VerticalStepper
+              <VerticalStepperPage
                 wannaGo={wannaGo}
                 setwannaGo={setwannaGo}
                 justCreatedWG={justCreatedWG}
                 setJustCreatedWG={setJustCreatedWG}
-              ></VerticalStepper>
+              ></VerticalStepperPage>
             }
           ></Route>
           <Route
             exact
             path='/wannago/:id'
-            element={<JustCreatedWannago />}
+            element={<CreatedWannaGoPage />}
           ></Route>
           <Route
             exact
             path='/wannago/guest-link/:id'
-            element={<GuestsLinks />}
+            element={<GuestsLinkPage />}
           ></Route>
           <Route element={<UserPrivateRoute />}>
             <Route
@@ -131,7 +109,7 @@ function App() {
               exact
               path='/user/dashboard'
               element={
-                <UserDashboard
+                <UserDashboardPage
                   user={user}
                   setUser={setUser}
                   wannaGo={wannaGo}
@@ -161,47 +139,15 @@ function App() {
         </Routes>
       </AuthProvider>
     </>
-=======
-    <Routes>
-      <Route
-        path='/'
-        element={
-          <MainPage
-            wannaGo={wannaGo}
-            setwannaGo={setwannaGo}
-          ></MainPage>
-        }
-      ></Route>
-      <Route
-        exact
-        path='/card/:id'
-        element={<PlanCreated></PlanCreated>}
-      ></Route>
-      <Route
-        exact
-        path='/wannaGo/:id'
-        element={<GuestsLinks></GuestsLinks>}
-      ></Route>
-
-      <Route
-        exact
-        path='/profile'
-        element={<Profile></Profile>}
-      ></Route>
-    </Routes>
->>>>>>> 6c320e6a98a121077b67ca48a15926ed192bab65
   );
 }
 
 export default App;
 
 
-<<<<<<< HEAD
 
 
 
 
 
 
-=======
->>>>>>> 6c320e6a98a121077b67ca48a15926ed192bab65

@@ -2,12 +2,12 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
-import { postUser } from '../../../utils/apis/userApiServices/userApi';
+import { postUser } from '../../utils/apis/userApiServices/userApi';
 
 //Internal dependencies
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
-import '../../../css/Authentication.css';
+import '../../css/Authentication.css';
 
 export default function SignUp() {
   //Hooks
