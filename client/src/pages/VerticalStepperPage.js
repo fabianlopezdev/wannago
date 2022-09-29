@@ -1,5 +1,4 @@
-//External dependencies
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -12,7 +11,6 @@ import {
   Typography,
 } from '@mui/material';
 
-//Internal dependencies
 import { useAuth } from '../contexts/AuthContext';
 import { getWannaGoByParams } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
@@ -28,9 +26,6 @@ export default function VerticalStepper({
   const [activeStep, setActiveStep] = useState(0);
   let navigate = useNavigate();
   const { currentUser } = useAuth();
-
-
-
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -59,9 +54,7 @@ export default function VerticalStepper({
       const { _id } = postedWannaGo;
       navigate(`/wannago/id=${_id}`);
     } catch (e) {
-      console.log(
-        `Error communicating with backend to postAWannago or to retrieve the just posted wannaGo. Error: ${e}`
-      );
+      console.log(`Error communicating with backend to postAWannago or to retrieve the just posted wannaGo. Error: ${e}`);
     }
   };
 
@@ -122,5 +115,3 @@ export default function VerticalStepper({
     </div>
   );
 }
-
-

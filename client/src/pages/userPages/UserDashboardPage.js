@@ -1,12 +1,6 @@
-//External dependencies
 import { useEffect, useState } from 'react';
-
-//Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
-import {
-  putOwnerToWannaGo,
-  getUserById,
-} from '../../utils/apis/userApiServices/userApi';
+import { putOwnerToWannaGo, getUserById } from '../../utils/apis/userApiServices/userApi';
 import { getAllWannaGosOfUser } from '../../utils/apis/wannagoApiServices/getWannaGos';
 import {
   getNumOfActiveWannaGos,
@@ -19,9 +13,7 @@ import {
   aggregateOpenedTimes,
 } from '../../utils/helperFunctions';
 import { CLIENT_PORT, URL } from '../../utils/config';
-
 import WannaGoCard from '../../components/WannaGoCard';
-
 import '../../css/MaybeOption.css';
 
 const UserDashboard = ({
@@ -144,6 +136,3 @@ const UserDashboard = ({
 };
 
 export default UserDashboard;
-
-
-

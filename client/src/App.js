@@ -1,19 +1,6 @@
-// BalazsTest branch 1st commit
-
-
-// BalazsTest branch 2nd commit
-
-
-// Remote-B first change
-
-
-
-//External dependencies
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-
-//Internal dependencies
 import { initialWannaGo } from './data';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
@@ -29,7 +16,6 @@ import PrivateRoute from './components/user/authentication/PrivateRoute';
 import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
 import UpdateProfile from './pages/userPages/UpdateProfilePage';
 import ForgotPassword from './pages/userPages/ForgotPasswordPage';
-
 import './App.css';
 import VerticalStepperPage from './pages/VerticalStepperPage';
 
@@ -37,7 +23,6 @@ function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
   const [justCreatedWG, setJustCreatedWG] = useState(false)
   const [user, setUser] = useState({});
-
 
   return (
     <>
@@ -150,7 +135,7 @@ function App() {
       </AuthProvider>
     </>
   );
-}
+};
 
 export default App;
 

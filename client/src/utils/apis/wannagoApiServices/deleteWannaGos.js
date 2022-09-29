@@ -1,4 +1,3 @@
-//Internal dependencies
 import { URL, KOA_PORT } from '../../config';
 
 export const deleteWannaGo = async (id) => {
@@ -10,6 +9,6 @@ export const deleteWannaGo = async (id) => {
     });
   } catch (e) {
     console.log(`Error in deleteWannaGo function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
-

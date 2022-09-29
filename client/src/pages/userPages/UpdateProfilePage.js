@@ -1,15 +1,12 @@
-//External dependencies
 import { useRef, useState } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-
-//Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 
 import '../../css/Authentication.css';
 
 export default function UpdateProfile() {
-  //Hooks
+  
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
@@ -108,5 +105,4 @@ export default function UpdateProfile() {
       </div>
     </>
   );
-}
-
+};

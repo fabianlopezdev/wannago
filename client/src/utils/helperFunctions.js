@@ -1,4 +1,3 @@
-//External dependencies
 const dayjs = require('dayjs');
 
 export const dateFormatter = (date) => {
@@ -85,4 +84,3 @@ export const getNumOfActiveWannaGos = (wannaGosOfUser) => {
 export const getNumOfOlderWannaGos = (wannaGosOfUser) => {
   return getOlderWannaGos(wannaGosOfUser).length + 1;
 };
-

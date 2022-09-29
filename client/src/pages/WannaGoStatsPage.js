@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import WannaGoCard from '../components/WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
-import {
-  getEngagementOfWannaGo,
-  getSuccessRatioOfWannaGo,
-} from '../utils/helperFunctions';
+import { getEngagementOfWannaGo, getSuccessRatioOfWannaGo } from '../utils/helperFunctions';
 import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,9 +22,7 @@ const WannaGoStats = () => {
       const queriedWannaGo = await getWannaGoById(id);
       setWannaGo(queriedWannaGo);
     } catch (e) {
-      console.log(
-        `Error in the promiseHandler func of GuestLinks.js. Error: ${e}`
-      );
+      console.log(`Error in the promiseHandler func of GuestLinks.js. Error: ${e}`);
     }
   };
   const handleClick = () => {
@@ -107,9 +102,3 @@ const WannaGoStats = () => {
 };
 
 export default WannaGoStats;
-
-
-
-
-
-

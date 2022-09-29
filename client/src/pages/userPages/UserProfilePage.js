@@ -1,9 +1,6 @@
-//External dependencies
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Card, Button, Alert } from 'react-bootstrap';
-
-//Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 
 const UserProfile = () => {
@@ -51,4 +48,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-

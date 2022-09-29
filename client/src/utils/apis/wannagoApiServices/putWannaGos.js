@@ -1,4 +1,3 @@
-//Internal dependencies
 import { URL, KOA_PORT } from '../../config';
 
 export const putPplGoing = async (name, email, id) => {
@@ -10,6 +9,7 @@ export const putPplGoing = async (name, email, id) => {
     });
   } catch (e) {
     console.log(`Error in postPplGoing function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
 
@@ -21,9 +21,8 @@ export const putSuggestionMsg = async (msg, id) => {
       body: JSON.stringify({ msg, id }),
     });
   } catch (e) {
-    console.log(
-      `Error in postSuggestionMsg function in apiService. Error: ${e}`
-    );
+    console.log(`Error in postSuggestionMsg function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
 
@@ -35,9 +34,8 @@ export const putGuestLink = async (id, link) => {
       body: JSON.stringify({ link, id }),
     });
   } catch (e) {
-    console.log(
-      `Error in postSuggestionMsg function in apiService. Error: ${e}`
-    );
+    console.log(`Error in postSuggestionMsg function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
 
@@ -50,6 +48,7 @@ export const putOpenedTimes = async (id, openedTimes) => {
     });
   } catch (e) {
     console.log(`Error in putOpenedTimes function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
 
@@ -61,9 +60,8 @@ export const putRejectCounter = async (id, rejectCounter) => {
       body: JSON.stringify({ id, rejectCounter }),
     });
   } catch (e) {
-    console.log(
-      `Error in putRejectCounter function in apiService. Error: ${e}`
-    );
+    console.log(`Error in putRejectCounter function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
 
@@ -74,8 +72,8 @@ export const putGoingCounter = async (id, goingCounter) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({ id, goingCounter }),
     });
-  } catch (e) {
-    console.log(`Error in putGoingCounter function in apiService. Error: ${e}`);
+  } catch (e) {console.log(`Error in putGoingCounter function in apiService. Error: ${e}`);
+  // add some error handling for the user (e.g. alert())
   }
 };
 
@@ -87,9 +85,7 @@ export const putSuggestionBoxCounter = async (id, suggestionBoxCounter) => {
       body: JSON.stringify({ id, suggestionBoxCounter }),
     });
   } catch (e) {
-    console.log(
-      `Error in putSuggestionBOxCounter function in apiService. Error: ${e}`
-    );
+    console.log(`Error in putSuggestionBOxCounter function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
-

@@ -1,13 +1,11 @@
-//External dependencies
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
-
 import '../../css/Authentication.css';
 
 export default function ForgotPassword() {
-  //Hooks
+  
   const emailRef = useRef();
   const { resetPassword } = useAuth();
   const [error, setError] = useState('');
@@ -63,5 +61,4 @@ export default function ForgotPassword() {
       </div>
     </>
   );
-}
-
+};

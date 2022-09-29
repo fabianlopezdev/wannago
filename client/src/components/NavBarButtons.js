@@ -1,7 +1,4 @@
-//External dependencies
 import { Link, useNavigate } from 'react-router-dom';
-
-//Internal dependencies
 import logoutSoft from '../icons/logout-soft.png';
 import signUpSoft from '../icons/sign-up-soft.png';
 import loginSoft from '../icons/login-soft.png';
@@ -88,4 +85,3 @@ export const LandingButton = () => {
     </Link>
   );
 };
-

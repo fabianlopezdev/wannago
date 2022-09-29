@@ -1,4 +1,3 @@
-//Internal dependencies
 import { dateFormatter } from '../utils/helperFunctions';
 
 const WannaGoCard = ({ wannaGo }) => {
@@ -29,9 +28,4 @@ const WannaGoCard = ({ wannaGo }) => {
   );
 };
 
-
 export default WannaGoCard;
-
-
-
-
