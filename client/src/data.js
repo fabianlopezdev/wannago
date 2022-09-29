@@ -1,12 +1,30 @@
+//External dependency
+const dayjs = require('dayjs');
+
 export let initialWannaGo = {
   what: '',
   when: '',
   where: '',
-  owner: '',
-  _id: ''
+  ownerName: '',
+  _id: '',
 };
 
+const now = dayjs(Date.now()).format('YYYY-MM-DDTHH:mm');
+
 export const steps = [
+  {
+    label: 'Who?',
+    description: 'Let people know who sends the plan',
+    formField: (
+      <input
+        text='Who?'
+        type='text'
+        name='ownerName'
+        autoFocus
+        required
+      ></input>
+    ),
+  },
   {
     label: 'What?',
     description: 'Add a title to your plan',
@@ -33,11 +51,12 @@ export const steps = [
     ),
   },
   {
-    label: 'When',
+    label: 'When?',
     description: `When is it?`,
     formField: (
       <input
         type='datetime-local'
+        min={now}
         name='when'
         autoFocus
         required
@@ -45,6 +64,5 @@ export const steps = [
     ),
   },
 ];
-
 
 

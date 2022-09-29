@@ -1,0 +1,33 @@
+.card-body-h2 {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.signup-button {
+  width: 100%;
+  background-color: rgb(242,205,211);
+}
+
+
+.line-after-auth-card {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.line-after-auth-card.forgot {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.btns-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.button.cancel {
+  background-color: rgb(241,138,203);
+  box-shadow: 2px 2px rgb(242,205,211); 
+
+}
+

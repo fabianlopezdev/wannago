@@ -13,7 +13,5 @@ app.use(bodyParser());
 app.use(morgan('dev'));
 app.use(router.routes());
 
-app.listen(PORT, () =>
-  console.log(`Server running on ${URL}${PORT}`)
-);
+app.listen(PORT, () => console.log(`Server running on ${URL}${PORT}`));
 
