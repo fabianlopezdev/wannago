@@ -1,4 +1,3 @@
-//Internal dependencies
 const WannaGo = require('../../models/wannaGoModel');
 
 const putPplGoing = async (ctx) => {
@@ -24,8 +23,6 @@ const putPplGoing = async (ctx) => {
 const putGuestLink = async (ctx) => {
   try {
     const { id, link } = ctx.request.body;
-    console.log('this is id',id);
-    console.log('this is the link', link);
     const wannaGoLinked = await WannaGo.findByIdAndUpdate(id, {
       guestLink: link,
     });
@@ -60,8 +57,6 @@ const putSuggestionMsg = async (ctx) => {
 const putOpenedTimes = async (ctx) => {
   try {
     const { id, openedTimes } = ctx.request.body;
-    console.log('wannaGoId', id);
-    console.log('openedTimes', openedTimes);
     const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
         openedTimes: openedTimes,
       });
@@ -78,8 +73,6 @@ const putOpenedTimes = async (ctx) => {
 const putRejectCounter = async (ctx) => {
   try {
     const { id, rejectCounter } = ctx.request.body;
-    console.log('wannaGoId', id);
-    console.log('rejectCounter:', rejectCounter);
     const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
       rejectCounter: rejectCounter,
     });
@@ -98,8 +91,6 @@ const putRejectCounter = async (ctx) => {
 const putGoingCounter = async (ctx) => {
   try {
     const { id, goingCounter } = ctx.request.body;
-    console.log('wannaGoId', id);
-    console.log('goingCounter:', goingCounter);
     const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
       goingCounter: goingCounter,
     });
@@ -116,8 +107,6 @@ const putGoingCounter = async (ctx) => {
 const putSuggestionBoxCounter = async (ctx) => {
   try {
     const { id, suggestionBoxCounter } = ctx.request.body;
-    console.log('wannaGoId', id);
-    console.log('suggestionBoxCounter:', suggestionBoxCounter);
     const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
       suggestionBoxCounter: suggestionBoxCounter,
     });
@@ -152,8 +141,16 @@ const putOwnerToWannaGo = async (ctx) => {
   }
 };
 
-module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo, putOpenedTimes, putRejectCounter, putGoingCounter, putSuggestionBoxCounter,
-putGuestLink };
+module.exports = {
+  putPplGoing, 
+  putSuggestionMsg, 
+  putOwnerToWannaGo, 
+  putOpenedTimes, 
+  putRejectCounter, 
+  putGoingCounter, 
+  putSuggestionBoxCounter,
+  putGuestLink
+};
 
 
 

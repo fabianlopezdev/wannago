@@ -1,4 +1,3 @@
-//Internal dependencies
 const WannaGo = require('../../models/wannaGoModel');
 
 const postAwannaGo = async (ctx) => {
@@ -19,11 +18,6 @@ const postAwannaGo = async (ctx) => {
     console.log(`Error in postAwannaGo function from controllers: ${e}`);
   }
 };
-
-
-
-
-
 
 module.exports = {postAwannaGo};
 
