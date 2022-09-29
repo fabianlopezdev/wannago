@@ -28,16 +28,9 @@ const MainPage = () => {
           >
           Plan it!
         </button>
-
       </div>
-          </>
-     
- 
+  </>
   );
 };
 
 export default MainPage;
-
-
-
-

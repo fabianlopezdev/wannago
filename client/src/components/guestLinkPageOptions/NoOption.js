@@ -1,4 +1,3 @@
-//Internal dependencies
 import { putRejectCounter } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 const NoOption = ({ id, rejectCounter, ownerName }) => {
@@ -8,4 +7,3 @@ const NoOption = ({ id, rejectCounter, ownerName }) => {
 };
 
 export default NoOption;
-

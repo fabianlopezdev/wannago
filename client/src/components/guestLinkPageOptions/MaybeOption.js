@@ -1,12 +1,8 @@
-//External dependencies
 import { useState } from 'react';
-
-//Internal dependencies
 import {
   putSuggestionMsg,
   putSuggestionBoxCounter,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
-
 import '../../css/MaybeOption.css';
 
 const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
@@ -25,9 +21,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
       console.log(suggestionBoxCounter);
       setMsgSent(!msgSent);
     } catch (e) {
-      console.log(
-        `Error in MaybeOption.js, trying to send the suggestion to backend to put in db. ${e}`
-      );
+      console.log(`Error in MaybeOption.js, trying to send the suggestion to backend to put in db. ${e}`);
     }
     e.target.suggestion.value = '';
   };
@@ -35,8 +29,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
   return (
     <>
       <h3>
-        Let {ownerName} know if you have any suggestion. Remember to say who you
-        are.
+        Let {ownerName} know if you have any suggestion. Remember to say who you are.
       </h3>
       {msgSent ? (
         <h3 className='textGuestLink'>We'll let {ownerName} know</h3>
@@ -63,5 +56,3 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
 };
 
 export default MaybeOption;
-
-

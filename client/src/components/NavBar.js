@@ -1,7 +1,4 @@
-//External dependencies
 import { useLocation, Link } from 'react-router-dom';
-
-//Internal dependencies
 import { useAuth } from '../contexts/AuthContext';
 import {
   LogInButton,
@@ -10,11 +7,10 @@ import {
   LandingButton,
   DashBoardButton,
 } from './NavBarButtons';
-
 import '../css/NavBar.css';
 
 const NavBar = () => {
-  //Hooks
+  
   const { currentUser, logOut } = useAuth();
   const location = useLocation();
 
@@ -50,4 +46,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

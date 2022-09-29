@@ -1,21 +1,12 @@
-//External dependencies
 import { useEffect, useState } from 'react';
-
-//Internal dependencies
 import WannaGoCard from '../components/WannaGoCard';
 import YesOption from '../components/guestLinkPageOptions/YesOption';
 import NoOption from '../components/guestLinkPageOptions/NoOption';
 import MaybeOption from '../components/guestLinkPageOptions/MaybeOption';
-import {
-  YesButton,
-  NoButton,
-  MaybeButton,
-} from '../components/guestLinkPageOptions/OptionButtons';
+import { YesButton, NoButton, MaybeButton } from '../components/guestLinkPageOptions/OptionButtons';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
-
 import '../css/GuestLinkPage.css';
-
 
 const GuestLink = () => {
   const params = new URLSearchParams(window.location.pathname);
@@ -34,9 +25,7 @@ const GuestLink = () => {
       await putOpenedTimes(id, ++queriedWannaGo.openedTimes);
       setWannaGo(queriedWannaGo);
     } catch (e) {
-      console.log(
-        `Error in the promiseHandler func of GuestLinks.js. Error: ${e}`
-      );
+      console.log(`Error in the promiseHandler func of GuestLinks.js. Error: ${e}`);
     }
   };
 
@@ -70,6 +59,7 @@ const GuestLink = () => {
         break;
     }
   };
+
   const handleClick = (e) => {
     switch (e.target.innerText) {
       case 'I wannaGo!':
@@ -109,7 +99,3 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
-
-
-
-

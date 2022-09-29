@@ -1,4 +1,3 @@
-//Internal dependencies
 import { URL, KOA_PORT } from '../../config';
 
 export const postUser = async (user) => {
@@ -11,6 +10,7 @@ export const postUser = async (user) => {
     return userToPost.json();
   } catch (e) {
     console.log(`Error in postAuser function in apiServices. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
 
@@ -19,9 +19,8 @@ export const getUserById = async (id) => {
     const user = await fetch(`${URL}${KOA_PORT}/user/${id}`);
     return user.json();
   } catch (e) {
-    console.log(
-      `Error in getWannaGoByParams function in apiService. Error: ${e}`
-    );
+    console.log(`Error in getWannaGoByParams function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
 
@@ -33,10 +32,7 @@ export const putOwnerToWannaGo = async (wannaGoId, userId) => {
       body: JSON.stringify({ wannaGoId, userId }),
     });
   } catch (e) {
-    console.log(
-      `Error in postSuggestionMsg function in apiService. Error: ${e}`
-    );
+    console.log(`Error in postSuggestionMsg function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
-
-

@@ -1,11 +1,5 @@
-//External dependencies
 import { useState } from 'react';
-
-//Internal dependencies
-import {
-  putPplGoing,
-  putGoingCounter,
-} from '../../utils/apis/wannagoApiServices/putWannaGos';
+import { putPplGoing, putGoingCounter } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 const YesOption = ({ id, goingCounter, ownerName }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
@@ -71,4 +65,3 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
 };
 
 export default YesOption;
-

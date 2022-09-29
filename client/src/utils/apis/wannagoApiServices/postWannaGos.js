@@ -1,4 +1,3 @@
-//Internal dependencies
 import { URL, KOA_PORT } from '../../config';
 
 export const postAwannaGo = async (wannaGo) => {
@@ -10,8 +9,6 @@ export const postAwannaGo = async (wannaGo) => {
     });
   } catch (e) {
     console.log(`Error in postAwannaGo function in apiService. Error: ${e}`);
+    // add some error handling for the user (e.g. alert())
   }
 };
-
-
-

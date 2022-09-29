@@ -51,14 +51,13 @@ a.iconLinkLanding {
   gap: 20%;
 }
 
-
-
 .navButtonsContainerLanding {
   display: flex;
   justify-content: center;
   height:10%;
   gap: 20%;
 }
+
 .icons.signup:hover {
   content: url('../icons/sign-up-hard.png')
 }

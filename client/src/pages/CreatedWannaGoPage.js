@@ -1,9 +1,6 @@
-//External dependencies
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-
-//Internal dependencies
 import WannaGoCard from '../components/WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
@@ -88,4 +85,3 @@ const PlanCreated = () => {
 };
 
 export default PlanCreated;
-
