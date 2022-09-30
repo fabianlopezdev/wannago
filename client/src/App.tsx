@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import { initialWannaGo } from './data';
-import NavBar from './components/NavBar';
+import { Container } from "react-bootstrap";
+// import initialWannaGo from './data';
+import { NavBar } from './components/NavBar';
 import HomePage from './pages/HomePage';
 import WannaGoStats from './pages/WannaGoStatsPage';
 import { AuthProvider } from './contexts/AuthContext';
@@ -20,7 +20,14 @@ import './App.css';
 import VerticalStepperPage from './pages/VerticalStepperPage';
 
 function App() {
-  const [wannaGo, setwannaGo] = useState(initialWannaGo);
+  
+  const [wannaGo, setwannaGo] = useState({
+      what: '',
+      when: '',
+      where: '',
+      ownerName: '',
+      _id: '',
+    });
   const [justCreatedWG, setJustCreatedWG] = useState(false)
   const [user, setUser] = useState({});
 
@@ -30,14 +37,13 @@ function App() {
         <NavBar></NavBar>
         <Routes>
           <Route
-            exact
+            // exact :: docs say react router v6 doesn´t support 'exact' anymore
             path='/'
             element={
               <HomePage/>
             }
           ></Route>
           <Route
-            exact
             path='/wannaGo/VerticalStepperPage'
             element={
               <VerticalStepperPage
@@ -49,18 +55,18 @@ function App() {
             }
           ></Route>
           <Route
-            exact
+            // exact
             path='/wannago/:id'
             element={<CreatedWannaGoPage />}
           ></Route>
           <Route
-            exact
+            // exact
             path='/wannago/guest-link/:id'
             element={<GuestsLinkPage />}
           ></Route>
           <Route element={<UserPrivateRoute />}>
             <Route
-              exact
+              // exact
               path='/user/signup'
               element={
                 <>
@@ -73,7 +79,7 @@ function App() {
               }
             ></Route>
             <Route
-              exact
+              // exact
               path='/user/login'
               element={
                 <>
@@ -86,7 +92,7 @@ function App() {
               }
             ></Route>
             <Route
-              exact
+              // exact
               path='/user/forgot-password'
               element={
                 <>
@@ -101,7 +107,7 @@ function App() {
           </Route>
           <Route element={<PrivateRoute />}>
             <Route
-              exact
+              // exact
               path='/user/dashboard'
               element={
                 <UserDashboardPage
@@ -114,19 +120,19 @@ function App() {
               }
             ></Route>
             <Route
-              exact
+              // exact
               path='user/wannaGo/stats/:id'
-              element={<WannaGoStats wannaGo={wannaGo} />}
+              element={<WannaGoStats />}
             ></Route>
             {/* <Route element={<PrivateRoute />}> */}
             <Route
-              exact
+              // exact
               path='/user/update-profile'
               element={<UpdateProfile />}
             ></Route>
             {/* </Route> */}
             <Route
-              exact
+              // exact
               path='/user/delete-account'
               element={<DeleteUser />}
             ></Route>
@@ -138,11 +144,3 @@ function App() {
 };
 
 export default App;
-
-
-
-
-
-
-
-

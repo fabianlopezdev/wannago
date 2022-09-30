@@ -11,23 +11,25 @@ import {
   Typography,
 } from '@mui/material';
 
-import { useAuth } from '../contexts/AuthContext';
+// import { useAuth } from '../contexts/AuthContext';
 import { getWannaGoByParams } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
 import { steps } from '../data';
+
+type Props = { wannaGo: any, setwannaGo: any, justCreatedWG: any, setJustCreatedWG: any};
 
 export default function VerticalStepper({
   wannaGo,
   setwannaGo,
   justCreatedWG,
   setJustCreatedWG,
-}) {
+}: Props) {
   //Hooks
   const [activeStep, setActiveStep] = useState(0);
   let navigate = useNavigate();
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
 
-  const handleNext = (e) => {
+  const handleNext = (e: any) => {
     e.preventDefault();
     const field = e.target[0].name;
     const inputValue = e.target[0].value;
@@ -102,13 +104,13 @@ export default function VerticalStepper({
             elevation={0}
             sx={{ p: 3 }}
           >
-            <button
+            <Button
               className='button'
               onClick={saveWannaGo}
               sx={{ mt: 1, mr: 1 }}
             >
               Share It!
-            </button>
+            </Button>
           </Paper>
         )}
       </Box>

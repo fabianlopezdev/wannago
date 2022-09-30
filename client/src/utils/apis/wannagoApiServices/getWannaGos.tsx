@@ -10,7 +10,7 @@ export const getWannaGos = async () => {
   }
 };
 
-export const getAllWannaGosOfUser = async (owner) => {
+export const getAllWannaGosOfUser = async (owner: string) => {
   try {
     const allWannaGosOfUser = await fetch(
       `${URL}${KOA_PORT}/wannagos/owner/${owner}`
@@ -22,7 +22,7 @@ export const getAllWannaGosOfUser = async (owner) => {
   }
 };
 
-export const getWannaGoByParams = async (what, when) => {
+export const getWannaGoByParams = async (what: string, when: string) => {
   try {
     const wannaGo = await fetch(`${URL}${KOA_PORT}/wannago/${what}/${when}`);
     return wannaGo.json();
@@ -32,7 +32,7 @@ export const getWannaGoByParams = async (what, when) => {
   }
 };
 
-export const getWannaGoById = async (id) => {
+export const getWannaGoById = async (id: string | null) => { // if not of type string|null TS would complain in /pages/CreatedWannaGoPage
   try {
     const wannaGo = await fetch(`${URL}${KOA_PORT}/wannago/${id}`);
     return wannaGo.json();

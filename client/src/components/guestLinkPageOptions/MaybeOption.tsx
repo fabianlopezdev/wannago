@@ -5,10 +5,12 @@ import {
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
 import '../../css/MaybeOption.css';
 
-const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
+type Props = { id: any, suggestionBoxCounter: number, ownerName: string };
+
+const MaybeOption = ({ id, suggestionBoxCounter, ownerName } : Props) => {
   const [msgSent, setMsgSent] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const msg = e.target.suggestion.value;
     console.log('this is msg', msg);

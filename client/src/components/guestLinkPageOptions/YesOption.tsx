@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { putPplGoing, putGoingCounter } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
-const YesOption = ({ id, goingCounter, ownerName }) => {
+type Props = { id: any, goingCounter: number, ownerName: string }
+
+const YesOption = ({ id, goingCounter, ownerName }: Props) => {
   const [submitClicked, setSubmitClicked] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;

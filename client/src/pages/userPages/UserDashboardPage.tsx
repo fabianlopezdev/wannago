@@ -16,23 +16,25 @@ import { CLIENT_PORT, URL } from '../../utils/config';
 import WannaGoCard from '../../components/WannaGoCard';
 import '../../css/MaybeOption.css';
 
+type Props = { user: any, setUser: any, wannaGo: any, justCreatedWG: any, setJustCreatedWG: any }
+
 const UserDashboard = ({
   user,
   setUser,
   wannaGo,
   justCreatedWG,
   setJustCreatedWG,
-}) => {
+}: Props) => {
   const [totalPplGoing, setTotalPplGoing] = useState(0);
   const [totalRejections, setTotalRejections] = useState(0);
   const [totalSuggestions, setTotalSuggestions] = useState(0);
-  const [totalWannaGos, setTotalWannaGos] = useState();
-  const [numOfActiveWannaGos, setNumOfActiveWannaGos] = useState();
-  const [numOfOlderWannaGos, setNumOfOlderWannaGos] = useState();
-  const [numOfTimesLinksOpened, setNumOfTimesLinksOpened] = useState();
-  const [totalEngagement, setTotalEngagement] = useState();
-  const [totalSuccessRatio, setTotalSuccessRatio] = useState();
-  const [allUserWGs, setAllUserWGs] = useState();
+  const [totalWannaGos, setTotalWannaGos] = useState(0);
+  const [numOfActiveWannaGos, setNumOfActiveWannaGos] = useState(0);
+  const [numOfOlderWannaGos, setNumOfOlderWannaGos] = useState(0);
+  const [numOfTimesLinksOpened, setNumOfTimesLinksOpened] = useState(0);
+  const [totalEngagement, setTotalEngagement] = useState(0);
+  const [totalSuccessRatio, setTotalSuccessRatio] = useState(0);
+  const [allUserWGs, setAllUserWGs] = useState([]);
   //The next two states are to render active and expired wannaGos
   // const [activeWannaGos, setActiveWannaGos] = useState();
   // const [olderWannaGos, setOlderWannaGos] = useState();
@@ -40,6 +42,7 @@ const UserDashboard = ({
   const { currentUser } = useAuth();
   useEffect(() => {
     handlePromise();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlePromise = async () => {
@@ -54,7 +57,7 @@ const UserDashboard = ({
       setJustCreatedWG(false);
       return;
     }
-    const allUserWannaGos = await getAllWannaGosOfUser(userToRender._id);
+    const allUserWannaGos: [] = await getAllWannaGosOfUser(userToRender._id);
     setAllUserWGs(allUserWannaGos);
     setTotalWannaGos(allUserWannaGos.length + 1);
     setTotalPplGoing(aggregatePplGoing(allUserWannaGos));
@@ -115,8 +118,8 @@ const UserDashboard = ({
       <div className='holdWannaGos'>
         {allUserWGs &&
           allUserWGs
-            .sort((a, b) => {return new Date(a.date) - new Date(b.date)})
-            .map((wannaGo) => {
+            .sort((a: any, b: any) => {return Number(new Date(a.date)) - Number(new Date(b.date))})
+            .map((wannaGo: any) => {
               return (
                 <a
                   target='blank'

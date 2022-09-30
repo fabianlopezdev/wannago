@@ -1,6 +1,6 @@
 import { URL, KOA_PORT } from '../../config';
 
-export const deleteWannaGo = async (id) => {
+export const deleteWannaGo = async (id: string | null) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/delete`, {
       method: 'DELETE',

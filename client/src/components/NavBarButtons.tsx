@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
-import logoutSoft from '../icons/logout-soft.png';
-import signUpSoft from '../icons/sign-up-soft.png';
-import loginSoft from '../icons/login-soft.png';
-import homeSoft from '../icons/home-icon-soft.png';
-import logo from '../finalWannaGoLogo.png';
+const logoutSoft = require('../icons/logout-soft.png');
+const signUpSoft = require('../icons/sign-up-soft.png');
+const loginSoft = require('../icons/login-soft.png');
+const homeSoft = require('../icons/home-icon-soft.png');
+const logo = require('../finalWannaGoLogo.png');
 
 export const DashBoardButton = () => {
   return (
@@ -21,7 +21,9 @@ export const DashBoardButton = () => {
   );
 };
 
-export const LogoutButton = ({ logOut }) => {
+type Props = { logOut: any };
+
+export const LogoutButton = ({ logOut }: Props) => {
   const navigate = useNavigate();
   const handleClick = async () => {
     await logOut();

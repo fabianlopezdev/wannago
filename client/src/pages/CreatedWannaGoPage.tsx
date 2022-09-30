@@ -7,17 +7,19 @@ import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { CLIENT_PORT, URL } from '../utils/config';
 import '../css/WannaGoCard.css';
 import { putOwnerToWannaGo } from '../utils/apis/userApiServices/userApi';
+import { User } from '@firebase/auth-types';
 
 const PlanCreated = () => {
   const params = new URLSearchParams(window.location.pathname);
   const id = params.get('/wannago/id');
-  const currentUser = useAuth();
+  const currentUser: User | null = useAuth();
   const navigate = useNavigate();
   const [wannaGo, setwannaGo] = useState({});
   const [copied, setCopied] = useState('Copy');
 
   useEffect(() => {
     promiseHandler();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const guestLink = `${URL}${3001}/wannago/guest-link/id=${id}`;
@@ -26,7 +28,7 @@ const PlanCreated = () => {
     const queriedWannaGo = await getWannaGoById(id);
     await putGuestLink(id, guestLink);
     console.log('currentUser', currentUser);
-    if (currentUser.uid)
+    if (currentUser && currentUser.uid)
       putOwnerToWannaGo(queriedWannaGo._id, currentUser.uid);
     setwannaGo(queriedWannaGo);
   };
@@ -57,28 +59,29 @@ const PlanCreated = () => {
             {copied}
           </button>
         </div>
-        {!currentUser
-          ? (<h6 className='highlight'>
+        {!currentUser? 
+          <>
+          <h6 className='highlight'>
               To save the plan and keep track of who is going,
               <Link to='/user/login'> log in </Link> or
               <Link to='/user/signup'> sign up </Link> please.
-            </h6>)(
-              <div className='btns-container'>
-                <button
-                  className='button cancel'
-                  onClick={() => navigate('/user/signup')}
-                >
-                  Log In
-                </button>
-                <button
-                  className='button cancel'
-                  onClick={() => navigate('/user/login')}
-                >
-                  Sign Up
-                </button>
-              </div>
-            )
-          : null}
+            </h6> 
+            <div className='btns-container'>
+              <button
+                className='button cancel'
+                onClick={() => navigate('/user/signup')}
+              >
+                Log In
+              </button>
+              <button
+                className='button cancel'
+                onClick={() => navigate('/user/login')}
+              >
+                Sign Up
+              </button>
+            </div>
+          </> 
+          : null }
       </div>
     </>
   );

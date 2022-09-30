@@ -6,15 +6,25 @@ import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useNavigate } from 'react-router-dom';
 
 const WannaGoStats = () => {
+
+  // interface wannaGo {
+  //   guestLink: string,
+  //   goingCounter: number,
+  //   openedTimes: number,
+  //   rejectCounter: number,
+  //   suggestionBoxCounter: number
+  // }
+
   const params = new URLSearchParams(window.location.pathname);
   const id = params.get('/user/wannago/stats/id');
   console.log('this is id', id);
-  const [wannaGo, setWannaGo] = useState({});
+  const [wannaGo, setWannaGo] = useState({guestLink: '', goingCounter: 0, openedTimes: 0, rejectCounter: 0, suggestionBoxCounter: 0});
   const [copied, setCopied] = useState('Copy');
   const navigate = useNavigate();
 
   useEffect(() => {
     promiseHandler();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const promiseHandler = async () => {
@@ -56,7 +66,7 @@ const WannaGoStats = () => {
             >
               {copied}
             </button>
-            <div clasaName='buttonDelete'>
+            <div className='buttonDelete'>
               <button
                 className='button'
                 onClick={handleDelete}

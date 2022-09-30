@@ -6,13 +6,13 @@ import '../../css/Authentication.css';
 
 export default function ForgotPassword() {
   
-  const emailRef = useRef();
+  const emailRef : {current: {value: any}} | any = useRef();
   const { resetPassword } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     try {

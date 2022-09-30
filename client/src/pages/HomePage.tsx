@@ -1,9 +1,7 @@
-//External dependencies
-
-//Internal dependencies
 import {useNavigate} from 'react-router-dom'
 
-import logo from '../finalWannaGoLogo.png';
+// import logo from '../finalWannaGoLogo.png';
+const logo = require('../finalWannaGoLogo.png');
 
 
 const MainPage = () => {

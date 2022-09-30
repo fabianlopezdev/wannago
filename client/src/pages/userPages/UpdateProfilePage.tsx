@@ -7,29 +7,29 @@ import '../../css/Authentication.css';
 
 export default function UpdateProfile() {
   
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
-  const nameRef = useRef();
+  const emailRef: {current: {value: any}} | any = useRef();
+  const passwordRef: {current: {value: any}} | any = useRef();
+  const passwordConfirmRef: {current: {value: any}} | any = useRef();
+  const nameRef: {current: {value: any} | undefined} | undefined = useRef();
   const { updateEmail, updatePassword, updateName, currentUser } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     const promises = [];
 
-    if (nameRef.current.value !== currentUser.email) {
+    if (nameRef.current && nameRef.current.value !== currentUser.email) {
       promises.push(updateName(nameRef.current.value));
     }
 
-    if (emailRef.current.value !== currentUser.email) {
+    if (emailRef.current && emailRef.current.value !== currentUser.email) {
       promises.push(updateEmail(emailRef.current.value));
     }
 
-    if (passwordRef.current.value) {
+    if (passwordRef.current && passwordRef.current.value) {
       promises.push(updatePassword(passwordRef.current.value));
     }
 
@@ -59,7 +59,7 @@ export default function UpdateProfile() {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type='text'
-                ref={nameRef}
+                ref={nameRef as React.RefObject<any>}
                 defaultValue={currentUser.displayName}
                 required
               />
@@ -68,7 +68,7 @@ export default function UpdateProfile() {
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type='email'
-                ref={emailRef}
+                ref={emailRef as React.RefObject<any>}
                 defaultValue={currentUser.email}
                 required
               />
@@ -77,7 +77,7 @@ export default function UpdateProfile() {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type='password'
-                ref={passwordRef}
+                ref={passwordRef as React.RefObject<any>}
                 placeholder='Leave blank to keep the same password'
               />
             </Form.Group>
@@ -85,7 +85,7 @@ export default function UpdateProfile() {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control
                 type='password'
-                ref={passwordConfirmRef}
+                ref={passwordConfirmRef as React.RefObject<any>}
                 placeholder='Leave blank to keep the same password'
               />
             </Form.Group>

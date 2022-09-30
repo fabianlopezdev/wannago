@@ -9,10 +9,11 @@ import {
 } from './NavBarButtons';
 import '../css/NavBar.css';
 
-const NavBar = () => {
-  
+export function NavBar(): JSX.Element {
+
   const { currentUser, logOut } = useAuth();
   const location = useLocation();
+
 
   return (
     <nav className='navContainer'>
@@ -36,7 +37,7 @@ const NavBar = () => {
         <>
           <LandingButton />
           <div className='landingPageIcons'>
-            <LogInButton logOut={logOut} />
+            <LogoutButton logOut={logOut} />
             <SignUpButton />
           </div>
         </>
@@ -45,4 +46,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+// export default NavBar;

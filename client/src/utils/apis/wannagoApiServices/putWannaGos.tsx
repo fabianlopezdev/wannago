@@ -1,6 +1,9 @@
 import { URL, KOA_PORT } from '../../config';
 
-export const putPplGoing = async (name, email, id) => {
+
+//////// CHECK types of things in this file
+
+export const putPplGoing = async (name: string, email: string, id: string | null) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/ppl_going`, {
       method: 'PUT',
@@ -13,7 +16,7 @@ export const putPplGoing = async (name, email, id) => {
   }
 };
 
-export const putSuggestionMsg = async (msg, id) => {
+export const putSuggestionMsg = async (msg: string, id: string | null) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/suggestionMsg`, {
       method: 'PUT',
@@ -26,7 +29,7 @@ export const putSuggestionMsg = async (msg, id) => {
   }
 };
 
-export const putGuestLink = async (id, link) => {
+export const putGuestLink = async (id: string | null, link: string) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/guestLink`, {
       method: 'PUT',
@@ -39,7 +42,7 @@ export const putGuestLink = async (id, link) => {
   }
 };
 
-export const putOpenedTimes = async (id, openedTimes) => {
+export const putOpenedTimes = async (id: string | null, openedTimes: number) => { // check these types!!!
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/openedTimes`, {
       method: 'PUT',
@@ -52,7 +55,7 @@ export const putOpenedTimes = async (id, openedTimes) => {
   }
 };
 
-export const putRejectCounter = async (id, rejectCounter) => {
+export const putRejectCounter = async (id: string | null, rejectCounter: number) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/rejectCounter`, {
       method: 'PUT',
@@ -65,7 +68,7 @@ export const putRejectCounter = async (id, rejectCounter) => {
   }
 };
 
-export const putGoingCounter = async (id, goingCounter) => {
+export const putGoingCounter = async (id: number, goingCounter: number) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/goingCounter`, {
       method: 'PUT',
@@ -77,7 +80,7 @@ export const putGoingCounter = async (id, goingCounter) => {
   }
 };
 
-export const putSuggestionBoxCounter = async (id, suggestionBoxCounter) => {
+export const putSuggestionBoxCounter = async (id: string | null, suggestionBoxCounter: number) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/suggestionBoxCounter`, {
       method: 'PUT',

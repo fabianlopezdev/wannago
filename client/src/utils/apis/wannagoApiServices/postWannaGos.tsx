@@ -1,6 +1,6 @@
 import { URL, KOA_PORT } from '../../config';
 
-export const postAwannaGo = async (wannaGo) => {
+export const postAwannaGo = async (wannaGo: any) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago`, {
       method: 'POST',

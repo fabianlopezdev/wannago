@@ -1,6 +1,6 @@
 import { URL, KOA_PORT } from '../../config';
 
-export const postUser = async (user) => {
+export const postUser = async (user: any) => {
   try {
     const userToPost = await fetch(`${URL}${KOA_PORT}/user`, {
       method: 'POST',
@@ -14,7 +14,7 @@ export const postUser = async (user) => {
   }
 };
 
-export const getUserById = async (id) => {
+export const getUserById = async (id: string | null) => {
   try {
     const user = await fetch(`${URL}${KOA_PORT}/user/${id}`);
     return user.json();
@@ -24,7 +24,7 @@ export const getUserById = async (id) => {
   }
 };
 
-export const putOwnerToWannaGo = async (wannaGoId, userId) => {
+export const putOwnerToWannaGo = async (wannaGoId: string, userId: string) => {
   try {
     return fetch(`${URL}${KOA_PORT}/wannago/owner`, {
       method: 'PUT',

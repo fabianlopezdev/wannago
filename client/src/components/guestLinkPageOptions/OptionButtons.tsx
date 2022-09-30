@@ -1,4 +1,6 @@
-export const YesButton = ({ handleClick }) => {
+type Props = { handleClick: any };
+
+export const YesButton = ({ handleClick }: Props) => {
   return (
     <button
       className='button important'
@@ -9,7 +11,7 @@ export const YesButton = ({ handleClick }) => {
   );
 };
 
-export const NoButton = ({ handleClick }) => {
+export const NoButton = ({ handleClick }: Props) => {
   return (
     <button
       className='button'
@@ -20,7 +22,7 @@ export const NoButton = ({ handleClick }) => {
   );
 };
 
-export const MaybeButton = ({ handleClick }) => {
+export const MaybeButton = ({ handleClick }: Props) => {
   return (
     <button
       className='button'

@@ -12,11 +12,12 @@ const GuestLink = () => {
   const params = new URLSearchParams(window.location.pathname);
   const id = params.get('/wannago/guest-link/id');
 
-  const [wannaGo, setWannaGo] = useState({});
-  const [option, setOption] = useState(null);
+  const [wannaGo, setWannaGo] = useState({rejectCounter: 0, ownerName: '', goingCounter: 0, suggestionBoxCounter: 0});
+  const [option, setOption] = useState('');
 
   useEffect(() => {
     promiseHandler();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const promiseHandler = async () => {
@@ -29,7 +30,7 @@ const GuestLink = () => {
     }
   };
 
-  const handleOption = (opt) => {
+  const handleOption: any = (opt: string) => {
     switch (opt) {
       case 'no':
         return (
@@ -60,7 +61,7 @@ const GuestLink = () => {
     }
   };
 
-  const handleClick = (e) => {
+  const handleClick: any = (e: any) => {
     switch (e.target.innerText) {
       case 'I wannaGo!':
         setOption('yes');

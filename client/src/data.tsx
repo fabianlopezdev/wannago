@@ -1,13 +1,21 @@
 //External dependency
 const dayjs = require('dayjs');
 
-export let initialWannaGo = {
-  what: '',
-  when: '',
-  where: '',
-  ownerName: '',
-  _id: '',
+export default interface initialWannaGo {
+  what: string,
+  when: string,
+  where: string,
+  ownerName: string,
+  _id: string,
 };
+
+// export default interface initialWannaGo {
+//   what: '',
+//   when: '',
+//   where: '',
+//   ownerName: '',
+//   _id: '',
+// }
 
 const now = dayjs(Date.now()).format('YYYY-MM-DDTHH:mm');
 
@@ -17,7 +25,7 @@ export const steps = [
     description: 'Let people know who sends the plan',
     formField: (
       <input
-        text='Who?'
+        data-text='Who?' // check if this works - it was complianing when just 'text was written
         type='text'
         name='ownerName'
         autoFocus
@@ -30,7 +38,7 @@ export const steps = [
     description: 'Add a title to your plan',
     formField: (
       <input
-        text='Hooo'
+        data-text='Hooo'
         type='text'
         name='what'
         autoFocus
@@ -64,3 +72,5 @@ export const steps = [
     ),
   },
 ];
+
+// export default initialWannaGo;

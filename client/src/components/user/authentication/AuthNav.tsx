@@ -1,9 +1,9 @@
-import AuthenticationButton from './AuthenticationButton';
+// import AuthenticationButton from './AuthenticationButton';
 import '../css/NavBar.css';
 
 const AuthNav = () => (
   <div className='NavBar'>
-    <AuthenticationButton />
+    {/* <AuthenticationButton /> */}
   </div>
 );
 
