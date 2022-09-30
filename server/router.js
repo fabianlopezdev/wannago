@@ -37,7 +37,7 @@ router.get('/user/:id', getUserById);
 
 //POSTS
 router.post('/wannago', postAwannaGo);
-router.post('/user', postAuser);
+ router.post('/user', postAuser);
 
 //PUT
 router.put('/wannago/ppl_going', putPplGoing);
