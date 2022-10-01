@@ -37,7 +37,7 @@ export function NavBar(): JSX.Element {
         <>
           <LandingButton />
           <div className='landingPageIcons'>
-            <LogoutButton logOut={logOut} />
+            <LogInButton />
             <SignUpButton />
           </div>
         </>
