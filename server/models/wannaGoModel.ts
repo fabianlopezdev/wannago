@@ -1,5 +1,21 @@
-const mongoose = require('./index');
+import mongoose from './index';
 const Schema = mongoose.Schema;
+
+export interface IWannaGo {
+  what: string,
+  where: string,
+  when: string,
+  owner: string,
+  ownerName: string,
+  guestLink: string,
+  openedTimes: number,
+  rejectCounter: number,
+  goingCounter: number,
+  suggestionBoxCounter: number,
+  ppl_going: Map<string,string>,
+  suggestion_box: string[],
+}
+
 
 const WannaGoSchema = new Schema({
   what: { type: String, required: true },
@@ -16,6 +32,6 @@ const WannaGoSchema = new Schema({
   suggestion_box: Array,
 });
 
-module.exports = mongoose.model('wannagos', WannaGoSchema);
+export default mongoose.model('wannagos', WannaGoSchema);
 
 
