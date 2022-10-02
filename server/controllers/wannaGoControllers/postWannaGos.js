@@ -1,4 +1,5 @@
 //Internal dependencies
+const { now } = require('mongoose');
 const WannaGo = require('../../models/wannaGoModel');
 
 const postAwannaGo = async (ctx) => {
@@ -9,6 +10,7 @@ const postAwannaGo = async (ctx) => {
       where: wannaGo.where,
       when: wannaGo.when,
       ownerName: wannaGo.ownerName,
+      dateCreated: Date.now(),
     });
     console.log(`This wannaGo was posted: ${storedWannaGo}`);
     ctx.status = 201;

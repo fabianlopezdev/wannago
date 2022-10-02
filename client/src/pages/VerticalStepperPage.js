@@ -29,9 +29,6 @@ export default function VerticalStepper({
   let navigate = useNavigate();
   const { currentUser } = useAuth();
 
-
-
-
   const handleNext = (e) => {
     e.preventDefault();
     const field = e.target[0].name;
@@ -73,7 +70,28 @@ export default function VerticalStepper({
           orientation='vertical'
         >
           {steps.map((step, index) => (
-            <Step key={step.label}>
+            <Step
+              key={step.label}
+              sx={{
+                '& .MuiStepLabel-root .Mui-completed': {
+                  color: 'rgb(241, 138, 203)', // circle color (COMPLETED)
+                },
+                '& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel':
+                  {
+                    color: 'Black', // Just text label (COMPLETED)
+                  },
+                '& .MuiStepLabel-root .Mui-active': {
+                  color: 'rgb(242,205,211)', // circle color (ACTIVE)
+                },
+                '& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel':
+                  {
+                    color: 'Black', // Just text label (ACTIVE)
+                  },
+                '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
+                  fill: 'white', // circle's number (ACTIVE)
+                },
+              }}
+            >
               <StepLabel>{step.label}</StepLabel>
               <StepContent>
                 <Typography>{step.description}</Typography>
@@ -122,5 +140,4 @@ export default function VerticalStepper({
     </div>
   );
 }
-
 

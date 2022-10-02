@@ -31,7 +31,7 @@ const PlanCreated = () => {
     console.log('currentUser', currentUser);
     if (currentUser.uid)
       putOwnerToWannaGo(queriedWannaGo._id, currentUser.uid);
-    setwannaGo(queriedWannaGo);
+      setwannaGo(queriedWannaGo);
   };
   const handleClick = () => {
     navigator.clipboard.writeText(guestLink);
@@ -42,13 +42,12 @@ const PlanCreated = () => {
       <h1 className='justCreatedWannaGo'>What a Plan!</h1>
       <WannaGoCard wannaGo={wannaGo} />
       <div className='justCreatedWannaGoSedondPart'>
-        <h4>Ask if they wannaGo!</h4>
-        <h4>Share this link:</h4>
+        <h4>Share the link:</h4>
         <div>
           <a
             className='guestLink'
             target='blank'
-            href={`${URL}${CLIENT_PORT}/wannago/guest-link/id=${id}`}
+            href={guestLink}
           >
             {guestLink}
             {/*port needs to be the same as the one in the client not the backend*/}
@@ -60,28 +59,12 @@ const PlanCreated = () => {
             {copied}
           </button>
         </div>
-        {!currentUser
-          ? (<h6 className='highlight'>
-              To save the plan and keep track of who is going,
+        {!currentUser.currentUser && (<h6 className='highlight'>
+              WannaSee who wannaGo?:
               <Link to='/user/login'> log in </Link> or
-              <Link to='/user/signup'> sign up </Link> please.
-            </h6>)(
-              <div className='btns-container'>
-                <button
-                  className='button cancel'
-                  onClick={() => navigate('/user/signup')}
-                >
-                  Log In
-                </button>
-                <button
-                  className='button cancel'
-                  onClick={() => navigate('/user/login')}
-                >
-                  Sign Up
-                </button>
-              </div>
-            )
-          : null}
+              <Link to='/user/signup'> sign up </Link>
+            </h6>)
+            }
       </div>
     </>
   );
