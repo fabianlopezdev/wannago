@@ -8,7 +8,6 @@ import { initialWannaGo } from './data';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import WannaGoStats from './pages/WannaGoStatsPage';
-import { AuthProvider } from './contexts/AuthContext';
 import Login from './pages/userPages/LoginPage';
 import UserDashboardPage from './pages/userPages/UserDashboardPage';
 import SignUp from './pages/userPages/SignUpPage';
@@ -25,22 +24,18 @@ import VerticalStepperPage from './pages/VerticalStepperPage';
 
 function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
-  const [justCreatedWG, setJustCreatedWG] = useState(false)
+  const [justCreatedWG, setJustCreatedWG] = useState(false);
   const [user, setUser] = useState({});
-
 
   return (
     <>
-      <AuthProvider>
         <NavBar></NavBar>
         <Routes>
           <Route
             exact
             path='/'
-            element={
-              <HomePage/>
-            }
-          ></Route>
+            element={<HomePage />}
+          />
           <Route
             exact
             path='/wannaGo/VerticalStepperPage'
@@ -50,19 +45,19 @@ function App() {
                 setwannaGo={setwannaGo}
                 justCreatedWG={justCreatedWG}
                 setJustCreatedWG={setJustCreatedWG}
-              ></VerticalStepperPage>
+              />
             }
-          ></Route>
+          />
           <Route
             exact
             path='/wannago/:id'
             element={<CreatedWannaGoPage />}
-          ></Route>
+          />
           <Route
             exact
             path='/wannago/guest-link/:id'
             element={<GuestsLinkPage />}
-          ></Route>
+          />
           <Route element={<UserPrivateRoute />}>
             <Route
               exact
@@ -76,7 +71,7 @@ function App() {
                   </Container>
                 </>
               }
-            ></Route>
+            />
             <Route
               exact
               path='/user/login'
@@ -89,7 +84,7 @@ function App() {
                   </Container>
                 </>
               }
-            ></Route>
+            />
             <Route
               exact
               path='/user/forgot-password'
@@ -102,7 +97,7 @@ function App() {
                   </Container>
                 </>
               }
-            ></Route>
+            />
           </Route>
           <Route element={<PrivateRoute />}>
             <Route
@@ -117,37 +112,27 @@ function App() {
                   setJustCreatedWG={setJustCreatedWG}
                 />
               }
-            ></Route>
+            />
             <Route
               exact
               path='user/wannaGo/stats/:id'
               element={<WannaGoStats wannaGo={wannaGo} />}
-            ></Route>
-            {/* <Route element={<PrivateRoute />}> */}
+            />
             <Route
               exact
               path='/user/update-profile'
               element={<UpdateProfile />}
-            ></Route>
-            {/* </Route> */}
+            />
             <Route
               exact
               path='/user/delete-account'
               element={<DeleteUser />}
-            ></Route>
+            />
           </Route>
         </Routes>
-      </AuthProvider>
     </>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
 

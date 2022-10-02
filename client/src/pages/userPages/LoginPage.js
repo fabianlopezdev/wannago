@@ -55,7 +55,6 @@ export default function Login() {
             </Form.Group>
             <Button
               type='submit'
-              class=''
               className='signup-button'
               disabled={loading}
             >

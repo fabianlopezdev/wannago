@@ -1,6 +1,6 @@
 //External dependencies
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 //Internal dependencies
@@ -12,8 +12,10 @@ import '../css/WannaGoCard.css';
 import { putOwnerToWannaGo } from '../utils/apis/userApiServices/userApi';
 
 const PlanCreated = () => {
-  const params = new URLSearchParams(window.location.pathname);
-  const id = params.get('/wannago/id');
+  // const params = new URLSearchParams(window.location.pathname);
+  // const id = params.get('/wannago/id');
+
+  const {id} = useParams();
   const currentUser = useAuth();
   const navigate = useNavigate();
   const [wannaGo, setwannaGo] = useState({});
@@ -23,7 +25,7 @@ const PlanCreated = () => {
     promiseHandler();
   }, []);
 
-  const guestLink = `${URL}${CLIENT_PORT}/wannago/guest-link/id=${id}`;
+  const guestLink = `${URL}${CLIENT_PORT}/wannago/guest-link/${id}`;
 
   const promiseHandler = async () => {
     const queriedWannaGo = await getWannaGoById(id);

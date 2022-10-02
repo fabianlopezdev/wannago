@@ -59,7 +59,7 @@ export default function VerticalStepper({
       setwannaGo(postedWannaGo);
       setJustCreatedWG(true);
       const { _id } = postedWannaGo;
-      navigate(`/wannago/id=${_id}`);
+      navigate(`/wannago/${_id}`);
     } catch (e) {
       console.log(
         `Error communicating with backend to postAWannago or to retrieve the just posted wannaGo. Error: ${e}`

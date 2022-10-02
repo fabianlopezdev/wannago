@@ -1,6 +1,6 @@
 //External dependencies
 import { useEffect, useState } from 'react';
-
+import { useParams } from 'react-router-dom'
 //Internal dependencies
 import WannaGoCard from '../components/WannaGoCard';
 import YesOption from '../components/guestLinkPageOptions/YesOption';
@@ -18,9 +18,11 @@ import '../css/GuestLinkPage.css';
 
 
 const GuestLink = () => {
-  const params = new URLSearchParams(window.location.pathname);
-  const id = params.get('/wannago/guest-link/id');
+  // const params = new URLSearchParams(window.location.pathname);
+  // const id = params.get('/wannago/guest-link/id');
 
+  const {id} = useParams();
+  console.log('this are params', id);
   const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
 
@@ -48,7 +50,7 @@ const GuestLink = () => {
             id={id}
             rejectCounter={wannaGo.rejectCounter}
             ownerName={wannaGo.ownerName}
-          ></NoOption>
+          />
         );
       case 'yes':
         return (
@@ -56,7 +58,7 @@ const GuestLink = () => {
             id={id}
             goingCounter={wannaGo.goingCounter}
             ownerName={wannaGo.ownerName}
-          ></YesOption>
+          />
         );
       case 'maybe':
         return (
@@ -64,7 +66,7 @@ const GuestLink = () => {
             id={id}
             suggestionBoxCounter={wannaGo.suggestionBoxCounter}
             ownerName={wannaGo.ownerName}
-          ></MaybeOption>
+          />
         );
       default:
         break;
@@ -92,12 +94,12 @@ const GuestLink = () => {
       <h2 className='justCreatedWannaGo'>
         {wannaGo.ownerName} wants to know if you wannaGo
       </h2>
-      <WannaGoCard wannaGo={wannaGo}></WannaGoCard>
+      <WannaGoCard wannaGo={wannaGo}/>
       {!option ? (
         <div className='buttons'>
-          <NoButton handleClick={handleClick}></NoButton>
-          <YesButton handleClick={handleClick}></YesButton>
-          <MaybeButton handleClick={handleClick}></MaybeButton>
+          <NoButton handleClick={handleClick}/>
+          <YesButton handleClick={handleClick}/>
+          <MaybeButton handleClick={handleClick}/>
         </div>
       ) : (
         <div className='justCreatedWannaGo'>
