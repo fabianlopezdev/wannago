@@ -20,23 +20,23 @@ export const getEngagementOfWannaGo = (wannaGo) => {
         wannaGo.goingCounter +
         wannaGo.suggestionBoxCounter) /
         wannaGo.openedTimes
-    ) || 0
+    ) * 100|| 0
   );
 };
 
 export const getSuccessRatioOfWannaGo = (wannaGo) => {
-  return wannaGo.goingCounter / wannaGo.openedTimes * 100|| 0;
+  return Math.floor(wannaGo.goingCounter / wannaGo.openedTimes * 100)|| 0;
 };
 
 export const aggregateSuccessRatio = (wannaGosOfUser) => {
-  return wannaGosOfUser.reduce((acc, wannaGo) => {
+  return (wannaGosOfUser.reduce((acc, wannaGo) => {
     return acc + getSuccessRatioOfWannaGo(wannaGo);
-  }, 0);
+  }, 0)) /100;
 };
 
 export const aggregateEngagement = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + (getEngagementOfWannaGo(wannaGo) * 100);
+    return acc + (getEngagementOfWannaGo(wannaGo));
   }, 0);
 };
 
@@ -80,10 +80,10 @@ export const getOlderWannaGos = (wannaGosOfUser) => {
   );
 };
 export const getNumOfActiveWannaGos = (wannaGosOfUser) => {
-  return getActiveWannaGos(wannaGosOfUser).length + 1;
+  return getActiveWannaGos(wannaGosOfUser).length;
 };
 export const getNumOfOlderWannaGos = (wannaGosOfUser) => {
-  return getOlderWannaGos(wannaGosOfUser).length + 1;
+  return getOlderWannaGos(wannaGosOfUser).length;
 };
 
 export const getActiveWGsAndSort = (wannaGosOfUser) => {

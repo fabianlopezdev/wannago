@@ -65,7 +65,7 @@ const UserDashboard = ({
     }
     const allUserWannaGos = await getAllWannaGosOfUser(userToRender._id);
     setAllUserWGs(allUserWannaGos);
-    setTotalWannaGos(allUserWannaGos.length + 1);
+    setTotalWannaGos(allUserWannaGos.length);
     setTotalPplGoing(aggregatePplGoing(allUserWannaGos));
     setTotalRejections(aggregateRejections(allUserWannaGos));
     setTotalSuggestions(aggregateSuggestions(allUserWannaGos));
@@ -84,40 +84,51 @@ const UserDashboard = ({
       <div className='testingGrid'>
         <div className='insideGrid'>
           <h4>Success Ratio</h4>
-          <div>{totalSuccessRatio}%</div>
+          <div>
+            {Math.floor((totalPplGoing / numOfTimesLinksOpened) * 100) || 0}%
+          </div>
         </div>
         <div className='insideGrid'>
           <h4>Engagement</h4>
-          <div>{totalEngagement}%</div>
+          <div>
+            {Math.floor(
+              ((totalPplGoing + totalRejections + totalSuggestions) /
+                numOfTimesLinksOpened) *
+                100
+            ) || 0}
+            %
+          </div>
         </div>
         <div className='insideGrid'>
-          <h4>Number of times your links were opened</h4>
           <div>{numOfTimesLinksOpened}</div>
+          <h4>Links Clicked</h4>
         </div>
         <div className='insideGrid'>
-          <h4>Total of active WannaGos</h4>
           <div>{numOfActiveWannaGos}</div>
+          <h4>Active WannaGos</h4>
         </div>
         <div className='insideGrid'>
-          <h4>Total of people going to your WannaGos</h4>
           <div>{totalPplGoing}</div>
+          <h4>People going to your WannaGos</h4>
         </div>
         <div className='insideGrid'>
-          <h4>People that can't go to your WannaGos</h4>
           <div>{totalRejections}</div>
+          <h4>People that can't go</h4>
         </div>
         <div className='insideGrid'>
-          <h4>Total of people that have suggestions</h4>
+          <h4>You have</h4>
           <div>{totalSuggestions}</div>
+          <h4>suggestions in total</h4>
         </div>
         <div className='insideGrid'>
-          <h4>Total of expired WannaGos</h4>
           <div>{numOfOlderWannaGos}</div>
+          <h4>WannaGos are expired</h4>
         </div>
 
         <div className='insideGrid'>
-          <h4>Total of people going to your WannaGos</h4>
+          <h4>You've created a</h4>
           <div>{totalWannaGos}</div>
+          <h4>WannaGos</h4>
         </div>
       </div>
       <h2 className='justCreatedWannaGo'>These are your wannagos:</h2>
@@ -145,6 +156,10 @@ const UserDashboard = ({
 };
 
 export default UserDashboard;
+
+
+
+
 
 
 
