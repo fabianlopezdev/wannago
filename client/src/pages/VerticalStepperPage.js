@@ -17,6 +17,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { getWannaGoByParams } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
 import { steps, stepsLoggedIn } from '../data';
+import { getUserById } from '../utils/apis/userApiServices/userApi';
 
 export default function VerticalStepper({
   wannaGo,
@@ -49,13 +50,17 @@ export default function VerticalStepper({
 
   const saveWannaGo = async () => {
     try {
+      //If user creates a wannaGo while logged in.
+      if (!wannaGo.ownerName) {
+        const  user  = await getUserById(currentUser.uid)
+        wannaGo.ownerName = user.name;
+      }
       await postAwannaGo(wannaGo);
-      console.log('here');
       const postedWannaGo = await getWannaGoByParams(
         wannaGo.what,
         wannaGo.when
       );
-      console.log(postedWannaGo);
+      console.log('this is posted wannaGo', postedWannaGo);
       setwannaGo(postedWannaGo);
       setJustCreatedWG(true);
       const { _id } = postedWannaGo;

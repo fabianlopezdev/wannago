@@ -17,6 +17,7 @@ import {
   aggregateRejections,
   aggregateSuggestions,
   aggregateOpenedTimes,
+  getActiveWGsAndSort,
 } from '../../utils/helperFunctions';
 import { CLIENT_PORT, URL } from '../../utils/config';
 
@@ -122,29 +123,30 @@ const UserDashboard = ({
       <h2 className='justCreatedWannaGo'>These are your wannagos:</h2>
       <div className='holdWannaGos'>
         {allUserWGs &&
-          allUserWGs
-            .sort((a, b) => {return new Date(a.date) - new Date(b.date)})
-            .map((wannaGo) => {
-              return (
-                <a
-                  target='blank'
-                  href={`${URL}${CLIENT_PORT}/user/wannago/stats/id=${wannaGo._id}`}
-                  style={{ color: 'inherit', textDecoration: 'inherit' }}
-                >
-                  <WannaGoCard
-                    key={wannaGo._id}
-                    wannaGo={wannaGo}
-                    // userName={user.name}
-                  />
-                </a>
-              );
-            })}
+          getActiveWGsAndSort(allUserWGs).map((wannaGo) => {
+            return (
+              <a
+                target='blank'
+                href={`${URL}${CLIENT_PORT}/user/wannago/stats/${wannaGo._id}`}
+                style={{ color: 'inherit', textDecoration: 'inherit' }}
+                key={wannaGo._id}
+              >
+                <WannaGoCard
+                  // key={wannaGo._id}
+                  wannaGo={wannaGo}
+                  // userName={user.name}
+                />
+              </a>
+            );
+          })}
       </div>
     </>
   );
 };
 
 export default UserDashboard;
+
+
 
 
 

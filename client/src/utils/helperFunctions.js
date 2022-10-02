@@ -86,3 +86,8 @@ export const getNumOfOlderWannaGos = (wannaGosOfUser) => {
   return getOlderWannaGos(wannaGosOfUser).length + 1;
 };
 
+export const getActiveWGsAndSort = (wannaGosOfUser) => {
+  return wannaGosOfUser.filter(
+    (wannaGo) => new Date(wannaGo.when) > Date.now()
+  ).sort((a, b) => {return new Date(a.when) - new Date(b.when)})
+}

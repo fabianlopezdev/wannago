@@ -6,13 +6,14 @@ import {
   getSuccessRatioOfWannaGo,
 } from '../utils/helperFunctions';
 import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 
 const WannaGoStats = () => {
-  const params = new URLSearchParams(window.location.pathname);
-  const id = params.get('/user/wannago/stats/id');
+  // const params = new URLSearchParams(window.location.pathname);
+  // const id = params.get('/user/wannago/stats/id');
+  const {id} = useParams()
   console.log('this is id', id);
 
   const [wannaGo, setWannaGo] = useState({});
@@ -64,7 +65,7 @@ const WannaGoStats = () => {
             >
               {copied}
             </button>
-            <div clasaName='buttonDelete'>
+            <div className='buttonDelete'>
               <button
                 className='button'
                 onClick={handleDelete}

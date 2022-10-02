@@ -6,24 +6,18 @@ const WannaGoCard = ({ wannaGo }) => {
   return (
     <div className='wannaGoCardContainer'>
       <div>
-        <h4>
-          <h3>What:</h3>{' '}
+          <h5>What:</h5>{' '}
           <strong className='description'> {wannaGo.what}</strong>
-        </h4>
       </div>
       <div>
-        <h4>
-          <h3>Where:</h3>{' '}
+          <h5>Where:</h5>{' '}
           <strong className='description'> {wannaGo.where}</strong>
-        </h4>
       </div>
       <div>
-        <h4>
-          <h3>When:</h3>
+          <h5>When:</h5>
           <strong className='description'>
             {dateTime.wannaGoFormat}, At {dateTime.time}
           </strong>
-        </h4>
       </div>
     </div>
   );
