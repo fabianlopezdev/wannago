@@ -65,4 +65,44 @@ export const steps = [
   },
 ];
 
+export const stepsLoggedIn = [
+  {
+    label: 'What?',
+    description: 'Add a title to your plan',
+    formField: (
+      <input
+        text='Hooo'
+        type='text'
+        name='what'
+        autoFocus
+        required
+      ></input>
+    ),
+  },
+  {
+    label: 'Where?',
+    description: 'Add an address',
+    formField: (
+      <input
+        type='text'
+        name='where'
+        autoFocus
+        required
+      ></input>
+    ),
+  },
+  {
+    label: 'When?',
+    description: `When is it?`,
+    formField: (
+      <input
+        type='datetime-local'
+        min={now}
+        name='when'
+        autoFocus
+        required
+      ></input>
+    ),
+  },
+];
 

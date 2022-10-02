@@ -16,7 +16,7 @@ import {
 import { useAuth } from '../contexts/AuthContext';
 import { getWannaGoByParams } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
-import { steps } from '../data';
+import { steps, stepsLoggedIn } from '../data';
 
 export default function VerticalStepper({
   wannaGo,
@@ -28,6 +28,11 @@ export default function VerticalStepper({
   const [activeStep, setActiveStep] = useState(0);
   let navigate = useNavigate();
   const { currentUser } = useAuth();
+  console.log('this is current user', currentUser);
+  let Steps = []
+  if (!currentUser) {
+    Steps = steps;
+  } else Steps = stepsLoggedIn;
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -69,7 +74,7 @@ export default function VerticalStepper({
           activeStep={activeStep}
           orientation='vertical'
         >
-          {steps.map((step, index) => (
+          {Steps.map((step, index) => (
             <Step
               key={step.label}
               sx={{
@@ -105,7 +110,7 @@ export default function VerticalStepper({
                       style={{ backgroundColor: 'rgb(241, 138, 203)' }}
                       sx={{ mt: 1, mr: 1 }}
                     >
-                      {index === steps.length - 1 ? 'Finish' : 'Continue'}
+                      {index === Steps.length - 1 ? 'Finish' : 'Continue'}
                     </Button>
                     <Button
                       disabled={index === 0}
@@ -121,7 +126,7 @@ export default function VerticalStepper({
             </Step>
           ))}
         </Stepper>
-        {activeStep === steps.length && (
+        {activeStep === Steps.length && (
           <Paper
             square
             elevation={0}
@@ -140,4 +145,5 @@ export default function VerticalStepper({
     </div>
   );
 }
+
 

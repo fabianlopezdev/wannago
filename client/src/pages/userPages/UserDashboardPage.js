@@ -134,6 +134,7 @@ const UserDashboard = ({
                   <WannaGoCard
                     key={wannaGo._id}
                     wannaGo={wannaGo}
+                    // userName={user.name}
                   />
                 </a>
               );

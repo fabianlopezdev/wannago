@@ -7,11 +7,14 @@ import {
 } from '../utils/helperFunctions';
 import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+
 
 const WannaGoStats = () => {
   const params = new URLSearchParams(window.location.pathname);
   const id = params.get('/user/wannago/stats/id');
   console.log('this is id', id);
+
   const [wannaGo, setWannaGo] = useState({});
   const [copied, setCopied] = useState('Copy');
   const navigate = useNavigate();
@@ -50,7 +53,7 @@ const WannaGoStats = () => {
         {wannaGo.guestLink && (
           <div className='justCreatedWannaGo'>
             <a
-              href='http://localhost:3001/wannago/guest-link/id=6332ff751b7dcf3f491aa7d5'
+              href={wannaGo.guestLink}
               target='blank'
             >
               {wannaGo.guestLink}
@@ -107,6 +110,7 @@ const WannaGoStats = () => {
 };
 
 export default WannaGoStats;
+
 
 
 

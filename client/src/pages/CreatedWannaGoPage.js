@@ -23,7 +23,7 @@ const PlanCreated = () => {
     promiseHandler();
   }, []);
 
-  const guestLink = `${URL}${3001}/wannago/guest-link/id=${id}`;
+  const guestLink = `${URL}${CLIENT_PORT}/wannago/guest-link/id=${id}`;
 
   const promiseHandler = async () => {
     const queriedWannaGo = await getWannaGoById(id);
@@ -50,7 +50,6 @@ const PlanCreated = () => {
             href={guestLink}
           >
             {guestLink}
-            {/*port needs to be the same as the one in the client not the backend*/}
           </a>
           <button
             className='buttonCopy'
