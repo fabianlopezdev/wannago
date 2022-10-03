@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
 import { ReactNode } from 'react'
-import { User } from '@firebase/auth-types';
+// import { User } from '@firebase/auth-types';
 // lines 3, 8 and the type of AuthProvider were added to make 'children' - line 15 not complain
 
 const AuthContext = React.createContext(null);
@@ -14,12 +14,12 @@ export const useAuth: any = () => {
 
 export const AuthProvider = ({ children }: Props) => {
   
-  const [currentUser, setCurrentUser] = useState<User | null>();
+  const [currentUser, setCurrentUser] = useState<any>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
-      currentUser && setCurrentUser(user);
+      setCurrentUser(user);
       setLoading(false);
     });
     return unsuscribe;
@@ -43,15 +43,15 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   const updateEmail = (email: string) => {
-    return currentUser && currentUser.updateEmail(email);
+    return currentUser.updateEmail(email);
   };
 
   const updatePassword = (password: string) => {
-    return currentUser && currentUser.updatePassword(password);
+    return currentUser.updatePassword(password);
   };
 
   const deleteUser = () => {
-    return currentUser && currentUser.delete();
+    return currentUser.delete();
   };
 
   const value: any = {
