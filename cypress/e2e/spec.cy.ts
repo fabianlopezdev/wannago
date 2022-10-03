@@ -1,6 +1,6 @@
 describe('Visit WannaGo page', () => {
   it('Opens WannaGo page', () => {
-    cy.visit('http://localhost:3004/')
+    cy.visit('http://localhost:3000/')
   })
 })
 

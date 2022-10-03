@@ -79,12 +79,14 @@ export default function VerticalStepper({
                     <Button
                       variant='contained'
                       type='submit'
+                      title={index === steps.length - 1 ? 'Finish' : 'Continue'}
                       style={{ backgroundColor: 'rgb(241, 138, 203)' }}
                       sx={{ mt: 1, mr: 1 }}
                     >
                       {index === steps.length - 1 ? 'Finish' : 'Continue'}
                     </Button>
                     <Button
+                      title='Back'
                       disabled={index === 0}
                       onClick={handleBack}
                       sx={{ mt: 1, mr: 1 }}
