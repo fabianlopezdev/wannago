@@ -107,6 +107,7 @@ export default function VerticalStepper({
             sx={{ p: 3 }}
           >
             <Button
+              id='share-it'
               className='button'
               onClick={saveWannaGo}
               sx={{ mt: 1, mr: 1 }}

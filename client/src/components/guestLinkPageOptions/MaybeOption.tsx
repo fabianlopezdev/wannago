@@ -47,6 +47,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName } : Props) => {
               required
             ></textarea>
             <button
+              title='Send'
               className='button maybe'
               type='submit'
             >

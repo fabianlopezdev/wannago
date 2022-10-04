@@ -42,11 +42,11 @@ export const steps = [
     description: 'Add a title to your plan',
     formField: (
       <>
-      <label htmlFor='Plan title'></label>
+      <label htmlFor='plan-title'></label>
       <input
         data-text='What?'
         type='text'
-        id='Plan title'
+        id='plan-title'
         name='what'
         autoFocus
         required
@@ -59,10 +59,10 @@ export const steps = [
     description: 'Add an address',
     formField: (
       <>
-      <label htmlFor='Plan location'></label>
+      <label htmlFor='plan-location'></label>
       <input
         type='text'
-        id='Plan location'
+        id='plan-location'
         name='where'
         autoFocus
         required
@@ -75,11 +75,11 @@ export const steps = [
     description: `When is it?`,
     formField: (
       <>
-      <label htmlFor='Plan`s date'></label>
+      <label htmlFor='plan-date'></label>
       <input
         type='datetime-local'
         min={now}
-        id='Plan`s date'
+        id='plan-date'
         name='when'
         autoFocus
         required
