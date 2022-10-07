@@ -104,7 +104,7 @@ const UserDashboard = ({
           <h4>Links Clicked</h4>
         </div>
         <div className='insideGrid'>
-          <div>{numOfActiveWannaGos}</div>
+          <div>{numOfActiveWannaGos || 0}</div>
           <h4>Active WannaGos</h4>
         </div>
         <div className='insideGrid'>
@@ -121,13 +121,13 @@ const UserDashboard = ({
           <h4>suggestions in total</h4>
         </div>
         <div className='insideGrid'>
-          <div>{numOfOlderWannaGos}</div>
+          <div>{numOfOlderWannaGos || 0}</div>
           <h4>WannaGos are expired</h4>
         </div>
 
         <div className='insideGrid'>
           <h4>You've created a</h4>
-          <div>{totalWannaGos}</div>
+          <div>{totalWannaGos || 0}</div>
           <h4>WannaGos</h4>
         </div>
       </div>

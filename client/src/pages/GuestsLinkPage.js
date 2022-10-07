@@ -28,7 +28,7 @@ const GuestLink = () => {
 
   useEffect(() => {
     promiseHandler();
-  }, []);
+  }, []); 
 
   const promiseHandler = async () => {
     try {

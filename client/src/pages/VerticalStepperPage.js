@@ -30,7 +30,7 @@ export default function VerticalStepper({
   let navigate = useNavigate();
   const { currentUser } = useAuth();
   console.log('this is current user', currentUser);
-  let Steps = []
+  let Steps = [];
   if (!currentUser) {
     Steps = steps;
   } else Steps = stepsLoggedIn;
@@ -52,7 +52,7 @@ export default function VerticalStepper({
     try {
       //If user creates a wannaGo while logged in.
       if (!wannaGo.ownerName) {
-        const  user  = await getUserById(currentUser.uid)
+        const user = await getUserById(currentUser.uid);
         wannaGo.ownerName = user.name;
       }
       await postAwannaGo(wannaGo);
@@ -150,5 +150,4 @@ export default function VerticalStepper({
     </div>
   );
 }
-
 
