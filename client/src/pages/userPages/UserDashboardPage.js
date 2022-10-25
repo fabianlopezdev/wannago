@@ -50,6 +50,7 @@ const UserDashboard = ({
   }, []);
 
   const handlePromise = async () => {
+    console.log('this is current User currentUser uid', currentUser.uid)
     const userToRender = await getUserById(currentUser.uid);
     setUser(userToRender);
 
