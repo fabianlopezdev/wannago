@@ -3,7 +3,7 @@ import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
 export const putPplGoing = async (name, email, id) => {
   try {
-    return await fetch(`${BACKEND_LINK}/wannago/ppl_going`, {
+    return await fetch(`https://wannago-ito3.vercel.app/wannago/ppl_going`, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({ name, email, id }),
@@ -15,11 +15,14 @@ export const putPplGoing = async (name, email, id) => {
 
 export const putSuggestionMsg = async (msg, id) => {
   try {
-    return await fetch(`${BACKEND_LINK}/wannago/suggestionMsg`, {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ msg, id }),
-    });
+    return await fetch(
+      `https://wannago-ito3.vercel.app/wannago/suggestionMsg`,
+      {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({ msg, id }),
+      }
+    );
   } catch (e) {
     console.log(
       `Error in postSuggestionMsg function in apiService. Error: ${e}`
@@ -29,7 +32,7 @@ export const putSuggestionMsg = async (msg, id) => {
 
 export const putGuestLink = async (id, link) => {
   try {
-    return await fetch(`${BACKEND_LINK}/wannago/guestLink`, {
+    return await fetch(`https://wannago-ito3.vercel.app/wannago/guestLink`, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({ link, id }),
@@ -43,7 +46,7 @@ export const putGuestLink = async (id, link) => {
 
 export const putOpenedTimes = async (id, openedTimes) => {
   try {
-    return await fetch(`${BACKEND_LINK}/wannago/openedTimes`, {
+    return await fetch(`https://wannago-ito3.vercel.app/wannago/openedTimes`, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({ id, openedTimes }),
@@ -55,11 +58,14 @@ export const putOpenedTimes = async (id, openedTimes) => {
 
 export const putRejectCounter = async (id, rejectCounter) => {
   try {
-    return await fetch(`${BACKEND_LINK}/wannago/rejectCounter`, {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ id, rejectCounter }),
-    });
+    return await fetch(
+      `https://wannago-ito3.vercel.app/wannago/rejectCounter`,
+      {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({ id, rejectCounter }),
+      }
+    );
   } catch (e) {
     console.log(
       `Error in putRejectCounter function in apiService. Error: ${e}`
@@ -69,7 +75,7 @@ export const putRejectCounter = async (id, rejectCounter) => {
 
 export const putGoingCounter = async (id, goingCounter) => {
   try {
-    return await fetch(`${BACKEND_LINK}/wannago/goingCounter`, {
+    return await fetch(`https://wannago-ito3.vercel.app/wannago/goingCounter`, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({ id, goingCounter }),
@@ -81,17 +87,27 @@ export const putGoingCounter = async (id, goingCounter) => {
 
 export const putSuggestionBoxCounter = async (id, suggestionBoxCounter) => {
   try {
-    return await fetch(`${BACKEND_LINK}/wannago/suggestionBoxCounter`, {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ id, suggestionBoxCounter }),
-    });
+    return await fetch(
+      `https://wannago-ito3.vercel.app/wannago/suggestionBoxCounter`,
+      {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({ id, suggestionBoxCounter }),
+      }
+    );
   } catch (e) {
     console.log(
       `Error in putSuggestionBoxCounter function in apiService. Error: ${e}`
     );
   }
 };
+
+
+
+
+
+
+
 
 
 
