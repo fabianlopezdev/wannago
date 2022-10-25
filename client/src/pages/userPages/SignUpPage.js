@@ -7,7 +7,7 @@ import { postUser } from '../../utils/apis/userApiServices/userApi';
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 
-import '../../css/Authentication.css';
+import './Authentication.css';
 
 export default function SignUp() {
   //Hooks
@@ -30,13 +30,16 @@ export default function SignUp() {
     try {
       setError('');
       setLoading(true);
-      const newUser = await signUp(emailRef.current.value, passwordRef.current.value);
+      const newUser = await signUp(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
       const user = {
         name: nameRef.current.value,
         email: newUser.user.email,
         _id: newUser.user.uid,
       };
-      console.log('this is user', user)
+      console.log('this is user', user);
       await postUser(user);
       navigate('/user/dashboard');
     } catch {
@@ -73,6 +76,7 @@ export default function SignUp() {
               <Form.Control
                 type='password'
                 ref={passwordRef}
+                minLength={6}
                 required
               />
             </Form.Group>
@@ -81,6 +85,7 @@ export default function SignUp() {
               <Form.Control
                 type='password'
                 ref={passwordConfirmRef}
+                minLength={6}
                 required
               />
             </Form.Group>

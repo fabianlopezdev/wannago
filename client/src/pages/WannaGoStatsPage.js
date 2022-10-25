@@ -7,14 +7,9 @@ import {
 } from '../utils/helperFunctions';
 import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-
 
 const WannaGoStats = () => {
-  // const params = new URLSearchParams(window.location.pathname);
-  // const id = params.get('/user/wannago/stats/id');
-  const {id} = useParams()
-  console.log('this is id', id);
+  const { id } = useParams();
 
   const [wannaGo, setWannaGo] = useState({});
   const [copied, setCopied] = useState('Copy');
@@ -34,15 +29,14 @@ const WannaGoStats = () => {
       );
     }
   };
-  const handleClick = () => {
+
+  const onClickCopyLink = () => {
     navigator.clipboard.writeText(wannaGo.guestLink);
     setCopied('Copied');
   };
 
-  const handleDelete = () => {
-    console.log('id', id);
-    console.log('this wannaGo');
-    deleteWannaGo(id);
+  const handleDelete = async () => {
+    await deleteWannaGo(id);
     navigate('/user/dashboard');
   };
 
@@ -61,7 +55,7 @@ const WannaGoStats = () => {
             </a>
             <button
               className='buttonCopy'
-              onClick={handleClick}
+              onClick={onClickCopyLink}
             >
               {copied}
             </button>
@@ -99,11 +93,11 @@ const WannaGoStats = () => {
         </div>
         <div className='insideGrid'>
           <h4>Engagement</h4>
-          {getEngagementOfWannaGo(wannaGo)}%
+          {getEngagementOfWannaGo(wannaGo)}
         </div>
         <div className='insideGrid'>
           <h4>Success Ratio</h4>
-          {Math.floor(getSuccessRatioOfWannaGo(wannaGo))}%
+          {getSuccessRatioOfWannaGo(wannaGo)}
         </div>
       </div>
     </>
@@ -111,10 +105,4 @@ const WannaGoStats = () => {
 };
 
 export default WannaGoStats;
-
-
-
-
-
-
 

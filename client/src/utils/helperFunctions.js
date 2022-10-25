@@ -20,23 +20,25 @@ export const getEngagementOfWannaGo = (wannaGo) => {
         wannaGo.goingCounter +
         wannaGo.suggestionBoxCounter) /
         wannaGo.openedTimes
-    ) * 100|| 0
+    ) * 100 || 0
   );
 };
 
 export const getSuccessRatioOfWannaGo = (wannaGo) => {
-  return Math.floor(wannaGo.goingCounter / wannaGo.openedTimes * 100)|| 0;
+  return `${Math.floor((wannaGo.goingCounter / wannaGo.openedTimes) * 100) || 0}%`;
 };
 
 export const aggregateSuccessRatio = (wannaGosOfUser) => {
-  return (wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + getSuccessRatioOfWannaGo(wannaGo);
-  }, 0)) /100;
+  return (
+    `${Math.floor(wannaGosOfUser.reduce((acc, wannaGo) => {
+      return acc + getSuccessRatioOfWannaGo(wannaGo);
+    }, 0) / 100)}%`
+  );
 };
 
 export const aggregateEngagement = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + (getEngagementOfWannaGo(wannaGo));
+    return acc + getEngagementOfWannaGo(wannaGo);
   }, 0);
 };
 
@@ -87,7 +89,10 @@ export const getNumOfOlderWannaGos = (wannaGosOfUser) => {
 };
 
 export const getActiveWGsAndSort = (wannaGosOfUser) => {
-  return wannaGosOfUser.filter(
-    (wannaGo) => new Date(wannaGo.when) > Date.now()
-  ).sort((a, b) => {return new Date(a.when) - new Date(b.when)})
-}
+  return wannaGosOfUser
+    .filter((wannaGo) => new Date(wannaGo.when) > Date.now())
+    .sort((a, b) => {
+      return new Date(a.when) - new Date(b.when);
+    });
+};
+

@@ -1,6 +1,6 @@
 //External dependencies
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 //Internal dependencies
 import WannaGoCard from '../components/WannaGoCard';
 import YesOption from '../components/guestLinkPageOptions/YesOption';
@@ -14,21 +14,17 @@ import {
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
 
-import '../css/GuestLinkPage.css';
-
+import './GuestLinkPage.css';
 
 const GuestLink = () => {
-  // const params = new URLSearchParams(window.location.pathname);
-  // const id = params.get('/wannago/guest-link/id');
+  const { id } = useParams();
 
-  const {id} = useParams();
-  console.log('this are params', id);
   const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
 
   useEffect(() => {
     promiseHandler();
-  }, []); 
+  }, []);
 
   const promiseHandler = async () => {
     try {
@@ -94,12 +90,12 @@ const GuestLink = () => {
       <h2 className='justCreatedWannaGo'>
         {wannaGo.ownerName} wants to know if you wannaGo
       </h2>
-      <WannaGoCard wannaGo={wannaGo}/>
+      <WannaGoCard wannaGo={wannaGo} />
       {!option ? (
         <div className='buttons'>
-          <NoButton handleClick={handleClick}/>
-          <YesButton handleClick={handleClick}/>
-          <MaybeButton handleClick={handleClick}/>
+          <NoButton handleClick={handleClick} />
+          <YesButton handleClick={handleClick} />
+          <MaybeButton handleClick={handleClick} />
         </div>
       ) : (
         <div className='justCreatedWannaGo'>
@@ -111,7 +107,4 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
-
-
-
 

@@ -23,7 +23,7 @@ import { CLIENT_PORT, URL } from '../../utils/config';
 
 import WannaGoCard from '../../components/WannaGoCard';
 
-import '../../css/MaybeOption.css';
+import '../../components/guestLinkPageOptions/MaybeOption.css';
 
 const UserDashboard = ({
   user,
@@ -42,9 +42,7 @@ const UserDashboard = ({
   const [totalEngagement, setTotalEngagement] = useState();
   const [totalSuccessRatio, setTotalSuccessRatio] = useState();
   const [allUserWGs, setAllUserWGs] = useState();
-  //The next two states are to render active and expired wannaGos
-  // const [activeWannaGos, setActiveWannaGos] = useState();
-  // const [olderWannaGos, setOlderWannaGos] = useState();
+
   
   const { currentUser } = useAuth();
   useEffect(() => {

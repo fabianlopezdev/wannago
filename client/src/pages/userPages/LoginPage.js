@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 
-import '../../css/Authentication.css';
+import './Authentication.css';
 
 export default function Login() {
   //Hooks

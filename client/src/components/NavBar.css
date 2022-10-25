@@ -60,18 +60,18 @@ a.iconLinkLanding {
   gap: 20%;
 }
 .icons.signup:hover {
-  content: url('../icons/sign-up-hard.png')
+  content: url('../assets/sign-up-hard.png')
 }
 
 .icons.login:hover {
-  content: url('../icons/login-hard.png')
+  content: url('../assets/login-hard.png')
 }
 
 .icons.logout:hover {
   cursor: pointer;
-  content: url('../icons/logout-hard.png')
+  content: url('../assets/logout-hard.png')
 }
 
 .icons.dashboard:hover {
-  content: url('../icons/home-icon-hard.png')
+  content: url('../assets/home-icon-hard.png')
 }

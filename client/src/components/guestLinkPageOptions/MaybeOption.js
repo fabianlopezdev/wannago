@@ -7,7 +7,7 @@ import {
   putSuggestionBoxCounter,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
-import '../../css/MaybeOption.css';
+import './MaybeOption.css';
 
 const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
   const [msgSent, setMsgSent] = useState(false);

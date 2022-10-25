@@ -11,7 +11,7 @@ import {
   DashBoardButton,
 } from './NavBarButtons';
 
-import '../css/NavBar.css';
+import './NavBar.css';
 
 const NavBar = () => {
   //Hooks

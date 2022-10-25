@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
- 
   useEffect(() => {
     const unsuscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -22,10 +21,9 @@ export const AuthProvider = ({ children }) => {
     return unsuscribe;
   }, []);
 
- const signUp = async (email, password) => {
-   return auth.createUserWithEmailAndPassword(email, password);
- };
-
+  const signUp = async (email, password) => {
+    return auth.createUserWithEmailAndPassword(email, password);
+  };
 
   const logIn = (email, password) => {
     return auth.signInWithEmailAndPassword(email, password);
@@ -68,6 +66,4 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-
 

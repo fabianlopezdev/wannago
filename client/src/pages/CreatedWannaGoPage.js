@@ -8,13 +8,10 @@ import WannaGoCard from '../components/WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { CLIENT_PORT, URL } from '../utils/config';
-import '../css/WannaGoCard.css';
 import { putOwnerToWannaGo } from '../utils/apis/userApiServices/userApi';
+import '../components/WannaGoCard.css';
 
 const PlanCreated = () => {
-  // const params = new URLSearchParams(window.location.pathname);
-  // const id = params.get('/wannago/id');
-
   const {id} = useParams();
   const currentUser = useAuth();
   const navigate = useNavigate();
@@ -35,7 +32,7 @@ const PlanCreated = () => {
       putOwnerToWannaGo(queriedWannaGo._id, currentUser.uid);
       setwannaGo(queriedWannaGo);
   };
-  const handleClick = () => {
+  const onClickCopyLink = () => {
     navigator.clipboard.writeText(guestLink);
     setCopied('Copied');
   };
@@ -55,7 +52,7 @@ const PlanCreated = () => {
           </a>
           <button
             className='buttonCopy'
-            onClick={handleClick}
+            onClick={onClickCopyLink}
           >
             {copied}
           </button>
@@ -72,4 +69,5 @@ const PlanCreated = () => {
 };
 
 export default PlanCreated;
+
 

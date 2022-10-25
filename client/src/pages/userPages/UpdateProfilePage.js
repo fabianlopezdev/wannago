@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 
-import '../../css/Authentication.css';
+import './Authentication.css';
 
 export default function UpdateProfile() {
   //Hooks
@@ -24,7 +24,7 @@ export default function UpdateProfile() {
 
     const promises = [];
 
-    if (nameRef.current.value !== currentUser.email) {
+    if (nameRef.current.value !== currentUser.name) {
       promises.push(updateName(nameRef.current.value));
     }
 

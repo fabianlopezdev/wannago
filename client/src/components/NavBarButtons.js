@@ -2,10 +2,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 
 //Internal dependencies
-import logoutSoft from '../icons/logout-soft.png';
-import signUpSoft from '../icons/sign-up-soft.png';
-import loginSoft from '../icons/login-soft.png';
-import homeSoft from '../icons/home-icon-soft.png';
+import logoutSoft from '../assets/logout-soft.png';
+import signUpSoft from '../assets/sign-up-soft.png';
+import loginSoft from '../assets/login-soft.png';
+import homeSoft from '../assets/home-icon-soft.png';
 import logo from '../finalWannaGoLogo.png';
 
 export const DashBoardButton = () => {
@@ -88,4 +88,7 @@ export const LandingButton = () => {
     </Link>
   );
 };
+
+
+
 

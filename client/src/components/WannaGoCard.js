@@ -1,5 +1,6 @@
 //Internal dependencies
 import { dateFormatter } from '../utils/helperFunctions';
+import './WannaGoCard.css';
 
 const WannaGoCard = ({ wannaGo }) => {
   const dateTime = dateFormatter(wannaGo.when);
@@ -25,6 +26,7 @@ const WannaGoCard = ({ wannaGo }) => {
 
 
 export default WannaGoCard;
+
 
 
 
