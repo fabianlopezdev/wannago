@@ -1,5 +1,5 @@
 //Internal dependencies
-import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
+// import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
 export const postUser = async (user) => {
   try {

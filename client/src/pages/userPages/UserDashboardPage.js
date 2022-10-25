@@ -11,8 +11,8 @@ import { getAllWannaGosOfUser } from '../../utils/apis/wannagoApiServices/getWan
 import {
   getNumOfActiveWannaGos,
   getNumOfOlderWannaGos,
-  aggregateSuccessRatio,
-  aggregateEngagement,
+  // aggregateSuccessRatio,
+  // aggregateEngagement,
   aggregatePplGoing,
   aggregateRejections,
   aggregateSuggestions,
@@ -39,8 +39,8 @@ const UserDashboard = ({
   const [numOfActiveWannaGos, setNumOfActiveWannaGos] = useState();
   const [numOfOlderWannaGos, setNumOfOlderWannaGos] = useState();
   const [numOfTimesLinksOpened, setNumOfTimesLinksOpened] = useState();
-  const [totalEngagement, setTotalEngagement] = useState();
-  const [totalSuccessRatio, setTotalSuccessRatio] = useState();
+  // const [totalEngagement, setTotalEngagement] = useState();
+  // const [totalSuccessRatio, setTotalSuccessRatio] = useState();
   const [allUserWGs, setAllUserWGs] = useState();
 
   const { currentUser } = useAuth();
@@ -70,8 +70,8 @@ const UserDashboard = ({
     setNumOfActiveWannaGos(getNumOfActiveWannaGos(allUserWannaGos));
     setNumOfOlderWannaGos(getNumOfOlderWannaGos(allUserWannaGos));
     setNumOfTimesLinksOpened(aggregateOpenedTimes(allUserWannaGos));
-    setTotalEngagement(aggregateEngagement(allUserWannaGos) - 100);
-    setTotalSuccessRatio(Math.floor(aggregateSuccessRatio(allUserWannaGos)));
+    // setTotalEngagement(aggregateEngagement(allUserWannaGos) - 100);
+    // setTotalSuccessRatio(Math.floor(aggregateSuccessRatio(allUserWannaGos)));
     console.log('this is all userWannago', allUserWannaGos);
     console.log('this is setted, ', allUserWGs);
   };
