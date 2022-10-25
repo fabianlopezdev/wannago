@@ -1,9 +1,9 @@
 //Internal dependencies
-import { URL, KOA_PORT, VERCEL_LINK } from '../../config';
+import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
 export const postUser = async (user) => {
   try {
-    const userToPost = await fetch(`${VERCEL_LINK}/user`, {
+    const userToPost = await fetch(`${BACKEND_LINK}/user`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify(user),
@@ -16,7 +16,7 @@ export const postUser = async (user) => {
 
 export const getUserById = async (id) => {
   try {
-    const user = await fetch(`${VERCEL_LINK}/user/${id}`);
+    const user = await fetch(`${BACKEND_LINK}/user/${id}`);
     return await user.json();
   } catch (e) {
     console.log(
@@ -27,7 +27,7 @@ export const getUserById = async (id) => {
 
 export const putOwnerToWannaGo = async (wannaGoId, userId) => {
   try {
-    return await fetch(`${VERCEL_LINK}/wannago/owner`, {
+    return await fetch(`${BACKEND_LINK}/wannago/owner`, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({ wannaGoId, userId }),
@@ -38,6 +38,9 @@ export const putOwnerToWannaGo = async (wannaGoId, userId) => {
     );
   }
 };
+
+
+
 
 
 

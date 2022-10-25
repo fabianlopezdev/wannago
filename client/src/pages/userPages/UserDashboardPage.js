@@ -43,14 +43,13 @@ const UserDashboard = ({
   const [totalSuccessRatio, setTotalSuccessRatio] = useState();
   const [allUserWGs, setAllUserWGs] = useState();
 
-  
   const { currentUser } = useAuth();
   useEffect(() => {
     handlePromise();
   }, []);
 
   const handlePromise = async () => {
-    console.log('this is current User currentUser uid', currentUser.uid)
+    console.log('this is current User currentUser uid', currentUser.uid);
     const userToRender = await getUserById(currentUser.uid);
     setUser(userToRender);
 
@@ -71,7 +70,7 @@ const UserDashboard = ({
     setNumOfActiveWannaGos(getNumOfActiveWannaGos(allUserWannaGos));
     setNumOfOlderWannaGos(getNumOfOlderWannaGos(allUserWannaGos));
     setNumOfTimesLinksOpened(aggregateOpenedTimes(allUserWannaGos));
-    setTotalEngagement(aggregateEngagement(allUserWannaGos)-100);
+    setTotalEngagement(aggregateEngagement(allUserWannaGos) - 100);
     setTotalSuccessRatio(Math.floor(aggregateSuccessRatio(allUserWannaGos)));
     console.log('this is all userWannago', allUserWannaGos);
     console.log('this is setted, ', allUserWGs);
@@ -155,12 +154,4 @@ const UserDashboard = ({
 };
 
 export default UserDashboard;
-
-
-
-
-
-
-
-
 
