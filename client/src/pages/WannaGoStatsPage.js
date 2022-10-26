@@ -7,31 +7,21 @@ import {
 } from '../utils/helperFunctions';
 import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useNavigate, useParams } from 'react-router-dom';
+import {useQuery} from 'react-query'
 
 const WannaGoStats = () => {
   const { id } = useParams();
-
-  const [wannaGo, setWannaGo] = useState({});
   const [copied, setCopied] = useState('Copy');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    promiseHandler();
-  }, []);
+  const { data, isLoading, isError} = useQuery('wannagos', () => getWannaGoById(id));
 
-  const promiseHandler = async () => {
-    try {
-      const queriedWannaGo = await getWannaGoById(id);
-      setWannaGo(queriedWannaGo);
-    } catch (e) {
-      console.log(
-        `Error in the promiseHandler func of GuestLinks.js. Error: ${e}`
-      );
-    }
-  };
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>Error</p>
+
 
   const onClickCopyLink = () => {
-    navigator.clipboard.writeText(wannaGo.guestLink);
+    navigator.clipboard.writeText(data.guestLink);
     setCopied('Copied');
   };
 
@@ -42,16 +32,16 @@ const WannaGoStats = () => {
 
   return (
     <>
-      <WannaGoCard wannaGo={wannaGo} />
+      <WannaGoCard wannaGo={data} />
       <div>
         <h4 className='justCreatedWannaGoSedondPart'>Guest Link:</h4>
-        {wannaGo.guestLink && (
+        {
           <div className='justCreatedWannaGo'>
             <a
-              href={wannaGo.guestLink}
+              href={data.guestLink}
               target='blank'
             >
-              {wannaGo.guestLink}
+              {data.guestLink}
             </a>
             <button
               className='buttonCopy'
@@ -69,7 +59,7 @@ const WannaGoStats = () => {
               <br />
             </div>
           </div>
-        )}
+        }
       </div>
       <br />
       <h4 className='justCreatedWannaGo'>See how well the WannaGo is doing</h4>
@@ -77,27 +67,27 @@ const WannaGoStats = () => {
       <div className='testingGrid'>
         <div className='insideGrid'>
           <h4>Number of times the link was opened</h4>
-          {wannaGo.openedTimes}
+          {data.openedTimes}
         </div>
         <div className='insideGrid'>
           <h4>People Going</h4>
-          {wannaGo.goingCounter}
+          {data.goingCounter}
         </div>
         <div className='insideGrid'>
           <h4>People that can't go</h4>
-          {wannaGo.rejectCounter}
+          {data.rejectCounter}
         </div>
         <div className='insideGrid'>
           <h4>Number of suggestions made</h4>
-          {wannaGo.suggestionBoxCounter}
+          {data.suggestionBoxCounter}
         </div>
         <div className='insideGrid'>
           <h4>Engagement</h4>
-          {getEngagementOfWannaGo(wannaGo)}
+          {getEngagementOfWannaGo(data)}
         </div>
         <div className='insideGrid'>
           <h4>Success Ratio</h4>
-          {getSuccessRatioOfWannaGo(wannaGo)}
+          {getSuccessRatioOfWannaGo(data)}
         </div>
       </div>
     </>

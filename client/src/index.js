@@ -6,13 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { AuthProvider } from './contexts/AuthContext';
+import { QueryClientProvider, QueryClient } from 'react-query';
+
+const queryClient =new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
     <AuthProvider>
+      <QueryClientProvider client={queryClient}>
       <App />
+      </QueryClientProvider>
     </AuthProvider>
   </BrowserRouter>
   // </React.StrictMode>
@@ -22,6 +27,7 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
 
 
 
