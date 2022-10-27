@@ -1,9 +1,15 @@
 //External dependencies
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Alert } from 'bootstrap';
+
 //Internal dependencies
 import WannaGoCard from '../components/WannaGoCard';
-import {YesOption, NoOption, MaybeOption} from '../components/guestLinkPageOptions';
+import {
+  YesOption,
+  NoOption,
+  MaybeOption,
+} from '../components/guestLinkPageOptions';
 import {
   YesButton,
   NoButton,
@@ -11,24 +17,31 @@ import {
 } from '../components/guestLinkPageOptions/OptionButtons';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
-import {useQuery} from 'react-query'
+import { useQuery } from 'react-query';
 
 import './GuestLinkPage.css';
 
 const GuestLink = () => {
   const { id } = useParams();
-  console.log('this is the id', id)
-  const {data, isError, isLoading} = useQuery('guestLink', () => getWannaGoById(id))
+  console.log('this is the id', id);
+  const { data, isError, isLoading } = useQuery('guestLink', () =>
+    getWannaGoById(id)
+  );
   // const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
-  
+
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error</p>;
+  if (isError)
+    return (
+      <Alert variant='danger'>
+        Sorry we could not load the page. The link may be broken
+      </Alert>
+    );
 
   try {
     putOpenedTimes(id, ++data.openedTimes);
   } catch (error) {
-    console.error(`Error in putOpenedTimes function. Error: ${error}`)
+    console.error(`Error in putOpenedTimes function. Error: ${error}`);
   }
 
   const handleOption = (opt) => {
@@ -100,6 +113,4 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
-
-
 

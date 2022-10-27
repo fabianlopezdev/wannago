@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link, useParams } from 'react-router-dom';
 import { useQuery, useMutation } from 'react-query';
-
+import { Alert } from 'bootstrap';
 //Internal dependencies
 import WannaGoCard from '../components/WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
@@ -14,28 +14,36 @@ import '../components/WannaGoCard.css';
 
 const PlanCreated = () => {
   const { id } = useParams();
-  const currentUser = useAuth();
+  const guestLink = `${URL}${CLIENT_PORT}/wannago/guest-link/${id}`;
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
-  const { data, isError, isLoading } = useQuery('createdWG', () =>
-    getWannaGoById(id)
+  const { data, isError, isLoading } = useQuery(
+    'createdWG',
+    () => getWannaGoById(id),
+    {
+      onSuccess: (data) => {
+        console.log('Success, and now posting');
+        putGuestLink(data._id, guestLink);
+        if (currentUser?.uid) putOwnerToWannaGo(data._id, currentUser.uid);
+      },
+      refetchOnMount: false, 
+    }
   );
-  // const [wannaGo, setwannaGo] = useState({});
   const [copied, setCopied] = useState('Copy');
 
   if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error</p>;
-  
-  
-  const guestLink = `${URL}${CLIENT_PORT}/wannago/guest-link/${id}`;
-  
-  putGuestLink(id, guestLink);
-  if (currentUser.uid) putOwnerToWannaGo(data._id, currentUser.uid);
- 
+  if (isError)
+    return (
+      <Alert variant='danger'>
+        Sorry we could not load the page. The link may be broken
+      </Alert>
+    );
 
   const onClickCopyLink = () => {
     navigator.clipboard.writeText(guestLink);
     setCopied('Copied');
   };
+
   return (
     <>
       <h1 className='justCreatedWannaGo'>What a Plan!</h1>
@@ -57,7 +65,7 @@ const PlanCreated = () => {
             {copied}
           </button>
         </div>
-        {!currentUser.currentUser && (
+        {!currentUser && (
           <h6 className='highlight'>
             WannaSee who wannaGo?:
             <Link to='/user/login'> log in </Link> or
@@ -70,5 +78,4 @@ const PlanCreated = () => {
 };
 
 export default PlanCreated;
-
 

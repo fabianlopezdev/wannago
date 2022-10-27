@@ -1,5 +1,6 @@
 //External dependencies
 import { useState } from 'react';
+import { Alert } from 'bootstrap';
 
 //Internal dependencies
 import {
@@ -11,6 +12,7 @@ import './MaybeOption.css';
 
 const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
   const [msgSent, setMsgSent] = useState(false);
+  const [error, setError] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +27,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
       console.log(suggestionBoxCounter);
       setMsgSent(!msgSent);
     } catch (e) {
+      setError('Sorry, something went wrong and we could not send the message. Please try again')
       console.log(
         `Error in MaybeOption.js, trying to send the suggestion to backend to put in db. ${e}`
       );
@@ -38,6 +41,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
         Let {ownerName} know if you have any suggestion. Remember to say who you
         are.
       </h3>
+      {error && <Alert variant='danger'>{error}</Alert>}
       {msgSent ? (
         <h3 className='textGuestLink'>We'll let {ownerName} know</h3>
       ) : (
@@ -63,5 +67,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
 };
 
 export default MaybeOption;
+
+
 
 

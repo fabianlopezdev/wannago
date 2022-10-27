@@ -11,6 +11,7 @@ import {
   StepContent,
   Typography,
 } from '@mui/material';
+import { Alert } from 'bootstrap';
 
 //Internal dependencies
 import { useAuth } from '../contexts/AuthContext';
@@ -27,6 +28,8 @@ export default function VerticalStepper({
 }) {
   //Hooks
   const [activeStep, setActiveStep] = useState(0);
+  const [error, setError] = useState();
+
   let navigate = useNavigate();
   const { currentUser } = useAuth();
   console.log('this is current user', currentUser);
@@ -66,6 +69,7 @@ export default function VerticalStepper({
       const { _id } = postedWannaGo;
       navigate(`/wannago/${_id}`);
     } catch (e) {
+      setError('Sorry we could not create the wannaGo. Please try in a while.')
       console.log(
         `Error communicating with backend to postAWannago or to retrieve the just posted wannaGo. Error: ${e}`
       );
@@ -137,6 +141,7 @@ export default function VerticalStepper({
             elevation={0}
             sx={{ p: 3 }}
           >
+            {error && <Alert variant='danger'>{error}</Alert>}
             <button
               className='button'
               onClick={saveWannaGo}
@@ -150,4 +155,7 @@ export default function VerticalStepper({
     </div>
   );
 }
+
+
+
 

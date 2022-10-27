@@ -7,18 +7,21 @@ import {
 } from '../utils/helperFunctions';
 import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useNavigate, useParams } from 'react-router-dom';
-import {useQuery} from 'react-query'
+import { useQuery } from 'react-query';
+import { Alert } from 'bootstrap';
 
 const WannaGoStats = () => {
   const { id } = useParams();
   const [copied, setCopied] = useState('Copy');
+  const [error, setError] = useState();
   const navigate = useNavigate();
 
-  const { data, isLoading, isError} = useQuery('wannagos', () => getWannaGoById(id));
+  const { data, isLoading, isError } = useQuery('wannagos', () =>
+    getWannaGoById(id)
+  );
 
-  if (isLoading) return <p>Loading...</p>
-  if (isError) return <p>Error</p>
-
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error</p>;
 
   const onClickCopyLink = () => {
     navigator.clipboard.writeText(data.guestLink);
@@ -26,8 +29,12 @@ const WannaGoStats = () => {
   };
 
   const handleDelete = async () => {
-    await deleteWannaGo(id);
-    navigate('/user/dashboard');
+    try {
+      await deleteWannaGo(id);
+      navigate('/user/dashboard');
+    } catch (error) {
+      setError('Sorry, we could not delete your WannaGo. Please try again.');
+    }
   };
 
   return (
@@ -50,6 +57,7 @@ const WannaGoStats = () => {
               {copied}
             </button>
             <div className='buttonDelete'>
+              {error && <Alert variant='danger'>{error}</Alert>}
               <button
                 className='button'
                 onClick={handleDelete}
