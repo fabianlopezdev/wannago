@@ -1,0 +1,44 @@
+
+.justCreatedWannaGo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.testingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-auto-rows: 15rem;
+  gap: 2rem;
+  padding: 2%;
+  /* place-items: center; */
+  /* column-gap: 0px; */
+  justify-content:center;
+ margin-left: 10%;
+  margin-right: 10%;
+  
+  /*margin-bottom: 2%;  */
+}
+.insideGrid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid rgb(241, 138, 203); */
+  border-radius: 10px; 
+  /* width: 325px ; */
+  /* padding: 4%; */
+  /* font-size: x-large;
+  transition-duration: 0.2s;*/
+
+  box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
+}
+
+.welcome {
+  text-align: center;
+}
+.insideGrid:hover {
+  transform: scale(1.03);
+  transition: 0.2s;
+}

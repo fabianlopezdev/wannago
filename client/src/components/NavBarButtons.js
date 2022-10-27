@@ -2,24 +2,32 @@
 import { Link, useNavigate } from 'react-router-dom';
 
 //Internal dependencies
-import logoutSoft from '../assets/logout-soft.png';
-import signUpSoft from '../assets/sign-up-soft.png';
-import loginSoft from '../assets/login-soft.png';
 import homeSoft from '../assets/home-icon-soft.png';
 import logo from '../finalWannaGoLogo.png';
-
+// import { CiLogin, CiLogout } from 'react-icons/ci';
+import {
+  IoPersonAddOutline,
+  IoLogInOutline,
+  IoLogOutOutline,
+  IoHomeOutline,
+} from 'react-icons/io5';
 export const DashBoardButton = () => {
   return (
     <Link
       className='iconLinks'
       to={'/user/dashboard'}
     >
-      <img
+      <IoHomeOutline
+        size={50}
+        style={{ color: 'rgb(242, 205, 211)' }}
+        title='Go to Dashboard'
+      />
+      {/* <img
         title='Go to Dashboard'
         className='icons dashboard'
         src={homeSoft}
         alt='dashboard icon'
-      ></img>
+      ></img> */}
     </Link>
   );
 };
@@ -31,13 +39,19 @@ export const LogoutButton = ({ logOut }) => {
     navigate('/');
   };
   return (
-    <img
-      title='Log Out'
-      className='icons logout'
-      src={logoutSoft}
+    <IoLogOutOutline
+      size={50}
+      style={{ color: 'rgb(242, 205, 211)' }}
       onClick={handleClick}
-      alt='logout icon'
-    ></img>
+      title='Log Out'
+    />
+    // <img
+    //   title='Log Out'
+    //   className='icons logout'
+    //   src={logoutSoft}
+    //   onClick={handleClick}
+    //   alt='logout icon'
+    // ></img>
   );
 };
 
@@ -47,12 +61,17 @@ export const SignUpButton = () => {
       className='iconLinks'
       to={'/user/signup'}
     >
-      <img
+      <IoPersonAddOutline
+        size={50}
+        style={{ color: 'rgb(242, 205, 211)' }}
+        title='Sign Up'
+      />
+      {/* <img
         title='Sign Up'
         className='icons signup'
         src={signUpSoft}
         alt='signup icon'
-      />
+      /> */}
     </Link>
   );
 };
@@ -63,12 +82,17 @@ export const LogInButton = () => {
       className='iconLinks'
       to={'/user/login'}
     >
-      <img
+      <IoLogInOutline
+        size={50}
+        style={{ color: 'rgb(242, 205, 211)' }}
+        title='Log In'
+      />
+      {/* <img
         title='Log In'
         className='icons login'
         src={loginSoft}
         alt='login icon'
-      ></img>
+      ></img> */}
     </Link>
   );
 };
@@ -88,6 +112,23 @@ export const LandingButton = () => {
     </Link>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

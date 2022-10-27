@@ -1,6 +1,6 @@
 //External dependencies
 import { useState } from 'react';
-
+import {Alert} from 'bootstrap'
 //Internal dependencies
 import {
   putPplGoing,
@@ -9,7 +9,7 @@ import {
 
 const YesOption = ({ id, goingCounter, ownerName }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
-
+  const [error, setError] = useState()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -20,6 +20,7 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
       console.log(goingCounter);
       setSubmitClicked(!submitClicked);
     } catch (e) {
+      setError('Sorry, something went wrong. Please try again')
       console.log(
         `Error in YesOption.js, sending to backend to put in db the people that said yes to the wannaGo. ${e}`
       );
@@ -31,6 +32,7 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
   return (
     <div>
       <h2>That's wonderful</h2>
+      {error && <Alert variant='danger'>{error}</Alert>}
       {submitClicked ? (
         <h3 className='textGuestLink'>
           Amazing, we just notified {ownerName}. Now, sit and wait until the

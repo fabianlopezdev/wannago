@@ -1,23 +1,65 @@
-.wannaGoCardContainer {
+.wgCardContainer {
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
+  width: 337px;
+  height: fit-content;
+  transition-duration: 0.2s;
+}
+
+.wgWhen {
   display: flex;
   flex-direction: column;
-  border: 1.5px solid rgb(241,138,203);
-  border-radius: 5px;
-  margin-left: 33%;
-  margin-right: 33%;
-  padding: 0.5%;
-  /* box-shadow: 2px 2; */
-  transition-duration: 0.2s;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(242, 205, 211);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 25%;
+  color: white;
+  /* margin-top: 5px; */
+}
+.wannaGoCardInfoContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  /* border: 1.5px solid rgb(241,138,203); */
   /* width: fit-content; */
 }
 
-.wannaGoCardContainer:hover {
-   transform: scale(1.03);
-  transition:0.2s;
-  box-shadow: 1px 1px 5px 0px #424141;
+.wgCardContainer:hover {
+  transform: scale(1.03);
+  transition: 0.2s;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
 }
 
 .description {
-  margin-left: 20px;
+  color: #A9978C;
+
 }
+
+.wgDescription {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  height: fill;
+  border-top: 4px dotted rgb(242, 205, 211);
+  align-items: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.title {
+  text-align: center;
+}
+
+.charts:hover {
+  cursor: pointer;
+  color:rgb(241, 138, 203)
+}
+
 

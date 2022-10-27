@@ -8,16 +8,18 @@ import { initialWannaGo } from './data';
 import NavBar from './components/NavBar';
 import HomePage from './pages/HomePage';
 import WannaGoStats from './pages/WannaGoStatsPage';
-import Login from './pages/userPages/LoginPage';
-import UserDashboardPage from './pages/userPages/UserDashboardPage';
-import SignUp from './pages/userPages/SignUpPage';
+import {
+  UserDashboardPage,
+  SignUpPage,
+  DeleteUserPage,
+  UpdateProfilePage,
+  ForgotPasswordPage,
+  LoginPage,
+} from './pages/userPages';
 import GuestsLinkPage from './pages/GuestsLinkPage';
 import CreatedWannaGoPage from './pages/CreatedWannaGoPage';
-import DeleteUser from './pages/userPages/DeleteUserPage';
 import PrivateRoute from './components/user/authentication/PrivateRoute';
 import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
-import UpdateProfile from './pages/userPages/UpdateProfilePage';
-import ForgotPassword from './pages/userPages/ForgotPasswordPage';
 
 import './App.css';
 import VerticalStepperPage from './pages/VerticalStepperPage';
@@ -27,9 +29,10 @@ function App() {
   const [justCreatedWG, setJustCreatedWG] = useState(false);
   const [user, setUser] = useState({});
 
+
   return (
     <>
-        <NavBar></NavBar>
+      <NavBar></NavBar>
         <Routes>
           <Route
             exact
@@ -66,7 +69,7 @@ function App() {
                 <>
                   <Container className='signup-container'>
                     <div className='signup-div'>
-                      <SignUp />
+                      <SignUpPage />
                     </div>
                   </Container>
                 </>
@@ -79,7 +82,7 @@ function App() {
                 <>
                   <Container className='signup-container'>
                     <div className='signup-div'>
-                      <Login />
+                      <LoginPage />
                     </div>
                   </Container>
                 </>
@@ -92,7 +95,7 @@ function App() {
                 <>
                   <Container className='signup-container'>
                     <div className='signup-div'>
-                      <ForgotPassword />
+                      <ForgotPasswordPage />
                     </div>
                   </Container>
                 </>
@@ -121,12 +124,12 @@ function App() {
             <Route
               exact
               path='/user/update-profile'
-              element={<UpdateProfile />}
+              element={<UpdateProfilePage />}
             />
             <Route
               exact
               path='/user/delete-account'
-              element={<DeleteUser />}
+              element={<DeleteUserPage />}
             />
           </Route>
         </Routes>

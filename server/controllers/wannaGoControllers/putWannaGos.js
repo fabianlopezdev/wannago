@@ -29,9 +29,7 @@ const putGuestLink = async (ctx) => {
     const wannaGoLinked = await WannaGo.findByIdAndUpdate(id, {
       guestLink: link,
     });
-    console.log(
-      `Guest link: ${link} of wannaGo: ${wannaGoLinked}`
-    );
+    console.log(`Guest link: ${link} of wannaGo: ${wannaGoLinked}`);
     ctx.status = 201;
     ctx.body = wannaGoLinked;
   } catch (e) {
@@ -154,6 +152,7 @@ const putOwnerToWannaGo = async (ctx) => {
 
 module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo, putOpenedTimes, putRejectCounter, putGoingCounter, putSuggestionBoxCounter,
 putGuestLink };
+
 
 
 

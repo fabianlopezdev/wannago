@@ -1,11 +1,15 @@
 //External dependencies
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Alert } from 'bootstrap';
+
 //Internal dependencies
 import WannaGoCard from '../components/WannaGoCard';
-import YesOption from '../components/guestLinkPageOptions/YesOption';
-import NoOption from '../components/guestLinkPageOptions/NoOption';
-import MaybeOption from '../components/guestLinkPageOptions/MaybeOption';
+import {
+  YesOption,
+  NoOption,
+  MaybeOption,
+} from '../components/guestLinkPageOptions';
 import {
   YesButton,
   NoButton,
@@ -13,30 +17,32 @@ import {
 } from '../components/guestLinkPageOptions/OptionButtons';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
+import { useQuery } from 'react-query';
 
 import './GuestLinkPage.css';
 
 const GuestLink = () => {
   const { id } = useParams();
-
-  const [wannaGo, setWannaGo] = useState({});
+  console.log('this is the id', id);
+  const { data, isError, isLoading } = useQuery('guestLink', () =>
+    getWannaGoById(id)
+  );
+  // const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
 
-  useEffect(() => {
-    promiseHandler();
-  }, []);
+  if (isLoading) return <p>Loading...</p>;
+  if (isError)
+    return (
+      <Alert variant='danger'>
+        Sorry we could not load the page. The link may be broken
+      </Alert>
+    );
 
-  const promiseHandler = async () => {
-    try {
-      const queriedWannaGo = await getWannaGoById(id);
-      await putOpenedTimes(id, ++queriedWannaGo.openedTimes);
-      setWannaGo(queriedWannaGo);
-    } catch (e) {
-      console.log(
-        `Error in the promiseHandler func of GuestLinks.js. Error: ${e}`
-      );
-    }
-  };
+  try {
+    putOpenedTimes(id, ++data.openedTimes);
+  } catch (error) {
+    console.error(`Error in putOpenedTimes function. Error: ${error}`);
+  }
 
   const handleOption = (opt) => {
     switch (opt) {
@@ -44,24 +50,24 @@ const GuestLink = () => {
         return (
           <NoOption
             id={id}
-            rejectCounter={wannaGo.rejectCounter}
-            ownerName={wannaGo.ownerName}
+            rejectCounter={data.rejectCounter}
+            ownerName={data.ownerName}
           />
         );
       case 'yes':
         return (
           <YesOption
             id={id}
-            goingCounter={wannaGo.goingCounter}
-            ownerName={wannaGo.ownerName}
+            goingCounter={data.goingCounter}
+            ownerName={data.ownerName}
           />
         );
       case 'maybe':
         return (
           <MaybeOption
             id={id}
-            suggestionBoxCounter={wannaGo.suggestionBoxCounter}
-            ownerName={wannaGo.ownerName}
+            suggestionBoxCounter={data.suggestionBoxCounter}
+            ownerName={data.ownerName}
           />
         );
       default:
@@ -88,9 +94,9 @@ const GuestLink = () => {
   return (
     <>
       <h2 className='justCreatedWannaGo'>
-        {wannaGo.ownerName} wants to know if you wannaGo
+        {data.ownerName} wants to know if you wannaGo
       </h2>
-      <WannaGoCard wannaGo={wannaGo} />
+      <WannaGoCard wannaGo={data} />
       {!option ? (
         <div className='buttons'>
           <NoButton handleClick={handleClick} />

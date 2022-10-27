@@ -1,14 +1,17 @@
 //External dependencies
 const dayjs = require('dayjs');
+var advancedFormat = require('dayjs/plugin/advancedFormat');
+
+dayjs.extend(advancedFormat);
 
 export const dateFormatter = (date) => {
   const toFormat = dayjs(date);
   const dateTime = {
-    day: toFormat.format('DD'),
-    month: toFormat.format('MMMM'),
+    day: toFormat.format('Do'),
+    month: toFormat.format('MMM'),
     year: toFormat.format('YYYY'),
-    time: toFormat.format('hh:mmA'),
-    wannaGoFormat: toFormat.format('MMMM DD, YYYY'),
+    time: toFormat.format('hh:mm a'),
+    wannaGoFormat: toFormat.format('MMMM Do, YYYY'),
   };
   return dateTime;
 };
@@ -29,11 +32,9 @@ export const getSuccessRatioOfWannaGo = (wannaGo) => {
 };
 
 export const aggregateSuccessRatio = (wannaGosOfUser) => {
-  return (
-    `${Math.floor(wannaGosOfUser.reduce((acc, wannaGo) => {
+  return wannaGosOfUser.reduce((acc, wannaGo) => {
       return acc + getSuccessRatioOfWannaGo(wannaGo);
-    }, 0) / 100)}%`
-  );
+    }, 0)
 };
 
 export const aggregateEngagement = (wannaGosOfUser) => {
@@ -95,4 +96,6 @@ export const getActiveWGsAndSort = (wannaGosOfUser) => {
       return new Date(a.when) - new Date(b.when);
     });
 };
+
+
 
