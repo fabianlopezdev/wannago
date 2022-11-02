@@ -2,8 +2,6 @@ import Chart from 'react-apexcharts';
 
 
 const TotalWannaGos = ({active, older}) => {
-  console.log('activeeee', active)
-  console.log('paast', older);
   const options = {
     labels: ['Active', 'Past'],
     colors: ['#f25477', '#4a90e2'],

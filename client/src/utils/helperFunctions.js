@@ -1,7 +1,7 @@
 //External dependencies
+import { CLIENT_PORT, URL } from './config';
 const dayjs = require('dayjs');
 var advancedFormat = require('dayjs/plugin/advancedFormat');
-
 dayjs.extend(advancedFormat);
 
 export const dateFormatter = (date) => {
@@ -96,6 +96,8 @@ export const getActiveWGsAndSort = (wannaGosOfUser) => {
       return new Date(a.when) - new Date(b.when);
     });
 };
+
+export const guestLinkGenerator = (id) => `${URL}${CLIENT_PORT}/wannago/guest-link/${id}`;
 
 
 

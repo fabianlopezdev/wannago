@@ -3,8 +3,6 @@ import Chart from 'react-apexcharts';
 
 
 const RadialChart = ({ engagement, successRatio }) => {
-  console.log('engageeement', engagement);
-  console.log('successratioooo', successRatio);
   const options = {
     labels: ['Engagement', 'Success'],
     colors: ['#f25477', '#4a90e2'],

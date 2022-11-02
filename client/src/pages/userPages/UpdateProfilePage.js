@@ -52,9 +52,9 @@ export default function UpdateProfile() {
   };
 
   return (
-    <>
+    <main style={{display: 'flex', flexDirection: 'column', justifyContent:'center', alignItems: 'center', marginTop: '1rem'}}>
       <Card>
-        <Card.Body>
+        <Card.Body style={{width: '20rem'}}>
           <h2 className='card-body-h2'>Update Profile</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
           <Form onSubmit={handleSubmit}>
@@ -106,7 +106,7 @@ export default function UpdateProfile() {
         <Link to='/user/dashboard'>Cancel</Link> &nbsp;
         <Link to='/user/delete-account'>Delete Account</Link>
       </div>
-    </>
+    </main>
   );
 }
 

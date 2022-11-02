@@ -1,12 +1,12 @@
 //External dependencies
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
 //Internal dependencies
 import { initialWannaGo } from './data';
-import NavBar from './components/NavBar';
-import HomePage from './pages/HomePage';
+import NavBar from './components/navbar/NavBar';
+import LandingPage from './pages/LandingPage';
 import WannaGoStats from './pages/WannaGoStatsPage';
 import {
   UserDashboardPage,
@@ -22,55 +22,68 @@ import PrivateRoute from './components/user/authentication/PrivateRoute';
 import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
 
 import './App.css';
-import VerticalStepperPage from './pages/VerticalStepperPage';
+import StepperFormPage from './pages/StepperFormPage';
+import NavBarBottom from './components/navbar/NavBarBottom';
 
 function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
   const [justCreatedWG, setJustCreatedWG] = useState(false);
   const [user, setUser] = useState({});
+  const [bottomNavBar, setBottomNavBar] = useState(window.innerWidth < 767);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 767) setBottomNavBar(true);
+      else setBottomNavBar(false);
+    };
 
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   return (
     <>
-      <NavBar></NavBar>
+      <main>
+        <header className='topNavBar'>{!bottomNavBar && <NavBar />}</header>
+        <div className={!bottomNavBar ? 'mainContainer' : null}>
         <Routes>
           <Route
             exact
             path='/'
-            element={<HomePage />}
+            element={<LandingPage />}
           />
           <Route
             exact
-            path='/wannaGo/VerticalStepperPage'
+            path='/wannaGo/StepperFormPage'
             element={
-              <VerticalStepperPage
+              <StepperFormPage
                 wannaGo={wannaGo}
                 setwannaGo={setwannaGo}
                 justCreatedWG={justCreatedWG}
                 setJustCreatedWG={setJustCreatedWG}
               />
             }
-          />
+            />
           <Route
             exact
             path='/wannago/:id'
             element={<CreatedWannaGoPage />}
-          />
+            />
           <Route
             exact
             path='/wannago/guest-link/:id'
             element={<GuestsLinkPage />}
-          />
+            />
           <Route element={<UserPrivateRoute />}>
             <Route
               exact
               path='/user/signup'
               element={
                 <>
-                  <Container className='signup-container'>
-                    <div className='signup-div'>
+                  <Container>
+                  
                       <SignUpPage />
-                    </div>
+              
                   </Container>
                 </>
               }
@@ -80,10 +93,9 @@ function App() {
               path='/user/login'
               element={
                 <>
-                  <Container className='signup-container'>
-                    <div className='signup-div'>
+                  <Container>
                       <LoginPage />
-                    </div>
+                  
                   </Container>
                 </>
               }
@@ -93,10 +105,10 @@ function App() {
               path='/user/forgot-password'
               element={
                 <>
-                  <Container className='signup-container'>
-                    <div className='signup-div'>
+                  <Container>
+            
                       <ForgotPasswordPage />
-                    </div>
+                   
                   </Container>
                 </>
               }
@@ -133,9 +145,17 @@ function App() {
             />
           </Route>
         </Routes>
+        </div>
+        {bottomNavBar && (
+          <footer className='bottomNavbar'>
+            <NavBarBottom />
+          </footer>
+        )}
+      </main>
     </>
   );
 }
 
 export default App;
+
 

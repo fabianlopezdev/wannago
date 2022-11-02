@@ -8,7 +8,7 @@ import {
   putSuggestionBoxCounter,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
-import './MaybeOption.css';
+import './Options.css';
 
 const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
   const [msgSent, setMsgSent] = useState(false);
@@ -16,13 +16,14 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const name = e.target.name.value
     const msg = e.target.suggestion.value;
     console.log('this is msg', msg);
     if (!msg.replace(/\s/g, '').length) {
       return;
     }
     try {
-      await putSuggestionMsg(msg, id);
+      await putSuggestionMsg(name,msg, id);
       await putSuggestionBoxCounter(id, ++suggestionBoxCounter);
       console.log(suggestionBoxCounter);
       setMsgSent(!msgSent);
@@ -32,41 +33,68 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
         `Error in MaybeOption.js, trying to send the suggestion to backend to put in db. ${e}`
       );
     }
+    e.target.name.value = '';
     e.target.suggestion.value = '';
   };
 
   return (
     <>
-      <h3>
-        Let {ownerName} know if you have any suggestion. Remember to say who you
-        are.
-      </h3>
-      {error && <Alert variant='danger'>{error}</Alert>}
-      {msgSent ? (
-        <h3 className='textGuestLink'>We'll let {ownerName} know</h3>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div className='maybeTextArea'>
-            <textarea
-              name='suggestion'
-              placeholder='write your suggestion here'
-              autoFocus
-              required
-            ></textarea>
-            <button
-              className='button maybe'
-              type='submit'
-            >
-              Send
-            </button>
-          </div>
-        </form>
-      )}
+      <div className='flexColumnCenterAll'>
+        {!msgSent && <h4 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
+          Let {ownerName} know if you have any suggestion.
+        </h4>}
+        {error && <Alert variant='danger'>{error}</Alert>}
+        {msgSent ? (
+          <h3>Great! We've just notified {ownerName}.</h3>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <div className='flexColumnCenterAll'>
+              <label
+                style={{ alignSelf: 'start' }}
+                htmlFor='name'
+              >
+                Name
+              </label>
+
+              <input
+                name='name'
+                autoFocus
+                required
+              ></input>
+              <label
+                htmlFor='suggestion'
+                style={{ alignSelf: 'start' }}
+              >
+                Message
+              </label>
+              <textarea
+                style={{resize: 'none', width: '189px'}}
+                name='suggestion'
+                placeholder='Write your suggestion here'
+                required
+              ></textarea>
+              <button
+                className='button maybe'
+                type='submit'
+              >
+                Send
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
     </>
   );
 };
 
 export default MaybeOption;
+
+
+
+
+
+
+
 
 
 

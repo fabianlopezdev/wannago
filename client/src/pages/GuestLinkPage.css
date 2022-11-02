@@ -1,16 +1,55 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  gap: 1rem;
+}
+
+.optionButton {
+  background-color: rgb(242, 205, 211);
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  padding: 0.5rem 0.5rem;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 2px 2px rgb(241, 138, 203);
+}
+
+.optionButton:hover {
+  cursor: pointer;
+  background-color: rgb(241, 138, 203);
+  box-shadow: 2px 2px rgb(242, 205, 211);
+}
+
+.optionButton.important:hover {
+  cursor: pointer;
+  background-color: rgb(242, 205, 211);
+  box-shadow: 2px 2px rgb(241, 138, 203);;
+}
+
+.optionButton:active {
+  background-color: rgb(241, 138, 203);
+  box-shadow: 2px 2px rgb(242, 205, 211);
+  box-shadow: none;
+  transform: translateY(2px);
+  transform: translateX(2px);
+}
 .buttons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1;
+  gap: 1rem;
 }
 
-.buttons button {
+/* .buttons button {
   margin-left: 10px;
   margin-right: 10px;
-}
+} */
 
-.button.important {
+.optionButton.important {
   background-color: rgb(241,138,203);
   box-shadow: 2px 2px rgb(242,205,211);
 }

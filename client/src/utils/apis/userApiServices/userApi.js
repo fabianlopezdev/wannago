@@ -25,8 +25,12 @@ export const getUserById = async (id) => {
   }
 };
 
-export const putOwnerToWannaGo = async (wannaGoId, userId) => {
+export const putOwnerToWannaGo = async (body) => {
+  const wannaGoId = body[0]
+  const userId = body[1];
   try {
+    console.log('in api func. this is wannagoId', wannaGoId);
+    console.log('in api func. this is userId', userId);
     return await fetch(`${URL}${KOA_PORT}/wannago/owner`, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -38,6 +42,8 @@ export const putOwnerToWannaGo = async (wannaGoId, userId) => {
     );
   }
 };
+
+
 
 
 

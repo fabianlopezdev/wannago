@@ -31,8 +31,8 @@ export default function Login() {
   };
 
   return (
-    <>
-      <Card>
+    <main className='formContainer'>
+      <Card style={{width: '20rem'}}>
         <Card.Body>
           <h2 className='card-body-h2'>Log in</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
@@ -69,7 +69,10 @@ export default function Login() {
       <div className='line-after-auth-card'>
         Need an account? <Link to='/user/signup'>Sign Up</Link>
       </div>
-    </>
+    </main>
   );
 }
+
+
+
 

@@ -24,9 +24,12 @@ import './GuestLinkPage.css';
 const GuestLink = () => {
   const { id } = useParams();
   console.log('this is the id', id);
-  const { data, isError, isLoading } = useQuery('guestLink', () =>
-    getWannaGoById(id)
+  const { data, isError, isLoading } = useQuery('guestLink', () => getWannaGoById(id), {
+    onSuccess: (data) => putOpenedTimes(id, ++data.openedTimes),
+    staleTime: Infinity,
+  }
   );
+  console.log('this is data', data)
   // const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
 
@@ -37,12 +40,6 @@ const GuestLink = () => {
         Sorry we could not load the page. The link may be broken
       </Alert>
     );
-
-  try {
-    putOpenedTimes(id, ++data.openedTimes);
-  } catch (error) {
-    console.error(`Error in putOpenedTimes function. Error: ${error}`);
-  }
 
   const handleOption = (opt) => {
     switch (opt) {
@@ -93,24 +90,30 @@ const GuestLink = () => {
 
   return (
     <>
-      <h2 className='justCreatedWannaGo'>
-        {data.ownerName} wants to know if you wannaGo
-      </h2>
-      <WannaGoCard wannaGo={data} />
-      {!option ? (
-        <div className='buttons'>
-          <NoButton handleClick={handleClick} />
-          <YesButton handleClick={handleClick} />
-          <MaybeButton handleClick={handleClick} />
-        </div>
-      ) : (
-        <div className='justCreatedWannaGo'>
-          {option && handleOption(option)}
-        </div>
-      )}
+      <div className='pageContainer'>
+        {!option && (
+          <>
+            <h2 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
+              {data.ownerName} wants to know if you wannaGo
+            </h2>
+          </>
+        )}
+        <WannaGoCard wannaGo={data} />
+
+        {!option ? (
+          <div className='buttons'>
+            <NoButton handleClick={handleClick} />
+            <YesButton handleClick={handleClick} />
+            <MaybeButton handleClick={handleClick} />
+          </div>
+        ) : (
+          <div className=''>{option && handleOption(option)}</div>
+        )}
+      </div>
     </>
   );
 };
 
 export default GuestLink;
+
 

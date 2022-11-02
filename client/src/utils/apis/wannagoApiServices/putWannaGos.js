@@ -13,12 +13,12 @@ export const putPplGoing = async (name, email, id) => {
   }
 };
 
-export const putSuggestionMsg = async (msg, id) => {
+export const putSuggestionMsg = async (name,msg, id) => {
   try {
     return await fetch(`${URL}${KOA_PORT}/wannago/suggestionMsg`, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ msg, id }),
+      body: JSON.stringify({ name, msg, id }),
     });
   } catch (e) {
     console.log(
