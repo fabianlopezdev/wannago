@@ -98,7 +98,8 @@ export const getActiveWGsAndSort = (wannaGosOfUser) => {
 };
 
 export const guestLinkGenerator = (id) =>
-  `https://wannago-ito3.vercel.app/wannago/guest-link/${id}`;
+  `https://www.wannago.in/wannago/guest-link/${id}`;
+
 
 
 

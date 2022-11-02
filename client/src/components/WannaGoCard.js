@@ -14,6 +14,7 @@ import SocialButtons from './SocialButtons';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import {Link } from 'react-router-dom'
 const WannaGoCard = ({ wannaGo, userName }) => {
   const [showShare, setShowShare] = useState(false);
   const {currentUser} = useAuth();
@@ -90,15 +91,15 @@ const WannaGoCard = ({ wannaGo, userName }) => {
                 </div>
                 {currentUser && (
                   <div className='charts'>
-                    <a
-                      href={`https://wannago-ito3.vercel.app/user/wannaGo/stats/${wannaGo._id}`}
+                    <Link
+                      to={`/user/wannaGo/stats/${wannaGo._id}`}
                       style={{ color: 'inherit', textDecoration: 'inherit' }}
                     >
                       <IoArrowRedoOutline
                         size={25}
                         title='Wannago Details'
                       />
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>

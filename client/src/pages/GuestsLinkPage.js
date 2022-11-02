@@ -18,7 +18,7 @@ import {
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
-
+import {Logo} from '../components/navbar/NavBarButtons'
 import './GuestLinkPage.css';
 
 const GuestLink = () => {
@@ -90,6 +90,11 @@ const GuestLink = () => {
 
   return (
     <>
+      {window.innerWidth < 767 && (
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Logo />
+        </div>
+      )}
       <div className='pageContainer'>
         {!option && (
           <>
@@ -115,5 +120,6 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
+
 
 
