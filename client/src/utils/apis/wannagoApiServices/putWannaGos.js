@@ -13,7 +13,7 @@ export const putPplGoing = async (name, email, id) => {
   }
 };
 
-export const putSuggestionMsg = async (msg, id) => {
+export const putSuggestionMsg = async (name,msg, id) => {
   try {
     return await fetch(
       `https://wannago-ito3.vercel.app/wannago/suggestionMsg`,

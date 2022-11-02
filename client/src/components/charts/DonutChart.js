@@ -1,9 +1,6 @@
 import Chart from 'react-apexcharts';
 
 const DonutChart = ({going, maybe, notGoing}) => {
-  console.log('this is going', going);
-  console.log('this is  maybe', maybe);
-  console.log('this is notgoing', notGoing);
   const options = {labels: ['Going', 'Maybe', 'Not going'],
     colors: ['#f25477', '#ffa7a6', '#4a90e2'],
     dataLabels: {

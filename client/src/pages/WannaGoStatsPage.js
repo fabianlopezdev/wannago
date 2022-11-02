@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react';
 import WannaGoCard from '../components/WannaGoCard';
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
-import {
-  getEngagementOfWannaGo,
-  getSuccessRatioOfWannaGo,
-} from '../utils/helperFunctions';
-import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
+
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Alert } from 'bootstrap';
+import './WannaGoStatsPage.css';
 
 const WannaGoStats = () => {
   const { id } = useParams();
-  const [copied, setCopied] = useState('Copy');
   const [error, setError] = useState();
   const navigate = useNavigate();
 
@@ -23,81 +19,64 @@ const WannaGoStats = () => {
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error</p>;
 
-  const onClickCopyLink = () => {
-    navigator.clipboard.writeText(data.guestLink);
-    setCopied('Copied');
-  };
-
-  const handleDelete = async () => {
-    try {
-      await deleteWannaGo(id);
-      navigate('/user/dashboard');
-    } catch (error) {
-      setError('Sorry, we could not delete your WannaGo. Please try again.');
-    }
-  };
-
   return (
     <>
-      <WannaGoCard wannaGo={data} />
-      <div>
-        <h4 className='justCreatedWannaGoSedondPart'>Guest Link:</h4>
-        {
-          <div className='justCreatedWannaGo'>
-            <a
-              href={data.guestLink}
-              target='blank'
-            >
-              {data.guestLink}
-            </a>
-            <button
-              className='buttonCopy'
-              onClick={onClickCopyLink}
-            >
-              {copied}
-            </button>
-            <div className='buttonDelete'>
-              {error && <Alert variant='danger'>{error}</Alert>}
-              <button
-                className='button'
-                onClick={handleDelete}
-              >
-                Delete It!
-              </button>
-              <br />
+      <div className='mainStatsContainer'>
+        <div className='statsTop'></div>
+      </div>
+      <div className='wgStatsContainer'>
+        <div className='wgPart'>
+          <div className='seenBy'>
+            Seen by <strong>{data.openedTimes}</strong> people
+          </div>
+          <div className='seen'>
+
+          <WannaGoCard wannaGo={data} />
+          </div>
+        </div>
+        <div className='statsPartContainer'>
+          <div className='statsPart'>
+            <div className='numsBox'>
+              {data.ppl_going ? <h1 className='num'>{Object.keys(data.ppl_going).length}</h1> : <h1 className='num'>0</h1>}
+              <div>people wannaGo</div>
+            </div>
+            <div className='numsBox'>
+              <h1 className='num'>{data.suggestionBoxCounter}</h1>
+              <div>people may go</div>
+            </div>
+            <div className='numsBox'>
+              <h1 className='num'>{data.rejectCounter}</h1>
+              <div>people can't go</div>
             </div>
           </div>
-        }
-      </div>
-      <br />
-      <h4 className='justCreatedWannaGo'>See how well the WannaGo is doing</h4>
-      <br />
-      <div className='testingGrid'>
-        <div className='insideGrid'>
-          <h4>Number of times the link was opened</h4>
-          {data.openedTimes}
-        </div>
-        <div className='insideGrid'>
-          <h4>People Going</h4>
-          {data.goingCounter}
-        </div>
-        <div className='insideGrid'>
-          <h4>People that can't go</h4>
-          {data.rejectCounter}
-        </div>
-        <div className='insideGrid'>
-          <h4>Number of suggestions made</h4>
-          {data.suggestionBoxCounter}
-        </div>
-        <div className='insideGrid'>
-          <h4>Engagement</h4>
-          {getEngagementOfWannaGo(data)}
-        </div>
-        <div className='insideGrid'>
-          <h4>Success Ratio</h4>
-          {getSuccessRatioOfWannaGo(data)}
+          <div className='goingAndSuggestions'>
+            {data.ppl_going && <div className='goingContainer'>
+              <h1 className='goingandsuggestiontitle'>People Going</h1>
+              {Object.keys(data.ppl_going).map((key) => {
+                return (
+                  <div className='going'>{`${key} ${data.ppl_going[key]}`}</div>
+                );
+              })}
+            </div>}
+            {data.suggestion_box && <div className='suggestionContainer'>
+              <h1 className='goingandsuggestiontitle'>Suggestions</h1>
+              {Object.keys(data.suggestion_box).map((key) => {
+                return (
+                  <>
+                    <div className='msg'>
+                      <h5>{`${key} said`}</h5>
+                      <div>{data.suggestion_box[key]}</div>
+                    </div>
+                  </>
+                );
+              })}
+            </div>}
+          </div>
         </div>
       </div>
+
+      <div className='statsBottom'></div>
+      <div />
     </>
   );
 };

@@ -1,5 +1,5 @@
 //Internal dependencies
-import { dateFormatter } from '../utils/helperFunctions';
+import { dateFormatter, guestLinkGenerator } from '../utils/helperFunctions';
 import './WannaGoCard.css';
 import {
   IoTrashOutline,
@@ -8,10 +8,44 @@ import {
 } from 'react-icons/io5';
 import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
 import { CLIENT_PORT, URL } from '../utils/config';
+import { useMutation, useQueryClient } from 'react-query';
+import { useState } from 'react';
+import SocialButtons from './SocialButtons';
+import useOnclickOutside from 'react-cool-onclickoutside';
+import { useLocation } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+const WannaGoCard = ({ wannaGo, userName }) => {
+  const [showShare, setShowShare] = useState(false);
+  const {currentUser} = useAuth();
 
-const WannaGoCard = ({ wannaGo, refetch }) => {
+  const location = useLocation()
+  const guest = location.pathname.split('/')[2]
+  const [showDelete, setShowDelete] = useState(false);
   const dateTime = dateFormatter(wannaGo.when);
-  console.log('this is wannagooo', wannaGo);
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(deleteWannaGo, {
+    onSuccess: () => {
+      // queryClient.getQueryData(['wannagos'], (prevWannagos) => {
+      //   console.log('previousWannagos',prevWannagos)
+      //   // prevWannagos.splice(prevWannagos.indexOf(wgToDelete), 1);
+      // });
+      queryClient.invalidateQueries('wannagos');
+    },
+  });
+
+  const onClickDealDelete = () => {
+    setShowDelete(true);
+  };
+  const guestLink = guestLinkGenerator(wannaGo._id);
+
+  const socialShareRef = useOnclickOutside(() => {
+    setShowShare(false);
+  });
+
+  const deleteRef = useOnclickOutside(() => {
+    setShowDelete(false);
+  });
+
   return (
     <div className='wgCardContainer'>
       <div className='wgWhen'>
@@ -29,39 +63,65 @@ const WannaGoCard = ({ wannaGo, refetch }) => {
           </div>
           <div className='description'>
             {`${dateTime.time} - ${dateTime.wannaGoFormat}`}
+            <div>{wannaGo.where}</div>
           </div>
-          <div className='description'>{wannaGo.where}</div>
         </div>
-        <div className='options'>
-          <div className='charts'>
-            <IoShareOutline size={25} />
-          </div>
-          <div
-            className='charts'
-            onClick={() => {
-              deleteWannaGo(wannaGo._id);
-              refetch();
-            }}
-          >
-            <IoTrashOutline size={25} />
-          </div>
-          <div className='charts'>
-            <a
-              href={`${URL}${CLIENT_PORT}/user/wannago/stats/${wannaGo._id}`}
-              style={{ color: 'inherit', textDecoration: 'inherit' }}
+        <>
+         {guest !== 'guest-link' && <div className='optionsContainer'>
+            <div className='options'>
+              {currentUser && <div className='charts'>
+                <IoShareOutline
+                  size={25}
+                  title='Share WannaGo'
+                  onClick={() => setShowShare(true)}
+                />
+              </div>}
+              <div
+                className='charts'
+                onClick={onClickDealDelete}
+              >
+                <IoTrashOutline size={25} title='Delete WannaGo'/>
+              </div>
+              {currentUser && <div className='charts'>
+                <a
+                  href={`${URL}${CLIENT_PORT}/user/wannaGo/stats/${wannaGo._id}`}
+                  style={{ color: 'inherit', textDecoration: 'inherit' }}
+                >
+                  <IoArrowRedoOutline size={25} title='Wannago Details' />
+                </a>
+              </div>}
+            </div>
+          </div>}
+          {showShare && (
+            <div
+              ref={socialShareRef}
+              className='shareModal'
             >
-              <IoArrowRedoOutline size={25} />
-            </a>
-          </div>
-        </div>
+              <SocialButtons wannaGoId={wannaGo._id} userName={userName}/>
+            </div>
+          )}
+          {showDelete && (
+            <div
+              ref={deleteRef}
+              className='shareModal'
+            >
+              <div className='deleteContainer'>
+                <h5>Delete wannaGo?</h5>
+                <button
+                  className='copyButton'
+                  onClick={() => mutate(wannaGo._id)}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          )}
+        </>
       </div>
     </div>
   );
 };
 
 export default WannaGoCard;
-
-
-
 
 

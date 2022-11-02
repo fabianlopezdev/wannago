@@ -1,0 +1,176 @@
+.mainStatsContainer {
+  position: relative;
+}
+.wgStatsContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 60vh;
+}
+.wgPart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  border-right: 1px solid rgb(241, 138, 203);
+  gap: 20px;
+}
+
+.statsPart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.statsTop {
+  height: 5rem;
+}
+.statsBottom {
+  position: absolute;
+  width: 100%;
+  height: 5rem;
+  bottom: 0;
+}
+.numsBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(241, 138, 203);
+  border-radius: 10px;
+  padding: 20px;
+  font-size: larger;
+  width: 15rem;
+}
+
+.num {
+  font-size: 5rem;
+  color: rgb(241, 138, 203);
+}
+
+.seenBy {
+  font-size: 2rem;
+}
+
+.statsPartContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 1rem;
+}
+
+.going {
+  font-size: 1.2rem;
+  border-radius: 8px;
+  width: fit-content;
+  padding: 0px 10px;
+  background-color: rgb(242, 205, 211);
+  margin-top: 1%;
+  width: 20rem;
+}
+
+.goingAndSuggestions {
+  display: flex;
+  margin-top: 2rem;
+  width: 100%;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.goingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  scroll-behavior: smooth;
+}
+
+.suggestionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 5%;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+.goingandsuggestiontitle {
+  text-decoration: underline;
+}
+
+.msg {
+  border: 1px solid rgb(241, 138, 203);
+  border-radius: 10px;
+  font-size: larger;
+  padding: 0px 10px;
+  width: 20rem;
+}
+
+@media (max-width: 1236px) {
+  .wgStatsContainer {
+    /* background-color: red; */
+    /* position: absolute; */
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: 0rem; */
+    height: fill;
+    gap:1rem;
+  }
+
+
+  .wgPart {
+    width: fill;
+    border-right:none;
+  }
+  .seen {
+    display: none;
+  }
+  .statsTop {
+    display: none;
+  }
+
+  .statsBottom {
+    display: none;
+  }
+}
+
+@media (max-width: 766px) {
+  .wgStatsContainer {
+    /* margin-top: 3rem; */
+  }
+}
+
+@media (max-width: 766px) {
+   .wgStatsContainer {
+    /* margin-top: 20rem; */
+    position: relative;
+    gap: 0;
+    margin-bottom: 6rem;
+  }
+  
+  .statsPart {
+    /* position: absolute; */
+    flex-direction: column;
+    gap: 10px;
+    /* margin-top: 10rem; */
+  }
+  .statsPartContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 910px) {
+  .goingAndSuggestions {
+    /* margin-top: 10rem; */
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+

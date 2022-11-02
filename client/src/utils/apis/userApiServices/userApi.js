@@ -25,7 +25,9 @@ export const getUserById = async (id) => {
   }
 };
 
-export const putOwnerToWannaGo = async (wannaGoId, userId) => {
+export const putOwnerToWannaGo = async (body) => {
+  const wannaGoId = body[0]
+  const userId = body[1];
   try {
     return await fetch(`https://wannago-ito3.vercel.app/wannago/owner`, {
       method: 'PUT',
@@ -38,13 +40,6 @@ export const putOwnerToWannaGo = async (wannaGoId, userId) => {
     );
   }
 };
-
-
-
-
-
-
-
 
 
 

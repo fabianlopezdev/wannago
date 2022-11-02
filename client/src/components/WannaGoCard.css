@@ -3,8 +3,9 @@
   border-radius: 10px;
   box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
   width: 337px;
-  height: fit-content;
+  height: 265px;
   transition-duration: 0.2s;
+  position: relative;
 }
 
 .wgWhen {
@@ -23,6 +24,8 @@
   display: flex;
   flex-direction: column;
   padding: 2%;
+  justify-content: space-around;
+  height: 80%;
   /* border: 1.5px solid rgb(241,138,203); */
   /* width: fit-content; */
 }
@@ -42,19 +45,28 @@
   display: flex;
   flex-direction: column;
   width: 75%;
+  padding-left: 2%;
 }
 
+
+.optionsContainer {
+  position: absolute;
+width: 250px;
+bottom: 0;
+}
 .options {
   display: flex;
   justify-content: space-around;
-  height: fill;
+  height: 10%;
   border-top: 4px dotted rgb(242, 205, 211);
   align-items: center;
   padding-top: 5%;
   padding-bottom: 5%;
+  margin-right: 2%;
 }
 .title {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .charts:hover {
@@ -62,4 +74,19 @@
   color:rgb(241, 138, 203)
 }
 
+.shareModal {
+  background-color: white;
+  position: absolute;
+  width: 240px;
+  height: 90px;
+  bottom: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
+}
 
+.deleteContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

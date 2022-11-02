@@ -1,0 +1,127 @@
+.Logo {
+  width: 15rem;
+  /* margin-left: 6.5rem; */
+}
+
+.signUpButton {
+  padding: 0.5rem 2rem;
+  background-color: white;
+  border-radius: 500px;
+  border: 2px solid rgb(241, 138, 203);
+  color: rgb(241, 138, 203);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.signUpButton:hover {
+  color: rgb(242, 205, 211);
+  border: 2px solid rgb(242, 205, 211);
+}
+
+.signUpButton:active {
+  transform: translateY(2px);
+  transform: translateX(2px);
+}
+
+.logInButton {
+  padding: 0.5rem 2rem;
+  background-color: rgb(242, 205, 211);
+  border-radius: 500px;
+  border: 2px solid rgb(242, 205, 211);
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logOutButton {
+  padding-left: 1rem;
+  background-color: rgb(242, 205, 211);
+  border-radius: 500px;
+  border: 2px solid rgb(242, 205, 211);
+  color: white;
+}
+
+.logOutButton:hover {
+  background-color: rgb(241, 138, 203);
+  border: 2px solid rgb(241, 138, 203);
+}
+
+.logOutButton:active {
+  transform: translateY(2px);
+  transform: translateX(2px);
+}
+.logInButton:active {
+  transform: translateY(2px);
+  transform: translateX(2px);
+}
+
+.logInButton:hover {
+  background-color: rgb(241, 138, 203);
+  border: 2px solid rgb(241, 138, 203);
+}
+
+.navContainer {
+  display: flex;
+  /* margin-left: 10rem;
+  margin-right: 10rem; */
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  border-bottom: 1px solid rgb(241, 138, 203);
+  box-shadow: 0 1px 0px 0px rgb(242, 205, 211);
+  height: 6rem;
+  position: sticky;
+  /* width: fill; */
+}
+
+
+.userSigningButtons {
+  display: flex;
+  gap: 10px;
+  /* margin-left:auto;
+  margin-right:7rem; */
+}
+
+.landingPageButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 6rem;
+}
+
+.createButton {
+  background-color: rgb(242, 205, 211);
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 2px 2px rgb(241, 138, 203);
+  /* margin-right:10rem; */
+}
+
+.createButton:hover {
+  background-color: rgb(241, 138, 203);
+  box-shadow: 2px 2px rgb(242, 205, 211);
+}
+
+.createButton:active {
+  background-color: rgb(241, 138, 203);
+  box-shadow: 2px 2px rgb(242, 205, 211);
+  box-shadow: none;
+  transform: translateY(2px);
+  transform: translateX(2px);
+}
+
+/*NavBar Bottom*/
+
+.navContainerBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1px solid rgb(241, 138, 203);
+  height: 3.5rem;
+  padding-top: 1rem
+}

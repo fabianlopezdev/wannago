@@ -1,13 +1,16 @@
-.card-body-h2 {
-  text-align: center;
-  margin-bottom: 64px;
-}
+
 
 .signup-button {
   width: 100%;
   background-color: rgb(242,205,211);
 }
-
+.formContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+}
 
 .line-after-auth-card {
   text-align: center;

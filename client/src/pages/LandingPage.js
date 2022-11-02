@@ -3,13 +3,13 @@
 //Internal dependencies
 import { useNavigate } from 'react-router-dom';
 
-import logo from '../finalWannaGoLogo.png';
+import logo from '../assets/finalWannaGoLogo.png';
 
-const MainPage = () => {
+const LandingPage = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/wannaGo/VerticalStepperPage');
+    navigate('/wannaGo/StepperFormPage');
   };
 
   return (
@@ -32,5 +32,6 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default LandingPage;
+
 

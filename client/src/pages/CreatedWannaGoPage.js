@@ -1,7 +1,7 @@
 //External dependencies
 import { useEffect, useState } from 'react';
 import { useNavigate, Link, useParams } from 'react-router-dom';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { Alert } from 'bootstrap';
 //Internal dependencies
 import WannaGoCard from '../components/WannaGoCard';
@@ -10,11 +10,16 @@ import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { CLIENT_PORT, URL } from '../utils/config';
 import { putOwnerToWannaGo } from '../utils/apis/userApiServices/userApi';
 import { useAuth } from '../contexts/AuthContext';
+import {guestLinkGenerator} from '../utils/helperFunctions'
+
 import '../components/WannaGoCard.css';
+import './CreatedWannaGoPage.css';
+
+import SocialButtons from '../components/SocialButtons';
 
 const PlanCreated = () => {
   const { id } = useParams();
-  const guestLink = `${URL}${CLIENT_PORT}/wannago/guest-link/${id}`;
+  // const guestLink = guestLinkGenerator(id);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const { data, isError, isLoading } = useQuery(
@@ -23,13 +28,19 @@ const PlanCreated = () => {
     {
       onSuccess: (data) => {
         console.log('Success, and now posting');
-        putGuestLink(data._id, guestLink);
+        // putGuestLink(data._id, guestLink);
         if (currentUser?.uid) putOwnerToWannaGo(data._id, currentUser.uid);
       },
-      refetchOnMount: false, 
+      refetchOnMount: false,
     }
   );
-  const [copied, setCopied] = useState('Copy');
+
+  // const queryClient = useQueryClient();
+
+  // currentUser && const {name} = queryClient.getQueryData('user');
+
+  // console.log('this is datar', datar)
+ 
 
   if (isLoading) return <p>Loading...</p>;
   if (isError)
@@ -39,43 +50,38 @@ const PlanCreated = () => {
       </Alert>
     );
 
-  const onClickCopyLink = () => {
-    navigator.clipboard.writeText(guestLink);
-    setCopied('Copied');
-  };
+
 
   return (
     <>
-      <h1 className='justCreatedWannaGo'>What a Plan!</h1>
-      <WannaGoCard wannaGo={data} />
-      <div className='justCreatedWannaGoSedondPart'>
-        <h4>Share the link:</h4>
-        <div>
-          <a
-            className='guestLink'
-            target='blank'
-            href={guestLink}
-          >
-            {guestLink}
-          </a>
-          <button
-            className='buttonCopy'
-            onClick={onClickCopyLink}
-          >
-            {copied}
-          </button>
+      <div className='justCreatedWannaGo'>
+        <h1>{data.ownerName},</h1>
+        <h1>What a Plan!</h1>
+        <WannaGoCard wannaGo={data} />
+        <div className='secondPart'>
+          {!currentUser ? (
+            <div style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>
+              <h2>Get your plans engaged!</h2>
+              <p>
+                Share the wannaGo with friends and family and see who can go:
+                <Link to='/user/login'> Log in </Link> or
+                <Link to='/user/signup'> sign up </Link>
+              </p>
+            </div>
+          ) : (
+            <SocialButtons wannaGoId={data._id} />
+          )}
         </div>
-        {!currentUser && (
-          <h6 className='highlight'>
-            WannaSee who wannaGo?:
-            <Link to='/user/login'> log in </Link> or
-            <Link to='/user/signup'> sign up </Link>
-          </h6>
-        )}
       </div>
     </>
   );
 };
 
 export default PlanCreated;
+
+
+
+
+
+
 
