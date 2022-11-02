@@ -3,8 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: fill;
   gap: 1rem;
+  margin-bottom: 7rem;
 }
 
 .optionButton {
@@ -40,7 +41,8 @@
 .buttons {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  overflow-y: auto;
+
   gap: 1rem;
 }
 
