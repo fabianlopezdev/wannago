@@ -5,7 +5,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 60vh;
+  /* height: 60vh; */
+  overflow-y: auto;
 }
 .wgPart {
   display: flex;
@@ -118,7 +119,7 @@
     flex-direction: column;
     align-items: center;
     /* margin-top: 0rem; */
-    height: fill;
+    /* height: fill; */
     gap:1rem;
   }
 

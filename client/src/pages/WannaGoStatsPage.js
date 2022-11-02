@@ -41,11 +41,11 @@ const WannaGoStats = () => {
               <div>people wannaGo</div>
             </div>
             <div className='numsBox'>
-              <h1 className='num'>{data.suggestionBoxCounter} || 0</h1>
+              <h1 className='num'>{data.suggestionBoxCounter || 0}</h1>
               <div>people may go</div>
             </div>
             <div className='numsBox'>
-              <h1 className='num'>{data.rejectCounter} || 0</h1>
+              <h1 className='num'>{data.rejectCounter || 0}</h1>
               <div>people can't go</div>
             </div>
           </div>
