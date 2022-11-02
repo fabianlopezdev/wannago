@@ -7,7 +7,7 @@ import { EmailIcon, WhatsappIcon } from 'react-share';
 import { useState } from 'react';
 import './SocialButtons.css';
 import { guestLinkGenerator } from '../utils/helperFunctions';
-
+import {Link} from 'react-router-dom'
 const SocialButtons = ({ wannaGoId, userName }) => {
   const [copied, setCopied] = useState('Copy Link');
   const guestLink = guestLinkGenerator(wannaGoId);
@@ -29,15 +29,15 @@ const SocialButtons = ({ wannaGoId, userName }) => {
             {copied}
           </button>
           <WhatsappShareButton
-            title={`Do you wannaGo?`}
+            title={`I have a plan. Do you wannaGo?`}
             url={guestLink}
           >
             <div title='Via WhatsApp'>
-            <WhatsappIcon
-              size={50}
-              round
+              <WhatsappIcon
+                size={50}
+                round
               />
-              </div>
+            </div>
           </WhatsappShareButton>
         </div>
       </div>
@@ -46,4 +46,5 @@ const SocialButtons = ({ wannaGoId, userName }) => {
 };
 
 export default SocialButtons;
+
 
