@@ -67,37 +67,52 @@ const WannaGoCard = ({ wannaGo, userName }) => {
           </div>
         </div>
         <>
-         {guest !== 'guest-link' && <div className='optionsContainer'>
-            <div className='options'>
-              {currentUser && <div className='charts'>
-                <IoShareOutline
-                  size={25}
-                  title='Share WannaGo'
-                  onClick={() => setShowShare(true)}
-                />
-              </div>}
-              <div
-                className='charts'
-                onClick={onClickDealDelete}
-              >
-                <IoTrashOutline size={25} title='Delete WannaGo'/>
-              </div>
-              {currentUser && <div className='charts'>
-                <a
-                  href={`${URL}${CLIENT_PORT}/user/wannaGo/stats/${wannaGo._id}`}
-                  style={{ color: 'inherit', textDecoration: 'inherit' }}
+          {guest !== 'guest-link' && (
+            <div className='optionsContainer'>
+              <div className='options'>
+                {currentUser && (
+                  <div className='charts'>
+                    <IoShareOutline
+                      size={25}
+                      title='Share WannaGo'
+                      onClick={() => setShowShare(true)}
+                    />
+                  </div>
+                )}
+                <div
+                  className='charts'
+                  onClick={onClickDealDelete}
                 >
-                  <IoArrowRedoOutline size={25} title='Wannago Details' />
-                </a>
-              </div>}
+                  <IoTrashOutline
+                    size={25}
+                    title='Delete WannaGo'
+                  />
+                </div>
+                {currentUser && (
+                  <div className='charts'>
+                    <a
+                      href={`https://wannago-ito3.vercel.app/user/wannaGo/stats/${wannaGo._id}`}
+                      style={{ color: 'inherit', textDecoration: 'inherit' }}
+                    >
+                      <IoArrowRedoOutline
+                        size={25}
+                        title='Wannago Details'
+                      />
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>}
+          )}
           {showShare && (
             <div
               ref={socialShareRef}
               className='shareModal'
             >
-              <SocialButtons wannaGoId={wannaGo._id} userName={userName}/>
+              <SocialButtons
+                wannaGoId={wannaGo._id}
+                userName={userName}
+              />
             </div>
           )}
           {showDelete && (
@@ -123,5 +138,6 @@ const WannaGoCard = ({ wannaGo, userName }) => {
 };
 
 export default WannaGoCard;
+
 
 
