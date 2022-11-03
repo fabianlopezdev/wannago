@@ -22,5 +22,5 @@ Please feel free to fork it and play with it, and if you feel so, make PRs.
 
 # Author
 
-Fabian Lopez Gonzalez - <a href='https://github.com/Fabs-and'>Github</> - <a href='https://www.linkedin.com/in/fabian-lopez-gonzalez/'>LinkedIn</>
+Fabian Lopez Gonzalez - <a href='https://github.com/Fabs-and'>Github</a> - <a href='https://www.linkedin.com/in/fabian-lopez-gonzalez/'>LinkedIn</a>
 
