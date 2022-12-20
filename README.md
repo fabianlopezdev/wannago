@@ -3,11 +3,7 @@
 WannaGo is a responsive web app that allow users to create plans and see who want to attend to them. Built with React for the front end, and Node, Koa, Mongoose, and Mongo Atlas for the backend.
 
 <p align="center">
-![wannago - main page](https://user-images.githubusercontent.com/69907596/208759389-89d28904-8d1e-42cd-9212-60d71d7489f3.png)
-![wannago - options](https://user-images.githubusercontent.com/69907596/208759418-7ba090e2-4d72-4363-9c39-0dcd14a0ca01.png)
-![wannago - userdashboard](https://user-images.githubusercontent.com/69907596/208759443-b22d6d60-70ba-4a80-a8bc-bba1af32611f.png)
-![wannago - stats](https://user-images.githubusercontent.com/69907596/208759536-b2976adb-f14a-43cf-b92e-81fc793d4ea9.png)
-
+![main](https://user-images.githubusercontent.com/69907596/208759826-8bf869d6-6385-4a20-a081-907d2438ce79.png)
 </p>
 
 # Getting Started
