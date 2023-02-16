@@ -19,7 +19,7 @@ import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
 import {Logo} from '../components/navbar/NavBarButtons'
-import './GuestLinkPage.css';
+import './guestLink.css';
 
 const GuestLink = () => {
   const { id } = useParams();

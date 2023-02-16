@@ -9,7 +9,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/wannaGo/StepperFormPage');
+    navigate('new-wannago');
   };
 
   return (
@@ -33,5 +33,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
 

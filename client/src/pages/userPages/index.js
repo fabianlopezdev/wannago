@@ -1,7 +1,7 @@
-export { default as DeleteUserPage } from './DeleteUserPage';
-export {default as ForgotPasswordPage} from './ForgotPasswordPage'
-export {default as LoginPage} from './LoginPage'
-export {default as SignUpPage} from './SignUpPage'
-export { default as UpdateProfilePage } from './UpdateProfilePage';
-export { default as UserDashboardPage } from './UserDashboardPage';
+export { default as DeleteUser } from './DeleteUserjs';
+export {default as ForgotPassword} from './ForgotPassword'
+export {default as Login} from './Login'
+export {default as SignUp} from './SignUp'
+export { default as UpdateProfile} from './UpdateProfilePage';
+export { default as Dashboard } from './Dashboard';
 

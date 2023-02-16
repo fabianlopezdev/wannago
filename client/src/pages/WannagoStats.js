@@ -5,7 +5,7 @@ import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Alert } from 'bootstrap';
-import './WannaGoStatsPage.css';
+import './wannagoStats.css';
 
 const WannaGoStats = () => {
   const { id } = useParams();

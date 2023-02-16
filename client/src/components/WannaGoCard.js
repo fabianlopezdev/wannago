@@ -92,7 +92,7 @@ const WannaGoCard = ({ wannaGo, userName }) => {
                 {currentUser && (
                   <div className='charts'>
                     <Link
-                      to={`/user/wannaGo/stats/${wannaGo._id}`}
+                      to={`wannago-stats/${wannaGo._id}`}
                       style={{ color: 'inherit', textDecoration: 'inherit' }}
                     >
                       <IoArrowRedoOutline

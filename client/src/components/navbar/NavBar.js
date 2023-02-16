@@ -30,8 +30,8 @@ const NavBar = () => {
           {currentUser ? (
             <>
               <Logo />
-              {location.pathname !== '/wannago/StepperFormPage' && (
-                <Link to={'/wannago/StepperFormPage'}>
+              {location.pathname !== 'new-wannago' && (
+                <Link to={'new-wannago'}>
                   <button
                     title='Make a new WannaGo'
                     className='createButton'

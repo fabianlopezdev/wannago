@@ -7,23 +7,24 @@ import { Container } from 'react-bootstrap';
 import { initialWannaGo } from './data';
 import NavBar from './components/navbar/NavBar';
 import LandingPage from './pages/LandingPage';
-import WannaGoStats from './pages/WannaGoStatsPage';
+import WannagoStats from './pages/WannagoStats.js';
 import {
-  UserDashboardPage,
-  SignUpPage,
-  DeleteUserPage,
-  UpdateProfilePage,
-  ForgotPasswordPage,
-  LoginPage,
+  Dashboard,
+  SignUp,
+  DeleteUser,
+  UpdateProfile,
+  ForgotPassword,
+  Login,
 } from './pages/userPages';
-import GuestsLinkPage from './pages/GuestsLinkPage';
-import CreatedWannaGoPage from './pages/CreatedWannaGoPage';
+import GuestsLink from './pages/GuestLink';
+import NewWannago from './pages/NewWannago';
 import PrivateRoute from './components/user/authentication/PrivateRoute';
 import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
 
 import './App.css';
-import StepperFormPage from './pages/StepperFormPage';
+import WannagoForm from './pages/WannagoForm';
 import NavBarBottom from './components/navbar/NavBarBottom';
+import AllRoutes from './routes';
 
 function App() {
   const [wannaGo, setwannaGo] = useState(initialWannaGo);
@@ -46,105 +47,89 @@ function App() {
       <main>
         <header className='topNavBar'>{!bottomNavBar && <NavBar />}</header>
         <div className={!bottomNavBar ? 'mainContainer' : null}>
-        <Routes>
-          <Route
-            exact
-            path='/'
-            element={<LandingPage />}
-          />
-          <Route
-            exact
-            path='/wannaGo/StepperFormPage'
-            element={
-              <StepperFormPage
-                wannaGo={wannaGo}
-                setwannaGo={setwannaGo}
-                justCreatedWG={justCreatedWG}
-                setJustCreatedWG={setJustCreatedWG}
-              />
-            }
-            />
-          <Route
-            exact
-            path='/wannago/:id'
-            element={<CreatedWannaGoPage />}
-            />
-          <Route
-            exact
-            path='/wannago/guest-link/:id'
-            element={<GuestsLinkPage />}
-            />
-          <Route element={<UserPrivateRoute />}>
+          <Routes>
             <Route
-              exact
-              path='/user/signup'
-              element={
-                <>
-                  <Container>
-                  
-                      <SignUpPage />
-              
-                  </Container>
-                </>
-              }
+              path='/'
+              element={<LandingPage />}
             />
             <Route
-              exact
-              path='/user/login'
+              path='new-wannago'
               element={
-                <>
-                  <Container>
-                      <LoginPage />
-                  
-                  </Container>
-                </>
-              }
-            />
-            <Route
-              exact
-              path='/user/forgot-password'
-              element={
-                <>
-                  <Container>
-            
-                      <ForgotPasswordPage />
-                   
-                  </Container>
-                </>
-              }
-            />
-          </Route>
-          <Route element={<PrivateRoute />}>
-            <Route
-              exact
-              path='/user/dashboard'
-              element={
-                <UserDashboardPage
-                  user={user}
-                  setUser={setUser}
+                <WannagoForm
                   wannaGo={wannaGo}
+                  setwannaGo={setwannaGo}
                   justCreatedWG={justCreatedWG}
                   setJustCreatedWG={setJustCreatedWG}
                 />
               }
             />
             <Route
-              exact
-              path='user/wannaGo/stats/:id'
-              element={<WannaGoStats wannaGo={wannaGo} />}
+              path=':id'
+              element={<NewWannago />}
             />
             <Route
-              exact
-              path='/user/update-profile'
-              element={<UpdateProfilePage />}
+              path='guest-link/:id'
+              element={<GuestsLink />}
             />
-            <Route
-              exact
-              path='/user/delete-account'
-              element={<DeleteUserPage />}
-            />
-          </Route>
-        </Routes>
+            <Route element={<UserPrivateRoute />}>
+              <Route
+                path='sign-up'
+                element={
+                  <>
+                    <Container>
+                      <SignUp />
+                    </Container>
+                  </>
+                }
+              />
+              <Route
+                path='log-in'
+                element={
+                  <>
+                    <Container>
+                      <Login />
+                    </Container>
+                  </>
+                }
+              />
+              <Route
+                path='forgot-password'
+                element={
+                  <>
+                    <Container>
+                      <ForgotPassword />
+                    </Container>
+                  </>
+                }
+              />
+            </Route>
+            <Route element={<PrivateRoute />}>
+              <Route
+                path='dashboard'
+                element={
+                  <Dashboard
+                    user={user}
+                    setUser={setUser}
+                    wannaGo={wannaGo}
+                    justCreatedWG={justCreatedWG}
+                    setJustCreatedWG={setJustCreatedWG}
+                  />
+                }
+              />
+              <Route
+                path='wannaGo-stats/:id'
+                element={<WannagoStats wannaGo={wannaGo} />}
+              />
+              <Route
+                path='update-profile'
+                element={<UpdateProfile />}
+              />
+              <Route
+                path='delete-account'
+                element={<DeleteUser />}
+              />
+            </Route>
+          </Routes>
         </div>
         {bottomNavBar && (
           <footer className='bottomNavbar'>
@@ -157,5 +142,4 @@ function App() {
 }
 
 export default App;
-
 

@@ -66,14 +66,14 @@ export const LogOutButton = () => {
 
 export const Profile = () => {
   return (
-    <Link to={'/user/update-profile'}>
+    <Link to={'update-profile'}>
       <button className='signUpButton'>Profile</button>
     </Link>
   );
 };
 export const SignUpIcon = () => {
   return (
-    <Link to={'/user/signup'}>
+    <Link to={'sign-up'}>
       <IoPersonAddOutline
         size={50}
         style={{ color: 'rgb(242, 205, 211)' }}
@@ -84,14 +84,14 @@ export const SignUpIcon = () => {
 };
 export const SignUpButton = () => {
   return (
-    <Link to={'/user/signup'}>
+    <Link to={'sign-up'}>
       <button className='signUpButton'>Sign Up</button>
     </Link>
   );
 };
 export const LogInIcon = () => {
   return (
-    <Link to={'/user/login'}>
+    <Link to={'log-in'}>
       <IoLogInOutline
         size={50}
         style={{ color: 'rgb(242, 205, 211)' }}
@@ -103,14 +103,14 @@ export const LogInIcon = () => {
 
 export const LogInButton = () => {
   return (
-    <Link to={'/user/login'}>
+    <Link to={'log-in'}>
       <button className='logInButton'>Log In</button>
     </Link>
   );
 };
 export const Logo = () => {
   return (
-    <Link to={'/user/dashboard'}>
+    <Link to={'dashboard'}>
       <img
         className='Logo'
         src={logo}

@@ -13,11 +13,11 @@ import { useAuth } from '../contexts/AuthContext';
 import {guestLinkGenerator} from '../utils/helperFunctions'
 
 import '../components/WannaGoCard.css';
-import './CreatedWannaGoPage.css';
+import './newWannago.css';
 
 import SocialButtons from '../components/SocialButtons';
 
-const PlanCreated = () => {
+const NewWannago = () => {
   const { id } = useParams();
   // const guestLink = guestLinkGenerator(id);
   const { currentUser } = useAuth();
@@ -77,7 +77,7 @@ const PlanCreated = () => {
   );
 };
 
-export default PlanCreated;
+export default NewWannago;
 
 
 

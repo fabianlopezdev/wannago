@@ -19,9 +19,10 @@ import { getWannaGoByParams } from '../utils/apis/wannagoApiServices/getWannaGos
 import { postAwannaGo } from '../utils/apis/wannagoApiServices/postWannaGos';
 import { steps, stepsLoggedIn } from '../data';
 import { getUserById } from '../utils/apis/userApiServices/userApi';
-import './StepperFormPage.css';
+import './wannagoForm.css';
 import { Logo } from '../components/navbar/NavBarButtons';
-export default function VerticalStepper({
+
+export default function WannagoForm({
   wannaGo,
   setwannaGo,
   justCreatedWG,
@@ -69,7 +70,7 @@ export default function VerticalStepper({
       setwannaGo(postedWannaGo);
       setJustCreatedWG(true);
       const { _id } = postedWannaGo;
-      navigate(`/wannago/${_id}`);
+      navigate(`/${_id}`);
     } catch (e) {
       setError('Sorry we could not create the wannaGo. Please try in a while.');
       console.log(

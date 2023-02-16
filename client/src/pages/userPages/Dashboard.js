@@ -29,9 +29,9 @@ import {
 import WannaGoCard from '../../components/WannaGoCard';
 
 import '../../components/guestLinkPageOptions/Options.css';
-import './UserDashboard.css';
+import './dashboard.css';
 
-const UserDashboard = ({
+const Dashboard = ({
   user,
   setUser,
   wannaGo,
@@ -146,7 +146,7 @@ const UserDashboard = ({
   );
 };
 
-export default UserDashboard;
+export default Dashboard;
 
 
 
