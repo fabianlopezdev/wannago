@@ -1,35 +1,22 @@
 //External dependencies
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
 
 //Internal dependencies
 import { initialWannaGo } from './data';
 import NavBar from './components/navbar/NavBar';
-import LandingPage from './pages/LandingPage';
 import WannagoStats from './pages/WannagoStats.js';
-import {
-  Dashboard,
-  SignUp,
-  DeleteUser,
-  UpdateProfile,
-  ForgotPassword,
-  Login,
-} from './pages/userPages';
-import GuestsLink from './pages/GuestLink';
-import NewWannago from './pages/NewWannago';
-import PrivateRoute from './components/user/authentication/PrivateRoute';
-import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
+import { Dashboard } from './pages/userPages';
 
 import './App.css';
 import WannagoForm from './pages/WannagoForm';
 import NavBarBottom from './components/navbar/NavBarBottom';
-import AllRoutes from './routes';
+import { statelessRoutes } from './statelessRoutes';
 
 function App() {
-  const [wannaGo, setwannaGo] = useState(initialWannaGo);
-  const [justCreatedWG, setJustCreatedWG] = useState(false);
-  const [user, setUser] = useState({});
+  const [wannago, setWannago] = useState(initialWannaGo);
+  const [isNewWannago, setIsNewWannago] = useState(false);
+
   const [bottomNavBar, setBottomNavBar] = useState(window.innerWidth < 767);
 
   useEffect(() => {
@@ -48,87 +35,31 @@ function App() {
         <header className='topNavBar'>{!bottomNavBar && <NavBar />}</header>
         <div className={!bottomNavBar ? 'mainContainer' : null}>
           <Routes>
-            <Route
-              path='/'
-              element={<LandingPage />}
-            />
+            {statelessRoutes}
             <Route
               path='new-wannago'
               element={
                 <WannagoForm
-                  wannaGo={wannaGo}
-                  setwannaGo={setwannaGo}
-                  justCreatedWG={justCreatedWG}
-                  setJustCreatedWG={setJustCreatedWG}
+                  wannago={wannago}
+                  setWannago={setWannago}
+                  setIsNewWannago={setIsNewWannago}
                 />
               }
             />
             <Route
-              path=':id'
-              element={<NewWannago />}
+              path='dashboard'
+              element={
+                <Dashboard
+                  wannago={wannago}
+                  isNewWannago={isNewWannago}
+                  setIsNewWannago={setIsNewWannago}
+                />
+              }
             />
             <Route
-              path='guest-link/:id'
-              element={<GuestsLink />}
+              path='wannago-stats/:id'
+              element={<WannagoStats wannago={wannago} />}
             />
-            <Route element={<UserPrivateRoute />}>
-              <Route
-                path='sign-up'
-                element={
-                  <>
-                    <Container>
-                      <SignUp />
-                    </Container>
-                  </>
-                }
-              />
-              <Route
-                path='log-in'
-                element={
-                  <>
-                    <Container>
-                      <Login />
-                    </Container>
-                  </>
-                }
-              />
-              <Route
-                path='forgot-password'
-                element={
-                  <>
-                    <Container>
-                      <ForgotPassword />
-                    </Container>
-                  </>
-                }
-              />
-            </Route>
-            <Route element={<PrivateRoute />}>
-              <Route
-                path='dashboard'
-                element={
-                  <Dashboard
-                    user={user}
-                    setUser={setUser}
-                    wannaGo={wannaGo}
-                    justCreatedWG={justCreatedWG}
-                    setJustCreatedWG={setJustCreatedWG}
-                  />
-                }
-              />
-              <Route
-                path='wannaGo-stats/:id'
-                element={<WannagoStats wannaGo={wannaGo} />}
-              />
-              <Route
-                path='update-profile'
-                element={<UpdateProfile />}
-              />
-              <Route
-                path='delete-account'
-                element={<DeleteUser />}
-              />
-            </Route>
           </Routes>
         </div>
         {bottomNavBar && (

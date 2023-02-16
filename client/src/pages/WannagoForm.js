@@ -23,10 +23,9 @@ import './wannagoForm.css';
 import { Logo } from '../components/navbar/NavBarButtons';
 
 export default function WannagoForm({
-  wannaGo,
-  setwannaGo,
-  justCreatedWG,
-  setJustCreatedWG,
+  wannago,
+  setWannago,
+  isNewWannago,
 }) {
   //Hooks
   const [activeStep, setActiveStep] = useState(0);
@@ -45,7 +44,7 @@ export default function WannagoForm({
     e.preventDefault();
     const field = e.target[0].name;
     const inputValue = e.target[0].value;
-    wannaGo[field] = inputValue;
+    wannago[field] = inputValue;
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -56,25 +55,25 @@ export default function WannagoForm({
 
   const saveWannaGo = async () => {
     try {
-      //If user creates a wannaGo while logged in.
-      if (!wannaGo.ownerName) {
+      //If user creates a wannago while logged in.
+      if (!wannago.ownerName) {
         const user = await getUserById(currentUser.uid);
-        wannaGo.ownerName = user.name;
+        wannago.ownerName = user.name;
       }
-      await postAwannaGo(wannaGo);
+      await postAwannaGo(wannago);
       const postedWannaGo = await getWannaGoByParams(
-        wannaGo.what,
-        wannaGo.when
+        wannago.what,
+        wannago.when
       );
-      // console.log('this is posted wannaGo', postedWannaGo);
-      setwannaGo(postedWannaGo);
-      setJustCreatedWG(true);
+      // console.log('this is posted wannago', postedWannaGo);
+      setWannago(postedWannaGo);
+      isNewWannago(true);
       const { _id } = postedWannaGo;
       navigate(`/${_id}`);
     } catch (e) {
-      setError('Sorry we could not create the wannaGo. Please try in a while.');
+      setError('Sorry we could not create the wannago. Please try in a while.');
       console.log(
-        `Error communicating with backend to postAWannago or to retrieve the just posted wannaGo. Error: ${e}`
+        `Error communicating with backend to postAWannago or to retrieve the just posted wannago. Error: ${e}`
       );
     }
   };

@@ -32,11 +32,9 @@ import '../../components/guestLinkPageOptions/Options.css';
 import './dashboard.css';
 
 const Dashboard = ({
-  user,
-  setUser,
-  wannaGo,
-  justCreatedWG,
-  setJustCreatedWG,
+  wannago,
+  isNewWannago,
+  setIsNewWannago,
 }) => {
   const { currentUser } = useAuth();
   const queryClient = useQueryClient();
@@ -44,11 +42,11 @@ const Dashboard = ({
   //This first query it is to get the name of the user authenticated
   const userToRender = useQuery('user', () => getUserById(currentUser.uid), {
     onSuccess: (user) => {
-      if(justCreatedWG) {
-        console.log('HIIIIIIIIIT', wannaGo._id);
+      if(isNewWannago) {
+        console.log('HIIIIIIIIIT', wannago._id);
         console.log('userToRenderID', user._id);
-        mutate([wannaGo._id, user._id]);
-        setJustCreatedWG(false);
+        mutate([wannago._id, user._id]);
+        setIsNewWannago(false);
         return;
       }
     },
@@ -122,16 +120,16 @@ const Dashboard = ({
             </div>
             <h2 className='title'>These are your wannagos:</h2>
             <div className='wgCardsGrid'>
-              {getActiveWGsAndSort(wannaGosOfUser.data).map((wannaGo) => {
+              {getActiveWGsAndSort(wannaGosOfUser.data).map((wannago) => {
                 return (
                   <div
                     className=''
                     target='blank'
-                    key={wannaGo._id}
+                    key={wannago._id}
                   >
                     <WannaGoCard
-                      // key={wannaGo._id}
-                      wannaGo={wannaGo}
+                      // key={wannago._id}
+                      wannago={wannago}
                       userName={userToRender.data.name}
                       // userName={user.name}
                     />
