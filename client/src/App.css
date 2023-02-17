@@ -18,7 +18,6 @@
 }
 
 .bottomNavbar {
-  /* margin-top: 1rem; */
   padding:1rem;
   background-color: white;
   position: fixed;
@@ -26,6 +25,31 @@
   left: 0;
   width: 100%;
 }
+
+@media only screen and (min-width: 768px) {
+  .topNavBar {
+    display: block;
+  }
+
+  .mainContainer {
+    padding-top: 60px; /* Adjust as needed to account for the height of the navbar */
+  }
+
+  .bottomNavbar {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .bottomNavbar {
+    display: block;
+  }
+
+  .topNavBar {
+    display: none;
+  }
+}
+
 .img {
   margin-left: auto;
   margin-right: auto;
@@ -65,7 +89,6 @@
   transform: translateX(2px);
 }
 
-
 @font-face {
   font-family: Kanit;
   src: url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
@@ -78,7 +101,6 @@
   margin-top: 5px;
   font-size: 20px;
 }
-
 
 .maybeTextArea {
   display: flex;

@@ -17,57 +17,44 @@ function App() {
   const [wannago, setWannago] = useState(initialWannaGo);
   const [isNewWannago, setIsNewWannago] = useState(false);
 
-  const [bottomNavBar, setBottomNavBar] = useState(window.innerWidth < 767);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 767) setBottomNavBar(true);
-      else setBottomNavBar(false);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
   return (
     <>
-      <main>
-        <header className='topNavBar'>{!bottomNavBar && <NavBar />}</header>
-        <div className={!bottomNavBar ? 'mainContainer' : null}>
-          <Routes>
-            {statelessRoutes}
-            <Route
-              path='new-wannago'
-              element={
-                <WannagoForm
-                  wannago={wannago}
-                  setWannago={setWannago}
-                  setIsNewWannago={setIsNewWannago}
-                />
-              }
-            />
-            <Route
-              path='dashboard'
-              element={
-                <Dashboard
-                  wannago={wannago}
-                  isNewWannago={isNewWannago}
-                  setIsNewWannago={setIsNewWannago}
-                />
-              }
-            />
-            <Route
-              path='wannago-stats/:id'
-              element={<WannagoStats wannago={wannago} />}
-            />
-          </Routes>
-        </div>
-        {bottomNavBar && (
-          <footer className='bottomNavbar'>
-            <NavBarBottom />
-          </footer>
-        )}
+      <header className='topNavBar'>
+        <NavBar />
+      </header>
+      <main className='mainContainer'>
+        <Routes>
+          {statelessRoutes}
+          <Route
+            path='new-wannago'
+            element={
+              <WannagoForm
+                wannago={wannago}
+                setWannago={setWannago}
+                setIsNewWannago={setIsNewWannago}
+              />
+            }
+          />
+          <Route
+            path='dashboard'
+            element={
+              <Dashboard
+                wannago={wannago}
+                isNewWannago={isNewWannago}
+                setIsNewWannago={setIsNewWannago}
+              />
+            }
+          />
+          <Route
+            path='wannago-stats/:id'
+            element={<WannagoStats wannago={wannago} />}
+          />
+        </Routes>
       </main>
+
+      <footer className='bottomNavbar'>
+        <NavBarBottom />
+      </footer>
     </>
   );
 }
