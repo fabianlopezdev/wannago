@@ -1,5 +1,5 @@
 //External dependencies
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 //Internal dependencies
@@ -7,11 +7,10 @@ import { initialWannaGo } from './data';
 import NavBar from './components/navbar/NavBar';
 import WannagoStats from './pages/WannagoStats.js';
 import { Dashboard } from './pages/userPages';
-
-import './App.css';
 import WannagoForm from './pages/WannagoForm';
 import NavBarBottom from './components/navbar/NavBarBottom';
 import { statelessRoutes } from './statelessRoutes';
+import './App.css';
 
 function App() {
   const [wannago, setWannago] = useState(initialWannaGo);
@@ -22,6 +21,7 @@ function App() {
       <header className='topNavBar'>
         <NavBar />
       </header>
+
       <main className='mainContainer'>
         <Routes>
           {statelessRoutes}

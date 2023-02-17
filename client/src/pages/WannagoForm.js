@@ -21,24 +21,25 @@ import { steps, stepsLoggedIn } from '../data';
 import { getUserById } from '../utils/apis/userApiServices/userApi';
 import './wannagoForm.css';
 import { Logo } from '../components/navbar/NavBarButtons';
+import NewWannago from './NewWannago2';
 
 export default function WannagoForm({
   wannago,
   setWannago,
-  isNewWannago,
+  setIsNewWannago,
 }) {
   //Hooks
   const [activeStep, setActiveStep] = useState(0);
   const [error, setError] = useState();
+  const [isCreated, setIsCreated] = useState(false)
 
   let navigate = useNavigate();
   const { currentUser } = useAuth();
   console.log('this is current user', currentUser);
   let Steps = [];
 
-  if (!currentUser) {
-    Steps = steps;
-  } else Steps = stepsLoggedIn;
+  !currentUser ? Steps = steps : Steps = stepsLoggedIn;
+  
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -67,7 +68,7 @@ export default function WannagoForm({
       );
       // console.log('this is posted wannago', postedWannaGo);
       setWannago(postedWannaGo);
-      isNewWannago(true);
+      setIsNewWannago(true);
       const { _id } = postedWannaGo;
       navigate(`/${_id}`);
     } catch (e) {
@@ -87,7 +88,7 @@ export default function WannagoForm({
         </div>
         </>
         }
-      <div className='stepper'>
+      {isCreated || <div className='stepper'>
         <Box sx={{ maxWidth: 1000 }}>
           <Stepper
             activeStep={activeStep}
@@ -166,7 +167,7 @@ export default function WannagoForm({
               {error && <Alert variant='danger'>{error}</Alert>}
               <button
                 className='button'
-                onClick={saveWannaGo}
+                onClick={() => setIsCreated(true)}
                 sx={{ mt: 1, mr: 1 }}
               >
                 Share It!
@@ -174,7 +175,8 @@ export default function WannagoForm({
             </Paper>
           )}
         </Box>
-      </div>
+      </div>}
+      {isCreated && <NewWannago wannago={wannago}/>}
     </>
   );
 }
