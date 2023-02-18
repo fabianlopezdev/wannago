@@ -35,7 +35,7 @@ const NewWannago = ({ wannago, setWannago }) => {
       setWannago(newWannago);
       setTimeout(console.log('wannago', wannago), 10000);
       try {
-       //postWannago(newWannago)
+       postWannago(newWannago)
       } catch (e) {
         console.log(
           `Error communicating with backend to postAWannago or to retrieve the just posted wannago. Error: ${e}`

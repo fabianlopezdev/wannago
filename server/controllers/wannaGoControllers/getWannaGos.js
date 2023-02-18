@@ -41,6 +41,21 @@ const getWannaGoByParams = async (ctx) => {
   }
 };
 
+const getWannagoByDateCreated = async (ctx) => {
+  try {
+    ctx.status = 201;
+    const wannaGo = await WannaGo.findOne({
+      dateCreated: `${ctx.params.dateCreated}`
+    });
+    console.log(`This wannaGo was retrieved ${wannaGo}`);
+    ctx.body = wannaGo;
+  } catch (e) {
+    ctx.status = 500;
+    console.log(`Error in getWannagoByDateCreated function from controllers: ${e}`);
+  }
+};
+
+
 const getWannaGoById = async (ctx) => {
   try {
     ctx.status = 201;
@@ -59,7 +74,9 @@ module.exports = {
   getWannaGoByParams,
   getWannaGoById,
   getAllWannaGosOfUser,
+  getWannagoByDateCreated,
 };
+
 
 
 

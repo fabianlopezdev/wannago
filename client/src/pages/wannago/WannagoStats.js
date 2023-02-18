@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import WannaGoCard from '../../components/wannago/WannaGoCard';
-import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
+import { getWannagoByDateCreated } from '../../utils/apis/wannagoApiServices/getWannaGos';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -13,7 +13,7 @@ const WannaGoStats = () => {
   const navigate = useNavigate();
 
   const { data, isLoading, isError } = useQuery('wannagos', () =>
-    getWannaGoById(id)
+    getWannagoByDateCreated(id)
   );
 
   if (isLoading) return <p>Loading...</p>;
@@ -89,4 +89,5 @@ const WannaGoStats = () => {
 };
 
 export default WannaGoStats;
+
 

@@ -15,7 +15,7 @@ import {
   NoButton,
   MaybeButton,
 } from '../components/guestLinkPageOptions/OptionButtons';
-import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
+import { getWannagoByDateCreated, getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
 import { Logo } from '../components/navbar/NavBarButtons';
@@ -23,10 +23,10 @@ import './guestLink.css';
 
 const GuestLink = () => {
   const { id } = useParams();
-  console.log('this is the id', id);
+  console.log('this is the dateCreated', id);
   const { data, isError, isLoading } = useQuery(
     'guestLink',
-    () => getWannaGoById(id),
+    () => getWannagoByDateCreated(id),
     {
       onSuccess: (data) => putOpenedTimes(id, ++data.openedTimes),
       staleTime: Infinity,
@@ -51,7 +51,7 @@ const GuestLink = () => {
           <NoOption
             id={id}
             rejectCounter={data.rejectCounter}
-            ownerName={data.ownerName}
+            ownerName={data.hostName}
           />
         );
       case 'yes':
@@ -59,7 +59,7 @@ const GuestLink = () => {
           <YesOption
             id={id}
             goingCounter={data.goingCounter}
-            ownerName={data.ownerName}
+            ownerName={data.hostName}
           />
         );
       case 'maybe':
@@ -67,7 +67,7 @@ const GuestLink = () => {
           <MaybeOption
             id={id}
             suggestionBoxCounter={data.suggestionBoxCounter}
-            ownerName={data.ownerName}
+            ownerName={data.hostName}
           />
         );
       default:

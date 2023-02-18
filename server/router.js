@@ -6,6 +6,7 @@ const {
   getWannaGoById,
   getWannaGoByParams,
   getAllWannaGosOfUser,
+  getWannagoByDateCreated,
 } = require('./controllers/wannaGoControllers/getWannaGos');
 const {
   postWannago,
@@ -33,7 +34,8 @@ const router = new KoaRouter();
 
 //GETS
 router.get('/wannagos', getWannaGos);
-router.get('/wannago/:id', getWannaGoById);
+// router.get('/wannago/:id', getWannaGoById);
+router.get('/wannago/:dateCreated', getWannagoByDateCreated);
 router.get('/wannagos/owner/:owner', getAllWannaGosOfUser);
 router.get('/wannago/:what/:when', getWannaGoByParams);
 
@@ -58,6 +60,9 @@ router.put('/wannago/guestLink', putGuestLink);
 router.delete('/wannago/delete', deleteWannaGo);
 
 module.exports = router;
+
+
+
 
 
 

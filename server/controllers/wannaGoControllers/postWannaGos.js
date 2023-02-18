@@ -29,7 +29,7 @@ const postWannago = async (ctx) => {
 
 
 
-module.exports = {postAwannaGo};
+module.exports = {postWannago};
 
 
 
