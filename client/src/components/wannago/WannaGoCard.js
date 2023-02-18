@@ -15,14 +15,14 @@ import useOnclickOutside from 'react-cool-onclickoutside';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-const WannaGoCard = ({ wannaGo, userName }) => {
+const WannaGoCard = ({ wannago, userName }) => {
   const [showShare, setShowShare] = useState(false);
   const { currentUser } = useAuth();
 
   const location = useLocation();
   const guest = location.pathname.split('/')[2];
   const [showDelete, setShowDelete] = useState(false);
-  const dateTime = dateFormatter(wannaGo.when);
+  const dateTime = dateFormatter(wannago.when);
   const queryClient = useQueryClient();
   const { mutate } = useMutation(deleteWannaGo, {
     onSuccess: () => {
@@ -37,7 +37,7 @@ const WannaGoCard = ({ wannaGo, userName }) => {
   const onClickDealDelete = () => {
     setShowDelete(true);
   };
-  const guestLink = guestLinkGenerator(wannaGo._id);
+  const guestLink = guestLinkGenerator(wannago._id);
 
   const socialShareRef = useOnclickOutside(() => {
     setShowShare(false);
@@ -59,12 +59,12 @@ const WannaGoCard = ({ wannaGo, userName }) => {
         <div className='wannaGoCardInfoContainer'>
           <div>
             <h2 className='title'>
-              <strong>{wannaGo.what}</strong>
+              <strong>{wannago.what}</strong>
             </h2>
           </div>
           <div className='description'>
             {`${dateTime.time} - ${dateTime.wannaGoFormat}`}
-            <div>{wannaGo.where}</div>
+            <div>{wannago.where}</div>
           </div>
         </div>
         <>
@@ -92,7 +92,7 @@ const WannaGoCard = ({ wannaGo, userName }) => {
                 {currentUser && (
                   <div className='charts'>
                     <Link
-                      to={`wannago-stats/${wannaGo._id}`}
+                      to={`wannago-stats/${wannago._id}`}
                       style={{ color: 'inherit', textDecoration: 'inherit' }}
                     >
                       <IoArrowRedoOutline
@@ -111,7 +111,7 @@ const WannaGoCard = ({ wannaGo, userName }) => {
               className='shareModal'
             >
               <SocialButtons
-                wannaGoId={wannaGo._id}
+                wannaGoId={wannago._id}
                 userName={userName}
               />
             </div>
@@ -122,10 +122,10 @@ const WannaGoCard = ({ wannaGo, userName }) => {
               className='shareModal'
             >
               <div className='deleteContainer'>
-                <h5>Delete wannaGo?</h5>
+                <h5>Delete wannago?</h5>
                 <button
                   className='copyButton'
-                  onClick={() => mutate(wannaGo._id)}
+                  onClick={() => mutate(wannago._id)}
                 >
                   Delete
                 </button>

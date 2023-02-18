@@ -20,6 +20,8 @@ export default function WannagoForm({ wannago, setWannago}) {
 
   // let navigate = useNavigate();
   const { currentUser } = useAuth();
+
+  useEffect(()=>{setWannago({})},[])
   // console.log('this is current user', currentUser);
  
   // const saveWannaGo = async () => {

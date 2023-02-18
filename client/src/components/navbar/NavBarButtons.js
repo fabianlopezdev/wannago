@@ -17,7 +17,7 @@ export const DashBoardButton = () => {
   return (
     <Link
       className='iconLinks'
-      to={'/user/dashboard'}
+      to={'/dashboard'}
     >
       <IoHomeOutline
         size={50}
@@ -111,7 +111,7 @@ export const LogInButton = () => {
 export const Logo = ({currentUser}) => {
   // console.log('currentUSer', currentUser)
   return (
-    <Link to={currentUser ? 'dashboard' : '/'}>
+    <Link to={currentUser ? '/dashboard' : '/'}>
       <img
         className='Logo'
         src={logo}

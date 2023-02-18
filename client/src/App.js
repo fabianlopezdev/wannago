@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import { initialWannaGo } from './data';
 import NavBar from './components/navbar/NavBar';
 import WannagoStats from './pages/wannago/WannagoStats.js';
-import { Dashboard } from './pages/user';
+import Dashboard  from './pages/user/Dashboard';
 import LandingPage  from './pages/LandingPage'
 import WannagoForm from './pages/wannago/WannagoForm';
 import NavBarBottom from './components/navbar/NavBarBottom';

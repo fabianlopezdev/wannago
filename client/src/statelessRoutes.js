@@ -12,16 +12,16 @@ import {
   Login,
 } from './pages/user';
 import GuestsLink from './pages/GuestLink';
-import NewWannago from './pages/wannago/NewWannago';
+// import NewWannago from './pages/wannago/NewWannago';
 import PrivateRoute from './components/user/authentication/PrivateRoute';
 import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
 
 export const statelessRoutes = [
   <Route>
-    <Route
+    {/* <Route
       path=':id'
       element={<NewWannago />}
-    />
+    /> */}
     <Route
       path='guest-link/:id'
       element={<GuestsLink />}

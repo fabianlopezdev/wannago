@@ -9,15 +9,15 @@ import {
 } from '../../utils/apis/userApiServices/userApi';
 import { getAllWannaGosOfUser } from '../../utils/apis/wannagoApiServices/getWannaGos';
 import {
-  getNumOfActiveWannaGos,
-  getNumOfOlderWannaGos,
+  activeWannagosNumber,
+  olderWannagosNumber,
   // aggregateSuccessRatio,
   // aggregateEngagement,
-  aggregatePplGoing,
+  aggregateAttending,
   aggregateRejections,
   aggregateSuggestions,
-  aggregateOpenedTimes,
-  getActiveWGsAndSort,
+  aggregateLinksOpened,
+  activeSortedWannagos,
 } from '../../utils/helperFunctions';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { CLIENT_PORT, URL } from '../../utils/config';
@@ -31,69 +31,69 @@ import WannaGoCard from '../../components/wannago/WannaGoCard';
 import '../../components/guestLinkPageOptions/Options.css';
 import './dashboard.css';
 
-const Dashboard = ({ wannago, isNewWannago, setIsNewWannago }) => {
+const Dashboard = ({ wannago}) => {
   const { currentUser } = useAuth();
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
   //This first query it is to get the name of the user authenticated
-  const userToRender = useQuery('user', () => getUserById(currentUser.uid), {
-    onSuccess: (user) => {
-      if (isNewWannago) {
-        console.log('HIIIIIIIIIT', wannago._id);
-        console.log('userToRenderID', user._id);
-        mutate([wannago._id, user._id]);
-        setIsNewWannago(false);
-        return;
-      }
-    },
-  });
+  // const userToRender = useQuery('user', () => getUserById(currentUser.uid), {
+  //   onSuccess: (user) => {
+  //     if (isNewWannago) {
+  //       console.log('HIIIIIIIIIT', wannago._id);
+  //       console.log('userToRenderID', user._id);
+  //       mutate([wannago._id, user._id]);
+  //       setIsNewWannago(false);
+  //       return;
+  //     }
+  //   },
+  // });
 
-  const { mutate } = useMutation(putOwnerToWannaGo, {
-    onSuccess: () => {
-      queryClient.invalidateQueries('wannagos');
-    },
-  });
+  // const { mutate } = useMutation(putOwnerToWannaGo, {
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries('wannagos');
+  //   },
+  // });
 
-  const wannaGosOfUser = useQuery('wannagos', () =>
+  const {data: wannagos} = useQuery('wannagos', () =>
     getAllWannaGosOfUser(currentUser.uid)
   );
 
   // const {mutate} = useMutation(deleteWann)
   // // const [wannaGos, set] = useState(true)
-  // console.log('wannagos to render', wannaGosOfUser);
+  // console.log('wannagos to render', wannagos);
 
-  if (userToRender.isLoading || wannaGosOfUser.isLoading)
-    return <p>Loading...</p>;
-  if (userToRender.isError || wannaGosOfUser.isError)
-    return (
-      <Alert variant='danger'>
-        Sorry, something went wrong. Please try refreshing the page.
-      </Alert>
-    );
-
-  const totalWGs = wannaGosOfUser.data.length;
-  const totalPplGoing = aggregatePplGoing(wannaGosOfUser.data);
-  const totalRejections = aggregateRejections(wannaGosOfUser.data);
-  const totalSuggestions = aggregateSuggestions(wannaGosOfUser.data);
-  const activeWGsTotal = getNumOfActiveWannaGos(wannaGosOfUser.data);
-  const olderWGsTotal = getNumOfOlderWannaGos(wannaGosOfUser.data);
-  const linksOpenedTotal = aggregateOpenedTimes(wannaGosOfUser.data);
-  const totalEngagement =
-    Math.floor(
-      ((totalPplGoing + totalRejections + totalSuggestions) /
-        linksOpenedTotal) *
-        100
-    ) || 0;
-  const totalSuccessRatio =
-    Math.floor((totalPplGoing / linksOpenedTotal) * 100) || 0;
+  // if (wannagos.isLoading)
+  //   return <p>Loading...</p>;
+  // if (wannagos.isError)
+  //   return (
+  //     <Alert variant='danger'>
+  //       Sorry, something went wrong. Please try refreshing the page.
+  //     </Alert>
+  //   );
+  //     console.log('wannagos', wannagos)
+  // const totalWGs = wannagos.length;
+  // const totalPplGoing = aggregatePplGoing(wannagos);
+  // const totalRejections = aggregateRejections(wannagos);
+  // const totalSuggestions = aggregateSuggestions(wannagos);
+  // const activeWGsTotal = getNumOfactiveSortedWannagos(wannagos);
+  // const olderWGsTotal = getNumOfOlderWannaGos(wannagos);
+  // const linksOpenedTotal = aggregateOpenedTimes(wannagos);
+  // const totalEngagement =
+  //   Math.floor(
+  //     ((totalPplGoing + totalRejections + totalSuggestions) /
+  //       linksOpenedTotal) *
+  //       100
+  //   ) || 0;
+  // const totalSuccessRatio =
+  //   Math.floor((totalPplGoing / linksOpenedTotal) * 100) || 0;
 
   return (
     <>
       <div className='mainUserDashBoard'>
-        {wannaGosOfUser.isSuccess && (
+        {wannagos && (
           <>
-            <h2 className='welcome'>Welcome {userToRender.data.name}!</h2>
-            <div className='statsGrid'>
+            <h2 className='welcome'>Welcome {currentUser.displayName}!</h2>
+            {/* <div className='statsGrid'>
               <div className='insideGrid'>
                 <DonutChart
                   going={totalPplGoing}
@@ -113,10 +113,10 @@ const Dashboard = ({ wannago, isNewWannago, setIsNewWannago }) => {
                   older={olderWGsTotal}
                 />
               </div>
-            </div>
+            </div> */}
             <h2 className='title'>These are your wannagos:</h2>
             <div className='wgCardsGrid'>
-              {getActiveWGsAndSort(wannaGosOfUser.data).map((wannago) => {
+              {activeSortedWannagos(wannagos).map((wannago) => {
                 return (
                   <div
                     className=''
@@ -124,9 +124,9 @@ const Dashboard = ({ wannago, isNewWannago, setIsNewWannago }) => {
                     key={wannago._id}
                   >
                     <WannaGoCard
-                      // key={wannago._id}
+                      key={wannago._id}
                       wannago={wannago}
-                      userName={userToRender.data.name}
+                      userName={currentUser.displayName}
                       // userName={user.name}
                     />
                   </div>
@@ -141,4 +141,5 @@ const Dashboard = ({ wannago, isNewWannago, setIsNewWannago }) => {
 };
 
 export default Dashboard;
+
 

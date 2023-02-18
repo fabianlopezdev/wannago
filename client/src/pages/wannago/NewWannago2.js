@@ -4,7 +4,6 @@ import { Link} from 'react-router-dom';
 //Internal dependencies
 import WannaGoCard from '../../components/wannago/WannaGoCard';
 
-import { putOwnerToWannaGo } from '../../utils/apis/userApiServices/userApi';
 import { useAuth } from '../../contexts/AuthContext';
 
 
@@ -13,35 +12,14 @@ import './newWannago.css';
 
 import SocialButtons from '../../components/wannago/SocialButtons';
 import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
-import { guestLinkGenerator } from '../../utils/helperFunctions';
+
 
 const NewWannago = ({ wannago, setWannago }) => {
-  // const { id } = useParams();
-  // // const guestLink = guestLinkGenerator(id);
   const { currentUser } = useAuth();
-  // console.log('name', currentUser.displayName);
-  
+ 
   useEffect(()=>{
-    // console.log('helooooooo')
-    if (currentUser) {
-      const dateStamp = Date.now()
-      let newWannago = {
-        ...wannago,
-        hostId: currentUser.uid,
-        hostName: currentUser.displayName,
-        dateCreated: dateStamp,
-        guestLink: guestLinkGenerator(dateStamp)
-      };
-      setWannago(newWannago);
-      setTimeout(console.log('wannago', wannago), 10000);
-      try {
-       postWannago(newWannago)
-      } catch (e) {
-        console.log(
-          `Error communicating with backend to postAWannago or to retrieve the just posted wannago. Error: ${e}`
-        );
-      }
-    }
+    // If no user, no need to post the wannago in the DB
+    currentUser && postWannago(currentUser, wannago, setWannago)
   }, [])
   
 

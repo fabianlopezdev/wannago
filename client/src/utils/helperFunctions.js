@@ -16,7 +16,7 @@ export const dateFormatter = (date) => {
   return dateTime;
 };
 
-export const getEngagementOfWannaGo = (wannaGo) => {
+export const wannagoEngagement = (wannaGo) => {
   return (
     Math.floor(
       (wannaGo.rejectCounter +
@@ -27,19 +27,19 @@ export const getEngagementOfWannaGo = (wannaGo) => {
   );
 };
 
-export const getSuccessRatioOfWannaGo = (wannaGo) => {
+export const wannagoSuccessRatio = (wannaGo) => {
   return `${Math.floor((wannaGo.goingCounter / wannaGo.openedTimes) * 100) || 0}%`;
 };
 
 export const aggregateSuccessRatio = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-      return acc + getSuccessRatioOfWannaGo(wannaGo);
+      return acc + wannagoSuccessRatio(wannaGo);
     }, 0)
 };
 
 export const aggregateEngagement = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + getEngagementOfWannaGo(wannaGo);
+    return acc + wannagoEngagement(wannaGo);
   }, 0);
 };
 
@@ -55,41 +55,41 @@ export const aggregateSuggestions = (wannaGosOfUser) => {
   }, 0);
 };
 
-export const aggregatePplGoing = (wannaGosOfUser) => {
+export const aggregateAttending = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
     return acc + wannaGo.goingCounter;
   }, 0);
 };
 
-export const aggregateOpenedTimes = (wannaGosOfUser) => {
+export const aggregateLinksOpened = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
     return acc + wannaGo.openedTimes;
   }, 0);
 };
 
-export const getTotalWannaGosCreated = (wannaGosOfUser) => {
+export const totalWannagos = (wannaGosOfUser) => {
   return wannaGosOfUser + 1;
 };
 
 //Needs testing
-export const getActiveWannaGos = (wannaGosOfUser) => {
+export const activeWannagos = (wannaGosOfUser) => {
   return wannaGosOfUser.filter(
     (wannaGo) => new Date(wannaGo.when) > Date.now()
   );
 };
-export const getOlderWannaGos = (wannaGosOfUser) => {
+export const expiredWannagos = (wannaGosOfUser) => {
   return wannaGosOfUser.filter(
     (wannaGo) => new Date(wannaGo.when) < Date.now()
   );
 };
-export const getNumOfActiveWannaGos = (wannaGosOfUser) => {
-  return getActiveWannaGos(wannaGosOfUser).length;
+export const activeWannagosNumber = (wannaGosOfUser) => {
+  return activeWannagos(wannaGosOfUser).length;
 };
-export const getNumOfOlderWannaGos = (wannaGosOfUser) => {
-  return getOlderWannaGos(wannaGosOfUser).length;
+export const olderWannagosNumber = (wannaGosOfUser) => {
+  return expiredWannagos(wannaGosOfUser).length;
 };
 
-export const getActiveWGsAndSort = (wannaGosOfUser) => {
+export const activeSortedWannagos = (wannaGosOfUser) => {
   return wannaGosOfUser
     .filter((wannaGo) => new Date(wannaGo.when) > Date.now())
     .sort((a, b) => {
@@ -99,6 +99,7 @@ export const getActiveWGsAndSort = (wannaGosOfUser) => {
 
 export const guestLinkGenerator = (id) =>
   `https://www.wannago.in/guest-link/${id}`;
+
 
 
 
