@@ -17,19 +17,19 @@ import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 
 const NewWannago = ({ wannago, setWannago }) => {
   const { currentUser } = useAuth();
- 
-  useEffect(()=>{
-    // If no user, no need to post the wannago in the DB
-    currentUser && postWannago(currentUser, wannago, setWannago)
-  }, [])
-  
+
+   useEffect(() => {
+     // If no user, no need to post the wannago in the DB
+     console.log('userr', currentUser);
+     currentUser && postWannago(currentUser, wannago, setWannago);
+   }, []);
 
   return (
     <>
       <div className='justCreatedWannaGo'>
         <h1>{wannago.hostName},</h1>
         <h1>What a Plan!</h1>
-        {currentUser ? <WannaGoCard wannaGo={wannago} /> : <WannaGoCardSimple wannago={wannago} />}
+        {currentUser ? <WannaGoCard wannago={wannago} setWannago={setWannago} /> : <WannaGoCardSimple wannago={wannago} />}
         <div className='secondPart'>
           {!currentUser ? (
             <div style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>
@@ -50,6 +50,7 @@ const NewWannago = ({ wannago, setWannago }) => {
 };
 
 export default NewWannago;
+
 
 
 

@@ -7,7 +7,7 @@ import {
   putOwnerToWannaGo,
   getUserById,
 } from '../../utils/apis/userApiServices/userApi';
-import { getAllWannaGosOfUser } from '../../utils/apis/wannagoApiServices/getWannaGos';
+import { getUserWannagos } from '../../utils/apis/wannagoApiServices/getWannaGos';
 import {
   activeWannagosNumber,
   olderWannagosNumber,
@@ -36,9 +36,9 @@ const Dashboard = ({ wannago}) => {
 
   const queryEnabled = currentUser !== null;
 
-  const { data: wannagos, isLoading, isError } = useQuery(
+  const { data: userWannagos, isLoading, isError } = useQuery(
     'wannagos',
-    () => getAllWannaGosOfUser(currentUser.uid),
+    () => getUserWannagos(currentUser.uid),
     {
       enabled: queryEnabled // enable query only when currentUser is set
     }
@@ -98,7 +98,7 @@ const Dashboard = ({ wannago}) => {
             </div> */}
             <h2 className='title'>These are your wannagos:</h2>
             <div className='wgCardsGrid'>
-              {activeSortedWannagos(wannagos).map((wannago) => {
+              {activeSortedWannagos(userWannagos).map((wannago) => {
                 return (
                   <div
                     className=''

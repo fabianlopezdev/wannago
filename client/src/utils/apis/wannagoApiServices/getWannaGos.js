@@ -10,15 +10,16 @@ export const getWannaGos = async () => {
   }
 };
 
-export const getAllWannaGosOfUser = async (owner) => {
+export const getUserWannagos = async (userId) => {
   try {
-    const allWannaGosOfUser = await fetch(
-      `https://wannago-ito3.vercel.app/wannagos/owner/${owner}`
+    const wannagos = await fetch(
+      // `https://wannago-ito3.vercel.app/wannagos/owner/${userId}`
+      `http://localhost:4020/wannagos/hostId/${userId}`
     );
-    return await allWannaGosOfUser.json();
+    return await wannagos.json();
   } catch (e) {
     console.log(
-      `Error in getAllWannaGosOfUser function in apiService. Error: ${e}`
+      `Error in getUserWannagos function in apiService. Error: ${e}`
     );
   }
 };
@@ -47,6 +48,8 @@ export const getWannagoByDateCreated = async (dateCreated) => {
     console.log(`Error in getWannagoByDateCreated function in apiService. Error: ${e}`);
   }
 };
+
+
 
 
 

@@ -3,23 +3,23 @@ const WannaGo = require('../../models/wannaGoModel');
 
 const getWannaGos = async (ctx) => {
   try {
-    const wannaGos = await WannaGo.find({});
+    const wannagos = await WannaGo.find({});
     ctx.status = 201;
-    ctx.body = wannaGos;
-    console.log(`These wannaGos were retrieved: ${wannaGos}`);
+    ctx.body = wannagos;
+    console.log(`These wannagos were retrieved: ${wannagos}`);
   } catch (e) {
     ctx.status = 500;
     console.log(`Error in getWannaGos function from controllers: ${e}`);
   }
 };
 
-const getAllWannaGosOfUser = async (ctx) => {
+const getUserWannagos = async (ctx) => {
   try {
     // console.log('params are:', ctx.params.owner)
-    const wannaGos = await WannaGo.find({ owner: ctx.params.owner});
+    const wannagos = await WannaGo.find({ hostId: ctx.params.hostId});
     ctx.status = 201;
-    ctx.body = wannaGos;
-    console.log(`The owner: ${ctx.params.owner} owns these wannaGos: ${wannaGos}`);
+    ctx.body = wannagos;
+    console.log(`The owner: ${ctx.params.hostId} owns these wannagos: ${wannagos}`);
   } catch (e) {
     ctx.status = 500;
     console.log(`Error in getWannaGos function from controllers: ${e}`);
@@ -73,7 +73,7 @@ module.exports = {
   getWannaGos,
   getWannaGoByParams,
   getWannaGoById,
-  getAllWannaGosOfUser,
+  getUserWannagos,
   getWannagoByDateCreated,
 };
 

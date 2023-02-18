@@ -29,7 +29,7 @@ const NavBar = () => {
         <div className='navContainer'>
           {currentUser ? (
             <>
-              <Logo />
+              <Logo currentUser={currentUser}/>
               {location.pathname !== 'new-wannago' && (
                 <Link to={'new-wannago'}>
                   <button

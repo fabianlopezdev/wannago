@@ -36,7 +36,7 @@ export default function SignUp({wannago, setWannago}) {
         passwordRef.current.value,
         nameRef.current.value
       );
-      if (Object.entries(wannago).length === 4) postWannago(user, wannago, setWannago);
+      if (Object.entries(wannago).length === 3) postWannago(user, wannago, setWannago);
       // const user = {
       //   name: nameRef.current.value,
       //   email: newUser.user.email,

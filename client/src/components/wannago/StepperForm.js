@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { steps, stepsLoggedIn } from '../../data';
+import { steps } from '../../data';
 import { useAuth } from '../../contexts/AuthContext';
 
 import {
@@ -15,10 +15,7 @@ import {
 
 export default function StepperForm({wannago, setIsCreated, setWannago}) {
   const [activeStep, setActiveStep] = useState(0);
-  const { currentUser } = useAuth();
-  
-  let Steps = [];
-  !currentUser ? (Steps = steps) : (Steps = stepsLoggedIn);
+ 
   
   const handleNext = (e) => {
     e.preventDefault();
@@ -40,7 +37,7 @@ export default function StepperForm({wannago, setIsCreated, setWannago}) {
           activeStep={activeStep}
           orientation='vertical'
         >
-          {Steps.map((step, index) => (
+          {steps.map((step, index) => (
             <Step
               key={step.label}
               style={{ fontSize: 'larger' }}
@@ -85,7 +82,7 @@ export default function StepperForm({wannago, setIsCreated, setWannago}) {
                       }}
                       sx={{ mt: 1, mr: 1 }}
                     >
-                      {index === Steps.length - 1 ? 'Finish' : 'Continue'}
+                      {index === steps.length - 1 ? 'Finish' : 'Continue'}
                     </Button>
                     <Button
                       disabled={index === 0}
@@ -104,7 +101,7 @@ export default function StepperForm({wannago, setIsCreated, setWannago}) {
             </Step>
           ))}
         </Stepper>
-        {activeStep === Steps.length && (
+        {activeStep === steps.length && (
           <Paper
             square
             elevation={0}

@@ -9,13 +9,16 @@ import {
 import { deleteWannaGo } from '../../utils/apis/wannagoApiServices/deleteWannaGos';
 import { CLIENT_PORT, URL } from '../../utils/config';
 import { useMutation, useQueryClient } from 'react-query';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SocialButtons from './SocialButtons';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-const WannaGoCard = ({ wannago, userName }) => {
+import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
+
+
+const WannaGoCard = ({ wannago, setWannago }) => {
   const [showShare, setShowShare] = useState(false);
   const { currentUser } = useAuth();
 
@@ -23,16 +26,20 @@ const WannaGoCard = ({ wannago, userName }) => {
   const guest = location.pathname.split('/')[2];
   const [showDelete, setShowDelete] = useState(false);
   const dateTime = dateFormatter(wannago.when);
+
+  
+ 
+
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(deleteWannaGo, {
-    onSuccess: () => {
-      // queryClient.getQueryData(['wannagos'], (prevWannagos) => {
-      //   console.log('previousWannagos',prevWannagos)
-      //   // prevWannagos.splice(prevWannagos.indexOf(wgToDelete), 1);
-      // });
-      queryClient.invalidateQueries('wannagos');
-    },
-  });
+  // const { mutate } = useMutation(deleteWannaGo, {
+  //   onSuccess: () => {
+  //     queryClient.getQueryData(['wannagos'], (prevWannagos) => {
+  //       console.log('previousWannagos',prevWannagos)
+  //       prevWannagos.splice(prevWannagos.indexOf(wgToDelete), 1);
+  //     });
+  //     queryClient.invalidateQueries('wannagos');
+  //   },
+  // });
 
   const onClickDealDelete = () => {
     setShowDelete(true);
@@ -112,7 +119,7 @@ const WannaGoCard = ({ wannago, userName }) => {
             >
               <SocialButtons
                 wannaGoId={wannago._id}
-                userName={userName}
+                userName={wannago.hostName}
               />
             </div>
           )}
@@ -125,7 +132,7 @@ const WannaGoCard = ({ wannago, userName }) => {
                 <h5>Delete wannago?</h5>
                 <button
                   className='copyButton'
-                  onClick={() => mutate(wannago._id)}
+                  // onClick={() => mutate(wannago._id)}
                 >
                   Delete
                 </button>
@@ -139,4 +146,6 @@ const WannaGoCard = ({ wannago, userName }) => {
 };
 
 export default WannaGoCard;
+
+
 

@@ -11,24 +11,18 @@ export const postWannago = async (currentUser, wannago, setWannago) => {
     dateCreated: dateStamp,
     guestLink: guestLinkGenerator(dateStamp),
   };
-  setWannago(newWannago);
-  setTimeout(console.log('wannago', wannago), 10000);
+  // setWannago(newWannago);
+  // setTimeout(console.log('wannago', wannago), 10000);
   try {
-    // return await fetch(`https://wannago-ito3.vercel.app/wannago`, 
-    return await fetch(`http://localhost:4020/wannago`, 
-    {
+    // return await fetch(`https://wannago-ito3.vercel.app/wannago`,
+    return await fetch(`http://localhost:4020/wannago`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify(newWannago),
     });
+   
   } catch (e) {
     console.log(`Error in postWannago function in apiService. Error: ${e}`);
   }
 };
-
-
-
-
-
-
 
