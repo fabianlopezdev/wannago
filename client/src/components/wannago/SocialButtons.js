@@ -8,9 +8,9 @@ import { useState } from 'react';
 import './SocialButtons.css';
 import { guestLinkGenerator } from '../../utils/helperFunctions';
 import { Link } from 'react-router-dom';
-const SocialButtons = ({ wannaGoId, userName }) => {
+const SocialButtons = ({ guestLink, userName }) => {
   const [copied, setCopied] = useState('Copy Link');
-  const guestLink = guestLinkGenerator(wannaGoId);
+  // const guestLink = guestLinkGenerator(wannaGoId);
 
   const onClickCopyLink = () => {
     navigator.clipboard.writeText(guestLink);

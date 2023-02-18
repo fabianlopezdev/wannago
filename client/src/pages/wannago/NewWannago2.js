@@ -1,36 +1,41 @@
 //External dependencies
-import { useEffect, useState } from 'react';
-import { useNavigate, Link, useParams } from 'react-router-dom';
-import { useQuery, useMutation, useQueryClient } from 'react-query';
-import { Alert } from 'bootstrap';
+import { useEffect } from 'react';
+import { Link} from 'react-router-dom';
 //Internal dependencies
 import WannaGoCard from '../../components/wannago/WannaGoCard';
-import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
-import { putGuestLink } from '../../utils/apis/wannagoApiServices/putWannaGos';
-import { CLIENT_PORT, URL } from '../../utils/config';
+
 import { putOwnerToWannaGo } from '../../utils/apis/userApiServices/userApi';
 import { useAuth } from '../../contexts/AuthContext';
-import { getSuccessRatioOfWannaGo, guestLinkGenerator } from '../../utils/helperFunctions';
+
 
 import '../../components/wannago/WannaGoCard.css';
 import './newWannago.css';
 
 import SocialButtons from '../../components/wannago/SocialButtons';
 import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
+import { guestLinkGenerator } from '../../utils/helperFunctions';
 
 const NewWannago = ({ wannago, setWannago }) => {
   // const { id } = useParams();
   // // const guestLink = guestLinkGenerator(id);
   const { currentUser } = useAuth();
-  console.log('name', currentUser.displayName);
+  // console.log('name', currentUser.displayName);
   
   useEffect(()=>{
-    console.log('helooooooo')
+    // console.log('helooooooo')
     if (currentUser) {
+      const dateStamp = Date.now()
+      let newWannago = {
+        ...wannago,
+        hostId: currentUser.uid,
+        hostName: currentUser.displayName,
+        dateCreated: dateStamp,
+        guestLink: guestLinkGenerator(dateStamp)
+      };
+      setWannago(newWannago);
+      setTimeout(console.log('wannago', wannago), 10000);
       try {
-        setWannago({...wannago, hostId: currentUser.uid, hostName: currentUser.displayName})
-        console.log('wannago', wannago);
-        // postWannago(wannago)
+       //postWannago(newWannago)
       } catch (e) {
         console.log(
           `Error communicating with backend to postAWannago or to retrieve the just posted wannago. Error: ${e}`
@@ -39,38 +44,11 @@ const NewWannago = ({ wannago, setWannago }) => {
     }
   }, [])
   
-  // const navigate = useNavigate();
-  // const { data, isError, isLoading } = useQuery(
-  //   'createdWG',
-  //   () => getWannaGoById(id),
-  //   {
-  //     onSuccess: (data) => {
-  //       console.log('Success, and now posting');
-  //       // putGuestLink(data._id, guestLink);
-  //       if (currentUser?.uid) putOwnerToWannaGo(data._id, currentUser.uid);
-  //     },
-  //     refetchOnMount: false,
-  //   }
-  // );
-
-  // // const queryClient = useQueryClient();
-
-  // // currentUser && const {name} = queryClient.getQueryData('user');
-
-  // // console.log('this is datar', datar)
-
-  // if (isLoading) return <p>Loading...</p>;
-  // if (isError)
-  //   return (
-  //     <Alert variant='danger'>
-  //       Sorry we could not load the page. The link may be broken
-  //     </Alert>
-  //   );
 
   return (
     <>
       <div className='justCreatedWannaGo'>
-        <h1>{wannago.ownerName},</h1>
+        <h1>{wannago.hostName},</h1>
         <h1>What a Plan!</h1>
         <WannaGoCard wannaGo={wannago} />
         <div className='secondPart'>
@@ -79,12 +57,12 @@ const NewWannago = ({ wannago, setWannago }) => {
               <h2>Get your plans engaged!</h2>
               <p>
                 Share the wannaGo with friends and family and see who can go:
-                <Link to='/user/login'> Log in </Link> or
-                <Link to='/user/signup'> sign up </Link>
+                <Link to='/log-in'> Log in </Link> or
+                <Link to='/sign-up'> sign up </Link>
               </p>
             </div>
           ) : (
-            <SocialButtons wannaGoId={wannago._id} />
+            <SocialButtons guestLink={wannago.guestLink} />
           )}
         </div>
       </div>
@@ -93,6 +71,12 @@ const NewWannago = ({ wannago, setWannago }) => {
 };
 
 export default NewWannago;
+
+
+
+
+
+
 
 
 

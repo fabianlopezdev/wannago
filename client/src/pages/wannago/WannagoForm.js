@@ -13,12 +13,12 @@ import { Logo } from '../../components/navbar/NavBarButtons';
 import NewWannago from './NewWannago2';
 import StepperForm from '../../components/wannago/StepperForm';
 
-export default function WannagoForm({ wannago, setWannago, setIsNewWannago }) {
+export default function WannagoForm({ wannago, setWannago}) {
   //Hooks
   const [error, setError] = useState();
   const [isCreated, setIsCreated] = useState(false);
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const { currentUser } = useAuth();
   // console.log('this is current user', currentUser);
  
@@ -58,12 +58,12 @@ export default function WannagoForm({ wannago, setWannago, setIsNewWannago }) {
       )}
       {isCreated || (
         <StepperForm
-          currentUser={currentUser}
           wannago={wannago}
           setIsCreated={setIsCreated}
+          setWannago={setWannago}
         />
       )}
-      {isCreated && <NewWannago wannago={wannago} setWannago={setWannago} />}
+      {isCreated && <NewWannago wannago={wannago} setWannago={setWannago}  />}
     </>
   );
 }

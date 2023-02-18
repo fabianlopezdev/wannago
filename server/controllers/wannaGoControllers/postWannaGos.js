@@ -11,7 +11,8 @@ const postWannago = async (ctx) => {
       when: wannaGo.when,
       hostId: wannaGo.hostId,
       hostName: wannaGo.hostName,
-      dateCreated: Date.now(),
+      dateCreated: wannaGo.dateCreated,
+      guestLink: wannaGo.guestLink,
     });
     console.log(`This wannaGo was posted: ${storedWannaGo}`);
     ctx.status = 201;

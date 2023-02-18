@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { steps, stepsLoggedIn } from '../../data';
+import { useAuth } from '../../contexts/AuthContext';
 
 import {
   Box,
@@ -12,19 +13,19 @@ import {
   Typography,
 } from '@mui/material';
 
-export default function StepperForm({currentUser, wannago, setIsCreated}) {
+export default function StepperForm({wannago, setIsCreated, setWannago}) {
   const [activeStep, setActiveStep] = useState(0);
+  const { currentUser } = useAuth();
+  
   let Steps = [];
-
   !currentUser ? (Steps = steps) : (Steps = stepsLoggedIn);
   
   const handleNext = (e) => {
     e.preventDefault();
-    if (activeStep === 0 && currentUser) wannago.host = currentUser.displayName
     const field = e.target[0].name;
     const inputValue = e.target[0].value;
-    wannago[field] = inputValue;
-
+    setWannago({...wannago, [field]: inputValue })
+    console.log(wannago)
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -122,6 +123,8 @@ export default function StepperForm({currentUser, wannago, setIsCreated}) {
     </div>
   );
 }
+
+
 
 
 

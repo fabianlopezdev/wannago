@@ -62,12 +62,12 @@ export default function Login() {
             </Button>
           </Form>
           <div className='line-after-auth-card forgot'>
-            <Link to='/user/forgot-password'>Forgot Password?</Link>
+            <Link to='/forgot-password'>Forgot Password?</Link>
           </div>
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        Need an account? <Link to='/user/signup'>Sign Up</Link>
+        Need an account? <Link to='/sign-up'>Sign Up</Link>
       </div>
     </main>
   );

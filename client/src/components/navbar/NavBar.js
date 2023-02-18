@@ -22,7 +22,7 @@ const NavBar = () => {
   const location = useLocation();
   
 
-  console.log(location)
+  // console.log(location)
   return (
     <nav>
       {location.pathname !== '/' && (

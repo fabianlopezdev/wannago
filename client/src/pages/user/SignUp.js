@@ -101,7 +101,7 @@ export default function SignUp() {
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        Already have an account? <Link to='/user/login'>Log In</Link>
+        Already have an account? <Link to='/log-in'>Log In</Link>
       </div>
     </main>
   );

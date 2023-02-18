@@ -19,11 +19,6 @@ import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes
 export const statelessRoutes = [
   <Route>
     <Route
-      path='/'
-      element={<LandingPage />}
-    />
-
-    <Route
       path=':id'
       element={<NewWannago />}
     />

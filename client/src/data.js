@@ -20,7 +20,7 @@ export const steps = [
       <input
         text='Who?'
         type='text'
-        name='ownerName'
+        name='hostName'
         autoFocus
         required
       ></input>

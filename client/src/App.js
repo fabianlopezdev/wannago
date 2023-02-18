@@ -7,14 +7,15 @@ import { initialWannaGo } from './data';
 import NavBar from './components/navbar/NavBar';
 import WannagoStats from './pages/wannago/WannagoStats.js';
 import { Dashboard } from './pages/user';
+import LandingPage  from './pages/LandingPage'
 import WannagoForm from './pages/wannago/WannagoForm';
 import NavBarBottom from './components/navbar/NavBarBottom';
 import { statelessRoutes } from './statelessRoutes';
 import './App.css';
 
 function App() {
-  const [wannago, setWannago] = useState(initialWannaGo);
-  const [isNewWannago, setIsNewWannago] = useState(false);
+  const [wannago, setWannago] = useState({});
+  // const [isNewWannago, setIsNewWannago] = useState(false);
 
   return (
     <>
@@ -24,6 +25,10 @@ function App() {
 
       <main className='mainContainer'>
         <Routes>
+          <Route
+            path='/'
+            element={<LandingPage setWannago={setWannago}/>}
+          />
           {statelessRoutes}
           <Route
             path='new-wannago'
@@ -31,7 +36,6 @@ function App() {
               <WannagoForm
                 wannago={wannago}
                 setWannago={setWannago}
-                setIsNewWannago={setIsNewWannago}
               />
             }
           />
@@ -40,8 +44,6 @@ function App() {
             element={
               <Dashboard
                 wannago={wannago}
-                isNewWannago={isNewWannago}
-                setIsNewWannago={setIsNewWannago}
               />
             }
           />
@@ -60,4 +62,5 @@ function App() {
 }
 
 export default App;
+
 

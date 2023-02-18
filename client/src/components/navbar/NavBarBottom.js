@@ -26,7 +26,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location);
+  // console.log(location);
   return (
     <nav>
       {location.pathname !== '/' && (
