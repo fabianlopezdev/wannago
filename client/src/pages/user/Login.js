@@ -3,10 +3,11 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
+import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 
 import './Authentication.css';
 
-export default function Login() {
+export default function Login({wannago, setWannago}) {
   //Hooks
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -15,14 +16,15 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
+  console.log('wannago.length', Object.keys(wannago).length)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       setError('');
       setLoading(true);
-      await logIn(emailRef.current.value, passwordRef.current.value);
+      const user = await logIn(emailRef.current.value, passwordRef.current.value);
+      if (Object.entries(wannago).length === 4) postWannago(user, wannago, setWannago)
       navigate('/dashboard');
     } catch {
       setError('Failed to sign in');
@@ -72,6 +74,7 @@ export default function Login() {
     </main>
   );
 }
+
 
 
 

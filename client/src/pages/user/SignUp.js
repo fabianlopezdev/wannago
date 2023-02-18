@@ -3,13 +3,14 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { postUser } from '../../utils/apis/userApiServices/userApi';
+import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 
 import './Authentication.css';
 
-export default function SignUp() {
+export default function SignUp({wannago, setWannago}) {
   //Hooks
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -30,19 +31,20 @@ export default function SignUp() {
     try {
       setError('');
       setLoading(true);
-      const newUser = await signUp(
+      const user = await signUp(
         emailRef.current.value,
         passwordRef.current.value,
         nameRef.current.value
       );
-      const user = {
-        name: nameRef.current.value,
-        email: newUser.user.email,
-        _id: newUser.user.uid,
-      };
-      console.log('this is user', user);
-      await postUser(user);
-      navigate('dashboard');
+      if (Object.entries(wannago).length === 4) postWannago(user, wannago, setWannago);
+      // const user = {
+      //   name: nameRef.current.value,
+      //   email: newUser.user.email,
+      //   _id: newUser.user.uid,
+      // };
+      // console.log('this is user', user);
+      // await postUser(user);
+      navigate('/dashboard');
     } catch {
       setError('Failed to create an account');
     }
@@ -106,6 +108,8 @@ export default function SignUp() {
     </main>
   );
 }
+
+
 
 
 

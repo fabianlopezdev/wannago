@@ -1,7 +1,14 @@
 //External dependencies
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
+import { Container } from 'react-bootstrap';
+import {
+  SignUp,
+  DeleteUser,
+  UpdateProfile,
+  ForgotPassword,
+  Login,
+} from './pages/user';
 //Internal dependencies
 import { initialWannaGo } from './data';
 import NavBar from './components/navbar/NavBar';
@@ -27,7 +34,7 @@ function App() {
         <Routes>
           <Route
             path='/'
-            element={<LandingPage setWannago={setWannago}/>}
+            element={<LandingPage setWannago={setWannago} />}
           />
           {statelessRoutes}
           <Route
@@ -40,12 +47,34 @@ function App() {
             }
           />
           <Route
-            path='dashboard'
+            path='sign-up'
             element={
-              <Dashboard
-                wannago={wannago}
-              />
+              <>
+                <Container>
+                  <SignUp
+                    wannago={wannago}
+                    setWannago={setWannago}
+                  />
+                </Container>
+              </>
             }
+          />
+          <Route
+            path='log-in'
+            element={
+              <>
+                <Container>
+                  <Login
+                    wannago={wannago}
+                    setWannago={setWannago}
+                  />
+                </Container>
+              </>
+            }
+          />
+          <Route
+            path='dashboard'
+            element={<Dashboard wannago={wannago} />}
           />
           <Route
             path='wannago-stats/:id'
@@ -62,5 +91,11 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
 
 

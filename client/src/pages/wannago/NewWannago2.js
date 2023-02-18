@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link} from 'react-router-dom';
 //Internal dependencies
 import WannaGoCard from '../../components/wannago/WannaGoCard';
+import WannaGoCardSimple from '../../components/wannago/WannaGoCardSimple';
 
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -28,7 +29,7 @@ const NewWannago = ({ wannago, setWannago }) => {
       <div className='justCreatedWannaGo'>
         <h1>{wannago.hostName},</h1>
         <h1>What a Plan!</h1>
-        <WannaGoCard wannaGo={wannago} />
+        {currentUser ? <WannaGoCard wannaGo={wannago} /> : <WannaGoCardSimple wannago={wannago} />}
         <div className='secondPart'>
           {!currentUser ? (
             <div style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>
@@ -49,6 +50,7 @@ const NewWannago = ({ wannago, setWannago }) => {
 };
 
 export default NewWannago;
+
 
 
 

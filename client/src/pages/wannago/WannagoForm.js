@@ -65,7 +65,7 @@ export default function WannagoForm({ wannago, setWannago}) {
           setWannago={setWannago}
         />
       )}
-      {isCreated && <NewWannago wannago={wannago} setWannago={setWannago}  />}
+      {isCreated && <NewWannago wannago={wannago} />}
     </>
   );
 }

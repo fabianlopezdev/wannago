@@ -27,26 +27,7 @@ export const statelessRoutes = [
       element={<GuestsLink />}
     />
     <Route element={<UserPrivateRoute />}>
-      <Route
-        path='sign-up'
-        element={
-          <>
-            <Container>
-              <SignUp />
-            </Container>
-          </>
-        }
-      />
-      <Route
-        path='log-in'
-        element={
-          <>
-            <Container>
-              <Login />
-            </Container>
-          </>
-        }
-      />
+      
       <Route
         path='forgot-password'
         element={

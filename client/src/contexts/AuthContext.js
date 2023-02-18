@@ -38,8 +38,10 @@ export const AuthProvider = ({ children }) => {
 
   };
 
-  const logIn = (email, password) => {
-    return auth.signInWithEmailAndPassword(email, password);
+  const logIn = async (email, password) => {
+    const { user } = await auth.signInWithEmailAndPassword(email, password);
+    console.log('user', user)
+    return user;
   };
 
   const logOut = () => {
@@ -79,4 +81,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 

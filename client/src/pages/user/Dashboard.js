@@ -33,43 +33,25 @@ import './dashboard.css';
 
 const Dashboard = ({ wannago}) => {
   const { currentUser } = useAuth();
-  // const queryClient = useQueryClient();
 
-  //This first query it is to get the name of the user authenticated
-  // const userToRender = useQuery('user', () => getUserById(currentUser.uid), {
-  //   onSuccess: (user) => {
-  //     if (isNewWannago) {
-  //       console.log('HIIIIIIIIIT', wannago._id);
-  //       console.log('userToRenderID', user._id);
-  //       mutate([wannago._id, user._id]);
-  //       setIsNewWannago(false);
-  //       return;
-  //     }
-  //   },
-  // });
+  const queryEnabled = currentUser !== null;
 
-  // const { mutate } = useMutation(putOwnerToWannaGo, {
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries('wannagos');
-  //   },
-  // });
-
-  const {data: wannagos} = useQuery('wannagos', () =>
-    getAllWannaGosOfUser(currentUser.uid)
+  const { data: wannagos, isLoading, isError } = useQuery(
+    'wannagos',
+    () => getAllWannaGosOfUser(currentUser.uid),
+    {
+      enabled: queryEnabled // enable query only when currentUser is set
+    }
   );
 
-  // const {mutate} = useMutation(deleteWann)
-  // // const [wannaGos, set] = useState(true)
-  // console.log('wannagos to render', wannagos);
-
-  // if (wannagos.isLoading)
-  //   return <p>Loading...</p>;
-  // if (wannagos.isError)
-  //   return (
-  //     <Alert variant='danger'>
-  //       Sorry, something went wrong. Please try refreshing the page.
-  //     </Alert>
-  //   );
+  if (isLoading)
+    return <p>Loading...</p>;
+  if (isError)
+    return (
+      <Alert variant='danger'>
+        Sorry, something went wrong. Please try refreshing the page.
+      </Alert>
+    );
   //     console.log('wannagos', wannagos)
   // const totalWGs = wannagos.length;
   // const totalPplGoing = aggregatePplGoing(wannagos);
@@ -90,7 +72,7 @@ const Dashboard = ({ wannago}) => {
   return (
     <>
       <div className='mainUserDashBoard'>
-        {wannagos && (
+        {currentUser && (
           <>
             <h2 className='welcome'>Welcome {currentUser.displayName}!</h2>
             {/* <div className='statsGrid'>
@@ -141,5 +123,7 @@ const Dashboard = ({ wannago}) => {
 };
 
 export default Dashboard;
+
+
 
 
