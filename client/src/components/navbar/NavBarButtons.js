@@ -108,9 +108,10 @@ export const LogInButton = () => {
     </Link>
   );
 };
-export const Logo = () => {
+export const Logo = ({currentUser}) => {
+  // console.log('currentUSer', currentUser)
   return (
-    <Link to={'dashboard'}>
+    <Link to={currentUser ? 'dashboard' : '/'}>
       <img
         className='Logo'
         src={logo}

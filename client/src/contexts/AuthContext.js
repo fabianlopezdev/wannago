@@ -1,6 +1,6 @@
 //External dependencies
 import React, { useContext, useState, useEffect } from 'react';
-import { auth } from '../firebase';
+import { auth, up } from '../firebase';
 
 const AuthContext = React.createContext();
 
@@ -21,8 +21,21 @@ export const AuthProvider = ({ children }) => {
     return unsuscribe;
   }, []);
 
-  const signUp = async (email, password) => {
-    return auth.createUserWithEmailAndPassword(email, password);
+  const signUp = async (email, password, name) => {
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await user.updateProfile({
+        displayName: name,
+      });
+      console.log('User successfully created: ', user);
+      return user;
+    } catch (error) {
+      console.error('Error creating user: ', error);
+    }
+
   };
 
   const logIn = (email, password) => {

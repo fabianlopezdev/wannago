@@ -8,7 +8,7 @@ const {
   getAllWannaGosOfUser,
 } = require('./controllers/wannaGoControllers/getWannaGos');
 const {
-  postAwannaGo,
+  postWannago,
 } = require('./controllers/wannaGoControllers/postWannaGos');
 const { deleteWannaGo } = require('./controllers/wannaGoControllers/deleteWannaGos');
 const {
@@ -40,7 +40,7 @@ router.get('/wannago/:what/:when', getWannaGoByParams);
 router.get('/user/:id', getUserById);
 
 //POSTS
-router.post('/wannago', postAwannaGo);
+router.post('/wannago', postWannago);
 
 router.post('/user', postAuser);
 

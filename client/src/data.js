@@ -5,7 +5,8 @@ export let initialWannaGo = {
   what: '',
   when: '',
   where: '',
-  ownerName: '',
+  hostName: '',
+  hostId: '',
   _id: '',
 };
 

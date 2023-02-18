@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Alert } from 'bootstrap';
 
 //Internal dependencies
-import WannaGoCard from '../components/WannaGoCard';
+import WannaGoCard from '../components/wannago/WannaGoCard';
 import {
   YesOption,
   NoOption,
@@ -18,18 +18,21 @@ import {
 import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
-import {Logo} from '../components/navbar/NavBarButtons'
+import { Logo } from '../components/navbar/NavBarButtons';
 import './guestLink.css';
 
 const GuestLink = () => {
   const { id } = useParams();
   console.log('this is the id', id);
-  const { data, isError, isLoading } = useQuery('guestLink', () => getWannaGoById(id), {
-    onSuccess: (data) => putOpenedTimes(id, ++data.openedTimes),
-    staleTime: Infinity,
-  }
+  const { data, isError, isLoading } = useQuery(
+    'guestLink',
+    () => getWannaGoById(id),
+    {
+      onSuccess: (data) => putOpenedTimes(id, ++data.openedTimes),
+      staleTime: Infinity,
+    }
   );
-  console.log('this is data', data)
+  console.log('this is data', data);
   // const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
 
@@ -120,6 +123,4 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
-
-
 

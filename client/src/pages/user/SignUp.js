@@ -32,7 +32,8 @@ export default function SignUp() {
       setLoading(true);
       const newUser = await signUp(
         emailRef.current.value,
-        passwordRef.current.value
+        passwordRef.current.value,
+        nameRef.current.value
       );
       const user = {
         name: nameRef.current.value,
@@ -41,7 +42,7 @@ export default function SignUp() {
       };
       console.log('this is user', user);
       await postUser(user);
-      navigate('/user/dashboard');
+      navigate('dashboard');
     } catch {
       setError('Failed to create an account');
     }

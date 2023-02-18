@@ -26,23 +26,19 @@ import {
   RadialChart,
   TotalWannaGosChart,
 } from '../../components/charts';
-import WannaGoCard from '../../components/WannaGoCard';
+import WannaGoCard from '../../components/wannago/WannaGoCard';
 
 import '../../components/guestLinkPageOptions/Options.css';
 import './dashboard.css';
 
-const Dashboard = ({
-  wannago,
-  isNewWannago,
-  setIsNewWannago,
-}) => {
+const Dashboard = ({ wannago, isNewWannago, setIsNewWannago }) => {
   const { currentUser } = useAuth();
   const queryClient = useQueryClient();
 
   //This first query it is to get the name of the user authenticated
   const userToRender = useQuery('user', () => getUserById(currentUser.uid), {
     onSuccess: (user) => {
-      if(isNewWannago) {
+      if (isNewWannago) {
         console.log('HIIIIIIIIIT', wannago._id);
         console.log('userToRenderID', user._id);
         mutate([wannago._id, user._id]);
@@ -52,10 +48,11 @@ const Dashboard = ({
     },
   });
 
-  const { mutate } = useMutation(putOwnerToWannaGo, {onSuccess: () => {
-      queryClient.invalidateQueries('wannagos');}
-    }
-  )
+  const { mutate } = useMutation(putOwnerToWannaGo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('wannagos');
+    },
+  });
 
   const wannaGosOfUser = useQuery('wannagos', () =>
     getAllWannaGosOfUser(currentUser.uid)
@@ -65,7 +62,6 @@ const Dashboard = ({
   // // const [wannaGos, set] = useState(true)
   // console.log('wannagos to render', wannaGosOfUser);
 
-  
   if (userToRender.isLoading || wannaGosOfUser.isLoading)
     return <p>Loading...</p>;
   if (userToRender.isError || wannaGosOfUser.isError)
@@ -145,14 +141,4 @@ const Dashboard = ({
 };
 
 export default Dashboard;
-
-
-
-
-
-
-
-
-
-
 

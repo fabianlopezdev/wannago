@@ -4,23 +4,41 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { Alert } from 'bootstrap';
 //Internal dependencies
-import WannaGoCard from '../components/WannaGoCard';
-import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
-import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
-import { CLIENT_PORT, URL } from '../utils/config';
-import { putOwnerToWannaGo } from '../utils/apis/userApiServices/userApi';
-import { useAuth } from '../contexts/AuthContext';
-import { guestLinkGenerator } from '../utils/helperFunctions';
+import WannaGoCard from '../../components/wannago/WannaGoCard';
+import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
+import { putGuestLink } from '../../utils/apis/wannagoApiServices/putWannaGos';
+import { CLIENT_PORT, URL } from '../../utils/config';
+import { putOwnerToWannaGo } from '../../utils/apis/userApiServices/userApi';
+import { useAuth } from '../../contexts/AuthContext';
+import { getSuccessRatioOfWannaGo, guestLinkGenerator } from '../../utils/helperFunctions';
 
-import '../components/WannaGoCard.css';
+import '../../components/wannago/WannaGoCard.css';
 import './newWannago.css';
 
-import SocialButtons from '../components/SocialButtons';
+import SocialButtons from '../../components/wannago/SocialButtons';
+import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 
-const NewWannago = ({wannago}) => {
+const NewWannago = ({ wannago, setWannago }) => {
   // const { id } = useParams();
   // // const guestLink = guestLinkGenerator(id);
   const { currentUser } = useAuth();
+  console.log('name', currentUser.displayName);
+  
+  useEffect(()=>{
+    console.log('helooooooo')
+    if (currentUser) {
+      try {
+        setWannago({...wannago, hostId: currentUser.uid, hostName: currentUser.displayName})
+        console.log('wannago', wannago);
+        // postWannago(wannago)
+      } catch (e) {
+        console.log(
+          `Error communicating with backend to postAWannago or to retrieve the just posted wannago. Error: ${e}`
+        );
+      }
+    }
+  }, [])
+  
   // const navigate = useNavigate();
   // const { data, isError, isLoading } = useQuery(
   //   'createdWG',
@@ -75,4 +93,6 @@ const NewWannago = ({wannago}) => {
 };
 
 export default NewWannago;
+
+
 

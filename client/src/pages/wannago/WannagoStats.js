@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import WannaGoCard from '../components/WannaGoCard';
-import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
+import WannaGoCard from '../../components/wannago/WannaGoCard';
+import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -30,14 +30,17 @@ const WannaGoStats = () => {
             Seen by <strong>{data.openedTimes}</strong> people
           </div>
           <div className='seen'>
-
-          <WannaGoCard wannaGo={data} />
+            <WannaGoCard wannaGo={data} />
           </div>
         </div>
         <div className='statsPartContainer'>
           <div className='statsPart'>
             <div className='numsBox'>
-              {data.ppl_going ? <h1 className='num'>{Object.keys(data.ppl_going).length}</h1> : <h1 className='num'>0</h1>}
+              {data.ppl_going ? (
+                <h1 className='num'>{Object.keys(data.ppl_going).length}</h1>
+              ) : (
+                <h1 className='num'>0</h1>
+              )}
               <div>people wannaGo</div>
             </div>
             <div className='numsBox'>
@@ -50,27 +53,31 @@ const WannaGoStats = () => {
             </div>
           </div>
           <div className='goingAndSuggestions'>
-            {data.ppl_going && <div className='goingContainer'>
-              <h1 className='goingandsuggestiontitle'>People Going</h1>
-              {Object.keys(data.ppl_going).map((key) => {
-                return (
-                  <div className='going'>{`${key} ${data.ppl_going[key]}`}</div>
-                );
-              })}
-            </div>}
-            {data.suggestion_box && <div className='suggestionContainer'>
-              <h1 className='goingandsuggestiontitle'>Suggestions</h1>
-              {Object.keys(data.suggestion_box).map((key) => {
-                return (
-                  <>
-                    <div className='msg'>
-                      <h5>{`${key} said`}</h5>
-                      <div>{data.suggestion_box[key]}</div>
-                    </div>
-                  </>
-                );
-              })}
-            </div>}
+            {data.ppl_going && (
+              <div className='goingContainer'>
+                <h1 className='goingandsuggestiontitle'>People Going</h1>
+                {Object.keys(data.ppl_going).map((key) => {
+                  return (
+                    <div className='going'>{`${key} ${data.ppl_going[key]}`}</div>
+                  );
+                })}
+              </div>
+            )}
+            {data.suggestion_box && (
+              <div className='suggestionContainer'>
+                <h1 className='goingandsuggestiontitle'>Suggestions</h1>
+                {Object.keys(data.suggestion_box).map((key) => {
+                  return (
+                    <>
+                      <div className='msg'>
+                        <h5>{`${key} said`}</h5>
+                        <div>{data.suggestion_box[key]}</div>
+                      </div>
+                    </>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>

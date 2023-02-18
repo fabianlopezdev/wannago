@@ -2,14 +2,15 @@
 const { now } = require('mongoose');
 const WannaGo = require('../../models/wannaGoModel');
 
-const postAwannaGo = async (ctx) => {
+const postWannago = async (ctx) => {
   try {
     const wannaGo = ctx.request.body;
     const storedWannaGo = await WannaGo.create({
       what: wannaGo.what,
       where: wannaGo.where,
       when: wannaGo.when,
-      ownerName: wannaGo.ownerName,
+      hostId: wannaGo.hostId,
+      hostName: wannaGo.hostName,
       dateCreated: Date.now(),
     });
     console.log(`This wannaGo was posted: ${storedWannaGo}`);

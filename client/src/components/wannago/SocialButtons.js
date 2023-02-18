@@ -6,8 +6,8 @@ import { EmailIcon, WhatsappIcon } from 'react-share';
 
 import { useState } from 'react';
 import './SocialButtons.css';
-import { guestLinkGenerator } from '../utils/helperFunctions';
-import {Link} from 'react-router-dom'
+import { guestLinkGenerator } from '../../utils/helperFunctions';
+import { Link } from 'react-router-dom';
 const SocialButtons = ({ wannaGoId, userName }) => {
   const [copied, setCopied] = useState('Copy Link');
   const guestLink = guestLinkGenerator(wannaGoId);
@@ -46,5 +46,4 @@ const SocialButtons = ({ wannaGoId, userName }) => {
 };
 
 export default SocialButtons;
-
 

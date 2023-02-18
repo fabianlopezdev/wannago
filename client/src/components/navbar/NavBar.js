@@ -53,7 +53,7 @@ const NavBar = () => {
             </>
           ) : (
             <>
-              <Logo />
+              <Logo currentUser={currentUser} />
               <div className='userSigningButtons'>
                 <LogInButton logOut={logOut} />
                 <SignUpButton />

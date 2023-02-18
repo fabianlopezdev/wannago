@@ -23,7 +23,7 @@ export default function Login() {
       setError('');
       setLoading(true);
       await logIn(emailRef.current.value, passwordRef.current.value);
-      navigate('/user/dashboard');
+      navigate('/dashboard');
     } catch {
       setError('Failed to sign in');
     }

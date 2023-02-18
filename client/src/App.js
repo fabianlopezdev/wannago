@@ -5,9 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 //Internal dependencies
 import { initialWannaGo } from './data';
 import NavBar from './components/navbar/NavBar';
-import WannagoStats from './pages/WannagoStats.js';
-import { Dashboard } from './pages/userPages';
-import WannagoForm from './pages/WannagoForm';
+import WannagoStats from './pages/wannago/WannagoStats.js';
+import { Dashboard } from './pages/user';
+import WannagoForm from './pages/wannago/WannagoForm';
 import NavBarBottom from './components/navbar/NavBarBottom';
 import { statelessRoutes } from './statelessRoutes';
 import './App.css';

@@ -4,18 +4,18 @@ import { useNavigate, Link, useParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { Alert } from 'bootstrap';
 //Internal dependencies
-import WannaGoCard from '../components/WannaGoCard';
-import { getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
-import { putGuestLink } from '../utils/apis/wannagoApiServices/putWannaGos';
-import { CLIENT_PORT, URL } from '../utils/config';
-import { putOwnerToWannaGo } from '../utils/apis/userApiServices/userApi';
-import { useAuth } from '../contexts/AuthContext';
-import {guestLinkGenerator} from '../utils/helperFunctions'
+import WannaGoCard from '../../components/wannago/WannaGoCard';
+import { getWannaGoById } from '../../utils/apis/wannagoApiServices/getWannaGos';
+import { putGuestLink } from '../../utils/apis/wannagoApiServices/putWannaGos';
+import { CLIENT_PORT, URL } from '../../utils/config';
+import { putOwnerToWannaGo } from '../../utils/apis/userApiServices/userApi';
+import { useAuth } from '../../contexts/AuthContext';
+import { guestLinkGenerator } from '../../utils/helperFunctions';
 
-import '../components/WannaGoCard.css';
+import '../../components/wannago/WannaGoCard.css';
 import './newWannago.css';
 
-import SocialButtons from '../components/SocialButtons';
+import SocialButtons from '../../components/wannago/SocialButtons';
 
 const NewWannago = () => {
   const { id } = useParams();
@@ -40,7 +40,6 @@ const NewWannago = () => {
   // currentUser && const {name} = queryClient.getQueryData('user');
 
   // console.log('this is datar', datar)
- 
 
   if (isLoading) return <p>Loading...</p>;
   if (isError)
@@ -49,8 +48,6 @@ const NewWannago = () => {
         Sorry we could not load the page. The link may be broken
       </Alert>
     );
-
-
 
   return (
     <>
@@ -78,10 +75,4 @@ const NewWannago = () => {
 };
 
 export default NewWannago;
-
-
-
-
-
-
 

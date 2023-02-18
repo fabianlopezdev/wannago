@@ -1,26 +1,26 @@
 //Internal dependencies
-import { dateFormatter, guestLinkGenerator } from '../utils/helperFunctions';
+import { dateFormatter, guestLinkGenerator } from '../../utils/helperFunctions';
 import './WannaGoCard.css';
 import {
   IoTrashOutline,
   IoShareOutline,
   IoArrowRedoOutline,
 } from 'react-icons/io5';
-import { deleteWannaGo } from '../utils/apis/wannagoApiServices/deleteWannaGos';
-import { CLIENT_PORT, URL } from '../utils/config';
+import { deleteWannaGo } from '../../utils/apis/wannagoApiServices/deleteWannaGos';
+import { CLIENT_PORT, URL } from '../../utils/config';
 import { useMutation, useQueryClient } from 'react-query';
 import { useState } from 'react';
 import SocialButtons from './SocialButtons';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useLocation } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import {Link } from 'react-router-dom'
+import { useAuth } from '../../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 const WannaGoCard = ({ wannaGo, userName }) => {
   const [showShare, setShowShare] = useState(false);
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
 
-  const location = useLocation()
-  const guest = location.pathname.split('/')[2]
+  const location = useLocation();
+  const guest = location.pathname.split('/')[2];
   const [showDelete, setShowDelete] = useState(false);
   const dateTime = dateFormatter(wannaGo.when);
   const queryClient = useQueryClient();
@@ -139,6 +139,4 @@ const WannaGoCard = ({ wannaGo, userName }) => {
 };
 
 export default WannaGoCard;
-
-
 
