@@ -101,6 +101,10 @@ const GuestLink = () => {
     <>
       <Helmet>
         <meta
+          property='og:site_name'
+          content={`Wannago`}
+        />
+        <meta
           property='og:title'
           content={`${wannago.hostName} wants to know if you wannaGo`}
         />
@@ -147,5 +151,6 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
+
 
 
