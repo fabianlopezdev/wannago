@@ -24,7 +24,7 @@ import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
 import { Logo } from '../components/navbar/NavBarButtons';
 import './guestLink.css';
-import favicon from '../../assets/favicon.png';
+import favicon from '../assets/favicon.png';
 
 const GuestLink = () => {
   const { id } = useParams();
