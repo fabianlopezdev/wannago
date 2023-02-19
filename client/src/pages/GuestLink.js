@@ -21,6 +21,7 @@ import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
 import { Logo } from '../components/navbar/NavBarButtons';
 import './guestLink.css';
+import favicon from '../../assets/favicon.png';
 
 const GuestLink = () => {
   const { id } = useParams();
@@ -94,24 +95,24 @@ const GuestLink = () => {
 
   return (
     <>
-    <Helmet>
-      <meta
-        property='og:title'
-        content={`${wannago.hostName} wants to know if you wannaGo`}
+      <Helmet>
+        <meta
+          property='og:title'
+          content={`${wannago.hostName} wants to know if you wannaGo`}
         />
-      <meta
-        property='og:description'
-        content="Check out this event and let us know if you're coming!"
+        <meta
+          property='og:description'
+          content="Check out this event and let us know if you're coming!"
         />
-      <meta
-        property='og:image'
-        content={wannago.imageUrl}
+        <meta
+          property='og:url'
+          content={wannago.guestLink}
         />
-      <meta
-        property='og:url'
-        content={`https://www.yourwebsite.com/guest-link/${id}`}
+        <meta
+          property='og:image'
+          content={favicon}
         />
-        </Helmet>
+      </Helmet>
       {window.innerWidth < 767 && (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Logo />
@@ -142,5 +143,7 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
+
+
 
 
