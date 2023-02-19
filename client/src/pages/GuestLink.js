@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Alert } from 'bootstrap';
-import {Helmet } from 'react-helmet'
+import {Helmet } from 'react-helmet-async'
 
 //Internal dependencies
 import WannaGoCardSimple from '../components/wannago/WannaGoCard';

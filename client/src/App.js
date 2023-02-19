@@ -13,12 +13,13 @@ import {
 import { initialWannaGo } from './data';
 import NavBar from './components/navbar/NavBar';
 import WannagoStats from './pages/wannago/WannagoStats.js';
-import Dashboard  from './pages/user/Dashboard';
-import LandingPage  from './pages/LandingPage'
+import Dashboard from './pages/user/Dashboard';
+import LandingPage from './pages/LandingPage';
 import WannagoForm from './pages/wannago/WannagoForm';
 import NavBarBottom from './components/navbar/NavBarBottom';
 import { statelessRoutes } from './statelessRoutes';
 import './App.css';
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const [wannago, setWannago] = useState({});
@@ -27,79 +28,76 @@ function App() {
 
   return (
     <>
-      <header className='topNavBar'>
-        <NavBar setIsCreated={setIsCreated} setWannago={setWannago}/>
-      </header>
+      <HelmetProvider>
+        <header className='topNavBar'>
+          <NavBar
+            setIsCreated={setIsCreated}
+            setWannago={setWannago}
+          />
+        </header>
 
-      <main className='mainContainer'>
-        <Routes>
-          <Route
-            path='/'
-            element={<LandingPage setWannago={setWannago} />}
-          />
-          {statelessRoutes}
-          <Route
-            path='new-wannago'
-            element={
-              <WannagoForm
-                isCreated={isCreated}
-                setIsCreated={setIsCreated}
-                wannago={wannago}
-                setWannago={setWannago}
-              />
-            }
-          />
-          <Route
-            path='sign-up'
-            element={
-              <>
-                <Container>
-                  <SignUp
-                    wannago={wannago}
-                    setWannago={setWannago}
-                  />
-                </Container>
-              </>
-            }
-          />
-          <Route
-            path='log-in'
-            element={
-              <>
-                <Container>
-                  <Login
-                    wannago={wannago}
-                    setWannago={setWannago}
-                  />
-                </Container>
-              </>
-            }
-          />
-          <Route
-            path='dashboard'
-            element={<Dashboard wannago={wannago} />}
-          />
-          <Route
-            path='wannago-stats/:id'
-            element={<WannagoStats wannago={wannago} />}
-          />
-        </Routes>
-      </main>
+        <main className='mainContainer'>
+          <Routes>
+            <Route
+              path='/'
+              element={<LandingPage setWannago={setWannago} />}
+            />
+            {statelessRoutes}
+            <Route
+              path='new-wannago'
+              element={
+                <WannagoForm
+                  isCreated={isCreated}
+                  setIsCreated={setIsCreated}
+                  wannago={wannago}
+                  setWannago={setWannago}
+                />
+              }
+            />
+            <Route
+              path='sign-up'
+              element={
+                <>
+                  <Container>
+                    <SignUp
+                      wannago={wannago}
+                      setWannago={setWannago}
+                    />
+                  </Container>
+                </>
+              }
+            />
+            <Route
+              path='log-in'
+              element={
+                <>
+                  <Container>
+                    <Login
+                      wannago={wannago}
+                      setWannago={setWannago}
+                    />
+                  </Container>
+                </>
+              }
+            />
+            <Route
+              path='dashboard'
+              element={<Dashboard wannago={wannago} />}
+            />
+            <Route
+              path='wannago-stats/:id'
+              element={<WannagoStats wannago={wannago} />}
+            />
+          </Routes>
+        </main>
 
-      <footer className='bottomNavbar'>
-        <NavBarBottom />
-      </footer>
+        <footer className='bottomNavbar'>
+          <NavBarBottom />
+        </footer>
+      </HelmetProvider>
     </>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
 
