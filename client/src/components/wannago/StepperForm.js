@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { steps } from '../../data';
-import { useAuth } from '../../contexts/AuthContext';
 
 import {
   Box,
@@ -16,7 +15,6 @@ import {
 export default function StepperForm({wannago, setIsCreated, setWannago}) {
   const [activeStep, setActiveStep] = useState(0);
  
-  
   const handleNext = (e) => {
     e.preventDefault();
     const field = e.target[0].name;

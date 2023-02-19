@@ -20,7 +20,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { FiUser } from 'react-icons/fi';
 import './NavBar.css';
 
-const NavBar = () => {
+const BottomNavBar = () => {
   //Hooks
   const { currentUser, logOut } = useAuth();
   const navigate = useNavigate();
@@ -86,6 +86,6 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default BottomNavBar;
 
 

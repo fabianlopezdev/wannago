@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
-import { postUser } from '../../utils/apis/userApiServices/userApi';
+
 import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 
 //Internal dependencies

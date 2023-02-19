@@ -1,7 +1,19 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
-export const putPplGoing = async (name, email, id) => {
+export const putLinkClickedCounter = async (id, openedTimes) => {
+  try {
+    return await fetch(`https://wannago-ito3.vercel.app/wannago/openedTimes`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({ id, openedTimes }),
+    });
+  } catch (e) {
+    console.log(`Error in putOpenedTimes function in apiService. Error: ${e}`);
+  }
+};
+
+export const putAttending = async (name, email, id) => {
   try {
     return await fetch(`https://wannago-ito3.vercel.app/wannago/ppl_going`, {
       method: 'PUT',
@@ -13,7 +25,19 @@ export const putPplGoing = async (name, email, id) => {
   }
 };
 
-export const putSuggestionMsg = async (name,msg, id) => {
+export const putAttendingCounter = async (id, goingCounter) => {
+  try {
+    return await fetch(`https://wannago-ito3.vercel.app/wannago/goingCounter`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      body: JSON.stringify({ id, goingCounter }),
+    });
+  } catch (e) {
+    console.log(`Error in putGoingCounter function in apiService. Error: ${e}`);
+  }
+};
+
+export const putSuggestion = async (name,msg, id) => {
   try {
     return await fetch(
       `https://wannago-ito3.vercel.app/wannago/suggestionMsg`,
@@ -30,33 +54,24 @@ export const putSuggestionMsg = async (name,msg, id) => {
   }
 };
 
-export const putGuestLink = async (id, link) => {
+export const putSuggestionsCounter = async (id, suggestionBoxCounter) => {
   try {
-    return await fetch(`https://wannago-ito3.vercel.app/wannago/guestLink`, {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ link, id }),
-    });
+    return await fetch(
+      `https://wannago-ito3.vercel.app/wannago/suggestionBoxCounter`,
+      {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify({ id, suggestionBoxCounter }),
+      }
+    );
   } catch (e) {
     console.log(
-      `Error in postSuggestionMsg function in apiService. Error: ${e}`
+      `Error in putSuggestionBoxCounter function in apiService. Error: ${e}`
     );
   }
 };
 
-export const putOpenedTimes = async (id, openedTimes) => {
-  try {
-    return await fetch(`https://wannago-ito3.vercel.app/wannago/openedTimes`, {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ id, openedTimes }),
-    });
-  } catch (e) {
-    console.log(`Error in putOpenedTimes function in apiService. Error: ${e}`);
-  }
-};
-
-export const putRejectCounter = async (id, rejectCounter) => {
+export const putRejectionsCounter = async (id, rejectCounter) => {
   try {
     return await fetch(
       `https://wannago-ito3.vercel.app/wannago/rejectCounter`,
@@ -73,34 +88,26 @@ export const putRejectCounter = async (id, rejectCounter) => {
   }
 };
 
-export const putGoingCounter = async (id, goingCounter) => {
-  try {
-    return await fetch(`https://wannago-ito3.vercel.app/wannago/goingCounter`, {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ id, goingCounter }),
-    });
-  } catch (e) {
-    console.log(`Error in putGoingCounter function in apiService. Error: ${e}`);
-  }
-};
 
-export const putSuggestionBoxCounter = async (id, suggestionBoxCounter) => {
-  try {
-    return await fetch(
-      `https://wannago-ito3.vercel.app/wannago/suggestionBoxCounter`,
-      {
-        method: 'PUT',
-        headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        body: JSON.stringify({ id, suggestionBoxCounter }),
-      }
-    );
-  } catch (e) {
-    console.log(
-      `Error in putSuggestionBoxCounter function in apiService. Error: ${e}`
-    );
-  }
-};
+// export const putGuestLink = async (id, link) => {
+//   try {
+//     return await fetch(`https://wannago-ito3.vercel.app/wannago/guestLink`, {
+//       method: 'PUT',
+//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+//       body: JSON.stringify({ link, id }),
+//     });
+//   } catch (e) {
+//     console.log(
+//       `Error in postSuggestionMsg function in apiService. Error: ${e}`
+//     );
+//   }
+// };
+
+
+
+
+
+
 
 
 

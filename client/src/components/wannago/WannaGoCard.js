@@ -1,24 +1,23 @@
 //Internal dependencies
-import { dateFormatter, guestLinkGenerator } from '../../utils/helperFunctions';
+import { dateFormatter } from '../../utils/helperFunctions';
 import './WannaGoCard.css';
 import {
   IoTrashOutline,
   IoShareOutline,
   IoArrowRedoOutline,
 } from 'react-icons/io5';
-import { deleteWannaGo } from '../../utils/apis/wannagoApiServices/deleteWannaGos';
-import { CLIENT_PORT, URL } from '../../utils/config';
+import { deleteWannago } from '../../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useMutation, useQueryClient } from 'react-query';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SocialButtons from './SocialButtons';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 
 
-const WannaGoCard = ({ wannago, setWannago }) => {
+
+const WannaGoCard = ({ wannago}) => {
   const [showShare, setShowShare] = useState(false);
   const { currentUser } = useAuth();
 
@@ -31,7 +30,7 @@ const WannaGoCard = ({ wannago, setWannago }) => {
  
 
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(deleteWannaGo, {
+  const { mutate } = useMutation(deleteWannago, {
     onSuccess: (wgToDelete) => {
       queryClient.getQueryData(['wannagos'], (prevWannagos) => {
         console.log('previousWannagos',prevWannagos)
@@ -44,7 +43,7 @@ const WannaGoCard = ({ wannago, setWannago }) => {
   const onClickDealDelete = () => {
     setShowDelete(true);
   };
-  const guestLink = guestLinkGenerator(wannago._id);
+  
 
   const socialShareRef = useOnclickOutside(() => {
     setShowShare(false);

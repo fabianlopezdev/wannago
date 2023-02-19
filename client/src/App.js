@@ -11,24 +11,22 @@ import {
 } from './pages/user';
 //Internal dependencies
 import { initialWannaGo } from './data';
-import NavBar from './components/navbar/NavBar';
+import NavBar from './components/navbar/TopNavBar';
 import WannagoStats from './pages/wannago/WannagoStats.js';
 import Dashboard from './pages/user/Dashboard';
 import LandingPage from './pages/LandingPage';
 import WannagoForm from './pages/wannago/WannagoForm';
-import NavBarBottom from './components/navbar/NavBarBottom';
+import NavBarBottom from './components/navbar/BottomNavBar';
 import { statelessRoutes } from './statelessRoutes';
 import './App.css';
-import { HelmetProvider } from 'react-helmet-async';
+
 
 function App() {
   const [wannago, setWannago] = useState({});
   const [isCreated, setIsCreated] = useState(false);
-  // const [isNewWannago, setIsNewWannago] = useState(false);
 
   return (
     <>
-      <HelmetProvider>
         <header className='topNavBar'>
           <NavBar
             setIsCreated={setIsCreated}
@@ -94,7 +92,6 @@ function App() {
         <footer className='bottomNavbar'>
           <NavBarBottom />
         </footer>
-      </HelmetProvider>
     </>
   );
 }

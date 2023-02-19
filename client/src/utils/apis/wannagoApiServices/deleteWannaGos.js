@@ -1,7 +1,7 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
-export const deleteWannaGo = async (id) => {
+export const deleteWannago = async (id) => {
   try {
     return await fetch(`https://wannago-ito3.vercel.app/wannago/delete`, {
       method: 'DELETE',

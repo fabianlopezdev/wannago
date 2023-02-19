@@ -1,15 +1,6 @@
 //External dependency
 const dayjs = require('dayjs');
 
-export let initialWannaGo = {
-  what: '',
-  when: '',
-  where: '',
-  hostName: '',
-  hostId: '',
-  _id: '',
-};
-
 const now = dayjs(Date.now()).format('YYYY-MM-DDTHH:mm');
 
 export const steps = [

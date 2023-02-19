@@ -3,10 +3,6 @@ import { useEffect, useState } from 'react';
 import { Alert } from 'bootstrap';
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
-import {
-  putOwnerToWannaGo,
-  getUserById,
-} from '../../utils/apis/userApiServices/userApi';
 import { getUserWannagos } from '../../utils/apis/wannagoApiServices/getWannaGos';
 import {
   activeWannagosNumber,

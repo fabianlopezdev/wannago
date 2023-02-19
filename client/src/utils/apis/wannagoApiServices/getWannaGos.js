@@ -1,15 +1,6 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
-export const getWannaGos = async () => {
-  try {
-    const wannaGos = await fetch(`https://wannago-ito3.vercel.app/wannagos`);
-    return await wannaGos.json();
-  } catch (e) {
-    console.log(`Error in getWannaGos function in apiService. Error: ${e}`);
-  }
-};
-
 export const getUserWannagos = async (userId) => {
   try {
     const wannagos = await fetch(
@@ -25,18 +16,6 @@ export const getUserWannagos = async (userId) => {
   }
 };
 
-export const getWannaGoByParams = async (what, when) => {
-  try {
-    const wannaGo = await fetch(
-      `https://wannago-ito3.vercel.app/wannago/${what}/${when}`
-    );
-    return await wannaGo.json();
-  } catch (e) {
-    console.log(
-      `Error in getWannaGoByParams function in apiService. Error: ${e}`
-    );
-  }
-};
 
 export const getWannagoByDateCreated = async (dateCreated) => {
   try {
@@ -51,7 +30,27 @@ export const getWannagoByDateCreated = async (dateCreated) => {
 };
 
 
+// export const getWannagos = async () => {
+//   try {
+//     const wannaGos = await fetch(`https://wannago-ito3.vercel.app/wannagos`);
+//     return await wannaGos.json();
+//   } catch (e) {
+//     console.log(`Error in getWannaGos function in apiService. Error: ${e}`);
+//   }
+// };
 
+// export const getWannaGoByParams = async (what, when) => {
+//   try {
+//     const wannaGo = await fetch(
+//       `https://wannago-ito3.vercel.app/wannago/${what}/${when}`
+//     );
+//     return await wannaGo.json();
+//   } catch (e) {
+//     console.log(
+//       `Error in getWannaGoByParams function in apiService. Error: ${e}`
+//     );
+//   }
+// };
 
 
 

@@ -1,8 +1,7 @@
 //External dependencies
-import { useEffect } from 'react';
-//Internal dependencies
 import { useNavigate } from 'react-router-dom';
 
+//Internal dependencies
 import logo from '../assets/finalWannaGoLogo.png';
 
 const LandingPage = ({setWannago}) => {

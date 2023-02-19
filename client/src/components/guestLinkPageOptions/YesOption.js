@@ -3,8 +3,8 @@ import { useState } from 'react';
 import {Alert} from 'bootstrap'
 //Internal dependencies
 import {
-  putPplGoing,
-  putGoingCounter,
+  putAttending,
+  putAttendingCounter,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 const YesOption = ({ id, goingCounter, ownerName }) => {
@@ -15,8 +15,8 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
     const name = e.target.name.value;
     const lastName = e.target.lastName.value;
     try {
-      await putPplGoing(name, lastName, id);
-      await putGoingCounter(id, ++goingCounter);
+      await putAttending(name, lastName, id);
+      await putAttendingCounter(id, ++goingCounter);
       console.log(goingCounter);
       setSubmitClicked(!submitClicked);
     } catch (e) {

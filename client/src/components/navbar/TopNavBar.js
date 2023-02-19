@@ -1,22 +1,19 @@
 //External dependencies
 import { useLocation, Link } from 'react-router-dom';
-import {useState} from 'react'
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 import {
   LogInButton,
   SignUpButton,
-  LogoutIcon,
   Logo,
   LogOutButton,
   Profile,
-  DashBoardButton,
 } from './NavBarButtons';
 import { useNavigate } from 'react-router-dom';
 import { IoAddSharp } from 'react-icons/io5';
 import './NavBar.css';
 
-const NavBar = ({setIsCreated}) => {
+const TopNavBar = ({setIsCreated}) => {
   //Hooks
   const { currentUser, logOut } = useAuth();
   const location = useLocation();
@@ -77,7 +74,7 @@ const NavBar = ({setIsCreated}) => {
   );
 };
 
-export default NavBar;
+export default TopNavBar;
 
 
 
