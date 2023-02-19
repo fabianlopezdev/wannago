@@ -31,15 +31,15 @@ const WannaGoCard = ({ wannago, setWannago }) => {
  
 
   const queryClient = useQueryClient();
-  // const { mutate } = useMutation(deleteWannaGo, {
-  //   onSuccess: () => {
-  //     queryClient.getQueryData(['wannagos'], (prevWannagos) => {
-  //       console.log('previousWannagos',prevWannagos)
-  //       prevWannagos.splice(prevWannagos.indexOf(wgToDelete), 1);
-  //     });
-  //     queryClient.invalidateQueries('wannagos');
-  //   },
-  // });
+  const { mutate } = useMutation(deleteWannaGo, {
+    onSuccess: (wgToDelete) => {
+      queryClient.getQueryData(['wannagos'], (prevWannagos) => {
+        console.log('previousWannagos',prevWannagos)
+        prevWannagos.splice(prevWannagos.indexOf(wgToDelete), 1);
+      });
+      queryClient.invalidateQueries('wannagos');
+    },
+  });
 
   const onClickDealDelete = () => {
     setShowDelete(true);
@@ -118,8 +118,7 @@ const WannaGoCard = ({ wannago, setWannago }) => {
               className='shareModal'
             >
               <SocialButtons
-                wannaGoId={wannago._id}
-                userName={wannago.hostName}
+                wannago={wannago}
               />
             </div>
           )}
@@ -132,7 +131,7 @@ const WannaGoCard = ({ wannago, setWannago }) => {
                 <h5>Delete wannago?</h5>
                 <button
                   className='copyButton'
-                  // onClick={() => mutate(wannago._id)}
+                  onClick={() => mutate(wannago._id)}
                 >
                   Delete
                 </button>

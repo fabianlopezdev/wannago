@@ -8,12 +8,12 @@ import { useState } from 'react';
 import './SocialButtons.css';
 import { guestLinkGenerator } from '../../utils/helperFunctions';
 import { Link } from 'react-router-dom';
-const SocialButtons = ({ guestLink, userName }) => {
+const SocialButtons = ({ wannago }) => {
   const [copied, setCopied] = useState('Copy Link');
   // const guestLink = guestLinkGenerator(wannaGoId);
 
   const onClickCopyLink = () => {
-    navigator.clipboard.writeText(guestLink);
+    navigator.clipboard.writeText(wannago.guestLink);
     setCopied('Copied');
   };
   return (
@@ -29,8 +29,8 @@ const SocialButtons = ({ guestLink, userName }) => {
             {copied}
           </button>
           <WhatsappShareButton
-            title={`I have a plan. Do you wannaGo?`}
-            url={guestLink}
+            title={`${wannago.hostName} has a plan: \n\n ${wannago.what} *in* ${wannago.where} *on* ${wannago.when}. \n\n *Do you wannago?* Click on the link:  \n`}
+            url={wannago.guestLink}
           >
             <div title='Via WhatsApp'>
               <WhatsappIcon
@@ -46,4 +46,5 @@ const SocialButtons = ({ guestLink, userName }) => {
 };
 
 export default SocialButtons;
+
 

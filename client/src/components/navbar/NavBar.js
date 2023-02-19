@@ -12,16 +12,20 @@ import {
   Profile,
   DashBoardButton,
 } from './NavBarButtons';
-
+import { useNavigate } from 'react-router-dom';
 import { IoAddSharp } from 'react-icons/io5';
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = ({setIsCreated}) => {
   //Hooks
   const { currentUser, logOut } = useAuth();
   const location = useLocation();
-  
+   const navigate = useNavigate();
+  const handleCreateClick = () => {
 
+    setIsCreated(false);
+    navigate('new-wannago')
+  }
   // console.log(location)
   return (
     <nav>
@@ -35,6 +39,7 @@ const NavBar = () => {
                   <button
                     title='Make a new WannaGo'
                     className='createButton'
+                    onClick={handleCreateClick}
                   >
                     Create
                   </button>
@@ -73,6 +78,8 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+
 
 
 

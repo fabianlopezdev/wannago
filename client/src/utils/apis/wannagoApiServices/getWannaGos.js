@@ -13,8 +13,8 @@ export const getWannaGos = async () => {
 export const getUserWannagos = async (userId) => {
   try {
     const wannagos = await fetch(
-      // `https://wannago-ito3.vercel.app/wannagos/owner/${userId}`
-      `http://localhost:4020/wannagos/hostId/${userId}`
+      `https://wannago-ito3.vercel.app/wannagos/hostId/${userId}`
+      // `http://localhost:4020/wannagos/hostId/${userId}`
     );
     return await wannagos.json();
   } catch (e) {
@@ -40,14 +40,15 @@ export const getWannaGoByParams = async (what, when) => {
 export const getWannagoByDateCreated = async (dateCreated) => {
   try {
     const wannaGo = await fetch(
-      // `https://wannago-ito3.vercel.app/wannago/${dateCreated}`
-      `http://localhost:4020/wannago/${dateCreated}`
+      `https://wannago-ito3.vercel.app/wannago/${dateCreated}`
+      // `http://localhost:4020/wannago/${dateCreated}`
     );
     return await wannaGo.json();
   } catch (e) {
     console.log(`Error in getWannagoByDateCreated function in apiService. Error: ${e}`);
   }
 };
+
 
 
 

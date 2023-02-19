@@ -2,9 +2,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Alert } from 'bootstrap';
+import {Helmet } from 'react-helmet'
 
 //Internal dependencies
-import WannaGoCard from '../components/wannago/WannaGoCard';
+import WannaGoCardSimple from '../components/wannago/WannaGoCard';
 import {
   YesOption,
   NoOption,
@@ -24,7 +25,7 @@ import './guestLink.css';
 const GuestLink = () => {
   const { id } = useParams();
   console.log('this is the dateCreated', id);
-  const { data, isError, isLoading } = useQuery(
+  const { data: wannago, isError, isLoading } = useQuery(
     'guestLink',
     () => getWannagoByDateCreated(id),
     {
@@ -32,7 +33,7 @@ const GuestLink = () => {
       staleTime: Infinity,
     }
   );
-  console.log('this is data', data);
+  console.log('this is wannago', wannago);
   // const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
 
@@ -50,24 +51,24 @@ const GuestLink = () => {
         return (
           <NoOption
             id={id}
-            rejectCounter={data.rejectCounter}
-            ownerName={data.hostName}
+            rejectCounter={wannago.rejectCounter}
+            ownerName={wannago.hostName}
           />
         );
       case 'yes':
         return (
           <YesOption
             id={id}
-            goingCounter={data.goingCounter}
-            ownerName={data.hostName}
+            goingCounter={wannago.goingCounter}
+            ownerName={wannago.hostName}
           />
         );
       case 'maybe':
         return (
           <MaybeOption
             id={id}
-            suggestionBoxCounter={data.suggestionBoxCounter}
-            ownerName={data.hostName}
+            suggestionBoxCounter={wannago.suggestionBoxCounter}
+            ownerName={wannago.hostName}
           />
         );
       default:
@@ -93,6 +94,24 @@ const GuestLink = () => {
 
   return (
     <>
+    <Helmet>
+      <meta
+        property='og:title'
+        content={`${wannago.hostName} wants to know if you wannaGo`}
+        />
+      <meta
+        property='og:description'
+        content="Check out this event and let us know if you're coming!"
+        />
+      <meta
+        property='og:image'
+        content={wannago.imageUrl}
+        />
+      <meta
+        property='og:url'
+        content={`https://www.yourwebsite.com/guest-link/${id}`}
+        />
+        </Helmet>
       {window.innerWidth < 767 && (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Logo />
@@ -102,11 +121,11 @@ const GuestLink = () => {
         {!option && (
           <>
             <h2 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
-              {data.ownerName} wants to know if you wannaGo
+              {wannago.hostName} wants to know if you wannaGo
             </h2>
           </>
         )}
-        <WannaGoCard wannaGo={data} />
+        <WannaGoCardSimple wannago={wannago} />
 
         {!option ? (
           <div className='buttons'>
@@ -123,4 +142,5 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
+
 

@@ -22,12 +22,13 @@ import './App.css';
 
 function App() {
   const [wannago, setWannago] = useState({});
+  const [isCreated, setIsCreated] = useState(false);
   // const [isNewWannago, setIsNewWannago] = useState(false);
 
   return (
     <>
       <header className='topNavBar'>
-        <NavBar />
+        <NavBar setIsCreated={setIsCreated} setWannago={setWannago}/>
       </header>
 
       <main className='mainContainer'>
@@ -41,6 +42,8 @@ function App() {
             path='new-wannago'
             element={
               <WannagoForm
+                isCreated={isCreated}
+                setIsCreated={setIsCreated}
                 wannago={wannago}
                 setWannago={setWannago}
               />
@@ -91,6 +94,7 @@ function App() {
 }
 
 export default App;
+
 
 
 

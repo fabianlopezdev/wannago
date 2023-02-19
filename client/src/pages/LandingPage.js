@@ -6,12 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../assets/finalWannaGoLogo.png';
 
 const LandingPage = ({setWannago}) => {
-  useEffect(()=>{
-    setWannago({})
-  },[])
   const navigate = useNavigate();
 
   const handleClick = () => {
+    setWannago({})
     navigate('new-wannago');
   };
 
