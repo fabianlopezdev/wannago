@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Alert } from 'bootstrap';
-import {Helmet } from 'react-helmet-async'
+import { Helmet } from 'react-helmet-async';
 
 //Internal dependencies
 import WannaGoCardSimple from '../components/wannago/WannaGoCard';
@@ -16,7 +16,10 @@ import {
   NoButton,
   MaybeButton,
 } from '../components/guestLinkPageOptions/OptionButtons';
-import { getWannagoByDateCreated, getWannaGoById } from '../utils/apis/wannagoApiServices/getWannaGos';
+import {
+  getWannagoByDateCreated,
+  getWannaGoById,
+} from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putOpenedTimes } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
 import { Logo } from '../components/navbar/NavBarButtons';
@@ -26,14 +29,14 @@ import favicon from '../../assets/favicon.png';
 const GuestLink = () => {
   const { id } = useParams();
   console.log('this is the dateCreated', id);
-  const { data: wannago, isError, isLoading } = useQuery(
-    'guestLink',
-    () => getWannagoByDateCreated(id),
-    {
-      onSuccess: (data) => putOpenedTimes(id, ++data.openedTimes),
-      staleTime: Infinity,
-    }
-  );
+  const {
+    data: wannago,
+    isError,
+    isLoading,
+  } = useQuery('guestLink', () => getWannagoByDateCreated(id), {
+    onSuccess: (data) => putOpenedTimes(id, ++data.openedTimes),
+    staleTime: Infinity,
+  });
   console.log('this is wannago', wannago);
   // const [wannaGo, setWannaGo] = useState({});
   const [option, setOption] = useState(null);
@@ -143,7 +146,4 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
-
-
-
 
