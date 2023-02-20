@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 
 const WannaGoCard = ({ wannago}) => {
   const [showShare, setShowShare] = useState(false);
-  const { currentUser } = useAuth();
+  // const { currentUser } = useAuth();
 
   const location = useLocation();
   const guest = location.pathname.split('/')[2];
@@ -74,10 +74,10 @@ const WannaGoCard = ({ wannago}) => {
           </div>
         </div>
         <>
-          {guest !== 'guest-link' && (
+      
             <div className='optionsContainer'>
               <div className='options'>
-                {currentUser && (
+               
                   <div className='charts'>
                     <IoShareOutline
                       size={25}
@@ -85,7 +85,7 @@ const WannaGoCard = ({ wannago}) => {
                       onClick={() => setShowShare(true)}
                     />
                   </div>
-                )}
+             
                 <div
                   className='charts'
                   onClick={onClickDealDelete}
@@ -95,10 +95,10 @@ const WannaGoCard = ({ wannago}) => {
                     title='Delete WannaGo'
                   />
                 </div>
-                {currentUser && (
+            
                   <div className='charts'>
                     <Link
-                      to={`wannago-stats/${wannago._id}`}
+                      to={`/wannago-stats/${wannago.dateCreated}`}
                       style={{ color: 'inherit', textDecoration: 'inherit' }}
                     >
                       <IoArrowRedoOutline
@@ -107,10 +107,10 @@ const WannaGoCard = ({ wannago}) => {
                       />
                     </Link>
                   </div>
-                )}
+           
               </div>
             </div>
-          )}
+      
           {showShare && (
             <div
               ref={socialShareRef}
