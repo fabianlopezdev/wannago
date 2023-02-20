@@ -15,18 +15,17 @@ import {
   NoButton,
   MaybeButton,
 } from '../components/guestLinkPageOptions/OptionButtons';
-import {
-  getWannagoByDateCreated,
-} from '../utils/apis/wannagoApiServices/getWannaGos';
+import { getWannagoByDateCreated } from '../utils/apis/wannagoApiServices/getWannaGos';
 import { putLinkClickedCounter } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
 import { Logo } from '../components/navbar/NavBarButtons';
 import './guestLink.css';
-
+import { Helmet } from 'react-helmet-async';
+import favicon from '../assets/favicon.png';
 
 const GuestLink = () => {
   const { id } = useParams();
-  
+
   const {
     data: wannago,
     isError,
@@ -35,7 +34,6 @@ const GuestLink = () => {
     onSuccess: (data) => putLinkClickedCounter(id, ++data.openedTimes),
     staleTime: Infinity,
   });
- 
 
   const [option, setOption] = useState(null);
 
@@ -93,9 +91,33 @@ const GuestLink = () => {
     }
     return;
   };
-     
+
   return (
     <>
+      <Helmet>
+        <meta
+          property='og:type'
+          content='website'
+        />
+        <meta
+          property='og:url'
+          content={wannago.guesLink}
+        />
+        <meta
+          property='og:title'
+          content={`${wannago.hostName} wants to know if you wannago`}
+        />
+        <meta
+          property='og:description'
+          content='Chek out the plan'
+        />
+        <meta
+          property='og:image'
+          itemprop='image'
+          content={favicon.jpg}
+        />
+      </Helmet>
+
       {window.innerWidth < 767 && (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Logo />
@@ -127,6 +149,4 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
-
-
 

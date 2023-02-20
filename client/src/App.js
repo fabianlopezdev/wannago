@@ -2,15 +2,8 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import {
-  SignUp,
-  DeleteUser,
-  UpdateProfile,
-  ForgotPassword,
-  Login,
-} from './pages/user';
+import { SignUp, Login } from './pages/user';
 //Internal dependencies
-import { initialWannaGo } from './data';
 import NavBar from './components/navbar/TopNavBar';
 import WannagoStats from './pages/wannago/WannagoStats.js';
 import Dashboard from './pages/user/Dashboard';
@@ -19,7 +12,7 @@ import WannagoForm from './pages/wannago/WannagoForm';
 import NavBarBottom from './components/navbar/BottomNavBar';
 import { statelessRoutes } from './statelessRoutes';
 import './App.css';
-
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const [wannago, setWannago] = useState({});
@@ -27,6 +20,7 @@ function App() {
 
   return (
     <>
+      <HelmetProvider>
         <header className='topNavBar'>
           <NavBar
             setIsCreated={setIsCreated}
@@ -92,6 +86,7 @@ function App() {
         <footer className='bottomNavbar'>
           <NavBarBottom />
         </footer>
+      </HelmetProvider>
     </>
   );
 }
