@@ -95,18 +95,9 @@ const Dashboard = ({ wannago }) => {
             <div className='wgCardsGrid'>
               {activeSortedWannagos(userWannagos).map((wannago) => {
                 return (
-                  <div
-                    className=''
-                    target='blank'
-                    key={wannago._id}
-                  >
-                    <WannaGoCard
-                      key={wannago._id}
+                    <WannaGoCard key={wannago.dateCreated}
                       wannago={wannago}
-                      userName={currentUser.displayName}
-                      // userName={user.name}
                     />
-                  </div>
                 );
               })}
             </div>{' '}

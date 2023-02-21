@@ -1,19 +1,19 @@
 //Internal dependencies
 import { dateFormatter } from '../../utils/helperFunctions';
-import './wannagoCard.css';
 import {
   IoTrashOutline,
   IoShareOutline,
   IoArrowRedoOutline,
 } from 'react-icons/io5';
-import { deleteWannago } from '../../utils/apis/wannagoApiServices/deleteWannaGos';
-import { useMutation, useQueryClient } from 'react-query';
 import { useState } from 'react';
-import SocialButtons from './SocialButtons';
+import ShareOptions from './ShareOptions';
 import useOnclickOutside from 'react-cool-onclickoutside';
 import { useLocation } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+
 import { Link } from 'react-router-dom';
+
+import './wannagoCard.css';
+import DeleteOption from './DeleteOption';
 
 const WannaGoCard = ({ wannago }) => {
   const [showShareModal, setShowShareModal] = useState(false);
@@ -23,17 +23,7 @@ const WannaGoCard = ({ wannago }) => {
   const isWannagoStatsPage = location.pathname === '/wannago-stats';
   const dateTime = dateFormatter(wannago.when);
 
-  const queryClient = useQueryClient();
-
-  const { mutate } = useMutation(deleteWannago, {
-    onSuccess: (wannagoToDelete) => {
-      queryClient.getQueryData(['wannagos'], (previousWannagos) => {
-        console.log('previousWannagos', previousWannagos);
-        previousWannagos.splice(previousWannagos.indexOf(wannagoToDelete), 1);
-      });
-      queryClient.invalidateQueries('wannagos');
-    },
-  });
+  console.log('wannagooooo', wannago)
 
   const onClickDealDelete = () => {
     setShowDeleteModal(true);
@@ -110,7 +100,7 @@ const WannaGoCard = ({ wannago }) => {
               ref={socialShareRef}
               className='shareModal'
             >
-              <SocialButtons wannago={wannago} />
+              <ShareOptions wannago={wannago} />
             </div>
           )}
           {showDeleteModal && (
@@ -118,16 +108,8 @@ const WannaGoCard = ({ wannago }) => {
               ref={deleteRef}
               className='shareModal'
             >
-              <div className='deleteContainer'>
-                <h5>Delete wannago?</h5>
-                <button
-                  className='copyButton'
-                  onClick={() => mutate(wannago._id)}
-                >
-                  Delete
-                </button>
+              <DeleteOption _id={wannago._id}/>
               </div>
-            </div>
           )}
         </>
       </div>

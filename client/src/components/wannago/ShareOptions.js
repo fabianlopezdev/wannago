@@ -7,7 +7,7 @@ import { WhatsappIcon } from 'react-share';
 import { useState } from 'react';
 import './SocialButtons.css';
 
-const SocialButtons = ({ wannago }) => {
+const ShareOptions = ({ wannago }) => {
   const [copied, setCopied] = useState('Copy Link');
 
   const onClickCopyLink = () => {
@@ -43,6 +43,6 @@ const SocialButtons = ({ wannago }) => {
   );
 };
 
-export default SocialButtons;
+export default ShareOptions;
 
 

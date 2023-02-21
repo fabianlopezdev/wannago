@@ -1,7 +1,7 @@
 //Internal dependencies
 const WannaGo = require('../../models/wannaGoModel');
 
-const deleteWannaGo = async (ctx) => {
+const deleteWannago = async (ctx) => {
 try {
   const { id } = ctx.request.body;
   console.log('this is id', id);
@@ -15,5 +15,5 @@ try {
 }
 }
 
-module.exports = {deleteWannaGo};
+module.exports = {deleteWannago};
 

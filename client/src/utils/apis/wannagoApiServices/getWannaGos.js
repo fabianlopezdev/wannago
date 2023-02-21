@@ -7,7 +7,7 @@ export const getUserWannagos = async (userId) => {
       `https://wannago-ito3.vercel.app/wannagos/hostId/${userId}`
       // `http://localhost:4020/wannagos/hostId/${userId}`
     );
-    console.log('wannagos fetched', wannagos)
+    console.log('wannagos fetched',wannagos)
     return await wannagos.json();
   } catch (e) {
     console.log(

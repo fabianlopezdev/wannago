@@ -11,7 +11,7 @@ const {
 const {
   postWannago,
 } = require('./controllers/wannaGoControllers/postWannaGos');
-const { deleteWannaGo } = require('./controllers/wannaGoControllers/deleteWannaGos');
+const { deleteWannago } = require('./controllers/wannaGoControllers/deleteWannaGos');
 const {
   putPplGoing,
   putSuggestionMsg,
@@ -57,7 +57,7 @@ router.put('/wannago/suggestionBoxCounter', putSuggestionBoxCounter);
 router.put('/wannago/guestLink', putGuestLink);
 
 //DELETE
-router.delete('/wannago/delete', deleteWannaGo);
+router.delete('/wannago/delete', deleteWannago);
 
 module.exports = router;
 
