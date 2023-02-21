@@ -8,6 +8,7 @@ import './wannagoForm.css';
 import { Logo } from '../../components/navbar/NavBarButtons';
 import NewWannago from './NewWannago';
 import StepperForm from '../../components/wannago/StepperForm';
+import AddressAutoCompleter from '../../components/wannago/AdressAutoCompleter';
 
 export default function WannagoForm({ wannago, setWannago, setIsCreated, isCreated}) {
   const { currentUser } = useAuth();
@@ -37,4 +38,5 @@ export default function WannagoForm({ wannago, setWannago, setIsCreated, isCreat
     </>
   );
 }
+
 

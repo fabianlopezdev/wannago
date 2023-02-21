@@ -1,3 +1,5 @@
+import AddressAutoCompleter from './components/wannago/AdressAutoCompleter';
+
 //External dependency
 const dayjs = require('dayjs');
 
@@ -20,12 +22,13 @@ export const steps = [
     label: 'Where?',
     description: 'Add an address',
     formField: (
-      <input
-        type='text'
-        name='where'
-        autoFocus
-        required
-      ></input>
+      <AddressAutoCompleter/>
+      // <input
+      //   type='text'
+      //   name='where'
+      //   autoFocus
+      //   required
+      // ></input>
     ),
   },
   {

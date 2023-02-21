@@ -10,7 +10,7 @@ import { useAuth } from '../../contexts/AuthContext';
 // import '../../components/wannago/WannaGoCard.css';
 import './newWannago.css';
 
-import SocialButtons from '../../components/wannago/ShareOptions';
+import ShareOptions from '../../components/wannago/ShareOptions';
 import PlanSharingPrompt from '../../components/wannago/PlanSharingPrompt';
 import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 
@@ -39,7 +39,7 @@ const NewWannago = ({ wannago, setWannago }) => {
           {!currentUser ? (
             <PlanSharingPrompt />
           ) : (
-            <SocialButtons guestLink={wannago.guestLink} />
+            <ShareOptions wannago={wannago} />
           )}
         </div>
       </div>
