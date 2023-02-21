@@ -1,25 +1,15 @@
 import { useEffect, useState } from 'react';
-import WannaGoCard from '../../components/wannago/WannaGoCard';
+import WannaGoCard from '../../components/wannago/WannagoCard';
 import { getWannagoByDateCreated } from '../../utils/apis/wannagoApiServices/getWannaGos';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParam, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Alert } from 'bootstrap';
 import './wannagoStats.css';
 
-const WannaGoStats = () => {
-  const { id } = useParams();
-  const [error, setError] = useState();
-  const navigate = useNavigate();
-
-  const { data: wannago, isLoading, isError } = useQuery('wannagos', () =>
-    getWannagoByDateCreated(id)
-  );
-
-
-
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Error</p>;
+const WannagoStats = () => {
+  const location = useLocation();
+  const wannago = location.state.data;
 
   return (
     <>
@@ -90,6 +80,5 @@ const WannaGoStats = () => {
   );
 };
 
-export default WannaGoStats;
-
+export default WannagoStats;
 

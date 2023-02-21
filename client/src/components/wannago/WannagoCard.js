@@ -1,6 +1,6 @@
 //Internal dependencies
 import { dateFormatter } from '../../utils/helperFunctions';
-import './WannaGoCard.css';
+import './wannagoCard.css';
 import {
   IoTrashOutline,
   IoShareOutline,
@@ -15,42 +15,36 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 
-
-
-const WannaGoCard = ({ wannago}) => {
-  const [showShare, setShowShare] = useState(false);
-  // const { currentUser } = useAuth();
+const WannaGoCard = ({ wannago }) => {
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const location = useLocation();
-  const guest = location.pathname.split('/')[2];
-  const [showDelete, setShowDelete] = useState(false);
+  const isWannagoStatsPage = location.pathname === '/wannago-stats';
   const dateTime = dateFormatter(wannago.when);
 
-  
- 
-
   const queryClient = useQueryClient();
+
   const { mutate } = useMutation(deleteWannago, {
-    onSuccess: (wgToDelete) => {
-      queryClient.getQueryData(['wannagos'], (prevWannagos) => {
-        console.log('previousWannagos',prevWannagos)
-        prevWannagos.splice(prevWannagos.indexOf(wgToDelete), 1);
+    onSuccess: (wannagoToDelete) => {
+      queryClient.getQueryData(['wannagos'], (previousWannagos) => {
+        console.log('previousWannagos', previousWannagos);
+        previousWannagos.splice(previousWannagos.indexOf(wannagoToDelete), 1);
       });
       queryClient.invalidateQueries('wannagos');
     },
   });
 
   const onClickDealDelete = () => {
-    setShowDelete(true);
+    setShowDeleteModal(true);
   };
-  
 
   const socialShareRef = useOnclickOutside(() => {
-    setShowShare(false);
+    setShowShareModal(false);
   });
 
   const deleteRef = useOnclickOutside(() => {
-    setShowDelete(false);
+    setShowDeleteModal(false);
   });
 
   return (
@@ -74,54 +68,52 @@ const WannaGoCard = ({ wannago}) => {
           </div>
         </div>
         <>
-      
-            <div className='optionsContainer'>
-              <div className='options'>
-               
-                  <div className='charts'>
-                    <IoShareOutline
-                      size={25}
-                      title='Share WannaGo'
-                      onClick={() => setShowShare(true)}
-                    />
-                  </div>
-             
-                <div
-                  className='charts'
-                  onClick={onClickDealDelete}
-                >
-                  <IoTrashOutline
-                    size={25}
-                    title='Delete WannaGo'
-                  />
-                </div>
-            
-                  <div className='charts'>
-                    <Link
-                      to={`/wannago-stats/${wannago.dateCreated}`}
-                      style={{ color: 'inherit', textDecoration: 'inherit' }}
-                    >
-                      <IoArrowRedoOutline
-                        size={25}
-                        title='Wannago Details'
-                      />
-                    </Link>
-                  </div>
-           
+          <div className='optionsContainer'>
+            <div className='options'>
+              <div className='charts'>
+                <IoShareOutline
+                  size={25}
+                  title='Share WannaGo'
+                  onClick={() => setShowShareModal(true)}
+                />
               </div>
+
+              <div
+                className='charts'
+                onClick={onClickDealDelete}
+              >
+                <IoTrashOutline
+                  size={25}
+                  title='Delete WannaGo'
+                />
+              </div>
+
+              {isWannagoStatsPage || (
+                <div className='charts'>
+                  <Link
+                    to={`/wannago-stats`}
+                    state={{ data: wannago }}
+                    style={{ color: 'inherit', textDecoration: 'inherit' }}
+                  >
+                    <IoArrowRedoOutline
+                      size={25}
+                      title='Wannago Details'
+                    />
+                  </Link>
+                </div>
+              )}
             </div>
-      
-          {showShare && (
+          </div>
+
+          {showShareModal && (
             <div
               ref={socialShareRef}
               className='shareModal'
             >
-              <SocialButtons
-                wannago={wannago}
-              />
+              <SocialButtons wannago={wannago} />
             </div>
           )}
-          {showDelete && (
+          {showDeleteModal && (
             <div
               ref={deleteRef}
               className='shareModal'
@@ -144,6 +136,4 @@ const WannaGoCard = ({ wannago}) => {
 };
 
 export default WannaGoCard;
-
-
 

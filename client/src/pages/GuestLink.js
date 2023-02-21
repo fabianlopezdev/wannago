@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Alert } from 'bootstrap';
 
 //Internal dependencies
-import WannaGoCardSimple from '../components/wannago/WannaGoCard';
+import WannaGoCardSimple from '../components/wannago/WannagoCard';
 import {
   YesOption,
   NoOption,

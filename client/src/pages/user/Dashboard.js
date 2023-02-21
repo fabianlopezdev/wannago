@@ -22,26 +22,25 @@ import {
   RadialChart,
   TotalWannaGosChart,
 } from '../../components/charts';
-import WannaGoCard from '../../components/wannago/WannaGoCard';
+import WannaGoCard from '../../components/wannago/WannagoCard';
 
 import '../../components/guestLinkPageOptions/Options.css';
 import './dashboard.css';
 
-const Dashboard = ({ wannago}) => {
+const Dashboard = ({ wannago }) => {
   const { currentUser } = useAuth();
 
   const queryEnabled = currentUser !== null;
 
-  const { data: userWannagos, isLoading, isError } = useQuery(
-    'wannagos',
-    () => getUserWannagos(currentUser.uid),
-    {
-      enabled: queryEnabled // enable query only when currentUser is set
-    }
-  );
+  const {
+    data: userWannagos,
+    isLoading,
+    isError,
+  } = useQuery('wannagos', () => getUserWannagos(currentUser.uid), {
+    enabled: queryEnabled, // enable query only when currentUser is set
+  });
 
-  if (isLoading)
-    return <p>Loading...</p>;
+  if (isLoading) return <p>Loading...</p>;
   if (isError)
     return (
       <Alert variant='danger'>
@@ -119,7 +118,4 @@ const Dashboard = ({ wannago}) => {
 };
 
 export default Dashboard;
-
-
-
 

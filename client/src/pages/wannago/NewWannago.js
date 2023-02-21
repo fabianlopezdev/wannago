@@ -2,12 +2,12 @@
 import { useEffect } from 'react';
 
 //Internal dependencies
-import WannaGoCard from '../../components/wannago/WannaGoCard';
-import WannaGoCardSimple from '../../components/wannago/WannaGoCardSimple';
+import WannaGoCard from '../../components/wannago/WannagoCard';
+import WannaGoCardSimple from '../../components/wannago/WannagoCardSimple';
 
 import { useAuth } from '../../contexts/AuthContext';
 
-import '../../components/wannago/WannaGoCard.css';
+// import '../../components/wannago/WannaGoCard.css';
 import './newWannago.css';
 
 import SocialButtons from '../../components/wannago/SocialButtons';

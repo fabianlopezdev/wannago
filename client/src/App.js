@@ -77,7 +77,7 @@ function App() {
               element={<Dashboard wannago={wannago} />}
             />
             <Route
-              path='wannago-stats/:id'
+              path='wannago-stats'
               element={<WannagoStats/>}
             />
           </Routes>

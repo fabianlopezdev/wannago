@@ -1,6 +1,6 @@
 //Internal dependencies
 import { dateFormatter } from '../../utils/helperFunctions';
-import './WannaGoCard.css';
+import './wannagoCard.css';
 
 const WannaGoCardSimple = ({ wannago}) => {
   
