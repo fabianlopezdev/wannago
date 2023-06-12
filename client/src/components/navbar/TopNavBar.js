@@ -30,7 +30,7 @@ const TopNavBar = ({setIsCreated}) => {
         <div className='navContainer'>
           {currentUser ? (
             <>
-              <Logo currentUser={currentUser}/>
+              {/* <Logo currentUser={currentUser}/> */}
               {location.pathname !== 'new-wannago' && (
                 <Link to={'new-wannago'}>
                   <button
@@ -55,7 +55,7 @@ const TopNavBar = ({setIsCreated}) => {
             </>
           ) : (
             <>
-              <Logo currentUser={currentUser} />
+              {/* <Logo currentUser={currentUser} /> */}
               <div className='userSigningButtons'>
                 <LogInButton logOut={logOut} />
                 <SignUpButton />

@@ -30,14 +30,14 @@ export const getWannagoByDateCreated = async (dateCreated) => {
 };
 
 
-// export const getWannagos = async () => {
-//   try {
-//     const wannaGos = await fetch(`https://wannago-ito3.vercel.app/wannagos`);
-//     return await wannaGos.json();
-//   } catch (e) {
-//     console.log(`Error in getWannaGos function in apiService. Error: ${e}`);
-//   }
-// };
+export const getWannagos = async () => {
+  try {
+    const wannaGos = await fetch(`https://wannago-ito3.vercel.app/wannagos`);
+    return await wannaGos.json();
+  } catch (e) {
+    console.log(`Error in getWannaGos function in apiService. Error: ${e}`);
+  }
+};
 
 // export const getWannaGoByParams = async (what, when) => {
 //   try {

@@ -20,13 +20,19 @@ const LandingPage = ({setWannago}) => {
           src={logo}
           alt='logo'
         ></img>
+        <div class='action-container'>
+
         <h1 className='title-main'>Create a plan. Share it!</h1>
+        <div>
+
         <button
           onClick={handleClick}
           className='button'
-        >
-          Plan it!
+          >
+          Start!
         </button>
+            </div>
+          </div>
       </div>
     </>
   );

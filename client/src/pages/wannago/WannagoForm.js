@@ -28,11 +28,13 @@ export default function WannagoForm({ wannago, setWannago, setIsCreated, isCreat
         </>
       )}
       {isCreated || (
+        <div className='form-container'>
         <StepperForm
           wannago={wannago}
           setIsCreated={setIsCreated}
           setWannago={setWannago}
-        />
+          />
+          </div>
       )}
       {isCreated && <NewWannago wannago={wannago} />}
     </>
