@@ -7,7 +7,7 @@ import {
   putAttendingCounter,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
-const YesOption = ({ id, goingCounter, ownerName }) => {
+const YesOption = ({ id, goingCounter, hostName, hostId }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
   const [error, setError] = useState()
   const handleSubmit = async (e) => {
@@ -15,8 +15,8 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
     const name = e.target.name.value;
     const lastName = e.target.lastName.value;
     try {
-      await putAttending(name, lastName, id);
-      await putAttendingCounter(id, ++goingCounter);
+      await putAttending(name, lastName, id, hostId);
+      await putAttendingCounter(id, ++goingCounter, hostId);
       console.log(goingCounter);
       setSubmitClicked(!submitClicked);
     } catch (e) {
@@ -34,13 +34,13 @@ const YesOption = ({ id, goingCounter, ownerName }) => {
       {error && <Alert variant='danger'>{error}</Alert>}
       {submitClicked ? (
         <h3 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
-          Amazing, we've just notified {ownerName}. Now, sit and wait until the
+          Amazing, we've just notified {hostName}. Now, sit and wait until the
           event
         </h3>
       ) : (
         <>
           <h2>Great!</h2>
-          <h4>Let {ownerName} know who you are.</h4>
+          <h4>Let {hostName} know who you are.</h4>
           <div className='form'>
             <form onSubmit={handleSubmit}>
               <div className='flexColumnCenterAll'>

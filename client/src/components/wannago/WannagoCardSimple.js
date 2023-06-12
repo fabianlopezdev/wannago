@@ -8,7 +8,7 @@ const WannaGoCardSimple = ({ wannago}) => {
   
 
   return (
-    <div className='wgCardContainer'>
+    <div className='wgCardContainerSimple'>
       <div className='wgWhen'>
         <h2>
           <strong>{dateTime.day}</strong>
@@ -16,15 +16,24 @@ const WannaGoCardSimple = ({ wannago}) => {
         <h4>{dateTime.month}</h4>
       </div>
       <div className='wgDescription'>
-        <div className='wannaGoCardInfoContainer'>
+        <div className='wannaGoCardInfoContainerSimple'>
           <div>
             <h2 className='title'>
-              <strong>{wannago.what}</strong>
+              {wannago.what}
             </h2>
           </div>
-          <div className='description'>
-            {`${dateTime.time} - ${dateTime.wannaGoFormat}`}
-            <div>{wannago.where}</div>
+          <div className='descriptionSimple'>
+            <p class='text'>
+              <strong>On</strong> {dateTime.wannaGoFormat} 
+            </p>
+              <p class='text'>
+              <strong>At </strong> 
+              {dateTime.time}
+              </p>
+            <p class='text'>
+              <strong>At </strong>
+              {wannago.where}
+            </p>
           </div>
         </div>
       </div>
@@ -33,4 +42,8 @@ const WannaGoCardSimple = ({ wannago}) => {
 };
 
 export default WannaGoCardSimple;
+
+
+
+
 

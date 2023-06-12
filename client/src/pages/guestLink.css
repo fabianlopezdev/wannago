@@ -3,11 +3,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: fill;
+  height: calc(100vh - 4rem);
   gap: 1rem;
-  margin-bottom: 7rem;
+  /* padding-bottom: 5rem; */
+  overflow: hidden;
 }
 
+.hostPresents {
+  margin-bottom: 1rem;
+  text-align: center;
+  /* margin-inline: auto; */
+}
 .optionButton {
   background-color: rgb(242, 205, 211);
   border: 1px solid black;

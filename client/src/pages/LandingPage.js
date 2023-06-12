@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 //Internal dependencies
 import logo from '../assets/finalWannaGoLogo.png';
 
-const LandingPage = ({setWannago}) => {
+const LandingPage = ({setWannago, setIsCreated}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    setIsCreated(false)
     setWannago({})
     navigate('new-wannago');
   };

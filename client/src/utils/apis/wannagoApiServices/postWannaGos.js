@@ -3,7 +3,6 @@
 import { guestLinkGenerator } from '../../helperFunctions';
 
 export const postWannago = async (currentUser, wannago) => {
-
   const dateStamp = Date.now();
   let newWannago = {
     ...wannago,
@@ -14,14 +13,19 @@ export const postWannago = async (currentUser, wannago) => {
   };
  
   try {
-    return await fetch(`https://wannago-ito3.vercel.app/wannago`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify(newWannago),
-    });
-   
+    return await fetch(
+      // `https://wannago-ito3.vercel.app/wannago`
+      `http://localhost:4020/wannago`,
+      {
+        method: 'POST',
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+        body: JSON.stringify(newWannago),
+      }
+    );
   } catch (e) {
     console.log(`Error in postWannago function in apiService. Error: ${e}`);
   }
 };
+
+
 

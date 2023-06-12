@@ -8,6 +8,15 @@
   position: relative;
 }
 
+.wgCardContainerSimple {
+  display: flex;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
+  width: 337px;
+  height: 212px;
+  transition-duration: 0.2s;
+  position: relative;
+}
 .wgWhen {
   display: flex;
   flex-direction: column;
@@ -30,6 +39,17 @@
   /* width: fit-content; */
 }
 
+.wannaGoCardInfoContainerSimple {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  justify-content: space-around;
+  height: 100%;
+  
+  /* border: 1.5px solid rgb(241,138,203); */
+  /* width: fit-content; */
+}
+
 .wgCardContainer:hover {
   transform: scale(1.03);
   transition: 0.2s;
@@ -39,6 +59,20 @@
 .description {
   color: #A9978C;
 
+}
+
+.descriptionSimple {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0.1rem; */
+  color: #A9978C;
+  /* line-height: 1.5rem; */
+  /* letter-spacing: 0.5rem; */
+}
+
+.text {
+  font-size: 1.1rem;
+  margin: 0;
 }
 
 .wgDescription {
@@ -67,6 +101,7 @@ bottom: 0;
 .title {
   display: flex;
   justify-content: center;
+  font-size: 2.1rem;
 }
 
 .charts:hover {

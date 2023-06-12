@@ -36,9 +36,15 @@ const Dashboard = ({ wannago }) => {
     data: userWannagos,
     isLoading,
     isError,
-  } = useQuery('wannagos', () => getUserWannagos(currentUser.uid), {
-    enabled: queryEnabled, // enable query only when currentUser is set
-  });
+  } = useQuery(
+    ['wannagos', currentUser],
+    () => getUserWannagos(currentUser.uid),
+    {
+      enabled: queryEnabled, // enable query only when currentUser is set
+    }
+  );
+
+  // console.log('userWannagos',userWannagos)
 
   if (isLoading) return <p>Loading...</p>;
   if (isError)
@@ -109,4 +115,5 @@ const Dashboard = ({ wannago }) => {
 };
 
 export default Dashboard;
+
 

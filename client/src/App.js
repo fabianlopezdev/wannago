@@ -32,7 +32,7 @@ function App() {
           <Routes>
             <Route
               path='/'
-              element={<LandingPage setWannago={setWannago} />}
+              element={<LandingPage setWannago={setWannago} setIsCreated={setIsCreated} />}
             />
             {statelessRoutes}
             <Route

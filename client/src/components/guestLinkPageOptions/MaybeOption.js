@@ -10,7 +10,7 @@ import {
 
 import './Options.css';
 
-const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
+const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
   const [msgSent, setMsgSent] = useState(false);
   const [error, setError] = useState();
 
@@ -23,8 +23,8 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
       return;
     }
     try {
-      await putSuggestion(name,msg, id);
-      await putSuggestionsCounter(id, ++suggestionBoxCounter);
+      await putSuggestion(name,msg, id, hostId);
+      await putSuggestionsCounter(id, ++suggestionBoxCounter, hostId);
       console.log(suggestionBoxCounter);
       setMsgSent(!msgSent);
     } catch (e) {
@@ -41,11 +41,11 @@ const MaybeOption = ({ id, suggestionBoxCounter, ownerName }) => {
     <>
       <div className='flexColumnCenterAll'>
         {!msgSent && <h4 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
-          Let {ownerName} know if you have any suggestion.
+          Let {hostName} know if you have any suggestion.
         </h4>}
         {error && <Alert variant='danger'>{error}</Alert>}
         {msgSent ? (
-          <h3>Great! We've just notified {ownerName}.</h3>
+          <h3>Great! We've just notified {hostName}.</h3>
         ) : (
           <form onSubmit={handleSubmit}>
             <div className='flexColumnCenterAll'>

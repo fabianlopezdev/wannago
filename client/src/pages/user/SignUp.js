@@ -37,13 +37,6 @@ export default function SignUp({wannago, setWannago}) {
         nameRef.current.value
       );
       if (Object.entries(wannago).length === 3) postWannago(user, wannago, setWannago);
-      // const user = {
-      //   name: nameRef.current.value,
-      //   email: newUser.user.email,
-      //   _id: newUser.user.uid,
-      // };
-      // console.log('this is user', user);
-      // await postUser(user);
       navigate('/dashboard');
     } catch {
       setError('Failed to create an account');

@@ -9,7 +9,26 @@ import './wannagoStats.css';
 
 const WannagoStats = () => {
   const location = useLocation();
-  const wannago = location.state.data;
+  const dateCreated = location.state.data.dateCreated;
+  
+   const {
+     status,
+     data: wannago,
+     error,
+   } = useQuery(
+     ['wannago', dateCreated],
+     () => getWannagoByDateCreated(dateCreated),
+     { keepPreviousData: true }
+   );
+
+   if (status === 'loading') {
+     return <div>Loading...</div>; // display a loading message while the data is being fetched
+   }
+
+   if (status === 'error') {
+     return <div>Error: {error.message}</div>; // display an error message if the fetch failed
+   }
+
 
   return (
     <>
@@ -19,7 +38,19 @@ const WannagoStats = () => {
       <div className='wgStatsContainer'>
         <div className='wgPart'>
           <div className='seenBy'>
-            Seen by <strong>{wannago.openedTimes}</strong> people
+            {wannago.openedTimes === 0 ? (
+              'No one has seen it yet'
+            ) : wannago.openedTimes === 1 ? (
+              <>
+                {' '}
+                Seen by <strong>{wannago.openedTimes}</strong> person
+              </>
+            ) : (
+              <>
+                {' '}
+                Seen by <strong>{wannago.openedTimes}</strong> people
+              </>
+            )}
           </div>
           <div className='seen'>
             <WannaGoCard wannago={wannago} />
@@ -81,4 +112,7 @@ const WannagoStats = () => {
 };
 
 export default WannagoStats;
+
+
+
 

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Alert } from 'bootstrap';
 
 //Internal dependencies
-import WannaGoCardSimple from '../components/wannago/WannagoCard';
+import WannaGoCardSimple from '../components/wannago/WannagoCardSimple';
 import {
   YesOption,
   NoOption,
@@ -31,7 +31,7 @@ const GuestLink = () => {
     isError,
     isLoading,
   } = useQuery('guestLink', () => getWannagoByDateCreated(id), {
-    onSuccess: (data) => putLinkClickedCounter(id, ++data.openedTimes),
+    onSuccess: (data) => putLinkClickedCounter(id, ++data.openedTimes, data.hostId),
     staleTime: Infinity,
   });
 
@@ -53,6 +53,7 @@ const GuestLink = () => {
             id={id}
             rejectCounter={wannago.rejectCounter}
             hostName={wannago.hostName}
+            hostId={wannago.hostId}
           />
         );
       case 'yes':
@@ -61,6 +62,7 @@ const GuestLink = () => {
             id={id}
             goingCounter={wannago.goingCounter}
             hostName={wannago.hostName}
+            hostId={wannago.hostId}
           />
         );
       case 'maybe':
@@ -69,6 +71,7 @@ const GuestLink = () => {
             id={id}
             suggestionBoxCounter={wannago.suggestionBoxCounter}
             hostName={wannago.hostName}
+            hostId={wannago.hostId}
           />
         );
       default:
@@ -118,17 +121,16 @@ const GuestLink = () => {
         />
       </Helmet>
 
-      {window.innerWidth < 767 && (
+      {/* {window.innerWidth < 767 && (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Logo />
         </div>
-      )}
+      )} */}
       <div className='pageContainer'>
         {!option && (
           <>
-            <h2 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
-              {wannago.hostName} wants to know if you wannaGo
-            </h2>
+            <h2 class='hostPresents'>{wannago.hostName} has a plan.</h2>
+            <h2>Do you wannaGo?</h2>
           </>
         )}
 
@@ -149,4 +151,8 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
+
+
+
+
 

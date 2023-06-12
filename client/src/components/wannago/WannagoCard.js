@@ -48,13 +48,20 @@ const WannaGoCard = ({ wannago }) => {
       <div className='wgDescription'>
         <div className='wannaGoCardInfoContainer'>
           <div>
-            <h2 className='title'>
-              <strong>{wannago.what}</strong>
-            </h2>
+            <h2 className='title'>{wannago.what}</h2>
           </div>
           <div className='description'>
-            {`${dateTime.time} - ${dateTime.wannaGoFormat}`}
-            <div>{wannago.where}</div>
+            <p class='text'>
+              <strong>On</strong> {dateTime.wannaGoFormat}
+            </p>
+            <p class='text'>
+              <strong>At </strong>
+              {dateTime.time}
+            </p>
+            <p class='text'>
+              <strong>At </strong>
+              {wannago.where}
+            </p>
           </div>
         </div>
         <>
@@ -108,8 +115,8 @@ const WannaGoCard = ({ wannago }) => {
               ref={deleteRef}
               className='shareModal'
             >
-              <DeleteOption _id={wannago._id}/>
-              </div>
+              <DeleteOption _id={wannago._id} />
+            </div>
           )}
         </>
       </div>
@@ -118,4 +125,7 @@ const WannaGoCard = ({ wannago }) => {
 };
 
 export default WannaGoCard;
+
+
+
 
