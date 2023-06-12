@@ -29,6 +29,15 @@ const WannagoStats = () => {
      return <div>Error: {error.message}</div>; // display an error message if the fetch failed
    }
 
+   let peopleGoingCount;
+   let peopleSuggestingCount;
+   let peopleNotGoingCount;
+   if (wannago) {
+    peopleGoingCount = Object.keys(wannago.ppl_going).length;
+    peopleSuggestingCount = wannago.suggestionBoxCounter;
+    peopleNotGoingCount = wannago.rejectCounter;
+
+   }
 
   return (
     <>
@@ -59,20 +68,45 @@ const WannagoStats = () => {
         <div className='statsPartContainer'>
           <div className='statsPart'>
             <div className='numsBox'>
-              {wannago.ppl_going ? (
-                <h1 className='num'>{Object.keys(wannago.ppl_going).length}</h1>
+              {peopleGoingCount === 1 ? (
+                <>
+                  <div>A person wannaGo:</div>
+                  <h1 className='num'>1</h1>
+                </>
               ) : (
-                <h1 className='num'>0</h1>
+                <>
+                  <div>People that wannaGo:</div>
+                  <h1 className='num'>
+                    {Object.keys(wannago.ppl_going).length}
+                  </h1>
+                </>
               )}
-              <div>people wannaGo</div>
             </div>
             <div className='numsBox'>
-              <h1 className='num'>{wannago.suggestionBoxCounter || 0}</h1>
-              <div>people may go</div>
+              {peopleSuggestingCount === 1 ? (
+                <>
+                  <div>A person may wannaGo:</div>
+                  <h1 className='num'>1</h1>
+                </>
+              ) : (
+                <>
+                  <div>People that may wannaGo:</div>
+                  <h1 className='num'>{peopleSuggestingCount}</h1>
+                </>
+              )}
             </div>
             <div className='numsBox'>
-              <h1 className='num'>{wannago.rejectCounter || 0}</h1>
-              <div>people can't go</div>
+              {peopleNotGoingCount === 1 ? (
+                <>
+                  <div>A person don't wannaGo/cannotGo:</div>
+                  <h1 className='num'>1</h1>
+                </>
+              ) : (
+                <>
+                  <div>People that don't wannaGo/cannotGo:</div>
+                  <h1 className='num'>{peopleNotGoingCount}</h1>
+                </>
+              )}
             </div>
           </div>
           <div className='goingAndSuggestions'>
@@ -112,6 +146,17 @@ const WannagoStats = () => {
 };
 
 export default WannagoStats;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
