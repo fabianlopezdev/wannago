@@ -40,7 +40,7 @@ const Dashboard = ({ wannago }) => {
     }
   );
 
-
+    console.log('userWannagos', userWannagos)
   if (isLoading) return <p>Loading...</p>;
   if (isError)
     return (

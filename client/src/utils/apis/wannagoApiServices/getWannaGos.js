@@ -2,6 +2,7 @@
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
 export const getUserWannagos = async (userId) => {
+  console.log('the user id is', userId)
   try {
     const wannagos = await fetch(
       `https://wannago-ito3.vercel.app/wannagos/hostId/${userId}`
