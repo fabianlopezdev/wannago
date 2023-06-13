@@ -36,7 +36,7 @@ export default function SignUp({wannago, setWannago}) {
         passwordRef.current.value,
         nameRef.current.value
       );
-      if (Object.entries(wannago).length === 3) postWannago(user, wannago, setWannago);
+      if (Object.entries(wannago).length === 3) await postWannago(user, wannago, setWannago);
       navigate('/dashboard');
     } catch {
       setError('Failed to create an account');

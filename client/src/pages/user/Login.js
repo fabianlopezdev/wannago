@@ -23,7 +23,7 @@ export default function Login({wannago, setWannago}) {
       setError('');
       setLoading(true);
       const user = await logIn(emailRef.current.value, passwordRef.current.value);
-      if (Object.entries(wannago).length === 3) postWannago(user, wannago, setWannago)
+      if (Object.entries(wannago).length === 3) await postWannago(user, wannago, setWannago)
       navigate('/dashboard');
     } catch {
       setError('Failed to sign in');
