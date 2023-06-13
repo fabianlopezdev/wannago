@@ -45,7 +45,6 @@ const WannagoStats = () => {
 
   return (
     <>
-      <main class='page-cotainer'>
         <aside className='sidebar-info'>
           <p className='seen-by'>
             {wannago.openedTimes === 0 ? (
@@ -62,9 +61,8 @@ const WannagoStats = () => {
               </>
             )}
           </p>
-          <div className='wannago-card'>
-            <WannaGoCard wannago={wannago} />
-          </div>
+
+          <WannaGoCard wannago={wannago} />
         </aside>
         <section className='info-container'>
           <article className='stats-container'>
@@ -142,7 +140,6 @@ const WannagoStats = () => {
             )}
           </article>
         </section>
-      </main>
     </>
   );
 };
