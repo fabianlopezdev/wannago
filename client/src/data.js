@@ -22,13 +22,13 @@ export const steps = [
     label: 'Where?',
     description: 'Add an address',
     formField: (
-      <AddressAutoCompleter/>
-      // <input
-      //   type='text'
-      //   name='where'
-      //   autoFocus
-      //   required
-      // ></input>
+      // <AddressAutoCompleter/>
+      <input
+        type='text'
+        name='where'
+        autoFocus
+        required
+      ></input>
     ),
   },
   {

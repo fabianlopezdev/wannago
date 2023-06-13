@@ -5,14 +5,14 @@ import { Alert } from 'bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import { getUserWannagos } from '../../utils/apis/wannagoApiServices/getWannaGos';
 import {
-  activeWannagosNumber,
-  olderWannagosNumber,
+  activeWannagosCount,
+  olderWannagosCount,
   // aggregateSuccessRatio,
   // aggregateEngagement,
   aggregateAttending,
   aggregateRejections,
   aggregateSuggestions,
-  aggregateLinksOpened,
+  aggregateLinksClicked,
   activeSortedWannagos,
 } from '../../utils/helperFunctions';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
@@ -44,7 +44,6 @@ const Dashboard = ({ wannago }) => {
     }
   );
 
-  // console.log('userWannagos',userWannagos)
 
   if (isLoading) return <p>Loading...</p>;
   if (isError)
@@ -53,67 +52,79 @@ const Dashboard = ({ wannago }) => {
         Sorry, something went wrong. Please try refreshing the page.
       </Alert>
     );
-  //     console.log('wannagos', wannagos)
-  // const totalWGs = wannagos.length;
-  // const totalPplGoing = aggregatePplGoing(wannagos);
-  // const totalRejections = aggregateRejections(wannagos);
-  // const totalSuggestions = aggregateSuggestions(wannagos);
-  // const activeWGsTotal = getNumOfactiveSortedWannagos(wannagos);
-  // const olderWGsTotal = getNumOfOlderWannaGos(wannagos);
-  // const linksOpenedTotal = aggregateOpenedTimes(wannagos);
-  // const totalEngagement =
-  //   Math.floor(
-  //     ((totalPplGoing + totalRejections + totalSuggestions) /
-  //       linksOpenedTotal) *
-  //       100
-  //   ) || 0;
-  // const totalSuccessRatio =
-  //   Math.floor((totalPplGoing / linksOpenedTotal) * 100) || 0;
+  
+
+  const activeAndSortedWannagos = activeSortedWannagos(userWannagos);
+  const totalPplGoing = aggregateAttending(userWannagos);
+  const totalRejections = aggregateRejections(userWannagos);
+  const totalSuggestions = aggregateSuggestions(userWannagos);
+  const activeWGsTotal = activeWannagosCount(userWannagos);
+  const olderWGsTotal = olderWannagosCount(userWannagos);
+  const linksOpenedTotal = aggregateLinksClicked(userWannagos);
+  const totalEngagement =
+    Math.floor(
+      ((totalPplGoing + totalRejections + totalSuggestions) /
+        linksOpenedTotal) *
+        100
+    ) || 0;
+  const totalSuccessRatio =
+    Math.floor((totalPplGoing / linksOpenedTotal) * 100) || 0;
 
   return (
     <>
-      <div className='mainUserDashBoard'>
+      <main className='user-dashboard-page'>
         {currentUser && (
           <>
-            <h2 className='welcome'>Welcome {currentUser.displayName}!</h2>
-            {/* <div className='statsGrid'>
-              <div className='insideGrid'>
+            <h1 className='title-text'>Welcome {currentUser.displayName}!</h1>
+            <article className='stats-container'>
+              <div className='individual-stat-container'>
                 <DonutChart
                   going={totalPplGoing}
                   maybe={totalSuggestions}
                   notGoing={totalRejections}
                 />
               </div>
-              <div className='insideGrid'>
+              <div className='individual-stat-container'>
                 <RadialChart
                   engagement={totalEngagement}
                   successRatio={totalSuccessRatio}
                 />
               </div>
-              <div className='insideGrid'>
+              <div className='individual-stat-container'>
                 <TotalWannaGosChart
                   active={activeWGsTotal}
                   older={olderWGsTotal}
                 />
               </div>
-            </div> */}
-            <h2 className='title'>These are your wannagos:</h2>
-            <div className='wgCardsGrid'>
-              {activeSortedWannagos(userWannagos).map((wannago) => {
+            </article>
+            <h2 className='title-text'>These are your wannagos:</h2>
+            <div className='wannago-cards-container'>
+              {activeAndSortedWannagos.map((wannago) => {
                 return (
-                    <WannaGoCard key={wannago.dateCreated}
-                      wannago={wannago}
-                    />
+                  <WannaGoCard
+                    key={wannago.dateCreated}
+                    wannago={wannago}
+                  />
                 );
               })}
             </div>{' '}
           </>
         )}
-      </div>
+      </main>
     </>
   );
 };
 
 export default Dashboard;
+
+
+
+
+
+
+
+
+
+
 
 

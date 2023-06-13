@@ -61,7 +61,7 @@ export const aggregateAttending = (wannaGosOfUser) => {
   }, 0);
 };
 
-export const aggregateLinksOpened = (wannaGosOfUser) => {
+export const aggregateLinksClicked = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
     return acc + wannaGo.openedTimes;
   }, 0);
@@ -82,10 +82,10 @@ export const expiredWannagos = (wannaGosOfUser) => {
     (wannaGo) => new Date(wannaGo.when) < Date.now()
   );
 };
-export const activeWannagosNumber = (wannaGosOfUser) => {
+export const activeWannagosCount = (wannaGosOfUser) => {
   return activeWannagos(wannaGosOfUser).length;
 };
-export const olderWannagosNumber = (wannaGosOfUser) => {
+export const olderWannagosCount = (wannaGosOfUser) => {
   return expiredWannagos(wannaGosOfUser).length;
 };
 
