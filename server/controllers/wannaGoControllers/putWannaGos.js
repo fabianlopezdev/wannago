@@ -3,12 +3,16 @@ const WannaGo = require('../../models/wannaGoModel');
 
 const putPplGoing = async (ctx) => {
   try {
-    const { name, email, id } = ctx.request.body;
-    const pplGoing = await WannaGo.findByIdAndUpdate(id, {
-      $set: {
-        [`ppl_going.${name}`]: `${email}`,
+    const { name, email, id, hostId } = ctx.request.body;
+    const pplGoing = await WannaGo.findOneAndUpdate(
+      { dateCreated: id, hostId}, 
+      {
+        $set: {
+          [`ppl_going.${name}`]: `${email}`,
+        },
       },
-    });
+      { new: true }
+    );
     console.log(
       `This name: ${name} and email ${email} was put in the wannaGo: ${pplGoing}`
     );
@@ -21,10 +25,13 @@ const putPplGoing = async (ctx) => {
   }
 };
 
+
 const putSuggestionMsg = async (ctx) => {
   try {
-    const { name, msg, id } = ctx.request.body;
-    const postedMsg = await WannaGo.findByIdAndUpdate(id, {
+    const { name, msg, id, hostId } = ctx.request.body;
+    const postedMsg = await WannaGo.findOneAndUpdate(
+      { dateCreated: id, hostId}, 
+      {
       $set: { [`suggestion_box.${name}`]: `${msg}`}
       //  { suggestion_box: msg },
     });
@@ -39,12 +46,16 @@ const putSuggestionMsg = async (ctx) => {
 };
 const putGuestLink = async (ctx) => {
   try {
-    const { id, link } = ctx.request.body;
+    const { id, link, hostId } = ctx.request.body;
     console.log('this is id',id);
     console.log('this is the link', link);
-    const wannaGoLinked = await WannaGo.findByIdAndUpdate(id, {
-      guestLink: link,
-    });
+    const wannaGoLinked = await WannaGo.findOneAndUpdate(
+      { dateCreated: id, hostId },
+      {
+        guestLink: link,
+      },
+      {new: true}
+    );
     console.log(`Guest link: ${link} of wannaGo: ${wannaGoLinked}`);
     ctx.status = 201;
     ctx.body = wannaGoLinked;
@@ -59,13 +70,18 @@ const putGuestLink = async (ctx) => {
 
 const putOpenedTimes = async (ctx) => {
   try {
-    const { id, openedTimes } = ctx.request.body;
+    const { id, openedTimes, hostId } = ctx.request.body;
     console.log('wannaGoId', id);
     console.log('openedTimes', openedTimes);
-    const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
+    console.log('owner', hostId);
+    const wannaGoUpdated = await WannaGo.findOneAndUpdate(
+      { dateCreated: id, hostId },
+      {
         openedTimes: openedTimes,
-      });
-    console.log(`This ${wannaGoUpdated} was opened ${wannaGoUpdated.openedTimes} times`);
+      },
+      { new: true }
+    );
+    console.log(`This ${wannaGoUpdated} of owner ${wannaGoUpdated.hostId} was opened ${wannaGoUpdated.openedTimes} times`);
     ctx.status = 201;
     ctx.body = wannaGoUpdated;
   } catch (e) {
@@ -77,12 +93,17 @@ const putOpenedTimes = async (ctx) => {
 
 const putRejectCounter = async (ctx) => {
   try {
-    const { id, rejectCounter } = ctx.request.body;
+    const { id, rejectCounter, hostId } = ctx.request.body;
     console.log('wannaGoId', id);
     console.log('rejectCounter:', rejectCounter);
-    const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
-      rejectCounter: rejectCounter,
-    });
+    console.log('hostId', hostId)
+    const wannaGoUpdated = await WannaGo.findOneAndUpdate(
+      { dateCreated: id, hostId},
+      {
+        rejectCounter: rejectCounter,
+      },
+      { new: true}
+    );
     console.log(
       `This ${wannaGoUpdated} was rejected ${wannaGoUpdated.rejectCounter} times`
     );
@@ -97,12 +118,17 @@ const putRejectCounter = async (ctx) => {
 
 const putGoingCounter = async (ctx) => {
   try {
-    const { id, goingCounter } = ctx.request.body;
+    const { id, goingCounter, hostId } = ctx.request.body;
     console.log('wannaGoId', id);
     console.log('goingCounter:', goingCounter);
-    const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
-      goingCounter: goingCounter,
-    });
+    console.log('hostId', hostId);
+    const wannaGoUpdated = await WannaGo.findOneAndUpdate(
+      { dateCreated: id, hostId},
+      {
+        goingCounter: goingCounter,
+      },
+      {new: true}
+    );
     console.log(`${wannaGoUpdated.goingCounter} people going to ${wannaGoUpdated}`);
     ctx.status = 201;
     ctx.body = wannaGoUpdated;
@@ -115,12 +141,17 @@ const putGoingCounter = async (ctx) => {
 
 const putSuggestionBoxCounter = async (ctx) => {
   try {
-    const { id, suggestionBoxCounter } = ctx.request.body;
+    const { id, suggestionBoxCounter, hostId } = ctx.request.body;
     console.log('wannaGoId', id);
     console.log('suggestionBoxCounter:', suggestionBoxCounter);
-    const wannaGoUpdated = await WannaGo.findByIdAndUpdate(id, {
-      suggestionBoxCounter: suggestionBoxCounter,
-    });
+    console.log('hostId', hostId);
+    const wannaGoUpdated = await WannaGo.findOneAndUpdate(
+      { dateCreated: id, hostId },
+      {
+        suggestionBoxCounter: suggestionBoxCounter,
+      },
+      { new: true }
+    );
     console.log(
       `${wannaGoUpdated} people made a suggestion to this ${wannaGoUpdated.suggestionBoxCounter}`
     );
@@ -136,7 +167,7 @@ const putSuggestionBoxCounter = async (ctx) => {
 
 const putOwnerToWannaGo = async (ctx) => {
   try {
-    const { wannaGoId, userId } = ctx.request.body;
+    const { wannaGoId, userId, hostId } = ctx.request.body;
     const wannaGoOwned = await WannaGo.findByIdAndUpdate(wannaGoId, {
       owner: userId,
     });
@@ -154,6 +185,21 @@ const putOwnerToWannaGo = async (ctx) => {
 
 module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo, putOpenedTimes, putRejectCounter, putGoingCounter, putSuggestionBoxCounter,
 putGuestLink };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

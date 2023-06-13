@@ -15,11 +15,11 @@ const getWannaGos = async (ctx) => {
 
 const getUserWannagos = async (ctx) => {
   try {
-    // console.log('params are:', ctx.params.owner)
+    console.log('params are:', ctx.params)
     const wannagos = await WannaGo.find({ hostId: ctx.params.hostId});
     ctx.status = 201;
     ctx.body = wannagos;
-    console.log(`The owner: ${ctx.params.hostId} owns these wannagos: ${wannagos}`);
+    // console.log(`The owner: ${ctx.params.hostId} owns these wannagos: ${wannagos}`);
   } catch (e) {
     ctx.status = 500;
     console.log(`Error in getWannaGos function from controllers: ${e}`);
