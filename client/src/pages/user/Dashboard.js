@@ -66,6 +66,7 @@ const Dashboard = ({ wannago }) => {
   const totalSuccessRatio =
     Math.floor((totalPplGoing / linksOpenedTotal) * 100) || 0;
 
+    console.log('activeWGsTotal', activeWGsTotal)
   return (
     <>
       <main className='user-dashboard-page'>
