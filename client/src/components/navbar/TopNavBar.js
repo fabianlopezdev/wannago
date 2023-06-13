@@ -33,7 +33,7 @@ const TopNavBar = ({setIsCreated}) => {
             style={{ textDecoration: 'none' }}
             title='Go to Dashboard'
           >
-            <p class='logo'>Wannago?</p>
+            <p className='logo'>Wannago?</p>
           </Link>
           {currentUser ? (
             <>

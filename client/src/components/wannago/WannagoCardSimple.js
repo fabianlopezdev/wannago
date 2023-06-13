@@ -23,14 +23,14 @@ const WannaGoCardSimple = ({ wannago}) => {
             </h2>
           </div>
           <div className='descriptionSimple'>
-            <p class='text'>
+            <p className='text'>
               <strong>On</strong> {dateTime.wannaGoFormat} 
             </p>
-              <p class='text'>
+              <p className='text'>
               <strong>At </strong> 
               {dateTime.time}
               </p>
-            <p class='text'>
+            <p className='text'>
               <strong>At </strong>
               {wannago.where}
             </p>

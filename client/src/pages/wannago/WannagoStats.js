@@ -123,7 +123,7 @@ const WannagoStats = () => {
               <h1 className='titles'>People Attending</h1>
               {peopleGoing.map((key) => {
                 return (
-                  <p className='people-going'>{`${key} ${wannago.ppl_going[key]}`}</p>
+                  <p key={key} className='people-going'>{`${key} ${wannago.ppl_going[key]}`}</p>
                 );
               })}
             </div>
@@ -134,7 +134,7 @@ const WannagoStats = () => {
               {suggestions.map((key) => {
                 return (
                   <>
-                    <div className='message'>
+                    <div key={key} className='message'>
                       <h5>{`${key} said:`}</h5>
                       <div>{wannago.suggestion_box[key]}</div>
                     </div>

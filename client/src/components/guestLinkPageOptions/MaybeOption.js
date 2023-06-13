@@ -23,7 +23,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
       return;
     }
     try {
-      await putSuggestion(name,msg, id, hostId);
+      await putSuggestion(name, msg, id, hostId);
       await putSuggestionsCounter(id, ++suggestionBoxCounter, hostId);
       console.log(suggestionBoxCounter);
       setMsgSent(!msgSent);

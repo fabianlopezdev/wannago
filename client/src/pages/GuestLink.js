@@ -139,7 +139,7 @@ const GuestLink = () => {
       <div className='pageContainer'>
         {!option && (
           <>
-            <h2 class='hostPresents'>{wannago.hostName} has a plan.</h2>
+            <h2 className='hostPresents'>{wannago.hostName} has a plan.</h2>
             <h2>Do you wannaGo?</h2>
           </>
         )}

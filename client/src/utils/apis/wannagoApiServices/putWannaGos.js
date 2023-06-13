@@ -52,7 +52,6 @@ export const putSuggestion = async (name, msg, id, hostId) => {
   try {
     return await fetch(
       `https://wannago-ito3.vercel.app/wannago/suggestionMsg`,
-      // `http://localhost:4020/wannago/suggestionMsg`,
       {
         method: 'PUT',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -70,7 +69,6 @@ export const putSuggestionsCounter = async (id, suggestionBoxCounter, hostId) =>
   try {
     return await fetch(
       `https://wannago-ito3.vercel.app/wannago/suggestionBoxCounter`,
-      // `http://localhost:4020/wannago/suggestionBoxCounter`,
       {
         method: 'PUT',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
