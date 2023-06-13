@@ -1,5 +1,7 @@
 //External dependencies
 import { Alert } from 'bootstrap';
+import { useEffect} from 'react';
+
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 import { getUserWannagos } from '../../utils/apis/wannagoApiServices/getWannaGos';
@@ -23,10 +25,14 @@ import WannaGoCard from '../../components/wannago/WannagoCard';
 import '../../components/guestLinkPageOptions/Options.css';
 import './dashboard.css';
 
-const Dashboard = ({ wannago }) => {
+const Dashboard = ({ wannago, setIsCreated }) => {
   const { currentUser } = useAuth();
 
   const queryEnabled = currentUser !== null;
+
+   useEffect(() => {
+    setIsCreated(false)
+   }, []);
 
   const {
     data: userWannagos,
@@ -139,6 +145,8 @@ const Dashboard = ({ wannago }) => {
 };
 
 export default Dashboard;
+
+
 
 
 

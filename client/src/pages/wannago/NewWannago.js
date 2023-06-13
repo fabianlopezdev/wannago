@@ -20,12 +20,12 @@ const NewWannago = ({ wannago, setWannago, setIsCreated }) => {
     const queryClient = useQueryClient();
 
   const [postedWannago, setPostedWannago] = useState(null);
-  useEffect(() => {
-    setIsCreated(false)
-    // console.log('currenUser', currentUser);
-    // If no user, no need to post the wannago in the DB
+  // useEffect(() => {
+  //   setIsCreated(false)
+  //   // console.log('currenUser', currentUser);
+  //   // If no user, no need to post the wannago in the DB
     
-  }, []);
+  // }, []);
 
   const mutation = useMutation(() => postWannago(currentUser, wannago), {
     onSuccess: async (response) => {

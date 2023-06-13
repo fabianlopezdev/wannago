@@ -124,7 +124,7 @@
 
 .big {
   font-size: clamp(3.5rem, 10vw, 10rem);
-  text-shadow: 10px 10px 10px rgb(254,194,232);
+  /* text-shadow: 10px 10px 10px rgb(254,194,232); */
   -webkit-text-stroke: 3px #FF91D4;
   /* letter-spacing: -1rem;  */
 }

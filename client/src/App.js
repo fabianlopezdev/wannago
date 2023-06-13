@@ -74,7 +74,7 @@ function App() {
             />
             <Route
               path='dashboard'
-              element={<Dashboard wannago={wannago} />}
+              element={<Dashboard wannago={wannago} setIsCreated={setIsCreated}/>}
             />
             <Route
               path='wannago-stats'
