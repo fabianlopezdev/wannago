@@ -51,6 +51,7 @@ const Dashboard = ({ wannago }) => {
   
 
   const activeAndSortedWannagos = activeSortedWannagos(userWannagos);
+  const totalActiveWannagos = activeAndSortedWannagos.length;
   const totalPplGoing = aggregateAttending(userWannagos);
   const totalRejections = aggregateRejections(userWannagos);
   const totalSuggestions = aggregateSuggestions(userWannagos);
@@ -66,17 +67,17 @@ const Dashboard = ({ wannago }) => {
   const totalSuccessRatio =
     Math.floor((totalPplGoing / linksOpenedTotal) * 100) || 0;
 
-    console.log('activeWGsTotal', activeWGsTotal)
+    console.log('activeWGsTotal', totalActiveWannagos)
   return (
     <>
       <main className='user-dashboard-page'>
         {currentUser && (
           <>
             <h1 className='title-text'>Welcome {currentUser.displayName}!</h1>
-            {activeWGsTotal === 0 && (
+            {totalActiveWannagos === 0 && (
               <p className='p-text'>You don't have wannagos yet. Create one to see it here.</p>
             )}
-            {activeWGsTotal > 0 && (
+            {totalActiveWannagos > 0 && (
               <article className='stats-container'>
                 <div className='individual-stat-container'>
                   <DonutChart
@@ -93,14 +94,14 @@ const Dashboard = ({ wannago }) => {
                 </div>
                 <div className='individual-stat-container'>
                   <TotalWannaGosChart
-                    active={activeWGsTotal}
+                    active={totalActiveWannagos}
                     older={olderWGsTotal}
                   />
                 </div>
               </article>
             )}
-            {activeWGsTotal === 0 && null}
-            {activeWGsTotal === 1 && (
+            {totalActiveWannagos === 0 && null}
+            {totalActiveWannagos === 1 && (
               <>
                 <h2 className='title-text'>This is your wannago:</h2>
                 <div className='wannago-cards-container'>
@@ -116,7 +117,7 @@ const Dashboard = ({ wannago }) => {
               </>
             )}
 
-            {activeWGsTotal > 1 && (
+            {totalActiveWannagos > 1 && (
               <>
                 <h2 className='title-text'>These are your wannagos:</h2>
                 <div className='wannago-cards-container'>
