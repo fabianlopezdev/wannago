@@ -7,7 +7,7 @@ const PlanSharingPrompt = () => {
       <p>
         Share the wannaGo with friends and family and see who can go:
         <Link to='/log-in'> Log in </Link> or
-        <Link to='/sign-up'> sign up </Link>
+        <Link to='/sign-up'> Sign up </Link>
       </p>
     </div>
   );

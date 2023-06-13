@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Alert } from 'bootstrap';
+import { Link } from 'react-router-dom';
 
 //Internal dependencies
 import WannaGoCardSimple from '../components/wannago/WannagoCardSimple';
@@ -121,11 +122,20 @@ const GuestLink = () => {
         />
       </Helmet>
 
-      {/* {window.innerWidth < 767 && (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Logo />
-        </div>
-      )} */}
+      {window.innerWidth < 767 && (
+        <Link
+            to={'/'}
+            style={{ textDecoration: 'none' }}
+            title='Go to Dashboard'
+          >
+            <p
+              className='logo'
+              style={{ textAlign: 'center', marginBlock: '1rem' }}
+            >
+              Wannago?
+            </p>
+          </Link>
+      )}
       <div className='pageContainer'>
         {!option && (
           <>

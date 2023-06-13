@@ -28,15 +28,15 @@ const TopNavBar = ({setIsCreated}) => {
     <nav>
       {location.pathname !== '/' && (
         <div className='navContainer'>
+          <Link
+            to={currentUser ? '/dashboard' : '/'}
+            style={{ textDecoration: 'none' }}
+            title='Go to Dashboard'
+          >
+            <p class='logo'>Wannago?</p>
+          </Link>
           {currentUser ? (
             <>
-              <Link
-                to={currentUser ? '/dashboard' : '/'}
-                style={{ textDecoration: 'none' }}
-                title='Go to Dashboard'
-              >
-                <p class='logo'>Wannago?</p>
-              </Link>
               {location.pathname !== 'new-wannago' && (
                 <Link to={'new-wannago'}>
                   <button
@@ -81,6 +81,7 @@ const TopNavBar = ({setIsCreated}) => {
 };
 
 export default TopNavBar;
+
 
 
 
