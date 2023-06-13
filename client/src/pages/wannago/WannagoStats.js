@@ -10,43 +10,44 @@ import './wannagoStats.css';
 const WannagoStats = () => {
   const location = useLocation();
   const dateCreated = location.state.data.dateCreated;
-  
-   const {
-     status,
-     data: wannago,
-     error,
-   } = useQuery(
-     ['wannago', dateCreated],
-     () => getWannagoByDateCreated(dateCreated),
-     { keepPreviousData: true }
-   );
 
-   if (status === 'loading') {
-     return <div>Loading...</div>; // display a loading message while the data is being fetched
-   }
+  const {
+    status,
+    data: wannago,
+    error,
+  } = useQuery(
+    ['wannago', dateCreated],
+    () => getWannagoByDateCreated(dateCreated),
+    { keepPreviousData: true }
+  );
 
-   if (status === 'error') {
-     return <div>Error: {error.message}</div>; // display an error message if the fetch failed
-   }
+  if (status === 'loading') {
+    return <div>Loading...</div>; // display a loading message while the data is being fetched
+  }
 
-   let peopleGoingCount;
-   let peopleSuggestingCount;
-   let peopleNotGoingCount;
-   if (wannago) {
+  if (status === 'error') {
+    return <div>Error: {error.message}</div>; // display an error message if the fetch failed
+  }
+
+  let peopleGoingCount;
+  let peopleSuggestingCount;
+  let peopleNotGoingCount;
+  let peopleGoing;
+  let suggestions;
+
+  if (wannago) {
+    peopleGoing = Object.keys(wannago.ppl_going);
+    suggestions = Object.keys(wannago.suggestion_box);
     peopleGoingCount = Object.keys(wannago.ppl_going).length;
     peopleSuggestingCount = wannago.suggestionBoxCounter;
     peopleNotGoingCount = wannago.rejectCounter;
-
-   }
+  }
 
   return (
     <>
-      <div className='mainStatsContainer'>
-        <div className='statsTop'></div>
-      </div>
-      <div className='wgStatsContainer'>
-        <div className='wgPart'>
-          <div className='seenBy'>
+      <main class='page-cotainer'>
+        <aside className='sidebar-info'>
+          <p className='seen-by'>
             {wannago.openedTimes === 0 ? (
               'No one has seen it yet'
             ) : wannago.openedTimes === 1 ? (
@@ -60,74 +61,78 @@ const WannagoStats = () => {
                 Seen by <strong>{wannago.openedTimes}</strong> people
               </>
             )}
-          </div>
-          <div className='seen'>
+          </p>
+          <div className='wannago-card'>
             <WannaGoCard wannago={wannago} />
           </div>
-        </div>
-        <div className='statsPartContainer'>
-          <div className='statsPart'>
-            <div className='numsBox'>
+        </aside>
+        <section className='info-container'>
+          <article className='stats-container'>
+            <div className='counters-box-info'>
               {peopleGoingCount === 1 ? (
                 <>
-                  <div>A person wannaGo:</div>
-                  <h1 className='num'>1</h1>
+                  <h6 className='counter-description'>A person wannaGo:</h6>
+                  <p className='counter'>1</p>
                 </>
               ) : (
                 <>
-                  <div>People that wannaGo:</div>
-                  <h1 className='num'>
-                    {Object.keys(wannago.ppl_going).length}
-                  </h1>
+                  <h6 className='counter-description'>People that wannaGo:</h6>
+                  <p className='counter'>{peopleGoingCount}</p>
                 </>
               )}
             </div>
-            <div className='numsBox'>
+            <div className='counters-box-info'>
               {peopleSuggestingCount === 1 ? (
                 <>
-                  <div>A person may wannaGo:</div>
-                  <h1 className='num'>1</h1>
+                  <h6 className='counter-description'>A person may wannaGo:</h6>
+                  <p className='counter'>1</p>
                 </>
               ) : (
                 <>
-                  <div>People that may wannaGo:</div>
-                  <h1 className='num'>{peopleSuggestingCount}</h1>
+                  <h6 className='counter-description'>
+                    People that may wannaGo:
+                  </h6>
+                  <p className='counter'>{peopleSuggestingCount}</p>
                 </>
               )}
             </div>
-            <div className='numsBox'>
+            <div className='counters-box-info'>
               {peopleNotGoingCount === 1 ? (
                 <>
-                  <div>A person don't wannaGo/cannotGo:</div>
-                  <h1 className='num'>1</h1>
+                  <h6 className='counter-description'>
+                    A person don't wannaGo/cannotGo:
+                  </h6>
+                  <p className='counter'>1</p>
                 </>
               ) : (
                 <>
-                  <div>People that don't wannaGo/cannotGo:</div>
-                  <h1 className='num'>{peopleNotGoingCount}</h1>
+                  <h6 className='counter-description'>
+                    People that don't wannaGo/cannotGo:
+                  </h6>
+                  <p className='counter'>{peopleNotGoingCount}</p>
                 </>
               )}
             </div>
-          </div>
-          <div className='goingAndSuggestions'>
+          </article>
+          <article className='detail-info-container'>
             {wannago.ppl_going && (
-              <div className='goingContainer'>
-                <h1 className='goingandsuggestiontitle'>People Going</h1>
-                {Object.keys(wannago.ppl_going).map((key) => {
+              <div className='people-going-container'>
+                <h1 className='titles'>People Attending</h1>
+                {peopleGoing.map((key) => {
                   return (
-                    <div className='going'>{`${key} ${wannago.ppl_going[key]}`}</div>
+                    <p className='people-going'>{`${key} ${wannago.ppl_going[key]}`}</p>
                   );
                 })}
               </div>
             )}
             {wannago.suggestion_box && (
-              <div className='suggestionContainer'>
-                <h1 className='goingandsuggestiontitle'>Suggestions</h1>
-                {Object.keys(wannago.suggestion_box).map((key) => {
+              <div className='suggestions-container'>
+                <h1 className='titles'>Suggestions</h1>
+                {suggestions.map((key) => {
                   return (
                     <>
-                      <div className='msg'>
-                        <h5>{`${key} said`}</h5>
+                      <div className='message'>
+                        <h5>{`${key} said:`}</h5>
                         <div>{wannago.suggestion_box[key]}</div>
                       </div>
                     </>
@@ -135,29 +140,12 @@ const WannagoStats = () => {
                 })}
               </div>
             )}
-          </div>
-        </div>
-      </div>
-
-      <div className='statsBottom'></div>
-      <div />
+          </article>
+        </section>
+      </main>
     </>
   );
 };
 
 export default WannagoStats;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
