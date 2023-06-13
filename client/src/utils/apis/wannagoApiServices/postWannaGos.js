@@ -14,8 +14,8 @@ export const postWannago = async (currentUser, wannago) => {
  
   try {
     return await fetch(
-      // `https://wannago-ito3.vercel.app/wannago`
-      `http://localhost:4020/wannago`,
+      `https://wannago-ito3.vercel.app/wannago`,
+      // `http://localhost:4020/wannago`,
       {
         method: 'POST',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },

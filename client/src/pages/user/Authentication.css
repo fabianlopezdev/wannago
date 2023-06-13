@@ -3,6 +3,7 @@
 .signup-button {
   width: 100%;
   background-color: rgb(242,205,211);
+  margin-top: 1rem;
 }
 .formContainer {
   display: flex;

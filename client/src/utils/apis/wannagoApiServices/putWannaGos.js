@@ -5,8 +5,8 @@ export const putLinkClickedCounter = async (id, openedTimes, hostId) => {
   console.log('id:', id);
   console.log('openedTimes:', openedTimes);
   try {
-    // return await fetch(`https://wannago-ito3.vercel.app/wannago/openedTimes`, {
-      return await fetch(`http://localhost:4020/wannago/openedTimes`, {
+    return await fetch(`https://wannago-ito3.vercel.app/wannago/openedTimes`, {
+      // return await fetch(`http://localhost:4020/wannago/openedTimes`, {
         method: 'PUT',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
         body: JSON.stringify({ id, openedTimes, hostId }),
@@ -19,8 +19,8 @@ export const putLinkClickedCounter = async (id, openedTimes, hostId) => {
 export const putAttending = async (name, email, id, hostId) => {
   try {
     return await fetch(
-      // `https://wannago-ito3.vercel.app/wannago/ppl_going`
-      `http://localhost:4020/wannago/ppl_going`,
+      `https://wannago-ito3.vercel.app/wannago/ppl_going`,
+      // `http://localhost:4020/wannago/ppl_going`,
       {
         method: 'PUT',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -35,8 +35,8 @@ export const putAttending = async (name, email, id, hostId) => {
 export const putAttendingCounter = async (id, goingCounter, hostId) => {
   try {
     return await fetch(
-      // `https://wannago-ito3.vercel.app/wannago/goingCounter`
-      `http://localhost:4020/wannago/goingCounter`,
+      `https://wannago-ito3.vercel.app/wannago/goingCounter`,
+      // `http://localhost:4020/wannago/goingCounter`,
       {
         method: 'PUT',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -51,8 +51,8 @@ export const putAttendingCounter = async (id, goingCounter, hostId) => {
 export const putSuggestion = async (name, msg, id, hostId) => {
   try {
     return await fetch(
-      // `https://wannago-ito3.vercel.app/wannago/suggestionMsg`
-      `http://localhost:4020/wannago/suggestionMsg`,
+      `https://wannago-ito3.vercel.app/wannago/suggestionMsg`,
+      // `http://localhost:4020/wannago/suggestionMsg`,
       {
         method: 'PUT',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -69,8 +69,8 @@ export const putSuggestion = async (name, msg, id, hostId) => {
 export const putSuggestionsCounter = async (id, suggestionBoxCounter, hostId) => {
   try {
     return await fetch(
-      // `https://wannago-ito3.vercel.app/wannago/suggestionBoxCounter`
-      `http://localhost:4020/wannago/suggestionBoxCounter`,
+      `https://wannago-ito3.vercel.app/wannago/suggestionBoxCounter`,
+      // `http://localhost:4020/wannago/suggestionBoxCounter`,
       {
         method: 'PUT',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -87,8 +87,8 @@ export const putSuggestionsCounter = async (id, suggestionBoxCounter, hostId) =>
 export const putRejectionsCounter = async (id, rejectCounter, hostId) => {
   try {
     return await fetch(
-      // `https://wannago-ito3.vercel.app/wannago/rejectCounter`
-      `http://localhost:4020/wannago/rejectCounter`,
+      `https://wannago-ito3.vercel.app/wannago/rejectCounter`,
+      // `http://localhost:4020/wannago/rejectCounter`,
       {
         method: 'PUT',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },

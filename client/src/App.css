@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  height: calc(100vh - 4rem)
+  height: calc(100vh - 4rem);
   /* overflow: hidden; */
 }
 
@@ -23,12 +23,12 @@
 .topNavBar {
   position: fixed;
   width: 100%;
-  top:0;
+  top: 0;
   z-index: 10;
 }
 
 .bottomNavbar {
-  padding:1rem;
+  padding: 1rem;
   background-color: white;
   position: fixed;
   bottom: 0;
@@ -42,7 +42,7 @@
   }
 
   .mainContainer {
-   padding-top: 4rem;  /* Adjust as needed to account for the height of the navbar */
+    padding-top: 4rem; /* Adjust as needed to account for the height of the navbar */
   }
 
   .bottomNavbar {
@@ -104,9 +104,34 @@
   src: url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 }
 
+@font-face {
+  font-family: 'Montserrat Alternates';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../../client/public/MontserratAlternates-SemiBoldItalic.woff2')
+    format('truetype');
+  font-display: swap;
+}
+
+.logo {
+  font-family: 'Montserrat Alternates', sans-serif;
+  color: rgb(254,194,232);
+   text-shadow: 2px 2px 2px rgb(254,194,232);
+  -webkit-text-stroke: 1px #FF91D4;
+  font-size: 2rem;
+  margin:0;
+}
+
+.big {
+  font-size: clamp(3.5rem, 10vw, 10rem);
+  text-shadow: 10px 10px 10px rgb(254,194,232);
+  -webkit-text-stroke: 3px #FF91D4;
+  /* letter-spacing: -1rem;  */
+}
 .highlight {
   width: fit-content;
   border: 3px dashed rgb(241, 138, 203);
+  
   border-radius: 5px;
   margin-top: 5px;
   font-size: 20px;
@@ -128,3 +153,4 @@
   justify-content: center;
   align-items: center;
 }
+

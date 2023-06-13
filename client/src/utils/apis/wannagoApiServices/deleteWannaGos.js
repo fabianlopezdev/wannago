@@ -2,11 +2,11 @@
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
 export const deleteWannago = async (_id) => {
-  console.log('iddddddd', _id);
+  // console.log('iddddddd', _id);
   try {
     const WG = await fetch(
-      // `https://wannago-ito3.vercel.app/wannago/delete`,
-      `http://localhost:4020/wannago/delete`,
+      `https://wannago-ito3.vercel.app/wannago/delete`,
+      // `http://localhost:4020/wannago/delete`,
       {
         method: 'DELETE',
         headers: { 'Content-type': 'application/json; charset=UTF-8' },

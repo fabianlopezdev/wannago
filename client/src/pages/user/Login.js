@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
-
 import './Authentication.css';
 
 export default function Login({wannago, setWannago}) {
@@ -34,7 +33,23 @@ export default function Login({wannago, setWannago}) {
 
   return (
     <main className='formContainer'>
-      <Card style={{width: '20rem'}}>
+      {window.innerWidth < 767 && (
+        <>
+          <Link
+            to={'/'}
+            style={{ textDecoration: 'none' }}
+            title='Go to Dashboard'
+          >
+            <p
+              className='logo'
+              style={{ textAlign: 'center', marginBlock: '1rem' }}
+            >
+              Wannago?
+            </p>
+          </Link>
+        </>
+      )}
+      <Card style={{ width: '20rem' }}>
         <Card.Body>
           <h2 className='card-body-h2'>Log in</h2>
           {error && <Alert variant='danger'>{error}</Alert>}
@@ -74,6 +89,8 @@ export default function Login({wannago, setWannago}) {
     </main>
   );
 }
+
+
 
 
 

@@ -103,8 +103,8 @@ export default function UpdateProfile() {
         </Card.Body>
       </Card>
       <div className='line-after-auth-card'>
-        <Link to='/user/dashboard'>Cancel</Link> &nbsp;
-        <Link to='/user/delete-account'>Delete Account</Link>
+        <Link to='/dashboard'>Cancel</Link> &nbsp;
+        <Link to='/delete-account'>Delete Account</Link>
       </div>
     </main>
   );

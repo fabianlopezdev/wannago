@@ -4,8 +4,8 @@
 export const getUserWannagos = async (userId) => {
   try {
     const wannagos = await fetch(
-      // `https://wannago-ito3.vercel.app/wannagos/hostId/${userId}`
-      `http://localhost:4020/wannagos/hostId/${userId}`
+      `https://wannago-ito3.vercel.app/wannagos/hostId/${userId}`
+      // `http://localhost:4020/wannagos/hostId/${userId}`
     );
     console.log('wannagos fetched',wannagos)
     return await wannagos.json();
@@ -20,8 +20,8 @@ export const getUserWannagos = async (userId) => {
 export const getWannagoByDateCreated = async (dateCreated) => {
   try {
     const wannaGo = await fetch(
-      // `https://wannago-ito3.vercel.app/wannago/${dateCreated}`
-      `http://localhost:4020/wannago/${dateCreated}`
+      `https://wannago-ito3.vercel.app/wannago/${dateCreated}`
+      // `http://localhost:4020/wannago/${dateCreated}`
     );
     return await wannaGo.json();
   } catch (e) {

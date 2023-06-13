@@ -1,5 +1,4 @@
 //External dependencies
-import { useEffect, useState } from 'react';
 import { Alert } from 'bootstrap';
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
@@ -7,16 +6,13 @@ import { getUserWannagos } from '../../utils/apis/wannagoApiServices/getWannaGos
 import {
   activeWannagosCount,
   olderWannagosCount,
-  // aggregateSuccessRatio,
-  // aggregateEngagement,
   aggregateAttending,
   aggregateRejections,
   aggregateSuggestions,
   aggregateLinksClicked,
   activeSortedWannagos,
 } from '../../utils/helperFunctions';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { CLIENT_PORT, URL } from '../../utils/config';
+import { useQuery} from 'react-query';
 import {
   DonutChart,
   RadialChart,
@@ -76,38 +72,64 @@ const Dashboard = ({ wannago }) => {
         {currentUser && (
           <>
             <h1 className='title-text'>Welcome {currentUser.displayName}!</h1>
-            <article className='stats-container'>
-              <div className='individual-stat-container'>
-                <DonutChart
-                  going={totalPplGoing}
-                  maybe={totalSuggestions}
-                  notGoing={totalRejections}
-                />
-              </div>
-              <div className='individual-stat-container'>
-                <RadialChart
-                  engagement={totalEngagement}
-                  successRatio={totalSuccessRatio}
-                />
-              </div>
-              <div className='individual-stat-container'>
-                <TotalWannaGosChart
-                  active={activeWGsTotal}
-                  older={olderWGsTotal}
-                />
-              </div>
-            </article>
-            <h2 className='title-text'>These are your wannagos:</h2>
-            <div className='wannago-cards-container'>
-              {activeAndSortedWannagos.map((wannago) => {
-                return (
-                  <WannaGoCard
-                    key={wannago.dateCreated}
-                    wannago={wannago}
+            {activeWGsTotal === 0 && (
+              <p className='p-text'>You don't have wannagos yet. Create one to see it here.</p>
+            )}
+            {activeWGsTotal > 0 && (
+              <article className='stats-container'>
+                <div className='individual-stat-container'>
+                  <DonutChart
+                    going={totalPplGoing}
+                    maybe={totalSuggestions}
+                    notGoing={totalRejections}
                   />
-                );
-              })}
-            </div>{' '}
+                </div>
+                <div className='individual-stat-container'>
+                  <RadialChart
+                    engagement={totalEngagement}
+                    successRatio={totalSuccessRatio}
+                  />
+                </div>
+                <div className='individual-stat-container'>
+                  <TotalWannaGosChart
+                    active={activeWGsTotal}
+                    older={olderWGsTotal}
+                  />
+                </div>
+              </article>
+            )}
+            {activeWGsTotal === 0 && null}
+            {activeWGsTotal === 1 && (
+              <>
+                <h2 className='title-text'>This is your wannago:</h2>
+                <div className='wannago-cards-container'>
+                  {activeAndSortedWannagos.map((wannago) => {
+                    return (
+                      <WannaGoCard
+                        key={wannago.dateCreated}
+                        wannago={wannago}
+                      />
+                    );
+                  })}
+                </div>{' '}
+              </>
+            )}
+
+            {activeWGsTotal > 1 && (
+              <>
+                <h2 className='title-text'>These are your wannagos:</h2>
+                <div className='wannago-cards-container'>
+                  {activeAndSortedWannagos.map((wannago) => {
+                    return (
+                      <WannaGoCard
+                        key={wannago.dateCreated}
+                        wannago={wannago}
+                      />
+                    );
+                  })}
+                </div>{' '}
+              </>
+            )}
           </>
         )}
       </main>
@@ -116,6 +138,10 @@ const Dashboard = ({ wannago }) => {
 };
 
 export default Dashboard;
+
+
+
+
 
 
 

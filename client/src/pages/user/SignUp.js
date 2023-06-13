@@ -46,6 +46,22 @@ export default function SignUp({wannago, setWannago}) {
 
   return (
     <main className='formContainer'>
+      {window.innerWidth < 767 && (
+        <>
+          <Link
+            to={'/'}
+            style={{ textDecoration: 'none' }}
+            title='Go to Dashboard'
+          >
+            <p
+              className='logo'
+              style={{ textAlign: 'center', marginBlock: '1rem' }}
+            >
+              Wannago?
+            </p>
+          </Link>
+        </>
+      )}
       <Card style={{ width: '20rem' }}>
         <Card.Body>
           <h2 className='card-body-h2'>Sign Up</h2>
@@ -101,6 +117,7 @@ export default function SignUp({wannago, setWannago}) {
     </main>
   );
 }
+
 
 
 

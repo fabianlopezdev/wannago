@@ -1,5 +1,6 @@
 //External dependencies
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
@@ -22,23 +23,29 @@ export default function WannagoForm({ wannago, setWannago, setIsCreated, isCreat
     <>
       {!currentUser && window.innerWidth < 767 && (
         <>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Logo currentUser={currentUser} />
-          </div>
+          <Link
+            to={currentUser ? '/dashboard' : '/'}
+            style={{ textDecoration: 'none' }}
+            title='Go to Dashboard'
+          >
+            <p className='logo' style={{textAlign: 'center', marginTop: '1rem'}}>Wannago?</p>
+          </Link>
         </>
       )}
       {isCreated || (
         <div className='form-container'>
-        <StepperForm
-          wannago={wannago}
-          setIsCreated={setIsCreated}
-          setWannago={setWannago}
+          <StepperForm
+            wannago={wannago}
+            setIsCreated={setIsCreated}
+            setWannago={setWannago}
           />
-          </div>
+        </div>
       )}
       {isCreated && <NewWannago wannago={wannago} />}
     </>
   );
 }
+
+
 
 

@@ -33,24 +33,24 @@ const BottomNavBar = () => {
         <div className='navContainerBottom'>
           {currentUser ? (
             <>
-              {location.pathname !== '/user/dashboard' && (
-                <Link to={'/user/dashboard'}>
+              {location.pathname !== '/dashboard' && (
+                <Link to={'/dashboard'}>
                   <IoHomeOutline
                     size={45}
                     style={{ color: 'gray' }}
                   />
                 </Link>
               )}
-              {location.pathname !== '/wannaGo/StepperFormPage' && (
-                <Link to={'/wannaGo/StepperFormPage'}>
+              {location.pathname !== '/new-wannago' && (
+                <Link to={'/new-wannago'}>
                   <IoIosAddCircleOutline
                     size={45}
                     style={{ color: 'gray' }}
                   />
                 </Link>
               )}
-              {location.pathname !== '/user/update-profile' && (
-                <Link to={'/user/update-profile'}>
+              {location.pathname !== '/update-profile' && (
+                <Link to={'/update-profile'}>
                   <FiUser
                     size={45}
                     style={{ color: 'gray' }}
@@ -59,21 +59,14 @@ const BottomNavBar = () => {
               )}
               <LogoutIcon />
             </>
-          ) : 
-            (
-              location.pathname === '/user/login' ||
-              location.pathname === '/user/signup'
-            ) ? 
-            <Logo/> :
-            (
-              <>
-                <div className='userSigningButtons'>
-                  <LogInButton logOut={logOut} />
-                  <SignUpButton />
-                </div>
-              </>
-            )
-          }
+          ) : (
+            <>
+              <div className='userSigningButtons'>
+                <LogInButton logOut={logOut} />
+                <SignUpButton />
+              </div>
+            </>
+          )}
         </div>
       )}
       {location.pathname === '/' && (
@@ -87,5 +80,4 @@ const BottomNavBar = () => {
 };
 
 export default BottomNavBar;
-
 
