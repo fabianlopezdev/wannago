@@ -44,16 +44,26 @@ const YesOption = ({ id, goingCounter, hostName, hostId }) => {
           <div className='form'>
             <form onSubmit={handleSubmit}>
               <div className='flexColumnCenterAll'>
-                <label style={{ alignSelf: 'start' }}>Name</label>
+                <label
+                // style={{ alignSelf: 'start' }}
+                >
+                  Name
+                </label>
                 <input
                   type='text'
                   name='name'
+                  style={{ width: '80%' }}
                   required
                 ></input>
-                <label style={{ alignSelf: 'start' }}>Last Name</label>
+                <label
+                // style={{ alignSelf: 'start' }}
+                >
+                  Last Name
+                </label>
                 <input
                   type='text'
                   name='lastName'
+                  style={{ width: '80%' }}
                   required
                 ></input>
                 <button
@@ -72,6 +82,8 @@ const YesOption = ({ id, goingCounter, hostName, hostId }) => {
 };
 
 export default YesOption;
+
+
 
 
 

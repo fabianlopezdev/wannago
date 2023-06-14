@@ -136,7 +136,7 @@ const WannagoStats = () => {
                   <>
                     <div key={key} className='message'>
                       <h5>{`${key} said:`}</h5>
-                      <div>{wannago.suggestion_box[key]}</div>
+                      <p>{wannago.suggestion_box[key]}</p>
                     </div>
                   </>
                 );

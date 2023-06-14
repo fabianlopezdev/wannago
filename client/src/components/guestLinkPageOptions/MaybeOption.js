@@ -16,7 +16,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value
+    const name = e.target.name.value;
     const msg = e.target.suggestion.value;
     console.log('this is msg', msg);
     if (!msg.replace(/\s/g, '').length) {
@@ -28,7 +28,9 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
       console.log(suggestionBoxCounter);
       setMsgSent(!msgSent);
     } catch (e) {
-      setError('Sorry, something went wrong and we could not send the message. Please try again')
+      setError(
+        'Sorry, something went wrong and we could not send the message. Please try again'
+      );
       console.log(
         `Error in MaybeOption.js, trying to send the suggestion to backend to put in db. ${e}`
       );
@@ -40,17 +42,22 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
   return (
     <>
       <div className='flexColumnCenterAll'>
-        {!msgSent && <h4 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
-          Let {hostName} know if you have any suggestion.
-        </h4>}
+        {!msgSent && (
+          <h4 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
+            Let {hostName} know if you have any suggestion.
+          </h4>
+        )}
         {error && <Alert variant='danger'>{error}</Alert>}
         {msgSent ? (
           <h3>Great! We've just notified {hostName}.</h3>
         ) : (
-          <form onSubmit={handleSubmit}>
+          <form
+            className='form'
+            onSubmit={handleSubmit}
+          >
             <div className='flexColumnCenterAll'>
               <label
-                style={{ alignSelf: 'start' }}
+                // style={{ alignSelf: 'start' }}
                 htmlFor='name'
               >
                 Name
@@ -58,18 +65,20 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
 
               <input
                 name='name'
+                placeholder='Your Name'
+                style={{ width: '80%' }}
                 autoFocus
                 required
               ></input>
               <label
                 htmlFor='suggestion'
-                style={{ alignSelf: 'start' }}
+                // style={{ alignSelf: 'start' }}
               >
                 Message
               </label>
               <textarea
-                style={{resize: 'none', width: '189px'}}
                 name='suggestion'
+                style={{ width: '80%' }}
                 placeholder='Write your suggestion here'
                 required
               ></textarea>
@@ -88,14 +97,5 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
 };
 
 export default MaybeOption;
-
-
-
-
-
-
-
-
-
 
 
