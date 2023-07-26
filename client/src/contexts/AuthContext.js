@@ -14,11 +14,11 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsuscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
     });
-    return unsuscribe;
+    return unsubscribe;
   }, []);
 
   const signUp = async (email, password, name) => {
@@ -35,33 +35,55 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error('Error creating user: ', error);
     }
-
   };
 
   const logIn = async (email, password) => {
-    const { user } = await auth.signInWithEmailAndPassword(email, password);
-    console.log('user', user)
-    return user;
+    try {
+      const { user } = await auth.signInWithEmailAndPassword(email, password);
+      return user;
+    } catch (error) {
+      console.error('Error logging in: ', error);
+    }
   };
 
-  const logOut = () => {
-    return auth.signOut();
+  const logOut = async () => {
+    try {
+      return await auth.signOut();
+    } catch (error) {
+      console.error('Error logging out: ', error);
+    }
   };
 
-  const resetPassword = (email) => {
-    return auth.sendPasswordResetEmail(email);
+  const resetPassword = async (email) => {
+    try {
+      return await auth.sendPasswordResetEmail(email);
+    } catch (error) {
+      console.error('Error resetting password: ', error);
+    }
   };
 
-  const updateEmail = (email) => {
-    return currentUser.updateEmail(email);
+  const updateEmail = async (email) => {
+    try {
+      return await currentUser.updateEmail(email);
+    } catch (error) {
+      console.error('Error updating email: ', error);
+    }
   };
 
-  const updatePassword = (password) => {
-    return currentUser.updatePassword(password);
+  const updatePassword = async (password) => {
+    try {
+      return await currentUser.updatePassword(password);
+    } catch (error) {
+      console.error('Error updating password: ', error);
+    }
   };
 
-  const deleteUser = () => {
-    return currentUser.delete();
+  const deleteUser = async () => {
+    try {
+      return await currentUser.delete();
+    } catch (error) {
+      console.error('Error deleting user: ', error);
+    }
   };
 
   const value = {
@@ -81,5 +103,4 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
 
