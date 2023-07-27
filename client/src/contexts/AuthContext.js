@@ -1,6 +1,6 @@
 //External dependencies
 import React, { useContext, useState, useEffect } from 'react';
-import { auth, up } from '../firebase';
+import { auth } from '../firebase';
 
 const AuthContext = React.createContext();
 
@@ -11,12 +11,18 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   //Hooks
   const [currentUser, setCurrentUser] = useState();
+  const [userToken, setUserToken] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
       setLoading(false);
+      if (user) {
+        const token = await auth.currentUser.getIdToken();
+        console.log('tokeeeen', token)
+        setUserToken(token);
+      }
     });
     return unsubscribe;
   }, []);
@@ -43,6 +49,15 @@ export const AuthProvider = ({ children }) => {
       return user;
     } catch (error) {
       console.error('Error logging in: ', error);
+    }
+  };
+
+  const getIDToken = async () => {
+    try {
+      const token = await currentUser.getIdToken(true);
+      return token;
+    } catch (error) {
+      console.error('Error getting ID token: ', error);
     }
   };
 
@@ -87,9 +102,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const value = {
+    userToken,
     currentUser,
     signUp,
     logIn,
+    // getIDToken,
     logOut,
     resetPassword,
     updateEmail,

@@ -1,6 +1,6 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
-
+import { apiRequest } from "./apiRequest";
 export const getUserWannagos = async (userId) => {
   console.log('the user id is', userId)
   try {
@@ -18,12 +18,14 @@ export const getUserWannagos = async (userId) => {
 };
 
 
-export const getWannagoByDateCreated = async (dateCreated) => {
+export const getWannagoByDateCreated = async (dateCreated, userToken) => {
   try {
-    const wannaGo = await fetch(
-      `https://wannago-ito3.vercel.app/wannago/${dateCreated}`
-      // `http://localhost:4020/wannago/${dateCreated}`
-    );
+    const wannaGo = await apiRequest(`wannago/${dateCreated}`, userToken);
+    // console.log('this is the wannaGo', await wannaGo.json())
+    // await fetch(
+    //   // `https://wannago-ito3.vercel.app/wannago/${dateCreated}`
+    //   `http://localhost:4020/wannago/${dateCreated}`
+    // );
     return await wannaGo.json();
   } catch (e) {
     console.log(`Error in getWannagoByDateCreated function in apiService. Error: ${e}`);
@@ -52,6 +54,7 @@ export const getWannagos = async () => {
 //     );
 //   }
 // };
+
 
 
 

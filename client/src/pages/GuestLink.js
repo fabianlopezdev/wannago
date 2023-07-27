@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Alert } from 'bootstrap';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 //Internal dependencies
 import WannaGoCardSimple from '../components/wannago/WannagoCardSimple';
@@ -26,12 +27,12 @@ import favicon from '../assets/favicon.png';
 
 const GuestLink = () => {
   const { id } = useParams();
-
+  const { userToken } = useAuth();
   const {
     data: wannago,
     isError,
     isLoading,
-  } = useQuery('guestLink', () => getWannagoByDateCreated(id), {
+  } = useQuery('guestLink', () => getWannagoByDateCreated(id, userToken), {
     onSuccess: (data) => putLinkClickedCounter(id, ++data.openedTimes, data.hostId),
     staleTime: Infinity,
   });
