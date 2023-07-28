@@ -26,7 +26,7 @@ import '../../components/guestLinkPageOptions/Options.css';
 import './dashboard.css';
 
 const Dashboard = ({ wannago, setIsCreated }) => {
-  const { currentUser } = useAuth();
+  const { currentUser, userToken } = useAuth();
 
   const queryEnabled = currentUser !== null;
 
@@ -40,7 +40,7 @@ const Dashboard = ({ wannago, setIsCreated }) => {
     isError,
   } = useQuery(
     ['wannagos', currentUser],
-    () => getUserWannagos(currentUser.uid),
+    () => getUserWannagos(currentUser.uid, userToken),
     {
       enabled: queryEnabled, // enable query only when currentUser is set
     }

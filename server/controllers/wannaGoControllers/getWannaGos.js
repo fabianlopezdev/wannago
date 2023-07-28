@@ -15,6 +15,7 @@ const getWannaGos = async (ctx) => {
 
 const getUserWannagos = async (ctx) => {
   try {
+    // console.log('ctxxxx', ctx)
     console.log('params are:', ctx.params)
     const wannagos = await WannaGo.find({ hostId: ctx.params.hostId});
     ctx.status = 201;

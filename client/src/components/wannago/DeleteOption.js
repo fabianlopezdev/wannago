@@ -1,12 +1,15 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { deleteWannago } from '../../utils/apis/wannagoApiServices/deleteWannaGos';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../../contexts/AuthContext';
 export default function DeleteOption(_id) {
+  const {userToken} = useAuth();
+
+  console.log('tikkiiii', userToken)
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   console.log('wannagoID', _id);
-  const { mutate } = useMutation(deleteWannago, {
+  const { mutate } = useMutation(([_id, userToken]) => deleteWannago(_id, userToken), {
     onSuccess: (wannagoToDelete) => {
       queryClient.getQueryData(['wannagos'], (previousWannagos) => {
         previousWannagos.splice(previousWannagos.indexOf(wannagoToDelete), 1);
@@ -22,7 +25,7 @@ export default function DeleteOption(_id) {
       <h5>Delete wannago?</h5>
       <button
         className='copyButton'
-        onClick={() => mutate(_id)}
+        onClick={() => mutate([_id, userToken])}
       >
         Delete
       </button>

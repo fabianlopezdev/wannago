@@ -4,6 +4,7 @@ const WannaGo = require('../../models/wannaGoModel');
 const deleteWannago = async (ctx) => {
 try {
   const { _id } = ctx.request.body;
+  console.log('ctxxx', ctx);
   console.log('this is id', _id);
   const deletedWannaGo = await WannaGo.findByIdAndRemove(_id);
   console.log(`The WannaGo: ${deletedWannaGo} was deleted`)

@@ -1,46 +1,36 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
-import { apiRequest } from "./apiRequest";
-export const getUserWannagos = async (userId) => {
-  console.log('the user id is', userId)
+import { apiRequest } from './apiRequest';
+export const getUserWannagos = async (userId, userToken) => {
+  console.log('the user id is', userId);
   try {
-    const wannagos = await fetch(
-      `https://wannago-ito3.vercel.app/wannagos/hostId/${userId}`
-      // `http://localhost:4020/wannagos/hostId/${userId}`
-    );
-    console.log('wannagos fetched',wannagos)
+    const wannagos = await apiRequest(`wannagos/hostId/${userId}`, userToken);
+    console.log('wannagos fetched', wannagos);
     return await wannagos.json();
   } catch (e) {
+    console.log(`Error in getUserWannagos function in apiService. Error: ${e}`);
+  }
+};
+
+export const getWannagoByDateCreated = async (dateCreated) => {
+  try {
+    const wannaGo = await apiRequest(`wannago/${dateCreated}`);
+    return await wannaGo.json();
+  } catch (e) {
     console.log(
-      `Error in getUserWannagos function in apiService. Error: ${e}`
+      `Error in getWannagoByDateCreated function in apiService. Error: ${e}`
     );
   }
 };
 
-
-export const getWannagoByDateCreated = async (dateCreated, userToken) => {
-  try {
-    const wannaGo = await apiRequest(`wannago/${dateCreated}`, userToken);
-    // console.log('this is the wannaGo', await wannaGo.json())
-    // await fetch(
-    //   // `https://wannago-ito3.vercel.app/wannago/${dateCreated}`
-    //   `http://localhost:4020/wannago/${dateCreated}`
-    // );
-    return await wannaGo.json();
-  } catch (e) {
-    console.log(`Error in getWannagoByDateCreated function in apiService. Error: ${e}`);
-  }
-};
-
-
-export const getWannagos = async () => {
-  try {
-    const wannaGos = await fetch(`https://wannago-ito3.vercel.app/wannagos`);
-    return await wannaGos.json();
-  } catch (e) {
-    console.log(`Error in getWannaGos function in apiService. Error: ${e}`);
-  }
-};
+// export const getWannagos = async () => {
+//   try {
+//     const wannaGos = await fetch(`https://wannago-ito3.vercel.app/wannagos`);
+//     return await wannaGos.json();
+//   } catch (e) {
+//     console.log(`Error in getWannaGos function in apiService. Error: ${e}`);
+//   }
+// };
 
 // export const getWannaGoByParams = async (what, when) => {
 //   try {
@@ -54,20 +44,4 @@ export const getWannagos = async () => {
 //     );
 //   }
 // };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

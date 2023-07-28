@@ -1,28 +1,23 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 
-export const deleteWannago = async (_id) => {
-  // console.log('iddddddd', _id);
+import { apiRequest } from './apiRequest';
+
+export const deleteWannago = async (_id, userToken) => {
+  console.log('iddddddd', _id);
+  console.log('tokeeen', userToken);
+
+  const options = {
+    method: 'DELETE',
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    body: JSON.stringify({ _id }),
+  };
   try {
-    const WG = await fetch(
-      `https://wannago-ito3.vercel.app/wannago/delete`,
-      // `http://localhost:4020/wannago/delete`,
-      {
-        method: 'DELETE',
-        headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        body: JSON.stringify({ _id}),
-      }
-    );
-    return WG
+    const WG = await apiRequest(`wannago/delete`, userToken, options);
+    return WG;
   } catch (e) {
     console.log(`Error in deleteWannaGo function in apiService. Error: ${e}`);
   }
 };
-
-
-
-
-
-
 
 
