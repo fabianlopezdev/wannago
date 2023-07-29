@@ -1,16 +1,22 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
-
-export const putLinkClickedCounter = async (id, openedTimes, hostId) => {
+import {apiRequest} from './apiRequest.js'
+export const putLinkClickedCounter = async (id, openedTimes, hostId, userToken) => {
   console.log('id:', id);
   console.log('openedTimes:', openedTimes);
+  console.log('userToken', userToken)
+
+  const endPoint = 'wannago/openedTimes'
+
+  const options = {
+    method: 'PUT',
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    body: JSON.stringify({ id, openedTimes, hostId }),
+  };
+
   try {
-    return await fetch(`https://wannago-ito3.vercel.app/wannago/openedTimes`, {
-      // return await fetch(`http://localhost:4020/wannago/openedTimes`, {
-        method: 'PUT',
-        headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        body: JSON.stringify({ id, openedTimes, hostId }),
-      });
+
+    return await apiRequest(endPoint, userToken, options)
   } catch (e) {
     console.log(`Error in putOpenedTimes function in apiService. Error: ${e}`);
   }
@@ -114,6 +120,7 @@ export const putRejectionsCounter = async (id, rejectCounter, hostId) => {
 //     );
 //   }
 // };
+
 
 
 

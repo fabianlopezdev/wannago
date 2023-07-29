@@ -4,9 +4,6 @@
 import { apiRequest } from './apiRequest';
 
 export const deleteWannago = async (_id, userToken) => {
-  console.log('iddddddd', _id);
-  console.log('tokeeen', userToken);
-
   const options = {
     method: 'DELETE',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },

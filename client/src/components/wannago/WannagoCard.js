@@ -23,7 +23,6 @@ const WannaGoCard = ({ wannago }) => {
   const isWannagoStatsPage = location.pathname === '/wannago-stats';
   const dateTime = dateFormatter(wannago.when);
 
-  console.log('wannagooooo', wannago)
 
   const onClickDealDelete = () => {
     setShowDeleteModal(true);
