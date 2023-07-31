@@ -6,17 +6,19 @@ import {
   putAttending,
   putAttendingCounter,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
-
+import { useAuth } from '../../contexts/AuthContext';
 const YesOption = ({ id, goingCounter, hostName, hostId }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
   const [error, setError] = useState()
+
+  const {userToken} = useAuth();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const lastName = e.target.lastName.value;
     try {
-      await putAttending(name, lastName, id, hostId);
-      await putAttendingCounter(id, ++goingCounter, hostId);
+      await putAttending(name, lastName, id, hostId, userToken);
+      await putAttendingCounter(id, ++goingCounter, hostId, userToken);
       console.log(goingCounter);
       setSubmitClicked(!submitClicked);
     } catch (e) {

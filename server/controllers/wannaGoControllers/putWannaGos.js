@@ -1,11 +1,12 @@
 //Internal dependencies
 const WannaGo = require('../../models/wannaGoModel');
 
-const putPplGoing = async (ctx) => {
+const putAddAttendees = async (ctx) => {
   try {
     const { name, email, id, hostId } = ctx.request.body;
+    console.log('authorization', authorization);
     const pplGoing = await WannaGo.findOneAndUpdate(
-      { dateCreated: id, hostId}, 
+      { dateCreated: id, hostId },
       {
         $set: {
           [`ppl_going.${name}`]: `${email}`,
@@ -25,17 +26,19 @@ const putPplGoing = async (ctx) => {
   }
 };
 
-
-const putSuggestionMsg = async (ctx) => {
+const putStoreSuggestion = async (ctx) => {
   try {
     const { name, msg, id, hostId } = ctx.request.body;
     const postedMsg = await WannaGo.findOneAndUpdate(
-      { dateCreated: id, hostId}, 
+      { dateCreated: id, hostId },
       {
-      $set: { [`suggestion_box.${name}`]: `${msg}`}
-      //  { suggestion_box: msg },
-    });
-    console.log(`This message: ${msg}, of ${name} was put in the wannaGo: ${postedMsg}`);
+        $set: { [`suggestion_box.${name}`]: `${msg}` },
+        //  { suggestion_box: msg },
+      }
+    );
+    console.log(
+      `This message: ${msg}, of ${name} was put in the wannaGo: ${postedMsg}`
+    );
     ctx.status = 201;
     ctx.body = postedMsg;
   } catch (e) {
@@ -44,17 +47,17 @@ const putSuggestionMsg = async (ctx) => {
     console.log(`Error in putSuggestionMsg function from controllers: ${e}`);
   }
 };
-const putGuestLink = async (ctx) => {
+const putInvitationLink = async (ctx) => {
   try {
     const { id, link, hostId } = ctx.request.body;
-    console.log('this is id',id);
+    console.log('this is id', id);
     console.log('this is the link', link);
     const wannaGoLinked = await WannaGo.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
         guestLink: link,
       },
-      {new: true}
+      { new: true }
     );
     console.log(`Guest link: ${link} of wannaGo: ${wannaGoLinked}`);
     ctx.status = 201;
@@ -66,11 +69,10 @@ const putGuestLink = async (ctx) => {
   }
 };
 
-
-
-const putOpenedTimes = async (ctx) => {
+const putTrackClick = async (ctx) => {
   try {
     const { id, openedTimes, hostId } = ctx.request.body;
+    console.log('ctxxx', ctx);
     console.log('wannaGoId', id);
     console.log('openedTimes', openedTimes);
     console.log('owner', hostId);
@@ -81,7 +83,9 @@ const putOpenedTimes = async (ctx) => {
       },
       { new: true }
     );
-    console.log(`This ${wannaGoUpdated} of owner ${wannaGoUpdated.hostId} was opened ${wannaGoUpdated.openedTimes} times`);
+    console.log(
+      `This ${wannaGoUpdated} of owner ${wannaGoUpdated.hostId} was opened ${wannaGoUpdated.openedTimes} times`
+    );
     ctx.status = 201;
     ctx.body = wannaGoUpdated;
   } catch (e) {
@@ -91,18 +95,18 @@ const putOpenedTimes = async (ctx) => {
   }
 };
 
-const putRejectCounter = async (ctx) => {
+const putIncrementRejectionsCount = async (ctx) => {
   try {
     const { id, rejectCounter, hostId } = ctx.request.body;
     console.log('wannaGoId', id);
     console.log('rejectCounter:', rejectCounter);
-    console.log('hostId', hostId)
+    console.log('hostId', hostId);
     const wannaGoUpdated = await WannaGo.findOneAndUpdate(
-      { dateCreated: id, hostId},
+      { dateCreated: id, hostId },
       {
         rejectCounter: rejectCounter,
       },
-      { new: true}
+      { new: true }
     );
     console.log(
       `This ${wannaGoUpdated} was rejected ${wannaGoUpdated.rejectCounter} times`
@@ -116,20 +120,22 @@ const putRejectCounter = async (ctx) => {
   }
 };
 
-const putGoingCounter = async (ctx) => {
+const putIncrementAttendeesCount = async (ctx) => {
   try {
     const { id, goingCounter, hostId } = ctx.request.body;
     console.log('wannaGoId', id);
     console.log('goingCounter:', goingCounter);
     console.log('hostId', hostId);
     const wannaGoUpdated = await WannaGo.findOneAndUpdate(
-      { dateCreated: id, hostId},
+      { dateCreated: id, hostId },
       {
         goingCounter: goingCounter,
       },
-      {new: true}
+      { new: true }
     );
-    console.log(`${wannaGoUpdated.goingCounter} people going to ${wannaGoUpdated}`);
+    console.log(
+      `${wannaGoUpdated.goingCounter} people going to ${wannaGoUpdated}`
+    );
     ctx.status = 201;
     ctx.body = wannaGoUpdated;
   } catch (e) {
@@ -139,7 +145,7 @@ const putGoingCounter = async (ctx) => {
   }
 };
 
-const putSuggestionBoxCounter = async (ctx) => {
+const putIncrementSuggestionCount = async (ctx) => {
   try {
     const { id, suggestionBoxCounter, hostId } = ctx.request.body;
     console.log('wannaGoId', id);
@@ -160,12 +166,13 @@ const putSuggestionBoxCounter = async (ctx) => {
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in putSuggestionBoxCounter function from controllers: ${e}`);
+    console.log(
+      `Error in putSuggestionBoxCounter function from controllers: ${e}`
+    );
   }
 };
 
-
-const putOwnerToWannaGo = async (ctx) => {
+const putWannagoOwner = async (ctx) => {
   try {
     const { wannaGoId, userId, hostId } = ctx.request.body;
     const wannaGoOwned = await WannaGo.findByIdAndUpdate(wannaGoId, {
@@ -183,38 +190,14 @@ const putOwnerToWannaGo = async (ctx) => {
   }
 };
 
-module.exports = { putPplGoing, putSuggestionMsg, putOwnerToWannaGo, putOpenedTimes, putRejectCounter, putGoingCounter, putSuggestionBoxCounter,
-putGuestLink };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = {
+  putAddAttendees,
+  putStoreSuggestion,
+  putTrackClick,
+  putWannagoOwner,
+  putIncrementRejectionsCount,
+  putIncrementAttendeesCount,
+  putIncrementSuggestionCount,
+  putInvitationLink,
+};
 

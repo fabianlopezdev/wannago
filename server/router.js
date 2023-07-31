@@ -13,14 +13,14 @@ const {
 } = require('./controllers/wannaGoControllers/postWannaGos');
 const { deleteWannago } = require('./controllers/wannaGoControllers/deleteWannaGos');
 const {
-  putPplGoing,
-  putSuggestionMsg,
-  putOwnerToWannaGo,
-  putOpenedTimes,
-  putGoingCounter,
-  putRejectCounter,
-  putSuggestionBoxCounter,
-  putGuestLink,
+  putAddAttendees,
+  putStoreSuggestion,
+  putWannagoOwner,
+  putTrackClick,
+  putIncrementAttendeesCount,
+  putIncrementRejectionsCount,
+  putIncrementSuggestionCount,
+  putInvitationLink,
 } = require('./controllers/wannaGoControllers/putWannaGos');
 
 //User Controller Functions
@@ -35,7 +35,7 @@ const router = new KoaRouter();
 //GETS
 router.get('/wannagos', getWannaGos);
 // router.get('/wannago/:id', getWannaGoById);
-router.get('/wannago/:dateCreated', getWannagoByDateCreated);
+router.get('/wannago/:date-created', getWannagoByDateCreated);
 router.get('/wannagos/hostId/:hostId', getUserWannagos);
 router.get('/wannago/:what/:when', getWannaGoByParams);
 
@@ -47,14 +47,14 @@ router.post('/wannago', postWannago);
 router.post('/user', postAuser);
 
 //PUT
-router.put('/wannago/ppl_going', putPplGoing);
-router.put('/wannago/suggestionMsg', putSuggestionMsg);
-router.put('/wannago/owner', putOwnerToWannaGo);
-router.put('/wannago/openedTimes', putOpenedTimes);
-router.put('/wannago/rejectCounter', putRejectCounter);
-router.put('/wannago/goingCounter', putGoingCounter);
-router.put('/wannago/suggestionBoxCounter', putSuggestionBoxCounter);
-router.put('/wannago/guestLink', putGuestLink);
+router.put('/wannago/attendees', putAddAttendees);
+router.put('/wannago/suggestion', putStoreSuggestion);
+router.put('/wannago/wannago-owner', putWannagoOwner);
+router.put('/wannago/click', putTrackClick);
+router.put('/wannago/rejections-count', putIncrementRejectionsCount);
+router.put('/wannago/attendees-count', putIncrementAttendeesCount);
+router.put('/wannago/suggestions-count', putIncrementSuggestionCount);
+router.put('/wannago/invitation-link', putInvitationLink);
 
 //DELETE
 router.delete('/wannago/delete', deleteWannago);

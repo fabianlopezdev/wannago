@@ -10,7 +10,7 @@ export default function Login({wannago, setWannago}) {
   //Hooks
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { logIn } = useAuth();
+  const { logIn, userToken } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +23,7 @@ export default function Login({wannago, setWannago}) {
       setError('');
       setLoading(true);
       const user = await logIn(emailRef.current.value, passwordRef.current.value);
-      if (Object.entries(wannago).length === 3) await postWannago(user, wannago, setWannago)
+      if (Object.entries(wannago).length === 3) await postWannago(user, wannago, setWannago, userToken)
       navigate('/dashboard');
     } catch {
       setError('Failed to sign in');

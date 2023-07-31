@@ -5,8 +5,6 @@ const deleteWannago = async (ctx) => {
 try {
   const { _id } = ctx.request.body;
   const { authorization } = ctx.request.header;
-  console.log('ctxxx', authorization)
-  console.log('this is id', _id);
   const deletedWannaGo = await WannaGo.findByIdAndRemove(_id);
   console.log(`The WannaGo: ${deletedWannaGo} was deleted`)
   ctx.status =201;

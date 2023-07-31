@@ -1,6 +1,7 @@
-export const apiRequest = async (endPoint, userToken, options) => {
-  const url = `http://localhost:4020/${endPoint}`;
-  // const url = `https://wannago-ito3.vercel.app/$${endpoint}`
+import {URL} from '../../config'
+export const apiRequest = async (endPoint, options, userToken) => {
+  const url = `${URL}/${endPoint}`;
+ 
   if (userToken === undefined && options === undefined) return await fetch(url);
 
   const headers = {

@@ -16,7 +16,7 @@ export default function SignUp({wannago, setWannago}) {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const nameRef = useRef();
-  const { signUp } = useAuth();
+  const { signUp, userToken } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function SignUp({wannago, setWannago}) {
         passwordRef.current.value,
         nameRef.current.value
       );
-      if (Object.entries(wannago).length === 3) await postWannago(user, wannago, setWannago);
+      if (Object.entries(wannago).length === 3) await postWannago(user, wannago, setWannago, userToken);
       navigate('/dashboard');
     } catch {
       setError('Failed to create an account');

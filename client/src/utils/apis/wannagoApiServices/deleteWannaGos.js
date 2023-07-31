@@ -10,7 +10,7 @@ export const deleteWannago = async (_id, userToken) => {
     body: JSON.stringify({ _id }),
   };
   try {
-    const WG = await apiRequest(`wannago/delete`, userToken, options);
+    const WG = await apiRequest(`wannago/delete`, options, userToken);
     return WG;
   } catch (e) {
     console.log(`Error in deleteWannaGo function in apiService. Error: ${e}`);

@@ -33,7 +33,7 @@ const GuestLink = () => {
     isError,
     isLoading,
   } = useQuery('guestLink', () => getWannagoByDateCreated(id, userToken), {
-    onSuccess: (data) => putLinkClickedCounter(id, ++data.openedTimes, data.hostId),
+    onSuccess: (data) => putLinkClickedCounter(id, ++data.openedTimes, data.hostId, userToken),
     staleTime: Infinity,
   });
 

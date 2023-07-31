@@ -16,7 +16,7 @@ import PlanSharingPrompt from '../../components/wannago/PlanSharingPrompt';
 import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 
 const NewWannago = ({ wannago, setWannago, setIsCreated }) => {
-  const { currentUser } = useAuth();
+  const { currentUser, userToken } = useAuth();
     const queryClient = useQueryClient();
 
   const [postedWannago, setPostedWannago] = useState(null);
@@ -27,7 +27,7 @@ const NewWannago = ({ wannago, setWannago, setIsCreated }) => {
     
   // }, []);
 
-  const mutation = useMutation(() => postWannago(currentUser, wannago), {
+  const mutation = useMutation(() => postWannago(currentUser, wannago, userToken), {
     onSuccess: async (response) => {
       const data = await response.json();
       queryClient.invalidateQueries('wannagos');
