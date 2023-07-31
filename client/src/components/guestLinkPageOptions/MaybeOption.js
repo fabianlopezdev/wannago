@@ -4,8 +4,8 @@ import { Alert } from 'bootstrap';
 
 //Internal dependencies
 import {
-  putSuggestion,
-  putSuggestionsCounter,
+  putStoreSuggestion,
+  putIncrementSuggestionsCount,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
 
 import './Options.css';
@@ -23,8 +23,8 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
       return;
     }
     try {
-      await putSuggestion(name, msg, id, hostId);
-      await putSuggestionsCounter(id, ++suggestionBoxCounter, hostId);
+      await putStoreSuggestion(name, msg, id, hostId);
+      await putIncrementSuggestionsCount(id, ++suggestionBoxCounter, hostId);
       console.log(suggestionBoxCounter);
       setMsgSent(!msgSent);
     } catch (e) {
@@ -97,5 +97,7 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
 };
 
 export default MaybeOption;
+
+
 
 

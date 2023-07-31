@@ -18,7 +18,7 @@ import {
   MaybeButton,
 } from '../components/guestLinkPageOptions/OptionButtons';
 import { getWannagoByDateCreated } from '../utils/apis/wannagoApiServices/getWannaGos';
-import { putLinkClickedCounter } from '../utils/apis/wannagoApiServices/putWannaGos';
+import { putTrackClick } from '../utils/apis/wannagoApiServices/putWannaGos';
 import { useQuery } from 'react-query';
 import { Logo } from '../components/navbar/NavBarButtons';
 import './guestLink.css';
@@ -32,8 +32,8 @@ const GuestLink = () => {
     data: wannago,
     isError,
     isLoading,
-  } = useQuery('guestLink', () => getWannagoByDateCreated(id, userToken), {
-    onSuccess: (data) => putLinkClickedCounter(id, ++data.openedTimes, data.hostId, userToken),
+  } = useQuery('guestLink', () => getWannagoByDateCreated(id), {
+    onSuccess: (data) => putTrackClick(id, ++data.openedTimes, data.hostId, userToken),
     staleTime: Infinity,
   });
 

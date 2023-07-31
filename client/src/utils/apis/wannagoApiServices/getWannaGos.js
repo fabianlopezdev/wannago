@@ -4,7 +4,7 @@ import { apiRequest } from './apiRequest';
 export const getUserWannagos = async (userId, userToken) => {
   console.log('the user id is', userId);
   try {
-    const wannagos = await apiRequest(`wannagos/hostId/${userId}`, userToken);
+    const wannagos = await apiRequest(`wannagos/host-id/${userId}`, userToken);
     console.log('wannagos fetched', wannagos);
     return await wannagos.json();
   } catch (e) {

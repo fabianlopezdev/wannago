@@ -19,7 +19,7 @@ const {
   putTrackClick,
   putIncrementAttendeesCount,
   putIncrementRejectionsCount,
-  putIncrementSuggestionCount,
+  putIncrementSuggestionsCount,
   putInvitationLink,
 } = require('./controllers/wannaGoControllers/putWannaGos');
 
@@ -36,7 +36,7 @@ const router = new KoaRouter();
 router.get('/wannagos', getWannaGos);
 // router.get('/wannago/:id', getWannaGoById);
 router.get('/wannago/:date-created', getWannagoByDateCreated);
-router.get('/wannagos/hostId/:hostId', getUserWannagos);
+router.get('/wannagos/host-id/:host-id', getUserWannagos);
 router.get('/wannago/:what/:when', getWannaGoByParams);
 
 router.get('/user/:id', getUserById);
@@ -53,7 +53,7 @@ router.put('/wannago/wannago-owner', putWannagoOwner);
 router.put('/wannago/click', putTrackClick);
 router.put('/wannago/rejections-count', putIncrementRejectionsCount);
 router.put('/wannago/attendees-count', putIncrementAttendeesCount);
-router.put('/wannago/suggestions-count', putIncrementSuggestionCount);
+router.put('/wannago/suggestions-count', putIncrementSuggestionsCount);
 router.put('/wannago/invitation-link', putInvitationLink);
 
 //DELETE

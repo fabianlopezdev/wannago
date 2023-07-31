@@ -2,7 +2,7 @@
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 import { apiRequest } from './apiRequest.js';
 
-export const putLinkClickedCounter = async (id, openedTimes, hostId) => {
+export const putTrackClick = async (id, openedTimes, hostId) => {
   const endPoint = 'wannago/openedTimes';
 
   const options = {
@@ -18,7 +18,7 @@ export const putLinkClickedCounter = async (id, openedTimes, hostId) => {
   }
 };
 
-export const putAttending = async (name, email, id, hostId) => {
+export const putAddAttendees = async (name, email, id, hostId) => {
   const endPoint = `wannago/ppl_going`;
   const options = {
     method: 'PUT',
@@ -32,7 +32,7 @@ export const putAttending = async (name, email, id, hostId) => {
   }
 };
 
-export const putAttendingCounter = async (id, goingCounter, hostId) => {
+export const putIncrementAttendeesCount = async (id, goingCounter, hostId) => {
   const endPoint = `wannago/goingCounter`;
   const options = {
     method: 'PUT',
@@ -46,7 +46,7 @@ export const putAttendingCounter = async (id, goingCounter, hostId) => {
   }
 };
 
-export const putSuggestion = async (name, msg, id, hostId) => {
+export const putStoreSuggestion = async (name, msg, id, hostId) => {
   const endpoint = `wannago/suggestionMsg`;
   const options = {
     method: 'PUT',
@@ -62,7 +62,7 @@ export const putSuggestion = async (name, msg, id, hostId) => {
   }
 };
 
-export const putSuggestionsCounter = async (
+export const putIncrementSuggestionsCount = async (
   id,
   suggestionBoxCounter,
   hostId
@@ -82,7 +82,7 @@ export const putSuggestionsCounter = async (
   }
 };
 
-export const putRejectionsCounter = async (id, rejectCounter, hostId) => {
+export const putIncrementRejectionsCount = async (id, rejectCounter, hostId) => {
   try {
     const endpoint = `wannago/rejectCounter`;
     const options = {

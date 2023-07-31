@@ -3,8 +3,8 @@ import { useState } from 'react';
 import {Alert} from 'bootstrap'
 //Internal dependencies
 import {
-  putAttending,
-  putAttendingCounter,
+  putAddAttendees,
+  putIncrementAttendeesCount,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
 import { useAuth } from '../../contexts/AuthContext';
 const YesOption = ({ id, goingCounter, hostName, hostId }) => {
@@ -17,8 +17,8 @@ const YesOption = ({ id, goingCounter, hostName, hostId }) => {
     const name = e.target.name.value;
     const lastName = e.target.lastName.value;
     try {
-      await putAttending(name, lastName, id, hostId, userToken);
-      await putAttendingCounter(id, ++goingCounter, hostId, userToken);
+      await putAddAttendees(name, lastName, id, hostId, userToken);
+      await putIncrementAttendeesCount(id, ++goingCounter, hostId, userToken);
       console.log(goingCounter);
       setSubmitClicked(!submitClicked);
     } catch (e) {

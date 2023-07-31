@@ -145,7 +145,7 @@ const putIncrementAttendeesCount = async (ctx) => {
   }
 };
 
-const putIncrementSuggestionCount = async (ctx) => {
+const putIncrementSuggestionsCount = async (ctx) => {
   try {
     const { id, suggestionBoxCounter, hostId } = ctx.request.body;
     console.log('wannaGoId', id);
@@ -197,7 +197,7 @@ module.exports = {
   putWannagoOwner,
   putIncrementRejectionsCount,
   putIncrementAttendeesCount,
-  putIncrementSuggestionCount,
+  putIncrementSuggestionsCount,
   putInvitationLink,
 };
 
