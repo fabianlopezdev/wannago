@@ -1,10 +1,9 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
+import { endPoints } from '../../config';
 import { apiRequest } from './apiRequest.js';
 
 export const putTrackClick = async (id, openedTimes, hostId) => {
-  const endPoint = 'wannago/openedTimes';
-
   const options = {
     method: 'PUT',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -12,49 +11,46 @@ export const putTrackClick = async (id, openedTimes, hostId) => {
   };
 
   try {
-    return await apiRequest(endPoint, options);
+    return await apiRequest(endPoints.putTrackClick, options);
   } catch (e) {
     console.log(`Error in putOpenedTimes function in apiService. Error: ${e}`);
   }
 };
 
 export const putAddAttendees = async (name, email, id, hostId) => {
-  const endPoint = `wannago/ppl_going`;
   const options = {
     method: 'PUT',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
     body: JSON.stringify({ name, email, id, hostId }),
   };
   try {
-    return await apiRequest(endPoint, options);
+    return await apiRequest(endPoints.putAddAttendees, options);
   } catch (e) {
     console.log(`Error in postPplGoing function in apiService. Error: ${e}`);
   }
 };
 
 export const putIncrementAttendeesCount = async (id, goingCounter, hostId) => {
-  const endPoint = `wannago/goingCounter`;
   const options = {
     method: 'PUT',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
     body: JSON.stringify({ id, goingCounter, hostId }),
   };
   try {
-    return await fetch(endPoint, options);
+    return await apiRequest(endPoints.putIncrementAttendeesCount, options);
   } catch (e) {
     console.log(`Error in putGoingCounter function in apiService. Error: ${e}`);
   }
 };
 
 export const putStoreSuggestion = async (name, msg, id, hostId) => {
-  const endpoint = `wannago/suggestionMsg`;
   const options = {
     method: 'PUT',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
     body: JSON.stringify({ name, msg, id, hostId }),
   };
   try {
-    return await apiRequest(endpoint, options);
+    return await apiRequest(endPoints.putStoreSuggestions, options);
   } catch (e) {
     console.log(
       `Error in postSuggestionMsg function in apiService. Error: ${e}`
@@ -67,14 +63,13 @@ export const putIncrementSuggestionsCount = async (
   suggestionBoxCounter,
   hostId
 ) => {
-  const endpoint = `wannago/suggestionBoxCounter`;
   const options = {
     method: 'PUT',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
     body: JSON.stringify({ id, suggestionBoxCounter, hostId }),
   };
   try {
-    return await apiRequest(endpoint, options);
+    return await apiRequest(endPoints.putIncrementSuggesionsCount, options);
   } catch (e) {
     console.log(
       `Error in putSuggestionBoxCounter function in apiService. Error: ${e}`
@@ -82,15 +77,18 @@ export const putIncrementSuggestionsCount = async (
   }
 };
 
-export const putIncrementRejectionsCount = async (id, rejectCounter, hostId) => {
+export const putIncrementRejectionsCount = async (
+  id,
+  rejectCounter,
+  hostId
+) => {
   try {
-    const endpoint = `wannago/rejectCounter`;
     const options = {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
       body: JSON.stringify({ id, rejectCounter, hostId }),
     };
-    return await fetch(endpoint, options);
+    return await apiRequest(endPoints.putIncrementRejectionsCount, options);
   } catch (e) {
     console.log(
       `Error in putRejectCounter function in apiService. Error: ${e}`

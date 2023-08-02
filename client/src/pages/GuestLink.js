@@ -27,13 +27,14 @@ import favicon from '../assets/favicon.png';
 
 const GuestLink = () => {
   const { id } = useParams();
-  const { userToken } = useAuth();
+  console.log('id', id);
+  // const { userToken } = useAuth();
   const {
     data: wannago,
     isError,
     isLoading,
   } = useQuery('guestLink', () => getWannagoByDateCreated(id), {
-    onSuccess: (data) => putTrackClick(id, ++data.openedTimes, data.hostId, userToken),
+    onSuccess: (data) => putTrackClick(id, ++data.openedTimes, data.hostId),
     staleTime: Infinity,
   });
 

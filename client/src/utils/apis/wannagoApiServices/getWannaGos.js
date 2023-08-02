@@ -1,10 +1,12 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 import { apiRequest } from './apiRequest';
+import { endPoints } from '../../config';
+
 export const getUserWannagos = async (userId, userToken) => {
   console.log('the user id is', userId);
   try {
-    const wannagos = await apiRequest(`wannagos/host-id/${userId}`, userToken);
+    const wannagos = await apiRequest(`${endPoints.getUserWannagos}/${userId}`, userToken);
     console.log('wannagos fetched', wannagos);
     return await wannagos.json();
   } catch (e) {
@@ -14,7 +16,8 @@ export const getUserWannagos = async (userId, userToken) => {
 
 export const getWannagoByDateCreated = async (dateCreated) => {
   try {
-    const wannaGo = await apiRequest(`wannago/${dateCreated}`);
+    console.log('dateCreated', endPoints.getWannagoByDateCreated);
+    const wannaGo = await apiRequest(`${endPoints.getWannagoByDateCreated}/${dateCreated}`);
     return await wannaGo.json();
   } catch (e) {
     console.log(
@@ -44,4 +47,5 @@ export const getWannagoByDateCreated = async (dateCreated) => {
 //     );
 //   }
 // };
+
 

@@ -1,5 +1,5 @@
 //External dependencies
-import { CLIENT_PORT, URL } from './config';
+import { URL } from './config';
 const dayjs = require('dayjs');
 var advancedFormat = require('dayjs/plugin/advancedFormat');
 dayjs.extend(advancedFormat);
@@ -28,13 +28,15 @@ export const wannagoEngagement = (wannaGo) => {
 };
 
 export const wannagoSuccessRatio = (wannaGo) => {
-  return `${Math.floor((wannaGo.goingCounter / wannaGo.openedTimes) * 100) || 0}%`;
+  return `${
+    Math.floor((wannaGo.goingCounter / wannaGo.openedTimes) * 100) || 0
+  }%`;
 };
 
 export const aggregateSuccessRatio = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-      return acc + wannagoSuccessRatio(wannaGo);
-    }, 0)
+    return acc + wannagoSuccessRatio(wannaGo);
+  }, 0);
 };
 
 export const aggregateEngagement = (wannaGosOfUser) => {
@@ -97,11 +99,5 @@ export const activeSortedWannagos = (wannaGosOfUser) => {
     });
 };
 
-export const guestLinkGenerator = (id) =>
-  `https://www.wannago.in/guest-link/${id}`;
-
-
-
-
-
+export const guestLinkGenerator = (id) => `${URL}/wannago/${id}`;
 

@@ -1,6 +1,6 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
-
+import { endPoints} from '../../config';
 import { apiRequest } from './apiRequest';
 
 export const deleteWannago = async (_id, userToken) => {
@@ -10,7 +10,7 @@ export const deleteWannago = async (_id, userToken) => {
     body: JSON.stringify({ _id }),
   };
   try {
-    const WG = await apiRequest(`wannago/delete`, options, userToken);
+    const WG = await apiRequest(endPoints.delete, options, userToken);
     return WG;
   } catch (e) {
     console.log(`Error in deleteWannaGo function in apiService. Error: ${e}`);

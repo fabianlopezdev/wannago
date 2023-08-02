@@ -1,7 +1,7 @@
 import {URL} from '../../config'
 export const apiRequest = async (endPoint, options, userToken) => {
   const url = `${URL}/${endPoint}`;
- 
+ console.log('url', url);
   if (userToken === undefined && options === undefined) return await fetch(url);
 
   const headers = {

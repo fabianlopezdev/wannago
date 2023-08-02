@@ -1,5 +1,7 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
+import { endPoints } from '../../config';
+
 import { guestLinkGenerator } from '../../helperFunctions';
 import { apiRequest} from './apiRequest'
 export const postWannago = async (currentUser, wannago, userToken) => {
@@ -15,7 +17,7 @@ export const postWannago = async (currentUser, wannago, userToken) => {
     guestLink: guestLinkGenerator(dateStamp),
   };
  
-  const endpoint = `wannago`;
+ 
   const options = {
     method: 'POST',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -23,12 +25,13 @@ export const postWannago = async (currentUser, wannago, userToken) => {
   };
   try {
     return await apiRequest(
-     endpoint, options, userToken
+     endPoints.postWannago, options, userToken
     );
   } catch (e) {
     console.log(`Error in postWannago function in apiService. Error: ${e}`);
   }
 };
+
 
 
 

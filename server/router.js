@@ -35,8 +35,8 @@ const router = new KoaRouter();
 //GETS
 router.get('/wannagos', getWannaGos);
 // router.get('/wannago/:id', getWannaGoById);
-router.get('/wannago/:date-created', getWannagoByDateCreated);
-router.get('/wannagos/host-id/:host-id', getUserWannagos);
+router.get('/wannago/:dateCreated', getWannagoByDateCreated);
+router.get('/wannagos/host-id/:hostId', getUserWannagos);
 router.get('/wannago/:what/:when', getWannaGoByParams);
 
 router.get('/user/:id', getUserById);

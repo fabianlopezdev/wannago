@@ -37,7 +37,7 @@ const WannaGoCard = ({ wannago }) => {
   });
 
   return (
-    <div className='wgCardContainer'>
+    <div c lassName='wgCardContainer'>
       <div className='wgWhen'>
         <h2>
           <strong>{dateTime.day}</strong>
