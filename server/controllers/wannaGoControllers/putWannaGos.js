@@ -4,8 +4,7 @@ const WannaGo = require('../../models/wannaGoModel');
 const putAddAttendees = async (ctx) => {
   try {
     const { name, email, id, hostId } = ctx.request.body;
-    console.log('authorization', authorization);
-    const pplGoing = await WannaGo.findOneAndUpdate(
+    const wannago = await WannaGo.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
         $set: {
@@ -15,10 +14,10 @@ const putAddAttendees = async (ctx) => {
       { new: true }
     );
     console.log(
-      `This name: ${name} and email ${email} was put in the wannaGo: ${pplGoing}`
+      `This name: ${name} and email ${email} was put in the wannaGo: ${wannago}`
     );
     ctx.status = 201;
-    ctx.body = pplGoing;
+    ctx.body = wannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
