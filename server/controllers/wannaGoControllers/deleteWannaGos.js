@@ -1,16 +1,16 @@
 //Internal dependencies
-const WannaGo = require('../../models/wannaGoModel');
+const Wannago = require('../../models/wannaGoModel');
 
 const deleteWannago = async (ctx) => {
 try {
   const { _id } = ctx.request.body;
   const { authorization } = ctx.request.header;
-  const deletedWannaGo = await WannaGo.findByIdAndRemove(_id);
-  console.log(`The WannaGo: ${deletedWannaGo} was deleted`)
+  const wannago = await Wannago.findByIdAndRemove(_id);
+  console.log(`The wannago: ${wannago} was deleted`)
   ctx.status =201;
-  ctx.body = deletedWannaGo
+  ctx.body = wannago
 } catch (e) {
-    console.log(`Error in deleteWannaGO function from controllers: ${e}`);
+    console.log(`Error in deleteWannago function from controllers: ${e}`);
   
 }
 }

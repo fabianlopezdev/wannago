@@ -1,5 +1,5 @@
 //External dependencies
-import { URL } from './config';
+import { URL_GENERATED_LINK } from './config';
 const dayjs = require('dayjs');
 var advancedFormat = require('dayjs/plugin/advancedFormat');
 dayjs.extend(advancedFormat);
@@ -99,5 +99,5 @@ export const activeSortedWannagos = (wannaGosOfUser) => {
     });
 };
 
-export const guestLinkGenerator = (id) => `${URL}/wannago/${id}`;
+export const guestLinkGenerator = (id) => `${URL_GENERATED_LINK}/wannago/${id}`;
 

@@ -1,24 +1,24 @@
 //Internal dependencies
 const { now } = require('mongoose');
-const WannaGo = require('../../models/wannaGoModel');
+const Wannago = require('../../models/wannaGoModel');
 
 const postWannago = async (ctx) => {
   try {
-    const wannaGo = ctx.request.body;
+    const wannago = ctx.request.body;
     const userToken = ctx.request.header.authorization;
     console.log('userToken', userToken)
-    const storedWannaGo = await WannaGo.create({
-      what: wannaGo.what,
-      where: wannaGo.where,
-      when: wannaGo.when,
-      hostId: wannaGo.hostId,
-      hostName: wannaGo.hostName,
-      dateCreated: wannaGo.dateCreated,
-      guestLink: wannaGo.guestLink,
+    const storedWannago = await WannaGo.create({
+      what: Wannago.what,
+      where: Wannago.where,
+      when: Wannago.when,
+      hostId: Wannago.hostId,
+      hostName: Wannago.hostName,
+      dateCreated: Wannago.dateCreated,
+      guestLink: Wannago.link,
     });
-    console.log(`This wannaGo was posted: ${storedWannaGo}`);
+    console.log(`This wannago was posted: ${storedWannago}`);
     ctx.status = 201;
-    ctx.body = storedWannaGo;
+    ctx.body = storedWannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;

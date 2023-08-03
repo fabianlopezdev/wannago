@@ -1,14 +1,14 @@
 //Internal dependencies
-const WannaGo = require('../../models/wannaGoModel');
+const Wannago = require('../../models/wannaGoModel');
 
 const putAddAttendees = async (ctx) => {
   try {
     const { name, email, id, hostId } = ctx.request.body;
-    const wannago = await WannaGo.findOneAndUpdate(
+    const wannago = await Wannago.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
         $set: {
-          [`ppl_going.${name}`]: `${email}`,
+          [`attendees.${name}`]: `${email}`,
         },
       },
       { new: true }
@@ -21,171 +21,158 @@ const putAddAttendees = async (ctx) => {
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in putPplGoing function from controllers: ${e}`);
+    console.log(`Error in putAddAttendees function from controllers: ${e}`);
   }
 };
 
 const putStoreSuggestion = async (ctx) => {
   try {
     const { name, msg, id, hostId } = ctx.request.body;
-    const postedMsg = await WannaGo.findOneAndUpdate(
+    const wannago = await Wannago.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
-        $set: { [`suggestion_box.${name}`]: `${msg}` },
+        $set: { [`suggestions.${name}`]: `${msg}` },
         //  { suggestion_box: msg },
       }
     );
     console.log(
-      `This message: ${msg}, of ${name} was put in the wannaGo: ${postedMsg}`
+      `This message: ${msg}, of ${name} was put in the wannago: ${wannago}`
     );
     ctx.status = 201;
-    ctx.body = postedMsg;
+    ctx.body = wannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in putSuggestionMsg function from controllers: ${e}`);
+    console.log(`Error in putStoreSuggestion function from controllers: ${e}`);
   }
 };
-const putInvitationLink = async (ctx) => {
+const putWannagoLink = async (ctx) => {
   try {
     const { id, link, hostId } = ctx.request.body;
-    console.log('this is id', id);
-    console.log('this is the link', link);
-    const wannaGoLinked = await WannaGo.findOneAndUpdate(
+    const wannago = await Wannago.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
-        guestLink: link,
+        link: link,
       },
       { new: true }
     );
-    console.log(`Guest link: ${link} of wannaGo: ${wannaGoLinked}`);
+    console.log(`Guest link: ${link} of wannaGo: ${wannago}`);
     ctx.status = 201;
-    ctx.body = wannaGoLinked;
+    ctx.body = wannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in putGuestLink function from controllers: ${e}`);
+    console.log(`Error in putInvitationLink function from controllers: ${e}`);
   }
 };
 
 const putTrackClick = async (ctx) => {
   try {
-    const { id, openedTimes, hostId } = ctx.request.body;
-    console.log('ctxxx', ctx);
-    console.log('wannaGoId', id);
-    console.log('openedTimes', openedTimes);
-    console.log('owner', hostId);
-    const wannaGoUpdated = await WannaGo.findOneAndUpdate(
+    const { id, clickCount, hostId } = ctx.request.body;
+    const wannago = await Wannago.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
-        openedTimes: openedTimes,
+        clickCount: clickCount,
       },
       { new: true }
     );
     console.log(
-      `This ${wannaGoUpdated} of owner ${wannaGoUpdated.hostId} was opened ${wannaGoUpdated.openedTimes} times`
+      `This ${wannago} of owner ${wannago.hostId} was opened ${wannago.clickCount} times`
     );
     ctx.status = 201;
-    ctx.body = wannaGoUpdated;
+    ctx.body = wannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in putOpenedTimes function from controllers: ${e}`);
+    console.log(`Error in putTrackClick function from controllers: ${e}`);
   }
 };
 
 const putIncrementRejectionsCount = async (ctx) => {
   try {
-    const { id, rejectCounter, hostId } = ctx.request.body;
-    console.log('wannaGoId', id);
-    console.log('rejectCounter:', rejectCounter);
-    console.log('hostId', hostId);
-    const wannaGoUpdated = await WannaGo.findOneAndUpdate(
+    const { id, rejectionsCount, hostId } = ctx.request.body;
+    const wannago = await Wannago.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
-        rejectCounter: rejectCounter,
+        rejectionsCount: rejectionsCount,
       },
       { new: true }
     );
     console.log(
-      `This ${wannaGoUpdated} was rejected ${wannaGoUpdated.rejectCounter} times`
+      `This ${wannago} was rejected ${wannago.rejectionsCount} times`
     );
     ctx.status = 201;
-    ctx.body = wannaGoUpdated;
+    ctx.body = wannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in putRejectCounter function from controllers: ${e}`);
+    console.log(
+      `Error in putIncrementREjectionsCount function from controllers: ${e}`
+    );
   }
 };
 
 const putIncrementAttendeesCount = async (ctx) => {
   try {
-    const { id, goingCounter, hostId } = ctx.request.body;
-    console.log('wannaGoId', id);
-    console.log('goingCounter:', goingCounter);
-    console.log('hostId', hostId);
-    const wannaGoUpdated = await WannaGo.findOneAndUpdate(
+    const { id, attendesCount, hostId } = ctx.request.body;
+    const wannago = await Wannago.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
-        goingCounter: goingCounter,
+        attendesCount: attendesCount,
       },
       { new: true }
     );
-    console.log(
-      `${wannaGoUpdated.goingCounter} people going to ${wannaGoUpdated}`
-    );
+    console.log(`${wannago.attendesCount} people going to ${wannago}`);
     ctx.status = 201;
-    ctx.body = wannaGoUpdated;
+    ctx.body = wannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in putRejectCounter function from controllers: ${e}`);
+    console.log(
+      `Error in putIncrementAttendeesCount function from controllers: ${e}`
+    );
   }
 };
 
 const putIncrementSuggestionsCount = async (ctx) => {
   try {
-    const { id, suggestionBoxCounter, hostId } = ctx.request.body;
-    console.log('wannaGoId', id);
-    console.log('suggestionBoxCounter:', suggestionBoxCounter);
-    console.log('hostId', hostId);
-    const wannaGoUpdated = await WannaGo.findOneAndUpdate(
+    const { id, suggestionsCount, hostId } = ctx.request.body;
+    const wannago = await Wannago.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
-        suggestionBoxCounter: suggestionBoxCounter,
+        suggestionsCount: suggestionsCount,
       },
       { new: true }
     );
     console.log(
-      `${wannaGoUpdated} people made a suggestion to this ${wannaGoUpdated.suggestionBoxCounter}`
+      `${wannago} people made a suggestion to this ${wannago.suggestionsCount}`
     );
     ctx.status = 201;
-    ctx.body = wannaGoUpdated;
+    ctx.body = wannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
     console.log(
-      `Error in putSuggestionBoxCounter function from controllers: ${e}`
+      `Error in putIncrementSuggestionsCount function from controllers: ${e}`
     );
   }
 };
 
 const putWannagoOwner = async (ctx) => {
   try {
-    const { wannaGoId, userId, hostId } = ctx.request.body;
-    const wannaGoOwned = await WannaGo.findByIdAndUpdate(wannaGoId, {
-      owner: userId,
+    const { wannaGoId, userId } = ctx.request.body;
+    const wannago = await Wannago.findByIdAndUpdate(wannaGoId, {
+      hostId: userId,
     });
     console.log(
       `The user with id: ${userId} was put in the wannaGo with id: ${wannaGoId}`
     );
     ctx.status = 201;
-    ctx.body = wannaGoOwned;
+    ctx.body = wannago;
   } catch (e) {
     ctx.status = 500;
     ctx.body = e;
-    console.log(`Error in putOwnertoWananGo function from controllers: ${e}`);
+    console.log(`Error in putWannagoOwner function from controllers: ${e}`);
   }
 };
 

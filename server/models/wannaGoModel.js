@@ -8,13 +8,13 @@ const WannaGoSchema = new Schema({
   dateCreated: { type: String, required: true },
   hostId: { type: String, required: true },
   hostName: { type: String, required: true },
-  guestLink: { type: String, required: true },
-  openedTimes: { type: Number, default: 0 },
-  rejectCounter: { type: Number, default: 0 },
-  goingCounter: { type: Number, default: 0 },
-  suggestionBoxCounter: { type: Number, default: 0 },
-  ppl_going: { type: Map, of: String },
-  suggestion_box: { type: Map, of: String },
+  link: { type: String, required: true },
+  clickCount: { type: Number, default: 0 },
+  rejectionsCount: { type: Number, default: 0 },
+  attendeesCount: { type: Number, default: 0 },
+  suggestionsCount: { type: Number, default: 0 },
+  attendees: { type: Map, of: String },
+  suggestions: { type: Map, of: String },
 });
 
 module.exports = mongoose.model('wannagos', WannaGoSchema);
