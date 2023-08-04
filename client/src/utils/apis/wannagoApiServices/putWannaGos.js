@@ -3,11 +3,11 @@
 import { endPoints } from '../../config';
 import { apiRequest } from './apiRequest.js';
 
-export const putTrackClick = async (id, openedTimes, hostId) => {
+export const putTrackClick = async (id, clickCount, hostId) => {
   const options = {
     method: 'PUT',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ id, openedTimes, hostId }),
+    body: JSON.stringify({ id, clickCount, hostId }),
   };
 
   try {
@@ -30,11 +30,11 @@ export const putAddAttendees = async (name, email, id, hostId) => {
   }
 };
 
-export const putIncrementAttendeesCount = async (id, goingCounter, hostId) => {
+export const putIncrementAttendeesCount = async (id, attendeesCount, hostId) => {
   const options = {
     method: 'PUT',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ id, goingCounter, hostId }),
+    body: JSON.stringify({ id, attendeesCount, hostId }),
   };
   try {
     return await apiRequest(endPoints.putIncrementAttendeesCount, options);
@@ -60,13 +60,13 @@ export const putStoreSuggestion = async (name, msg, id, hostId) => {
 
 export const putIncrementSuggestionsCount = async (
   id,
-  suggestionBoxCounter,
+  suggestionsCount,
   hostId
 ) => {
   const options = {
     method: 'PUT',
     headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ id, suggestionBoxCounter, hostId }),
+    body: JSON.stringify({ id, suggestionsCount, hostId }),
   };
   try {
     return await apiRequest(endPoints.putIncrementSuggesionsCount, options);
@@ -79,14 +79,14 @@ export const putIncrementSuggestionsCount = async (
 
 export const putIncrementRejectionsCount = async (
   id,
-  rejectCounter,
+  rejectionsCount,
   hostId
 ) => {
   try {
     const options = {
       method: 'PUT',
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ id, rejectCounter, hostId }),
+      body: JSON.stringify({ id, rejectionsCount, hostId }),
     };
     return await apiRequest(endPoints.putIncrementRejectionsCount, options);
   } catch (e) {

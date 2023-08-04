@@ -34,7 +34,7 @@ const GuestLink = () => {
     isError,
     isLoading,
   } = useQuery('link', () => getWannagoByDateCreated(id), {
-    onSuccess: (data) => putTrackClick(id, ++data.openedTimes, data.hostId),
+    onSuccess: (data) => putTrackClick(id, ++data.clickCount, data.hostId),
     staleTime: Infinity,
   });
 
@@ -54,7 +54,7 @@ const GuestLink = () => {
         return (
           <NoOption
             id={id}
-            rejectCounter={wannago.rejectCounter}
+            rejectionsCount={wannago.rejectionsCount}
             hostName={wannago.hostName}
             hostId={wannago.hostId}
           />
@@ -63,7 +63,7 @@ const GuestLink = () => {
         return (
           <YesOption
             id={id}
-            goingCounter={wannago.goingCounter}
+            attendeesCount={wannago.attendeesCount}
             hostName={wannago.hostName}
             hostId={wannago.hostId}
           />
@@ -72,7 +72,7 @@ const GuestLink = () => {
         return (
           <MaybeOption
             id={id}
-            suggestionBoxCounter={wannago.suggestionBoxCounter}
+            suggestionsCount={wannago.suggestionsCount}
             hostName={wannago.hostName}
             hostId={wannago.hostId}
           />
@@ -107,7 +107,7 @@ const GuestLink = () => {
         />
         <meta
           property='og:url'
-          content={wannago.guesLink}
+          content={wannago.link}
         />
         <meta
           property='og:title'
@@ -163,6 +163,8 @@ const GuestLink = () => {
 };
 
 export default GuestLink;
+
+
 
 
 

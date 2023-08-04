@@ -7,22 +7,22 @@ import {
   putIncrementAttendeesCount,
 } from '../../utils/apis/wannagoApiServices/putWannaGos';
 import { useAuth } from '../../contexts/AuthContext';
-const YesOption = ({ id, goingCounter, hostName, hostId }) => {
+const YesOption = ({ id, attendeesCount, hostName, hostId }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
-  const [error, setError] = useState()
+  const [error, setError] = useState();
 
-  const {userToken} = useAuth();
+  const { userToken } = useAuth();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const lastName = e.target.lastName.value;
     try {
       await putAddAttendees(name, lastName, id, hostId, userToken);
-      await putIncrementAttendeesCount(id, ++goingCounter, hostId, userToken);
-      console.log(goingCounter);
+      await putIncrementAttendeesCount(id, ++attendeesCount, hostId, userToken);
+
       setSubmitClicked(!submitClicked);
     } catch (e) {
-      setError('Sorry, something went wrong. Please try again')
+      setError('Sorry, something went wrong. Please try again');
       console.log(
         `Error in YesOption.js, sending to backend to put in db the people that said yes to the wannaGo. ${e}`
       );
@@ -84,6 +84,8 @@ const YesOption = ({ id, goingCounter, hostName, hostId }) => {
 };
 
 export default YesOption;
+
+
 
 
 

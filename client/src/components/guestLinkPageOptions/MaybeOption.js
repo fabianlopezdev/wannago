@@ -10,7 +10,7 @@ import {
 
 import './Options.css';
 
-const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
+const MaybeOption = ({ id, suggestionsCount, hostName, hostId }) => {
   const [msgSent, setMsgSent] = useState(false);
   const [error, setError] = useState();
 
@@ -24,8 +24,8 @@ const MaybeOption = ({ id, suggestionBoxCounter, hostName, hostId }) => {
     }
     try {
       await putStoreSuggestion(name, msg, id, hostId);
-      await putIncrementSuggestionsCount(id, ++suggestionBoxCounter, hostId);
-      console.log(suggestionBoxCounter);
+      await putIncrementSuggestionsCount(id, ++suggestionsCount, hostId);
+      console.log(suggestionsCount);
       setMsgSent(!msgSent);
     } catch (e) {
       setError(
