@@ -14,7 +14,7 @@ const ShareOptions = ({ wannago }) => {
   const dateTime = dateFormatter(wannago.when);
 
   const onClickCopyLink = () => {
-    navigator.clipboard.writeText(wannago.guestLink);
+    navigator.clipboard.writeText(wannago.link);
     setCopied('Copied');
   };
   return (
@@ -31,7 +31,7 @@ const ShareOptions = ({ wannago }) => {
           </button>
           <WhatsappShareButton
             title={`*${wannago.hostName}* has a plan: \n\n ${wannago.what} *in* ${wannago.where} *on* ${dateTime.wannaGoFormat} *at* ${dateTime.time}. \n\n *Do you wannago?* Click on the link:  \n`}
-            url={wannago.guestLink}
+            url={wannago.link}
           >
             <div title='Via WhatsApp'>
               <WhatsappIcon

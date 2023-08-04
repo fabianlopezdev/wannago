@@ -16,7 +16,7 @@ import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes
 export const statelessRoutes = [
   <Route>
     <Route
-      path='guest-link/:id'
+      path=':name/wannago-id/:id'
       element={<GuestsLink />}
     />
     <Route element={<UserPrivateRoute />}>

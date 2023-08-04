@@ -1,5 +1,5 @@
 //Internal dependencies
-const Wannago = require('../../models/wannaGoModel');
+const Wannago = require('../../models/wannagoModel');
 
 const putAddAttendees = async (ctx) => {
   try {
@@ -184,6 +184,6 @@ module.exports = {
   putIncrementRejectionsCount,
   putIncrementAttendeesCount,
   putIncrementSuggestionsCount,
-  putInvitationLink,
+  putWannagoLink,
 };
 

@@ -99,5 +99,16 @@ export const activeSortedWannagos = (wannaGosOfUser) => {
     });
 };
 
-export const guestLinkGenerator = (id) => `${URL_GENERATED_LINK}/wannago/${id}`;
+export function slugify(str) {
+  // Replace spaces with dashes and make all letters lowercase
+  return str.replace(/\s+/g, '-').toLowerCase();
+}
+
+export const wannagoLinkGenerator = (userName, id) => {
+  console.log('id:',id,'userNAme:', userName)
+  return `${URL_GENERATED_LINK}/${slugify(userName)}/wannago-id/${id}/`;
+};
+
+
+
 

@@ -33,7 +33,7 @@ const GuestLink = () => {
     data: wannago,
     isError,
     isLoading,
-  } = useQuery('guestLink', () => getWannagoByDateCreated(id), {
+  } = useQuery('link', () => getWannagoByDateCreated(id), {
     onSuccess: (data) => putTrackClick(id, ++data.openedTimes, data.hostId),
     staleTime: Infinity,
   });
