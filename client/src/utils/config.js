@@ -1,6 +1,9 @@
 //Add process.env
-export const URL = process.env.REACT_APP_DEVELOPMENT_SERVER_URL;
-export const URL_GENERATED_LINK = process.env.REACT_APP_DEVELOPMENT_CLIENT_URL;
+// export const URL = process.env.REACT_APP_DEVELOPMENT_SERVER_URL;
+// export const URL_GENERATED_LINK = process.env.REACT_APP_DEVELOPMENT_CLIENT_URL;
+
+export const URL = process.env.REACT_APP_DEPLOYED_URL;
+export const URL_GENERATED_LINK = process.env.REACT_APP_DEPLOYED_URL;
 // export const URL = process.env.REACT_APP_BACKEND_URL;
 
 
@@ -19,5 +22,7 @@ export const endPoints = {
   putIncrementSuggesionsCount: process.env.REACT_APP_ENDPOINT_PUT_INCREMENT_SUGGESTIONS_COUNT,
   putIncrementRejectionsCount: process.env.REACT_APP_ENDPOINT_PUT_INCREMENT_REJECTIONS_COUNT,
   
+
+
 
 }
