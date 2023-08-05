@@ -2,8 +2,8 @@
 // export const URL = process.env.REACT_APP_DEVELOPMENT_SERVER_URL;
 // export const URL_GENERATED_LINK = process.env.REACT_APP_DEVELOPMENT_CLIENT_URL;
 
-export const URL = process.env.REACT_APP_DEPLOYED_URL;
-export const URL_GENERATED_LINK = process.env.REACT_APP_DEPLOYED_URL;
+export const URL = process.env.REACT_APP_DEPLOYED_SERVER_URL;
+export const URL_GENERATED_LINK = process.env.REACT_APP_DEPLOYED_CLIENT_URL;
 // export const URL = process.env.REACT_APP_BACKEND_URL;
 
 
