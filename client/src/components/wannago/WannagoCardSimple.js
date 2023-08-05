@@ -22,7 +22,7 @@ const WannaGoCardSimple = ({ wannago}) => {
               {wannago.what}
             </h2>
           </div>
-          <div className='descriptionSimple'>
+          <div className='description-simple'>
             <p className='text'>
               <strong>On</strong> {dateTime.wannaGoFormat} 
             </p>

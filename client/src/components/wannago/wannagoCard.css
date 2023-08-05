@@ -1,4 +1,4 @@
-.wgCardContainer {
+.card-container {
   display: flex;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
@@ -6,6 +6,12 @@
   height: 265px;
   transition-duration: 0.2s;
   position: relative;
+}
+
+.card-container:hover {
+  transform: scale(1.03);
+  transition: 0.2s;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
 }
 
 .wgCardContainerSimple {
@@ -17,7 +23,8 @@
   transition-duration: 0.2s;
   position: relative;
 }
-.wgWhen {
+
+.date-aside {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,16 +34,13 @@
   border-bottom-left-radius: 10px;
   width: 25%;
   color: white;
-  /* margin-top: 5px; */
 }
-.wannaGoCardInfoContainer {
+
+.info-and-options-container {
   display: flex;
   flex-direction: column;
-  padding: 2%;
-  justify-content: space-around;
-  height: 80%;
-  /* border: 1.5px solid rgb(241,138,203); */
-  /* width: fit-content; */
+  width: 75%;
+  padding-left: 2%;
 }
 
 .wannaGoCardInfoContainerSimple {
@@ -45,29 +49,30 @@
   padding: 2%;
   justify-content: space-around;
   height: 100%;
-  
-  /* border: 1.5px solid rgb(241,138,203); */
-  /* width: fit-content; */
 }
 
-.wgCardContainer:hover {
-  transform: scale(1.03);
-  transition: 0.2s;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
-}
-
-.description {
-  color: #A9978C;
-
-}
-
-.descriptionSimple {
+.info-container {
   display: flex;
   flex-direction: column;
-  /* gap: 0.1rem; */
-  color: #A9978C;
-  /* line-height: 1.5rem; */
-  /* letter-spacing: 0.5rem; */
+  padding: 2%;
+  justify-content: space-around;
+  height: 80%;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: 2.1rem;
+}
+
+.info {
+  color: #a9978c;
+}
+
+.description-simple {
+  display: flex;
+  flex-direction: column;
+  color: #a9978c;
 }
 
 .text {
@@ -75,19 +80,12 @@
   margin: 0;
 }
 
-.wgDescription {
-  display: flex;
-  flex-direction: column;
-  width: 75%;
-  padding-left: 2%;
-}
-
-
-.optionsContainer {
+.options-container {
   position: absolute;
-width: 250px;
-bottom: 0;
+  width: 250px;
+  bottom: 0;
 }
+
 .options {
   display: flex;
   justify-content: space-around;
@@ -98,18 +96,13 @@ bottom: 0;
   padding-bottom: 5%;
   margin-right: 2%;
 }
-.title {
-  display: flex;
-  justify-content: center;
-  font-size: 2.1rem;
-}
 
-.charts:hover {
+.clickable:hover {
   cursor: pointer;
-  color:rgb(241, 138, 203)
+  color: rgb(241, 138, 203);
 }
 
-.shareModal {
+.share-modal {
   background-color: white;
   position: absolute;
   width: 240px;
@@ -119,7 +112,7 @@ bottom: 0;
   box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
 }
 
-.deleteContainer {
+.delete-container {
   display: flex;
   flex-direction: column;
   align-items: center;

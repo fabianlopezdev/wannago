@@ -37,19 +37,19 @@ const WannaGoCard = ({ wannago }) => {
   });
 
   return (
-    <div c lassName='wgCardContainer'>
-      <div className='wgWhen'>
+    <article className='card-container'>
+      <aside className='date-aside'>
         <h2>
           <strong>{dateTime.day}</strong>
         </h2>
         <h4>{dateTime.month}</h4>
-      </div>
-      <div className='wgDescription'>
-        <div className='wannaGoCardInfoContainer'>
+      </aside>
+      <section className='info-and-options-container'>
+        <div className='info-container'>
           <div>
             <h2 className='title'>{wannago.what}</h2>
           </div>
-          <div className='description'>
+          <div className='info'>
             <p class='text'>
               <strong>On</strong> {dateTime.wannaGoFormat}
             </p>
@@ -64,9 +64,9 @@ const WannaGoCard = ({ wannago }) => {
           </div>
         </div>
         <>
-          <div className='optionsContainer'>
+          <div className='options-container'>
             <div className='options'>
-              <div className='charts'>
+              <div className='clickable'>
                 <IoShareOutline
                   size={25}
                   title='Share WannaGo'
@@ -75,7 +75,7 @@ const WannaGoCard = ({ wannago }) => {
               </div>
 
               <div
-                className='charts'
+                className='clickable'
                 onClick={onClickDealDelete}
               >
                 <IoTrashOutline
@@ -85,7 +85,7 @@ const WannaGoCard = ({ wannago }) => {
               </div>
 
               {isWannagoStatsPage || (
-                <div className='charts'>
+                <div className='clickable'>
                   <Link
                     to={`/wannago-stats`}
                     state={{ data: wannago }}
@@ -104,7 +104,7 @@ const WannaGoCard = ({ wannago }) => {
           {showShareModal && (
             <div
               ref={socialShareRef}
-              className='shareModal'
+              className='share-modal'
             >
               <ShareOptions wannago={wannago} />
             </div>
@@ -112,14 +112,14 @@ const WannaGoCard = ({ wannago }) => {
           {showDeleteModal && (
             <div
               ref={deleteRef}
-              className='shareModal'
+              className='share-modal'
             >
               <DeleteOption _id={wannago._id} />
             </div>
           )}
         </>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 };
 
