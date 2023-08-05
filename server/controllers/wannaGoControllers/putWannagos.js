@@ -114,15 +114,15 @@ const putIncrementRejectionsCount = async (ctx) => {
 
 const putIncrementAttendeesCount = async (ctx) => {
   try {
-    const { id, attendesCount, hostId } = ctx.request.body;
+    const { id, attendeesCount, hostId } = ctx.request.body;
     const wannago = await Wannago.findOneAndUpdate(
       { dateCreated: id, hostId },
       {
-        attendesCount: attendesCount,
+        attendeesCount: attendeesCount,
       },
       { new: true }
     );
-    console.log(`${wannago.attendesCount} people going to ${wannago}`);
+    console.log(`${wannago.attendeesCount} people going to ${wannago}`);
     ctx.status = 201;
     ctx.body = wannago;
   } catch (e) {
@@ -186,4 +186,5 @@ module.exports = {
   putIncrementSuggestionsCount,
   putWannagoLink,
 };
+
 
