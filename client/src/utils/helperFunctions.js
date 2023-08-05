@@ -105,10 +105,18 @@ export function slugify(str) {
 }
 
 export const wannagoLinkGenerator = (userName, id) => {
-  console.log('id:',id,'userNAme:', userName)
   return `${URL_GENERATED_LINK}/${slugify(userName)}/wannago-id/${id}/`;
 };
 
+export const createApiRequestOptions = (method, data) => {
+  return {
+    method,
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8' ,
+    },
+    body: JSON.stringify(data),
+  };
+}
 
 
 

@@ -1,7 +1,7 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 import { endPoints } from '../../config';
-
+import { createApiRequestOptions } from '../../helperFunctions';
 import { wannagoLinkGenerator } from '../../helperFunctions';
 import { apiRequest } from './apiRequest';
 export const postWannago = async (currentUser, wannago, userToken) => {
@@ -16,11 +16,7 @@ export const postWannago = async (currentUser, wannago, userToken) => {
     link: wannagoLinkGenerator(currentUser.displayName, dateStamp),
   };
 
-  const options = {
-    method: 'POST',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify(newWannago),
-  };
+  const options = createApiRequestOptions('POST', newWannago);
   try {
     return await apiRequest(endPoints.postWannago, options, userToken);
   } catch (e) {

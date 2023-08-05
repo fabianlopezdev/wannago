@@ -2,13 +2,11 @@
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 import { endPoints} from '../../config';
 import { apiRequest } from './apiRequest';
-
+import { createApiRequestOptions } from '../../helperFunctions';
 export const deleteWannago = async (_id, userToken) => {
-  const options = {
-    method: 'DELETE',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ _id }),
-  };
+  const options = createApiRequestOptions('DELETE', {
+    _id, userToken
+  })
   try {
     const WG = await apiRequest(endPoints.delete, options, userToken);
     return WG;

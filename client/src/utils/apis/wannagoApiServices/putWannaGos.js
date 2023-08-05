@@ -1,14 +1,11 @@
 //Internal dependencies
 // import { URL, KOA_PORT, BACKEND_LINK } from '../../config';
 import { endPoints } from '../../config';
+import { createApiRequestOptions } from '../../helperFunctions';
 import { apiRequest } from './apiRequest.js';
 
 export const putTrackClick = async (id, clickCount, hostId) => {
-  const options = {
-    method: 'PUT',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ id, clickCount, hostId }),
-  };
+  const options = createApiRequestOptions('PUT', { id, clickCount, hostId });
 
   try {
     return await apiRequest(endPoints.putTrackClick, options);
@@ -18,11 +15,7 @@ export const putTrackClick = async (id, clickCount, hostId) => {
 };
 
 export const putAddAttendees = async (name, email, id, hostId) => {
-  const options = {
-    method: 'PUT',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ name, email, id, hostId }),
-  };
+  const options = createApiRequestOptions('PUT', { name, email, id, hostId });
   try {
     return await apiRequest(endPoints.putAddAttendees, options);
   } catch (e) {
@@ -30,12 +23,16 @@ export const putAddAttendees = async (name, email, id, hostId) => {
   }
 };
 
-export const putIncrementAttendeesCount = async (id, attendeesCount, hostId) => {
-  const options = {
-    method: 'PUT',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ id, attendeesCount, hostId }),
-  };
+export const putIncrementAttendeesCount = async (
+  id,
+  attendeesCount,
+  hostId
+) => {
+  const options = createApiRequestOptions('PUT', {
+    id,
+    attendeesCount,
+    hostId,
+  });
   try {
     return await apiRequest(endPoints.putIncrementAttendeesCount, options);
   } catch (e) {
@@ -44,11 +41,8 @@ export const putIncrementAttendeesCount = async (id, attendeesCount, hostId) => 
 };
 
 export const putStoreSuggestion = async (name, msg, id, hostId) => {
-  const options = {
-    method: 'PUT',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ name, msg, id, hostId }),
-  };
+  const options = createApiRequestOptions('PUT', { name, msg, id, hostId });
+
   try {
     return await apiRequest(endPoints.putStoreSuggestions, options);
   } catch (e) {
@@ -63,11 +57,12 @@ export const putIncrementSuggestionsCount = async (
   suggestionsCount,
   hostId
 ) => {
-  const options = {
-    method: 'PUT',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    body: JSON.stringify({ id, suggestionsCount, hostId }),
-  };
+  const options = createApiRequestOptions('PUT', {
+    id,
+    suggestionsCount,
+    hostId,
+  });
+
   try {
     return await apiRequest(endPoints.putIncrementSuggesionsCount, options);
   } catch (e) {
@@ -83,11 +78,11 @@ export const putIncrementRejectionsCount = async (
   hostId
 ) => {
   try {
-    const options = {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      body: JSON.stringify({ id, rejectionsCount, hostId }),
-    };
+    const options = createApiRequestOptions('PUT', {
+      id,
+      rejectionsCount,
+      hostId,
+    });
     return await apiRequest(endPoints.putIncrementRejectionsCount, options);
   } catch (e) {
     console.log(
