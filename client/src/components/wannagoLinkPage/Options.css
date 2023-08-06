@@ -4,9 +4,10 @@
   gap: 50px;
 }
 
-.flexColumnCenterAll {
+.option-container {
  display: flex;
  flex-direction: column;
+ place-items: center;
  align-items: center;
  justify-content: center;
  width: 337px;

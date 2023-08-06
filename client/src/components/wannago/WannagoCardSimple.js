@@ -8,18 +8,18 @@ const WannaGoCardSimple = ({ wannago}) => {
   
 
   return (
-    <div className='card-container'>
-      <div className='date-aside'>
+    <article className='card-container'>
+      <aside className='date-aside'>
         <h2>
           <strong>{dateTime.day}</strong>
         </h2>
         <h4>{dateTime.month}</h4>
-      </div>
+      </aside>
       <div className='info-and-options-container-simple'>
         <div className='info-container'>
-          <div>
+          <header>
             <h2 className='title'>{wannago.what}</h2>
-          </div>
+          </header>
           <div className='description-simple'>
             <p className='text'>
               <strong>On</strong> {dateTime.wannaGoFormat}
@@ -35,7 +35,7 @@ const WannaGoCardSimple = ({ wannago}) => {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

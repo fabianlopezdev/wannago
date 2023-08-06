@@ -5,7 +5,7 @@ import {Alert} from 'bootstrap'
 import {
   putAddAttendees,
   putIncrementAttendeesCount,
-} from '../../utils/apis/wannagoApiServices/putWannaGos';
+} from '../../utils/apis/wannagoApiServices/putWannagos';
 import { useAuth } from '../../contexts/AuthContext';
 const YesOption = ({ id, attendeesCount, hostName, hostId }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
@@ -32,7 +32,7 @@ const YesOption = ({ id, attendeesCount, hostName, hostId }) => {
   };
 
   return (
-    <div className='flexColumnCenterAll'>
+    <article className='option-container'>
       {error && <Alert variant='danger'>{error}</Alert>}
       {submitClicked ? (
         <h3 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
@@ -45,7 +45,7 @@ const YesOption = ({ id, attendeesCount, hostName, hostId }) => {
           <h4>Let {hostName} know who you are.</h4>
           <div className='form'>
             <form onSubmit={handleSubmit}>
-              <div className='flexColumnCenterAll'>
+              <div className='option-container'>
                 <label
                 // style={{ alignSelf: 'start' }}
                 >
@@ -79,7 +79,7 @@ const YesOption = ({ id, attendeesCount, hostName, hostId }) => {
           </div>
         </>
       )}
-    </div>
+    </article>
   );
 };
 

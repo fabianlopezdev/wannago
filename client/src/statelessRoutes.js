@@ -8,7 +8,8 @@ import {
   UpdateProfile,
   ForgotPassword,
 } from './pages/user';
-import GuestsLink from './pages/GuestLink';
+
+import WannagoLink from './pages/WannagoLinkPage.js';
 // import NewWannago from './pages/wannago/NewWannago';
 import PrivateRoute from './components/user/authentication/PrivateRoute';
 import UserPrivateRoute from './components/user/authentication/UserPrivateRoutes';
@@ -17,7 +18,7 @@ export const statelessRoutes = [
   <Route>
     <Route
       path=':name/wannago-id/:id'
-      element={<GuestsLink />}
+      element={<WannagoLink />}
     />
     <Route element={<UserPrivateRoute />}>
       

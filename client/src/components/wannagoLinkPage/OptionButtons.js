@@ -1,7 +1,7 @@
 export const YesButton = ({ handleClick }) => {
   return (
     <button
-      className='optionButton important'
+      className='option-button important'
       onClick={handleClick}
     >
       I wannaGo!
@@ -12,7 +12,7 @@ export const YesButton = ({ handleClick }) => {
 export const NoButton = ({ handleClick }) => {
   return (
     <button
-      className='optionButton'
+      className='option-button'
       onClick={handleClick}
     >
       I can't
@@ -23,7 +23,7 @@ export const NoButton = ({ handleClick }) => {
 export const MaybeButton = ({ handleClick }) => {
   return (
     <button
-      className='optionButton'
+      className='option-button'
       onClick={handleClick}
     >
       Maybe

@@ -1,5 +1,5 @@
 //Internal dependencies
-import { putIncrementRejectionsCount } from '../../utils/apis/wannagoApiServices/putWannaGos';
+import { putIncrementRejectionsCount } from '../../utils/apis/wannagoApiServices/putWannagos';
 
 const NoOption = ({ id, rejectionsCount, hostName, hostId }) => {
   putIncrementRejectionsCount(id, ++rejectionsCount, hostId)

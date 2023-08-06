@@ -11,20 +11,18 @@ import {
   YesOption,
   NoOption,
   MaybeOption,
-} from '../components/guestLinkPageOptions';
+} from '../components/wannagoLinkPage';
 import {
   YesButton,
   NoButton,
   MaybeButton,
-} from '../components/guestLinkPageOptions/OptionButtons';
-import { getWannagoByDateCreated } from '../utils/apis/wannagoApiServices/getWannaGos';
-import { putTrackClick } from '../utils/apis/wannagoApiServices/putWannaGos';
+} from '../components/wannagoLinkPage/OptionButtons';
+import { getWannagoByDateCreated } from '../utils/apis/wannagoApiServices/getWannagos';
+import { putTrackClick } from '../utils/apis/wannagoApiServices/putWannagos';
 import { useQuery } from 'react-query';
-import { Logo } from '../components/navbar/NavBarButtons';
-import './guestLink.css';
-import { Helmet } from 'react-helmet-async';
-import favicon from '../assets/favicon.png';
 
+
+import './wannagoLinkPage.css';
 const GuestLink = () => {
   const { id } = useParams();
   console.log('id', id);
@@ -99,50 +97,26 @@ const GuestLink = () => {
   };
 
   return (
-    <>
-      <Helmet>
-        <meta
-          property='og:type'
-          content='website'
-        />
-        <meta
-          property='og:url'
-          content={wannago.link}
-        />
-        <meta
-          property='og:title'
-          content={`${wannago.hostName} wants to know if you wannago`}
-        />
-        <meta
-          property='og:description'
-          content='Chek out the plan'
-        />
-        <meta
-          property='og:image'
-          itemprop='image'
-          content={favicon.jpg}
-        />
-      </Helmet>
-
+   <>
       {window.innerWidth < 767 && (
         <Link
-            to={'/'}
-            style={{ textDecoration: 'none' }}
-            title='Go to Dashboard'
+          to={'/'}
+          style={{ textDecoration: 'none' }}
+          title='Go to Dashboard'
+        >
+          <p
+            className='logo'
+            style={{ textAlign: 'center', marginBlock: '1rem' }}
           >
-            <p
-              className='logo'
-              style={{ textAlign: 'center', marginBlock: '1rem' }}
-            >
-              Wannago?
-            </p>
-          </Link>
+            Wannago?
+          </p>
+        </Link>
       )}
-      <div className='pageContainer'>
+      <section className='page-container'>
         {!option && (
           <>
-            <h2 className='hostPresents'>{wannago.hostName} has a plan.</h2>
-            <h2>Do you wannaGo?</h2>
+            <h2 >{wannago.hostName} has a plan.</h2>
+            <h2 >Do you wannaGo?</h2>
           </>
         )}
 
@@ -157,16 +131,11 @@ const GuestLink = () => {
         ) : (
           <div className=''>{option && handleOption(option)}</div>
         )}
-      </div>
+      </section>
     </>
   );
 };
 
 export default GuestLink;
-
-
-
-
-
 
 

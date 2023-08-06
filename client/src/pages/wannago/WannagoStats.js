@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import WannaGoCard from '../../components/wannago/WannagoCard';
-import { getWannagoByDateCreated } from '../../utils/apis/wannagoApiServices/getWannaGos';
+import { getWannagoByDateCreated } from '../../utils/apis/wannagoApiServices/getWannagos';
 
 import { useNavigate, useParam, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';

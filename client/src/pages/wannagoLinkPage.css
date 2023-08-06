@@ -1,0 +1,64 @@
+.page-container {
+    display: grid;
+    place-content: center;
+    gap: 1rem;
+    height: calc(100vh - var(--height-top-navbar));
+    overflow-y: auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+.option-button {
+  background-color: rgb(242, 205, 211);
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  padding: 0.5rem 0.5rem;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 3px 2px rgb(241, 138, 203);
+  margin-bottom: 1rem;
+}
+
+.option-button:hover {
+  cursor: pointer;
+  background-color: rgb(241, 138, 203);
+  box-shadow: 3px 2px rgb(242, 205, 211);
+}
+
+.option-button.important {
+  background-color: rgb(241,138,203);
+  box-shadow: 3px 2px rgb(242,205,211);
+}
+
+.option-button.important:hover {
+  cursor: pointer;
+  background-color: rgb(242, 205, 211);
+  box-shadow: 3px 2px rgb(241, 138, 203);;
+}
+
+.option-button:active {
+  background-color: rgb(241, 138, 203);
+  box-shadow: 3px 2px rgb(242, 205, 211);
+  transform: translateY(2px);
+  transform: translateX(2px);
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+  gap: 1rem;
+}
+
+.form {
+  display: flex;
+  justify-content:center;
+  gap: 10px;
+}
+
+.btn {
+  display: flex;
+  align-items: flex-start;
+}

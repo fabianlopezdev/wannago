@@ -46,9 +46,9 @@ const WannaGoCard = ({ wannago }) => {
       </aside>
       <section className='info-and-options-container'>
         <div className='info-container'>
-          <div>
+          <header>
             <h2 className='title'>{wannago.what}</h2>
-          </div>
+          </header>
           <div className='info'>
             <p class='text'>
               <strong>On</strong> {dateTime.wannaGoFormat}
@@ -64,7 +64,7 @@ const WannaGoCard = ({ wannago }) => {
           </div>
         </div>
         <>
-          <div className='options-container'>
+          <footer className='options-container'>
             <div className='options'>
               <div className='clickable'>
                 <IoShareOutline
@@ -99,7 +99,7 @@ const WannaGoCard = ({ wannago }) => {
                 </div>
               )}
             </div>
-          </div>
+          </footer>
 
           {showShareModal && (
             <div

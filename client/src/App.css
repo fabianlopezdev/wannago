@@ -1,10 +1,14 @@
+:root {
+  --height-top-navbar: 5rem;
+}
+
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  height: calc(100vh - 4rem);
+  height: calc(150dvh - var(--height-top-navbar));
   /* overflow: hidden; */
 }
 
@@ -42,7 +46,7 @@
   }
 
   .mainContainer {
-    padding-top: 4rem; /* Adjust as needed to account for the height of the navbar */
+    padding-top: var(--height-top-navbar); /* Adjust as needed to account for the height of the navbar */
   }
 
   .bottomNavbar {

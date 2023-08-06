@@ -6,7 +6,7 @@ import { Alert } from 'bootstrap';
 import {
   putStoreSuggestion,
   putIncrementSuggestionsCount,
-} from '../../utils/apis/wannagoApiServices/putWannaGos';
+} from '../../utils/apis/wannagoApiServices/putWannagos';
 
 import './Options.css';
 
@@ -41,7 +41,7 @@ const MaybeOption = ({ id, suggestionsCount, hostName, hostId }) => {
 
   return (
     <>
-      <div className='flexColumnCenterAll'>
+      <div className='option-container'>
         {!msgSent && (
           <h4 style={{ marginLeft: '1rem', marginRight: '1rem' }}>
             Let {hostName} know if you have any suggestion.
@@ -55,7 +55,7 @@ const MaybeOption = ({ id, suggestionsCount, hostName, hostId }) => {
             className='form'
             onSubmit={handleSubmit}
           >
-            <div className='flexColumnCenterAll'>
+            <div className='option-container'>
               <label
                 // style={{ alignSelf: 'start' }}
                 htmlFor='name'

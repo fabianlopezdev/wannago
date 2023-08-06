@@ -1,10 +1,10 @@
 //External dependencies
 import { Alert } from 'bootstrap';
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
-import { getUserWannagos } from '../../utils/apis/wannagoApiServices/getWannaGos';
+import { getUserWannagos } from '../../utils/apis/wannagoApiServices/getWannagos';
 import {
   activeWannagosCount,
   olderWannagosCount,
@@ -14,7 +14,7 @@ import {
   aggregateLinksClicked,
   activeSortedWannagos,
 } from '../../utils/helperFunctions';
-import { useQuery} from 'react-query';
+import { useQuery } from 'react-query';
 import {
   DonutChart,
   RadialChart,
@@ -22,7 +22,7 @@ import {
 } from '../../components/charts';
 import WannaGoCard from '../../components/wannago/WannagoCard';
 
-import '../../components/guestLinkPageOptions/Options.css';
+import '../../components/wannagoLinkPage/Options.css';
 import './dashboard.css';
 
 const Dashboard = ({ wannago, setIsCreated }) => {
@@ -30,9 +30,9 @@ const Dashboard = ({ wannago, setIsCreated }) => {
 
   const queryEnabled = currentUser !== null;
 
-   useEffect(() => {
-    setIsCreated(false)
-   }, []);
+  useEffect(() => {
+    setIsCreated(false);
+  }, []);
 
   const {
     data: userWannagos,
@@ -46,7 +46,7 @@ const Dashboard = ({ wannago, setIsCreated }) => {
     }
   );
 
-    console.log('userWannagos', userWannagos)
+  console.log('userWannagos', userWannagos);
   if (isLoading) return <p>Loading...</p>;
   if (isError)
     return (
@@ -54,7 +54,6 @@ const Dashboard = ({ wannago, setIsCreated }) => {
         Sorry, something went wrong. Please try refreshing the page.
       </Alert>
     );
-  
 
   const activeAndSortedWannagos = activeSortedWannagos(userWannagos);
   const totalPplGoing = aggregateAttending(userWannagos);
@@ -72,7 +71,7 @@ const Dashboard = ({ wannago, setIsCreated }) => {
   const totalSuccessRatio =
     Math.floor((totalPplGoing / linksOpenedTotal) * 100) || 0;
 
-    // console.log('activeWGsTotal', totalActiveWannagos)
+  // console.log('activeWGsTotal', totalActiveWannagos)
   return (
     <>
       <main className='user-dashboard-page'>
@@ -80,7 +79,9 @@ const Dashboard = ({ wannago, setIsCreated }) => {
           <>
             <h1 className='title-text'>Welcome {currentUser.displayName}!</h1>
             {userWannagos.length === 0 && (
-              <p className='p-text'>You don't have wannagos yet. Create one to see it here.</p>
+              <p className='p-text'>
+                You don't have wannagos yet. Create one to see it here.
+              </p>
             )}
             {userWannagos.length > 0 && (
               <article className='stats-container'>
@@ -145,21 +146,4 @@ const Dashboard = ({ wannago, setIsCreated }) => {
 };
 
 export default Dashboard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
