@@ -9,7 +9,7 @@
 
 .logo-big {
   font-size: clamp(3.5rem, 10vw, 10rem);
-  -webkit-text-stroke: 3px #ff91d4;
+  -webkit-text-stroke: 3px var(--clr-secondary);;
 }
 
 .action-container {

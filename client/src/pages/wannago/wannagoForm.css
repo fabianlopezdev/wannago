@@ -1,5 +1,5 @@
 div.form-container {
-  height: calc(100vh - 5rem - 4rem);
+  height: calc(100dvh - var(--height-top-navbar)- var(--height-bottom-navbar));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,9 +10,9 @@ div.form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
   padding-left: 1rem;
   padding-right: 1rem;
   overflow-x: hidden;
   overflow-y: auto;
 }
+

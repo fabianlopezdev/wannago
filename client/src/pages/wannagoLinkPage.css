@@ -12,37 +12,37 @@ h2 {
 }
 
 .option-button {
-  background-color: rgb(242, 205, 211);
+  background-color: var(--clr-primary);
   border: 1px solid black;
   border-radius: 5px;
   color: white;
   padding: 0.5rem 0.5rem;
   font-size: 20px;
   font-weight: bold;
-  box-shadow: 3px 2px rgb(241, 138, 203);
+  box-shadow: 3px 2px var(--clr-secondary);
   margin-bottom: 1rem;
 }
 
 .option-button:hover {
   cursor: pointer;
-  background-color: rgb(241, 138, 203);
-  box-shadow: 3px 2px rgb(242, 205, 211);
+  background-color: var(--clr-secondary);
+  box-shadow: 3px 2px  var(--clr-primary);
 }
 
 .option-button.important {
-  background-color: rgb(241,138,203);
-  box-shadow: 3px 2px rgb(242,205,211);
+  background-color: var(--clr-secondary);
+  box-shadow: 3px 2px  var(--clr-primary);
 }
 
 .option-button.important:hover {
   cursor: pointer;
-  background-color: rgb(242, 205, 211);
-  box-shadow: 3px 2px rgb(241, 138, 203);;
+  background-color:  var(--clr-primary);
+  box-shadow: 3px 2px var(--clr-secondary);
 }
 
 .option-button:active {
-  background-color: rgb(241, 138, 203);
-  box-shadow: 3px 2px rgb(242, 205, 211);
+  background-color:  var(--clr-secondary);
+  box-shadow: 3px 2px  var(--clr-primary);
   transform: translateY(2px);
   transform: translateX(2px);
 }

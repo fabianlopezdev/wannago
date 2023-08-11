@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: space-around;
   background-color: white;
-  border-bottom: 1px solid rgb(241, 138, 203);
-  box-shadow: 0 1px 0px 0px rgb(242, 205, 211);
+  border-bottom: 1px solid var(--clr-secondary);
+  box-shadow: 0 1px 0px 0px var(--clr-primary);
   height: var(--height-top-navbar);
   position: sticky;
 }
@@ -31,15 +31,15 @@
   padding: 0.5rem 2rem;
   background-color: white;
   border-radius: 500px;
-  border: 2px solid rgb(241, 138, 203);
-  color: rgb(241, 138, 203);
+  border: 2px solid var(--clr-secondary);
+  color: var(--clr-secondary);
   font-weight: bold;
   font-size: 1.5rem;
 }
 
 .sign-up-button:hover {
-  color: rgb(242, 205, 211);
-  border: 2px solid rgb(242, 205, 211);
+  color: var(--clr-primary);
+  border: 2px solid var(--clr-primary);
 }
 
 .sign-up-button:active {
@@ -49,9 +49,9 @@
 
 .log-in-button {
   padding: 0.5rem 2rem;
-  background-color: rgb(242, 205, 211);
+  background-color: var(--clr-primary);
   border-radius: 500px;
-  border: 2px solid rgb(242, 205, 211);
+  border: 2px solid var(--clr-primary);
   color: white;
   font-weight: bold;
   font-size: 1.5rem;
@@ -59,15 +59,15 @@
 
 .log-out-button {
   padding-left: 1rem;
-  background-color: rgb(242, 205, 211);
+  background-color: var(--clr-primary);
   border-radius: 500px;
-  border: 2px solid rgb(242, 205, 211);
+  border: 2px solid var(--clr-primary);
   color: white;
 }
 
 .log-out-button:hover {
-  background-color: rgb(241, 138, 203);
-  border: 2px solid rgb(241, 138, 203);
+  background-color: var(--clr-secondary);
+  border: 2px solid var(--clr-secondary);
 }
 
 .log-out-button:active {
@@ -80,30 +80,30 @@
 }
 
 .log-in-button:hover {
-  background-color: rgb(241, 138, 203);
-  border: 2px solid rgb(241, 138, 203);
+  background-color: var(--clr-secondary);
+  border: 2px solid var(--clr-secondary);
 }
 
 .create-wannago-button {
-  background-color: rgb(242, 205, 211);
+  background-color: var(--clr-primary);
   border: 1px solid black;
   border-radius: 5px;
   color: white;
   padding: 15px 20px;
   font-size: 20px;
   font-weight: bold;
-  box-shadow: 2px 2px rgb(241, 138, 203);
+  box-shadow: 2px 2px var(--clr-secondary);
   /* margin-right:10rem; */
 }
 
 .create-wannago-button:hover {
-  background-color: rgb(241, 138, 203);
-  box-shadow: 2px 2px rgb(242, 205, 211);
+  background-color: var(--clr-secondary);
+  box-shadow: 2px 2px var(--clr-primary);
 }
 
 .create-wannago-button:active {
-  background-color: rgb(241, 138, 203);
-  box-shadow: 2px 2px rgb(242, 205, 211);
+  background-color: var(--clr-secondary);
+  box-shadow: 2px 2px var(--clr-primary);
   box-shadow: none;
   transform: translateY(2px);
   transform: translateX(2px);
@@ -115,7 +115,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  border-top: 1px solid rgb(241, 138, 203);
+  border-top: 1px solid var(--clr-secondary);
   height: 3.5rem;
   padding-top: 1rem;
 }

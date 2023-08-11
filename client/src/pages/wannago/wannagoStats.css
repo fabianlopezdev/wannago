@@ -22,7 +22,7 @@ aside.sidebar-info::after {
   bottom: 14%; 
   right: 0;
   width: 1px; 
-  background-color: rgb(241, 138, 203); 
+  background-color: var(--clr-secondary); 
 }
 
 section.info-container {
@@ -46,7 +46,7 @@ article.stats-container {
 }
 
 div.counters-box-info {
-  border: 1px solid rgb(241, 138, 203);
+  border: 1px solid var(--clr-secondary);
   border-radius: 10px;
   padding-inline: 0.5rem;
   width: 180px;
@@ -66,7 +66,7 @@ p.counter {
   transform: translateX(-50%);
   font-size: 4rem;
   font-weight: 500;
-  color: rgb(241, 138, 203);
+  color: var(--clr-secondary);
   margin-bottom: 0;
   text-align: center;
 }
@@ -98,7 +98,7 @@ p.people-going {
   font-size: 1.2rem;
   border-radius: 8px;
   padding: 0px 10px;
-  background-color: rgb(242, 205, 211);
+  background-color: var(--clr-primary);
   width: 20rem;
 }
 
@@ -111,7 +111,7 @@ div.suggestions-container {
 }
 
 div.message {
-  border: 1px solid rgb(241, 138, 203);
+  border: 1px solid var(--clr-secondary);
   border-radius: 10px;
   font-size: larger;
   padding: 0px 10px;

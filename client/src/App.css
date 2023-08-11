@@ -28,13 +28,6 @@
   margin:0;
 }
 
-
-.main-container {
-  /* margin-top: 7rem; */
-}
-
-
-
 .top-navbar {
   position: fixed;
   width: 100%;
@@ -50,8 +43,6 @@
   left: 0;
   width: 100%;
 }
-
-
 
 .img {
   margin-left: auto;
