@@ -8,7 +8,7 @@ import {
   putIncrementSuggestionsCount,
 } from '../../utils/apis/wannagoApiServices/putWannagos';
 
-import './Options.css';
+import './options.css';
 
 const MaybeOption = ({ id, suggestionsCount, hostName, hostId }) => {
   const [msgSent, setMsgSent] = useState(false);

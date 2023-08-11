@@ -13,7 +13,7 @@ import {  IoHomeOutline } from 'react-icons/io5';
 
 
 import { FiUser } from 'react-icons/fi';
-import './NavBar.css';
+import './navBar.css';
 
 const BottomNavBar = () => {
   //Hooks

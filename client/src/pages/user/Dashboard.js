@@ -22,7 +22,7 @@ import {
 } from '../../components/charts';
 import WannaGoCard from '../../components/wannago/WannagoCard';
 
-import '../../components/wannagoLinkPage/Options.css';
+import '../../components/wannagoLinkPage/options.css';
 import './dashboard.css';
 
 const Dashboard = ({ wannago, setIsCreated }) => {

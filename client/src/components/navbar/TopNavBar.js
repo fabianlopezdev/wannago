@@ -9,7 +9,7 @@ import {
   Profile,
 } from './NavBarButtons';
 import { useNavigate } from 'react-router-dom';
-import './NavBar.css';
+import './navBar.css';
 
 const TopNavBar = ({setIsCreated}) => {
   //Hooks
