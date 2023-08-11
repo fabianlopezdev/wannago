@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  height: calc(100dvh - var(--height-top-navbar));
+}
+
+.logo-big {
+  font-size: clamp(3.5rem, 10vw, 10rem);
+  -webkit-text-stroke: 3px #ff91d4;
+}
+
+.action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-main {
+  font-family: Kanit;
+}
+
+

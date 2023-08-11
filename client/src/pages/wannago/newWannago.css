@@ -1,4 +1,4 @@
-.justCreatedWannaGo {
+.created-wannago {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,15 +7,12 @@
   gap: 1rem;
 }
 
-.secondPart {
-  /* margin: 0px, 20rem; */
+.user-options {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 337px;
   margin: 2rem 2rem 0rem 2rem;
-  /* margin-left: 2rem;
-  margin-right: 2rem; */
   border-radius: 10px;
   box-shadow: 0 4px 6px rgb(0 0 0 / 6%);
 }

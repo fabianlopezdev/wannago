@@ -1,5 +1,3 @@
-import AddressAutoCompleter from './components/wannago/AdressAutoCompleter';
-
 //External dependency
 const dayjs = require('dayjs');
 

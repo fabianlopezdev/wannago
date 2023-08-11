@@ -6,7 +6,7 @@ import { dateFormatter } from '../../utils/helperFunctions';
 import { WhatsappIcon } from 'react-share';
 
 import { useState } from 'react';
-import './SocialButtons.css';
+import './shareOptions.css';
 
 const ShareOptions = ({ wannago }) => {
   const [copied, setCopied] = useState('Copy Link');
@@ -19,12 +19,12 @@ const ShareOptions = ({ wannago }) => {
   };
   return (
     <>
-      <div className='socialContainer'>
+      <div className='social-container'>
         <h4>Share the wannaGo:</h4>
-        <div className='socialButtons'>
+        <div className='social-buttons'>
           <button
             title='Copy Link'
-            className='copyButton'
+            className='copy-button'
             onClick={onClickCopyLink}
           >
             {copied}

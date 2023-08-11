@@ -8,10 +8,8 @@ import {
   IoLogInOutline,
   IoLogOutOutline,
   IoHomeOutline,
-  IoMenuOutline,
 } from 'react-icons/io5';
-import { useState } from 'react';
-import DropDownMenu from './DropDownMenu';
+
 import { useAuth } from '../../contexts/AuthContext';
 export const DashBoardButton = () => {
   return (
@@ -56,7 +54,7 @@ export const LogOutButton = () => {
   };
   return (
     <button
-      className='logOutButton'
+      className='log-out-button'
       onClick={onClickLogOut}
     >
       <IoLogOutOutline size={50} />
@@ -67,7 +65,7 @@ export const LogOutButton = () => {
 export const Profile = () => {
   return (
     <Link to={'update-profile'}>
-      <button className='signUpButton'>Profile</button>
+      <button className='sign-up-button'>Profile</button>
     </Link>
   );
 };
@@ -85,7 +83,7 @@ export const SignUpIcon = () => {
 export const SignUpButton = () => {
   return (
     <Link to={'sign-up'}>
-      <button className='signUpButton'>Sign Up</button>
+      <button className='sign-up-button'>Sign Up</button>
     </Link>
   );
 };
@@ -104,7 +102,7 @@ export const LogInIcon = () => {
 export const LogInButton = () => {
   return (
     <Link to={'log-in'}>
-      <button className='logInButton'>Log In</button>
+      <button className='log-in-button'>Log In</button>
     </Link>
   );
 };

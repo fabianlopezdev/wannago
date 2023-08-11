@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { deleteWannago } from '../../utils/apis/wannagoApiServices/deleteWannagos';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+
 export default function DeleteOption(_id) {
   const { userToken } = useAuth();
 

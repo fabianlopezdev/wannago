@@ -1,9 +1,33 @@
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  border-bottom: 1px solid rgb(241, 138, 203);
+  box-shadow: 0 1px 0px 0px rgb(242, 205, 211);
+  height: var(--height-top-navbar);
+  position: sticky;
+}
+
+.user-sign-in-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.landing-page-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 4rem;
+}
+
 .Logo {
   width: 15rem;
   /* margin-left: 6.5rem; */
 }
 
-.signUpButton {
+.sign-up-button {
   padding: 0.5rem 2rem;
   background-color: white;
   border-radius: 500px;
@@ -13,17 +37,17 @@
   font-size: 1.5rem;
 }
 
-.signUpButton:hover {
+.sign-up-button:hover {
   color: rgb(242, 205, 211);
   border: 2px solid rgb(242, 205, 211);
 }
 
-.signUpButton:active {
+.sign-up-button:active {
   transform: translateY(2px);
   transform: translateX(2px);
 }
 
-.logInButton {
+.log-in-button {
   padding: 0.5rem 2rem;
   background-color: rgb(242, 205, 211);
   border-radius: 500px;
@@ -33,7 +57,7 @@
   font-size: 1.5rem;
 }
 
-.logOutButton {
+.log-out-button {
   padding-left: 1rem;
   background-color: rgb(242, 205, 211);
   border-radius: 500px;
@@ -41,56 +65,26 @@
   color: white;
 }
 
-.logOutButton:hover {
+.log-out-button:hover {
   background-color: rgb(241, 138, 203);
   border: 2px solid rgb(241, 138, 203);
 }
 
-.logOutButton:active {
+.log-out-button:active {
   transform: translateY(2px);
   transform: translateX(2px);
 }
-.logInButton:active {
+.log-in-button:active {
   transform: translateY(2px);
   transform: translateX(2px);
 }
 
-.logInButton:hover {
+.log-in-button:hover {
   background-color: rgb(241, 138, 203);
   border: 2px solid rgb(241, 138, 203);
 }
 
-.navContainer {
-  display: flex;
-  /* margin-left: 10rem;
-  margin-right: 10rem; */
-  align-items: center;
-  justify-content: space-around;
-  background-color: white;
-  border-bottom: 1px solid rgb(241, 138, 203);
-  box-shadow: 0 1px 0px 0px rgb(242, 205, 211);
-  height: var(--height-top-navbar);
-  position: sticky;
-  /* width: fill; */
-}
-
-
-.userSigningButtons {
-  display: flex;
-  gap: 10px;
-  /* margin-left:auto;
-  margin-right:7rem; */
-}
-
-.landingPageButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  height: 4rem;
-}
-
-.createButton {
+.create-wannago-button {
   background-color: rgb(242, 205, 211);
   border: 1px solid black;
   border-radius: 5px;
@@ -102,12 +96,12 @@
   /* margin-right:10rem; */
 }
 
-.createButton:hover {
+.create-wannago-button:hover {
   background-color: rgb(241, 138, 203);
   box-shadow: 2px 2px rgb(242, 205, 211);
 }
 
-.createButton:active {
+.create-wannago-button:active {
   background-color: rgb(241, 138, 203);
   box-shadow: 2px 2px rgb(242, 205, 211);
   box-shadow: none;
@@ -117,11 +111,12 @@
 
 /*NavBar Bottom*/
 
-.navContainerBottom {
+.nav-container-bottom {
   display: flex;
   align-items: center;
   justify-content: space-around;
   border-top: 1px solid rgb(241, 138, 203);
   height: 3.5rem;
-  padding-top: 1rem
+  padding-top: 1rem;
 }
+

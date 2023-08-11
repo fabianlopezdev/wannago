@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 
-import './Authentication.css';
+import './authentication.css';
 
 export default function UpdateProfile() {
   //Hooks
@@ -52,7 +52,7 @@ export default function UpdateProfile() {
   };
 
   return (
-    <main style={{display: 'flex', flexDirection: 'column', justifyContent:'center', alignItems: 'center', marginTop: '1rem'}}>
+    <section style={{display: 'flex', flexDirection: 'column', justifyContent:'center', alignItems: 'center', marginTop: '1rem'}}>
       <Card>
         <Card.Body style={{width: '20rem'}}>
           <h2 className='card-body-h2'>Update Profile</h2>
@@ -106,7 +106,7 @@ export default function UpdateProfile() {
         <Link to='/dashboard'>Cancel</Link> &nbsp;
         <Link to='/delete-account'>Delete Account</Link>
       </div>
-    </main>
+    </section>
   );
 }
 

@@ -4,6 +4,7 @@
     gap: 1rem;
     height: calc(100vh - var(--height-top-navbar));
     overflow-y: auto;
+    padding-bottom: var(--height-bottom-navbar); 
 }
 
 h2 {

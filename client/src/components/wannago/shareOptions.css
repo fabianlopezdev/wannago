@@ -1,22 +1,20 @@
-.socialContainer {
+.social-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.socialButtons {
+.social-buttons {
   width: fill;
   display: flex;
   justify-content: space-around;
-  /* padding: 2rem; */
   align-items: center;
 }
-.copyButton {
+.copy-button {
   background-color: rgb(242, 205, 211);
   border: 1px solid black;
   border-radius: 5px;
   color: white;
-  /* padding: 0 1rem; */
   font-size: 20px;
   font-weight: bold;
   box-shadow: 2px 2px rgb(241, 138, 203);

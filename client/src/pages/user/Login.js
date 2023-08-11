@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
-import './Authentication.css';
+import './authentication.css';
 
 export default function Login({wannago, setWannago}) {
   //Hooks
@@ -15,7 +15,7 @@ export default function Login({wannago, setWannago}) {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  console.log('wannago.length', Object.keys(wannago).length)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -32,7 +32,7 @@ export default function Login({wannago, setWannago}) {
   };
 
   return (
-    <main className='formContainer'>
+    <main className='form-container'>
       {window.innerWidth < 767 && (
         <>
           <Link

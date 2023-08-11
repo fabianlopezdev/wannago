@@ -1,21 +1,16 @@
 //External dependencies
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 import {
   LogInButton,
   SignUpButton,
   LogoutIcon,
-  Logo,
-  LogOutButton,
-  Profile,
-  DashBoardButton,
 } from './NavBarButtons';
 
 import { IoIosAddCircleOutline } from 'react-icons/io';
-import { IoLogOutOutline, IoHomeOutline } from 'react-icons/io5';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
+import {  IoHomeOutline } from 'react-icons/io5';
+
 
 import { FiUser } from 'react-icons/fi';
 import './NavBar.css';
@@ -23,14 +18,14 @@ import './NavBar.css';
 const BottomNavBar = () => {
   //Hooks
   const { currentUser, logOut } = useAuth();
-  const navigate = useNavigate();
+ 
   const location = useLocation();
 
   // console.log(location);
   return (
     <nav>
       {location.pathname !== '/' && (
-        <div className='navContainerBottom'>
+        <div className='nav-container-bottom'>
           {currentUser ? (
             <>
               {location.pathname !== '/dashboard' && (
@@ -61,7 +56,7 @@ const BottomNavBar = () => {
             </>
           ) : (
             <>
-              <div className='userSigningButtons'>
+              <div className='user-sign-in-buttons'>
                 <LogInButton logOut={logOut} />
                 <SignUpButton />
               </div>
@@ -70,7 +65,7 @@ const BottomNavBar = () => {
         </div>
       )}
       {location.pathname === '/' && (
-        <div className='landingPageButton'>
+        <div className='landing-page-buttons'>
           <LogInButton logOut={logOut} />
           <SignUpButton />
         </div>

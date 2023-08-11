@@ -1,106 +1,8 @@
 :root {
+  --clr-primary: rgb(242, 205, 211);
+  --clr-secondary: rgb(241, 138, 203); 
   --height-top-navbar: 5rem;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  height: calc(150dvh - var(--height-top-navbar));
-  /* overflow: hidden; */
-}
-
-.mainContainer {
-  /* margin-top: 7rem; */
-}
-
-.action-container {
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
-  /* margin-bottom: 7rem; */
-}
-
-.topNavBar {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 10;
-}
-
-.bottomNavbar {
-  padding: 1rem;
-  background-color: white;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-@media only screen and (min-width: 768px) {
-  .topNavBar {
-    display: block;
-  }
-
-  .mainContainer {
-    padding-top: var(--height-top-navbar); /* Adjust as needed to account for the height of the navbar */
-  }
-
-  .bottomNavbar {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .bottomNavbar {
-    display: block;
-  }
-
-  .topNavBar {
-    display: none;
-  }
-}
-
-.img {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
-  min-width: 50%;
-  max-width: 50%;
-}
-
-.title-main {
-  font-family: Kanit;
-}
-
-.button {
-  margin-right: 20px;
-  background-color: rgb(242, 205, 211);
-  border: 1px solid black;
-  border-radius: 5px;
-  color: white;
-  padding: 15px 20px;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 30px;
-  box-shadow: 2px 2px rgb(241, 138, 203);
-}
-
-.button:hover {
-  cursor: pointer;
-  background-color: rgb(241, 138, 203);
-  box-shadow: 2px 2px rgb(242, 205, 211);
-}
-
-.button:active {
-  background-color: rgb(241, 138, 203);
-  box-shadow: 2px 2px rgb(242, 205, 211);
-  box-shadow: none;
-  transform: translateY(2px);
-  transform: translateX(2px);
+  --height-bottom-navbar: 5rem;
 }
 
 @font-face {
@@ -119,23 +21,78 @@
 
 .logo {
   font-family: 'Montserrat Alternates', sans-serif;
-  color: rgb(254,194,232);
-   text-shadow: 2px 2px 2px rgb(254,194,232);
-  -webkit-text-stroke: 1px #FF91D4;
+  color: var(--clr-primary);
+   text-shadow: 2px 2px 2px var(--clr-primary);
+  -webkit-text-stroke: 1px var(--clr-secondary);
   font-size: 2rem;
   margin:0;
 }
 
-.big {
-  font-size: clamp(3.5rem, 10vw, 10rem);
-  /* text-shadow: 10px 10px 10px rgb(254,194,232); */
-  -webkit-text-stroke: 3px #FF91D4;
-  /* letter-spacing: -1rem;  */
+
+.main-container {
+  /* margin-top: 7rem; */
 }
+
+
+
+.top-navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+
+.bottom-navbar {
+  padding: 1rem;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+
+.img {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  min-width: 50%;
+  max-width: 50%;
+}
+
+
+
+.button {
+  margin-right: 20px;
+  background-color: var(--clr-primary);
+  border: 1px solid black;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  box-shadow: 2px 2px var(--clr-secondary);
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: var(--clr-secondary);
+  box-shadow: 2px 2px var(--clr-primary);
+}
+
+.button:active {
+  background-color: var(--clr-secondary);
+  box-shadow: 2px 2px var(--clr-primary);
+  box-shadow: none;
+  transform: translateY(2px);
+  transform: translateX(2px);
+}
+
 .highlight {
   width: fit-content;
-  border: 3px dashed rgb(241, 138, 203);
-  
+  border: 3px dashed var(--clr-secondary);
   border-radius: 5px;
   margin-top: 5px;
   font-size: 20px;
@@ -148,13 +105,44 @@
   align-items: center;
 }
 
-.button.maybe {
-  margin-bottom: 30px;
-}
 
 .buttonDelete {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+.button.maybe {
+  margin-bottom: 30px;
+}
+
+
+
+@media (width <= 767px) {
+  .bottom-navbar {
+    display: block;
+  }
+
+   .main-container {
+    padding-bottom: var(--height-bottom-navbar); /* Adjust as needed to account for the height of the navbar */
+  }
+  .top-navbar {
+    display: none;
+  }
+}
+
+@media (768px <= width) {
+  .top-navbar {
+    display: block;
+  }
+
+  .main-container {
+    padding-top: var(--height-top-navbar); /* Adjust as needed to account for the height of the navbar */
+  }
+
+  .bottom-navbar {
+    display: none;
+  }
 }
 

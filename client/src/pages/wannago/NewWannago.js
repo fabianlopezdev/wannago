@@ -20,12 +20,7 @@ const NewWannago = ({ wannago, setWannago, setIsCreated }) => {
     const queryClient = useQueryClient();
 
   const [postedWannago, setPostedWannago] = useState(null);
-  // useEffect(() => {
-  //   setIsCreated(false)
-  //   // console.log('currenUser', currentUser);
-  //   // If no user, no need to post the wannago in the DB
-    
-  // }, []);
+
 
   const mutation = useMutation(() => postWannago(currentUser, wannago, userToken), {
     onSuccess: async (response) => {
@@ -54,7 +49,7 @@ const NewWannago = ({ wannago, setWannago, setIsCreated }) => {
 
   return (
     <>
-      <div className='justCreatedWannaGo'>
+      <section className='created-wannago'>
         {currentUser && postedWannago ? (
           <h1>{postedWannago.hostName},</h1>
         ) : null}
@@ -67,14 +62,14 @@ const NewWannago = ({ wannago, setWannago, setIsCreated }) => {
         ) : (
           <WannaGoCardSimple wannago={wannago} />
         )}
-        <div className='secondPart'>
+        <div className='user-options'>
           {!currentUser ? (
             <PlanSharingPrompt />
           ) : postedWannago ? (
             <ShareOptions wannago={postedWannago} />
           ) : null}
         </div>
-      </div>
+      </section>
     </>
   );
 };

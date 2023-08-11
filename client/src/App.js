@@ -12,7 +12,6 @@ import WannagoForm from './pages/wannago/WannagoForm';
 import NavBarBottom from './components/navbar/BottomNavBar';
 import { statelessRoutes } from './statelessRoutes';
 import './App.css';
-import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const [wannago, setWannago] = useState({});
@@ -20,15 +19,14 @@ function App() {
 
   return (
     <>
-      <HelmetProvider>
-        <header className='topNavBar'>
+        <header className='top-navbar'>
           <NavBar
             setIsCreated={setIsCreated}
             setWannago={setWannago}
           />
         </header>
 
-        <main className='mainContainer'>
+        <main className='main-container'>
           <Routes>
             <Route
               path='/'
@@ -83,10 +81,9 @@ function App() {
           </Routes>
         </main>
 
-        <footer className='bottomNavbar'>
+        <footer className='bottom-navbar'>
           <NavBarBottom />
         </footer>
-      </HelmetProvider>
     </>
   );
 }

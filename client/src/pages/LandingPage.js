@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 //Internal dependencies
 import logo from '../assets/finalWannaGoLogo.png';
 
+import './landingPage.css';
+
 const LandingPage = ({ setWannago, setIsCreated }) => {
   const navigate = useNavigate();
 
@@ -21,7 +23,7 @@ const LandingPage = ({ setWannago, setIsCreated }) => {
           src={logo}
           alt='logo'
         ></img> */}
-        <p class='logo big'>Wannago?</p>
+        <p class='logo logo-big'>Wannago?</p>
         <article class='action-container'>
           <h1 className='title-main'>Create a plan. Share it!</h1>
           <div>
@@ -39,4 +41,5 @@ const LandingPage = ({ setWannago, setIsCreated }) => {
 };
 
 export default LandingPage;
+
 

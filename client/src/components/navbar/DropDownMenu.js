@@ -13,25 +13,15 @@ const serviceDropdown = [
   { name: 'Log Out', path: '/', icon: <HiOutlineLogout /> },
 ];
 
-// const defaultClass =
-//   'border-b px-5  flex gap-10 hover:bg-palette-orange hover:cursor-pointer py-2 text-2xl items-center';
-// const topClass = defaultClass + ' rounded-t-[10px]';
-// const bottomClass = defaultClass + ' rounded-b-[10px]';
 
 const Dropdown = ({ setShowDropDown }) => {
   const { logOut } = useAuth();
 
-  // const dropDownref = useOnclickOutside(() => {
-  //   setShowDropDown(false);
-  // });
 
   return (
     <div>
       <div
-        // ref={dropDownref}
-        // onMouseLeave={() => setShowDropDown(false)}
         className='dropdown'
-        // 'hidden md:block mt-24 w-full rounded-[5px] shadow-md'
       >
         <ul className='dropropDownItem'>
           {/* w-64 absolute bg-[#c4915f] -right-[50%] rounded-[10px] mr-[5px]

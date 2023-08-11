@@ -5,12 +5,10 @@ import { useAuth } from '../../contexts/AuthContext';
 import {
   LogInButton,
   SignUpButton,
-  Logo,
   LogOutButton,
   Profile,
 } from './NavBarButtons';
 import { useNavigate } from 'react-router-dom';
-import { IoAddSharp } from 'react-icons/io5';
 import './NavBar.css';
 
 const TopNavBar = ({setIsCreated}) => {
@@ -27,7 +25,7 @@ const TopNavBar = ({setIsCreated}) => {
   return (
     <nav>
       {location.pathname !== '/' && (
-        <div className='navContainer'>
+        <div className='nav-container'>
           <Link
             to={currentUser ? '/dashboard' : '/'}
             style={{ textDecoration: 'none' }}
@@ -41,28 +39,28 @@ const TopNavBar = ({setIsCreated}) => {
                 <Link to={'new-wannago'}>
                   <button
                     title='Make a new WannaGo'
-                    className='createButton'
+                    className='create-wannago-button'
                     onClick={handleCreateClick}
                   >
                     Create
                   </button>
                 </Link>
               )}
-              <div className='userSigningButtons'>
+              <div className='user-sign-in-buttons'>
                 <Profile />
                 <LogOutButton />
               </div>
             </>
           ) : location.pathname === '/' ? (
             <>
-              <div className='landingPageButtons'>
+              <div className='landing-page-buttons'>
                 <LogOutButton />
               </div>
             </>
           ) : (
             <>
               {/* <Logo currentUser={currentUser} /> */}
-              <div className='userSigningButtons'>
+              <div className='user-sign-in-buttons'>
                 <LogInButton logOut={logOut} />
                 <SignUpButton />
               </div>
@@ -71,7 +69,7 @@ const TopNavBar = ({setIsCreated}) => {
         </div>
       )}
       {location.pathname === '/' && (
-        <div className='landingPageButton'>
+        <div className='landing-page-buttons'>
           <LogInButton logOut={logOut} />
           <SignUpButton />
         </div>
@@ -81,6 +79,10 @@ const TopNavBar = ({setIsCreated}) => {
 };
 
 export default TopNavBar;
+
+
+
+
 
 
 

@@ -8,7 +8,7 @@ import { postWannago } from '../../utils/apis/wannagoApiServices/postWannaGos';
 //Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 
-import './Authentication.css';
+import './authentication.css';
 
 export default function SignUp({wannago, setWannago}) {
   //Hooks
@@ -45,7 +45,7 @@ export default function SignUp({wannago, setWannago}) {
   };
 
   return (
-    <main className='formContainer'>
+    <main className='form-container'>
       {window.innerWidth < 767 && (
         <>
           <Link

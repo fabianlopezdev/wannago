@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 
-import './Authentication.css';
+import './authentication.css';
 
 export default function ForgotPassword() {
   //Hooks
@@ -31,7 +31,7 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <main className='formContainer'>
+      <main className='form-container'>
         <Card style={{ width: '20rem' }}>
           <Card.Body>
             <h2 className='card-body-h2'>Password Reset</h2>
