@@ -1,20 +1,26 @@
 //External dependencies
 import { URL_GENERATED_LINK } from './config';
-const dayjs = require('dayjs');
-var advancedFormat = require('dayjs/plugin/advancedFormat');
-dayjs.extend(advancedFormat);
+
 
 export const dateFormatter = (date) => {
-  const toFormat = dayjs(date);
   const dateTime = {
-    day: toFormat.format('Do'),
-    month: toFormat.format('MMM'),
-    year: toFormat.format('YYYY'),
-    time: toFormat.format('hh:mm a'),
-    wannaGoFormat: toFormat.format('MMMM Do, YYYY'),
+    day: new Date(date).getDate(),
+    month: new Date(date).getMonth() + 1,
+    year: new Date(date).getFullYear(),
+    time: new Date(date).toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    }),
+    wannaGoFormat: new Date(date).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    }),
   };
   return dateTime;
 };
+
 
 export const wannagoEngagement = (wannaGo) => {
   return (
@@ -117,6 +123,8 @@ export const createApiRequestOptions = (method, data) => {
     body: JSON.stringify(data),
   };
 }
+
+
 
 
 
