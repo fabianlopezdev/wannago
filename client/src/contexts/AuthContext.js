@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       if (user) {
         const token = await auth.currentUser.getIdToken();
-        console.log('tokeeeen', token)
         setUserToken(token);
       }
     });

@@ -50,14 +50,14 @@ const WannaGoCard = ({ wannago }) => {
             <h2 className='title'>{wannago.what}</h2>
           </header>
           <div className='info'>
-            <p class='text'>
+            <p className='text'>
               <strong>On</strong> {dateTime.wannaGoFormat}
             </p>
-            <p class='text'>
+            <p className='text'>
               <strong>At </strong>
               {dateTime.time}
             </p>
-            <p class='text'>
+            <p className='text'>
               <strong>At </strong>
               {wannago.where}
             </p>

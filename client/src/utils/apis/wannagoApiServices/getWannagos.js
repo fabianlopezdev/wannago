@@ -16,8 +16,9 @@ export const getUserWannagos = async (userId, userToken) => {
 
 export const getWannagoByDateCreated = async (dateCreated) => {
   try {
-    console.log('dateCreated', endPoints.getWannagoByDateCreated);
+    console.log('dateCreated', dateCreated);
     const wannaGo = await apiRequest(`${endPoints.getWannagoByDateCreated}/${dateCreated}`);
+    console.log('wannaGo fetched', wannaGo);
     return await wannaGo.json();
   } catch (e) {
     console.log(

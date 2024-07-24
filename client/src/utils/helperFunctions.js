@@ -25,17 +25,17 @@ export const dateFormatter = (date) => {
 export const wannagoEngagement = (wannaGo) => {
   return (
     Math.floor(
-      (wannaGo.rejectCounter +
-        wannaGo.goingCounter +
-        wannaGo.suggestionBoxCounter) /
-        wannaGo.openedTimes
+      (wannaGo.rejectionsCount +
+        wannaGo.attendeesCount +
+        wannaGo.suggestionsCount) /
+        wannaGo.clickCount
     ) * 100 || 0
   );
 };
 
 export const wannagoSuccessRatio = (wannaGo) => {
   return `${
-    Math.floor((wannaGo.goingCounter / wannaGo.openedTimes) * 100) || 0
+    Math.floor((wannaGo.attendeesCount / wannaGo.clickCount) * 100) || 0
   }%`;
 };
 
@@ -53,25 +53,25 @@ export const aggregateEngagement = (wannaGosOfUser) => {
 
 export const aggregateRejections = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + wannaGo.rejectCounter;
+    return acc + wannaGo.rejectionsCount;
   }, 0);
 };
 
 export const aggregateSuggestions = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + wannaGo.suggestionBoxCounter;
+    return acc + wannaGo.suggestionsCount;
   }, 0);
 };
 
 export const aggregateAttending = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + wannaGo.goingCounter;
+    return acc + wannaGo.attendeesCount;
   }, 0);
 };
 
 export const aggregateLinksClicked = (wannaGosOfUser) => {
   return wannaGosOfUser.reduce((acc, wannaGo) => {
-    return acc + wannaGo.openedTimes;
+    return acc + wannaGo.clickCount;
   }, 0);
 };
 
@@ -98,6 +98,7 @@ export const olderWannagosCount = (wannaGosOfUser) => {
 };
 
 export const activeSortedWannagos = (wannaGosOfUser) => {
+  if (!wannaGosOfUser) return [];
   return wannaGosOfUser
     .filter((wannaGo) => new Date(wannaGo.when) > Date.now())
     .sort((a, b) => {

@@ -1,8 +1,8 @@
-//External dependencies
+// External dependencies
 import { Alert } from 'bootstrap';
 import { useEffect } from 'react';
 
-//Internal dependencies
+// Internal dependencies
 import { useAuth } from '../../contexts/AuthContext';
 import { getUserWannagos } from '../../utils/apis/wannagoApiServices/getWannagos';
 import {
@@ -32,7 +32,7 @@ const Dashboard = ({ wannago, setIsCreated }) => {
 
   useEffect(() => {
     setIsCreated(false);
-  }, []);
+  }, [setIsCreated]);
 
   const {
     data: userWannagos,
@@ -55,6 +55,21 @@ const Dashboard = ({ wannago, setIsCreated }) => {
       </Alert>
     );
 
+  if (!userWannagos || userWannagos.length === 0) {
+    return (
+      <main className='user-dashboard-page'>
+        {currentUser && (
+          <>
+            <h1 className='title-text'>Welcome {currentUser.displayName}!</h1>
+            <p className='p-text'>
+              You don't have wannagos yet. Create one to see it here.
+            </p>
+          </>
+        )}
+      </main>
+    );
+  }
+
   const activeAndSortedWannagos = activeSortedWannagos(userWannagos);
   const totalPplGoing = aggregateAttending(userWannagos);
   const totalRejections = aggregateRejections(userWannagos);
@@ -64,86 +79,46 @@ const Dashboard = ({ wannago, setIsCreated }) => {
   const linksOpenedTotal = aggregateLinksClicked(userWannagos);
   const totalEngagement =
     Math.floor(
-      ((totalPplGoing + totalRejections + totalSuggestions) /
-        linksOpenedTotal) *
-        100
+      ((totalPplGoing + totalRejections + totalSuggestions) / linksOpenedTotal) * 100
     ) || 0;
   const totalSuccessRatio =
     Math.floor((totalPplGoing / linksOpenedTotal) * 100) || 0;
 
-  // console.log('activeWGsTotal', totalActiveWannagos)
   return (
-    <>
-      <main className='user-dashboard-page'>
-        {currentUser && (
-          <>
-            <h1 className='title-text'>Welcome {currentUser.displayName}!</h1>
-            {userWannagos.length === 0 && (
-              <p className='p-text'>
-                You don't have wannagos yet. Create one to see it here.
-              </p>
-            )}
-            {userWannagos.length > 0 && (
-              <article className='stats-container'>
-                <div className='individual-stat-container'>
-                  <DonutChart
-                    going={totalPplGoing}
-                    maybe={totalSuggestions}
-                    notGoing={totalRejections}
-                  />
-                </div>
-                <div className='individual-stat-container'>
-                  <RadialChart
-                    engagement={totalEngagement}
-                    successRatio={totalSuccessRatio}
-                  />
-                </div>
-                <div className='individual-stat-container'>
-                  <TotalWannaGosChart
-                    active={userWannagos.length}
-                    older={olderWGsTotal}
-                  />
-                </div>
-              </article>
-            )}
-            {userWannagos.length === 0 && null}
-            {userWannagos.length === 1 && (
-              <>
-                <h2 className='title-text'>This is your wannago:</h2>
-                <div className='wannago-cards-container'>
-                  {activeAndSortedWannagos.map((wannago) => {
-                    return (
-                      <WannaGoCard
-                        key={wannago.dateCreated}
-                        wannago={wannago}
-                      />
-                    );
-                  })}
-                </div>{' '}
-              </>
-            )}
-
-            {userWannagos.length > 1 && (
-              <>
-                <h2 className='title-text'>These are your wannagos:</h2>
-                <div className='wannago-cards-container'>
-                  {activeAndSortedWannagos.map((wannago) => {
-                    return (
-                      <WannaGoCard
-                        key={wannago.dateCreated}
-                        wannago={wannago}
-                      />
-                    );
-                  })}
-                </div>{' '}
-              </>
-            )}
-          </>
-        )}
-      </main>
-    </>
+    <main className='user-dashboard-page'>
+      {currentUser && (
+        <>
+          <h1 className='title-text'>Welcome {currentUser.displayName}!</h1>
+          <article className='stats-container'>
+            <div className='individual-stat-container'>
+              <DonutChart
+                going={totalPplGoing}
+                maybe={totalSuggestions}
+                notGoing={totalRejections}
+              />
+            </div>
+            <div className='individual-stat-container'>
+              <RadialChart
+                engagement={totalEngagement}
+                successRatio={totalSuccessRatio}
+              />
+            </div>
+            <div className='individual-stat-container'>
+              <TotalWannaGosChart
+                active={userWannagos.length}
+                older={olderWGsTotal}
+              />
+            </div>
+          </article>
+          <div className='wannago-cards-container'>
+            {activeAndSortedWannagos.map((wannago) => (
+              <WannaGoCard key={wannago.dateCreated} wannago={wannago} />
+            ))}
+          </div>
+        </>
+      )}
+    </main>
   );
 };
 
 export default Dashboard;
-

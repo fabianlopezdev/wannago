@@ -26,7 +26,7 @@ import './wannagoLinkPage.css';
 const GuestLink = () => {
   const { id } = useParams();
   console.log('id', id);
-  // const { userToken } = useAuth();
+
   const {
     data: wannago,
     isError,
